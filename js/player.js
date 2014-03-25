@@ -127,7 +127,7 @@ function vidmute() {
         mute.textContent = "CISZA";
     } else {
         vid.muted = true;
-        mute.textContent = "G�?OŚNO";
+        mute.textContent = "Głośno";
     }
 }
 
