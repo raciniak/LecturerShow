@@ -25,6 +25,6 @@ input#slider{width: 220px;}
 input#volslider{width: 100px;}
 
 .slider img{
-   // visibility:hidden;
+    visibility:hidden;
 }
 

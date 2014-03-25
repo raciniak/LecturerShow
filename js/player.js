@@ -2,10 +2,13 @@ var intID;
 var a='';
 var i;
 var vid, plbtn, slider, czasObecny, czasTrwania;
+var movieFileLocation;
+
 $(document).ready(function(){
+	   movieFileLocation = new String("movies/movie1/trailer_test.mp4");
        pobierzPlik();
        $('#load_JPG').html('<img src="images/logo.png" width="640" height="360" alt="cos1"/>');
-       document.getElementById("film").src=getImagePath();
+       document.getElementById("film").src = movieFileLocation;
        startPlayer();
        $('#playPause').click(function(){i=1;});
 });
@@ -21,8 +24,7 @@ function obrazek(){
             if(j==0)
                 i=a[0];
             j--;
-
-         }
+        }
 
         if(i<parseInt(a[0])+1)
         {
@@ -31,19 +33,6 @@ function obrazek(){
                  $('#load_JPG').html('<img src="movies/movie1/images/' + a[i] + '.jpg" width="640" height="360" alt="cos'+i+'"/>');
              }
         }
-}
-
-
-function getImagePath(){
-     return "movies/movie1/trailer_test.mp4";
-   }
-
-
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 function startPlayer() {
@@ -65,21 +54,18 @@ function startPlayer() {
 }
 
 
-function pobierzPlik()
-            {
-                
-		var txt='';
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET","movies/movie1/times.txt");
-		xmlhttp.onreadystatechange = function(){
-			if(xmlhttp.status==200 && xmlhttp.readyState==4){
-				txt=xmlhttp.responseText;
-                                a=txt.split('\n');
-			}
-                            
-		};
-		xmlhttp.send();
-            }
+function pobierzPlik() {         
+	var txt='';
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET","movies/movie1/times.txt");
+	xmlhttp.onreadystatechange = function(){
+		if(xmlhttp.status==200 && xmlhttp.readyState==4){
+			txt=xmlhttp.responseText;
+	        a=txt.split('\n');
+		}	                        
+	};
+	xmlhttp.send();
+}
 
 function playPause() {
     if (vid.paused) {
@@ -117,8 +103,6 @@ function seekTimeUpdate() {
     }
     czasObecny.innerHTML = min + ":" + sek;
     czasTrwania.innerHTML = dmin + ":" + dsek;
-    
-
 }
 
 function vidmute() {
