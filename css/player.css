@@ -1,0 +1,30 @@
+
+body{
+    background: #9bd;
+}
+div#timeline{
+    background: #333;
+    padding:10px;
+    color:#CCC;
+}
+div#player_box{
+    background:#000;
+    width: 1280px;
+    margin:0px auto;
+ //   display: inline;
+}
+div#vidbox{
+	float: left;
+
+        
+}
+div#load_JPG{
+	float: right;
+}
+input#slider{width: 220px;}
+input#volslider{width: 100px;}
+
+.slider img{
+   // visibility:hidden;
+}
+
