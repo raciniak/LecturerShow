@@ -4,11 +4,10 @@ var i;
 var vid, plbtn, slider, czasObecny, czasTrwania;
 $(document).ready(function(){
        pobierzPlik();
-       $('#load_JPG').html('<img src="logo.png" width="640" height="360" alt="cos1"/>');
+       $('#load_JPG').html('<img src="images/logo.png" width="640" height="360" alt="cos1"/>');
        document.getElementById("film").src=getImagePath();
        startPlayer();
        $('#playPause').click(function(){i=1;});
-       //$('#playPause').mouseover(function(){alert("los")}); 
 });
 
 function obrazek(){
@@ -29,14 +28,14 @@ function obrazek(){
         {
              if(czas>=a[i])
              {
-                 $('#load_JPG').html('<img src="../res/test2/' + a[i] + '.jpg" width="640" height="360" alt="cos'+i+'"/>');
+                 $('#load_JPG').html('<img src="movies/movie1/images/' + a[i] + '.jpg" width="640" height="360" alt="cos'+i+'"/>');
              }
         }
 }
 
 
 function getImagePath(){
-     return "../res/" + getParameterByName("id") + "/speech.mp4";
+     return "movies/movie1/trailer_test.mp4";
    }
 
 
@@ -71,7 +70,7 @@ function pobierzPlik()
                 
 		var txt='';
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET","../res/test2/times.txt");
+		xmlhttp.open("GET","movies/movie1/times.txt");
 		xmlhttp.onreadystatechange = function(){
 			if(xmlhttp.status==200 && xmlhttp.readyState==4){
 				txt=xmlhttp.responseText;
@@ -128,7 +127,7 @@ function vidmute() {
         mute.textContent = "CISZA";
     } else {
         vid.muted = true;
-        mute.textContent = "G�?OŚNO";
+        mute.textContent = "G�?OŚNO";
     }
 }
 
