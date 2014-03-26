@@ -242,14 +242,7 @@
 
     function pokazslajd(e){
         if (isSlider(e.target)) {
-        		//alert("ab");
-        		//document.getElementsByTagName("img").style.visibility='visible';
-        		//$(".slider img").style.visibility='visible';
-        		//e.targetstyle.visibility='visible';
-        		//alert("a");
-           // $('.slider').style.visibility='visible';
-          //  document.getElementsByClassName(slider)
-        //$('.slider').click.style.visibility='visible';
+        		
     }
     }
     

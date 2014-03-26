@@ -1,0 +1,46 @@
+#wyniki {
+	width: 98%
+	margin-left: 1%;
+}
+
+#wyniki > ul {
+	
+}
+
+#wyniki > ul > li > div {
+	display:inline-block;
+	width:200px;
+
+}
+
+#wyniki > ul > li{
+	background:#FFF;
+	border-radius:7px;
+	cursor:pointer;
+	margin-top: 5px;
+}
+
+#wyniki > ul > li:hover{
+	background:#999;
+	box-shadow: 0 0 3px 3px #1F96FF;
+}
+
+#wyniki > ul > li > #nr {
+	
+}
+
+#wyniki > ul > li > div > a {
+	text-decoration:none;
+	font-size:24px;
+	color:#C00;
+}
+
+#wyniki > ul > li > div > p {
+	font-size:24px;
+}
+
+#wyniki > ul > li > #zdjecie {
+	margin-left: 9px;
+}
+	
+

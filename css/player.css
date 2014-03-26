@@ -1,33 +1,4 @@
 
-body{
-    background: #9bd;
-}
-div#timeline{
-    background: #333;
-    padding:10px;
-    color:#CCC;
-}
-div#player_box{
-    background:#000;
-    width: 1280;
-    margin:0px auto;
- //   display: inline;
-}
-div#vidbox{
-	float:left;
-        
-}
-div#load_JPG{
-	float: left;
-}
-
-#playPause{
-	width: 100px;
-}
-
-input#slider{width: 220px;}
-input#volslider{width: 100px;}
-
 .slider img{
     visibility:hidden;
 }
@@ -39,7 +10,7 @@ input#volslider{width: 100px;}
 #windows{
 	width: 80%;
 	height: 40%;
-	background: white;
+	background: green;
 	margin:0px auto;
 	padding: 10px 10px 10px 10px;
 	overflow:hidden;
@@ -53,4 +24,117 @@ input#volslider{width: 100px;}
 
 ul{
     list-style: none;
-}
+}/
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+			/* dotyczy paska odtwarzacza */
+           section > #timeline{
+				float:left;
+				background-color:rgba(0,0,0,0.1);
+				color: #03F;
+				border-radius: 0 0 5px 5px;
+				width:640px;
+				height:38px; /* 31 px */
+				margin-left:10px;
+				margin-top:-34px;
+				z-index:0;
+				transition-duration:1s;
+				position:relative;
+				
+			}
+			section > #timeline:hover{
+				margin-top:-3px;
+				height:32px;
+			}
+			/* dotyczy samego odtwarzacza */
+			#player_box{
+                margin-top:10px;
+				margin-left:10px;
+                width:640px;
+				float:left;
+				z-index:1;
+				position:relative;		
+            }
+			/* Przycisk PLAY / PAUSE */
+          	#timeline #playPause{ 
+                background:url(../icons/play2.png) no-repeat; 
+                border:none;
+				width:30px; 
+                height:30px;
+			} 
+			/* Przycisk MUTE / UNMUTE */
+			#timeline #mute {
+				background:url(../icons/mute.png) no-repeat; 
+                border:none;
+				width:30px; 
+                height:30px;
+			}
+			
+			/* Suwak, Oś czasu */ 
+           input[type='range'] { 
+				margin-top:1px;
+                -webkit-appearance: none !important; 
+                background: #666; 
+                border:#FFF 1px solid; 
+                height:3px;
+				margin-top:0px;
+				
+				
+              	
+            } 
+            section > input[type='range']::-webkit-slider-thumb { 
+                
+				-webkit-appearance: none !important; 
+                background: #FFF;
+                height:15px; 
+                width:15px; 
+                border-radius:100%; 
+				margin-top:0px
+               
+            }
+			/* div od przycisku PLAY/PAUSE */ 
+			#play{
+				float:left;
+				cursor:auto; /* do ustawienia */
+				
+			}
+			/* div od suwaka */
+			#slider1{
+				
+               float:left;
+			   margin-top:1px;
+			   margin-left:10px;
+			 
+               
+			}
+			/* div od czasu */
+			#time{
+				
+				font-family: 'Lato', Arial, sans-serif;
+				color:#F8F8F8;
+				float:left;
+				margin-left:10px;
+				margin-top:5px;
+			}
+			/* div od paska głośności */
+			#volume_slider{
+				float:left;
+				margin-top:1px;
+				margin-left:3px;
+				
+			}
+			/* div od przycisku MUTE */
+			#mute_button{
+				float:left;
+				margin-left:4px;
+			}
+			/* odtwarzacz pdf */
+			#load_JPG{
+				float: right;
+				display:table;
+    			width:640px;
+    			height:360px;
+    			margin-right:5px;
+				margin-top:10px;
+				margin-left: 5px;
+				z-index:2;
+    		}

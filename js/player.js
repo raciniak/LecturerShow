@@ -2,10 +2,12 @@ var intID;
 var a='';
 var i;
 var vid, plbtn, slider, czasObecny, czasTrwania;
+var movieFileLocation;
 $(document).ready(function(){
+	   movieFileLocation = new String("movies/movie1/trailer_test.mp4");
        pobierzPlik();
        $('#load_JPG').html('<img src="images/logo.png" width="640" height="360" alt="cos1"/>');
-       document.getElementById("film").src=getImagePath();
+       document.getElementById("film").src = movieFileLocation;
        startPlayer();
        $('#playPause').click(function(){i=1;});
        windowsik();
@@ -22,8 +24,7 @@ function obrazek(){
             if(j==0)
                 i=a[0];
             j--;
-
-         }
+        }
 
         if(i<parseInt(a[0])+1)
         {
@@ -32,19 +33,6 @@ function obrazek(){
                  $('#load_JPG').html('<img src="movies/movie1/images/' + a[i] + '.jpg" width="640" height="360" alt="cos'+i+'"/>');
              }
         }
-}
-
-
-function getImagePath(){
-     return "movies/movie1/trailer_test.mp4";
-   }
-
-
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 function startPlayer() {
@@ -90,11 +78,15 @@ function windowsik()
 	{
 		var divek = document.createElement('li');
         divek.className = 'slajd';
-        divek.innerHTML = "<img src='movies/movie1/images/"+a[i]+".jpg' width='140' height='70' alt='cos1'/>  Numer slajdu: "+i+    
-        " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";
+        /*divek.innerHTML = "<img src='movies/movie1/images/"+a[i]+".jpg' width='140' height='70' alt='cos1'/>  Numer slajdu: "+i+    
+        " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";*/
+     //  $('#windows').html("aaaa");
         $("#windows").append(divek);
+         $('#windows').html("aaaa");
 	}
+	alert("aa");
 }
+
 
 function playPause() {
     if (vid.paused) {
@@ -132,8 +124,6 @@ function seekTimeUpdate() {
     }
     czasObecny.innerHTML = min + ":" + sek;
     czasTrwania.innerHTML = dmin + ":" + dsek;
-    
-
 }
 
 function vidmute() {
