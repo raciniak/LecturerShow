@@ -83,7 +83,9 @@
         			</nav>
                 </div>
                 <div id="edytor">
-                
+                <?php 
+                	phpinfo();
+					?>
                 </div>
 			</section>
 		</div>
