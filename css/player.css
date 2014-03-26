@@ -9,22 +9,48 @@ div#timeline{
 }
 div#player_box{
     background:#000;
-    width: 1280px;
+    width: 1280;
     margin:0px auto;
  //   display: inline;
 }
 div#vidbox{
-	float: left;
-
+	float:left;
         
 }
 div#load_JPG{
-	float: right;
+	float: left;
 }
+
+#playPause{
+	width: 100px;
+}
+
 input#slider{width: 220px;}
 input#volslider{width: 100px;}
 
 .slider img{
-   // visibility:hidden;
+    visibility:hidden;
 }
 
+.slider:hover img{
+    visibility:visible
+}
+
+#windows{
+	width: 80%;
+	height: 40%;
+	background: white;
+	margin:0px auto;
+	padding: 10px 10px 10px 10px;
+	overflow:hidden;
+}
+
+.slajd{
+	//background: green;
+	margin: 20px;
+	
+}
+
+ul{
+    list-style: none;
+}

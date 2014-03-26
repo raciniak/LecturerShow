@@ -8,6 +8,7 @@ $(document).ready(function(){
        document.getElementById("film").src=getImagePath();
        startPlayer();
        $('#playPause').click(function(){i=1;});
+       windowsik();
 });
 
 function obrazek(){
@@ -66,7 +67,7 @@ function startPlayer() {
 
 
 function pobierzPlik()
-            {
+{
                 
 		var txt='';
 		var xmlhttp = new XMLHttpRequest();
@@ -79,7 +80,21 @@ function pobierzPlik()
                             
 		};
 		xmlhttp.send();
-            }
+ }
+            
+function windowsik()
+{
+	var i;
+	alert("aa");
+	for(i=1;i<parseInt(a[0])+1;i++)
+	{
+		var divek = document.createElement('li');
+        divek.className = 'slajd';
+        divek.innerHTML = "<img src='movies/movie1/images/"+a[i]+".jpg' width='140' height='70' alt='cos1'/>  Numer slajdu: "+i+    
+        " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";
+        $("#windows").append(divek);
+	}
+}
 
 function playPause() {
     if (vid.paused) {

@@ -71,9 +71,7 @@
         slider.setAttribute('data-name', name);
         slider.setAttribute('data-value', value);
         slider.setAttribute('tabindex', 0);
-        //slider.innerHTML = "<h1>Hi there and greetings!</h1>";
-        slider.innerHTML = "</br><img src='jpg/"+name+".jpg' width='140' height='70' alt='cos1'/>";
-        //slider.click(alert('d'));
+        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".jpg' width='140' height='70' alt='cos1'/>";
         range.appendChild(slider);
         return slider;
     }
@@ -244,10 +242,14 @@
 
     function pokazslajd(e){
         if (isSlider(e.target)) {
+        		//alert("ab");
+        		//document.getElementsByTagName("img").style.visibility='visible';
+        		//$(".slider img").style.visibility='visible';
+        		//e.targetstyle.visibility='visible';
+        		//alert("a");
            // $('.slider').style.visibility='visible';
           //  document.getElementsByClassName(slider)
-        $('.slider').style.visibility='hidden';
-        alert("choj");
+        //$('.slider').click.style.visibility='visible';
     }
     }
     
