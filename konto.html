@@ -1,0 +1,88 @@
+<?php
+
+require_once('search_my_videos.php');
+
+?>
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Konto</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/wyszukiwarka.css" rel="stylesheet" type="text/css" />
+		<link href="css/logowanie.css" rel="stylesheet" type="text/css" />
+		<link href="css/rejestracja.css" rel="stylesheet" type="text/css" />
+
+		<script type="text/javascript" src="js/prototype.js"></script>
+		<script type="text/javascript" src="js/suggest.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="js/tabs.js"></script>
+
+
+	</head>
+
+
+	<body>
+    	<div id="wrapper">
+        	<header>
+            	<div id="logo">
+                	<h1><img src="icons/logo.png" /></h1>
+                </div>
+            	<div id="wyszukiwarka">
+          			<form id="searchform" method="get" action="search_video.php" autocomplete="off"> 
+						<input type="text" placeholder="Wyszukaj film ..." id="searchinput" name="searchinput" onkeyup="searchSuggest();">  
+						<input type="submit" value="Szukaj" id="searchsubmit">
+					<div id="search_suggest"></div>
+                    </form>
+                </div>
+                <nav id="panel_uzytkownika">
+                	<ul>
+                		<li> <a id="rejestracja" href="konto.html"> Twoje konto </a>  </li> 
+                    	<li> <a id="logowanie" href="wyloguj.php"> Wyloguj </a>   </li>
+                	</ul>
+                </nav>
+            </header>
+           
+            
+            <section>
+            	<ul class="tabs">
+        			<li class="active"><a href="#tab-1" class="active"> Dane </a></li>
+        			<li><a href="#tab-2">Moje filmy</a></li>
+        			<li><a href="#tab-3">Wrzuć film</a></li>
+				</ul>
+ 				<div id="tab-1" class="tab">
+        			<p class="naglowek">Zmień dane</p>
+                    <form method="POST" action="zmien_dane.php">
+                    <p></p>
+                    <p class="dane"> Dane osobiste: (niewymagane)</p>
+              		<hr />
+                    <p></p>
+					<b>Login:</b> <input type="text" placeholder="min. 6 znaków" name="login" id="login"><br></br>
+					<b>Hasło:</b> <input type="password" name="haslo1" placeholder="min. 6 znaków " id="haslo1"><br></br>
+					<b>Powtórz hasło:</b> <input type="password" name="haslo1" id="haslo2"><br></br>
+					<b>E-mail:</b> <input type="email" name="email1" placeholder="np. jan.kowalski@gmail.com" id="email1"><br></br>
+					<b>Powtórz e-mail:</b> <input type="email" name="email2" id="email2"><br></br>
+					<p></p>
+                    <p class="dane"> Dane osobiste: (niewymagane)</p>
+              		<hr />
+                	<p></p>
+               		<b>Imię:</b> <input type="text" placeholder="np. Jan" name="imie" id="imie"><br></br>
+                	<b>Nazwisko:</b> <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko"><br></br>
+                	<b>Szkoła / uczelnia:</b> <input type="text" placeholder="np. WMiI UMK" name="szkola" id="szkola"><br></br>
+         			<input type="submit" value="Zmień dane" name="rejestruj" id="rejestruj_button" > <!--disabled-->
+				</form> 
+
+				</div>
+				<div id="tab-2" class="tab">
+        			<?php echo $search_output; ?>
+				</div>
+				<div id="tab-3" class="tab">
+      				Tu fragment kodu Bartka
+				</div>
+            </section>
+           
+            
+           
+        </div>
+     </body>
+</html>

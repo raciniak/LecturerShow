@@ -1,0 +1,38 @@
+#login_button {
+	background: #1851FF;
+	color:#FFF;
+	width:100px;
+	height:30px;
+	text-align:center;
+	border-radius: 5px;
+	cursor:pointer;
+	border-style:none;
+	margin-top:10px;
+	
+}
+#login_button:hover {
+	background: #00B2E8;
+	color: #FFF;	
+}
+form > #login, form > #haslo{
+	height:30px;
+	width: 320px;
+	border-style:none;
+	border-radius:5px;
+	margin-bottom: 5px;
+	margin-left:30px;
+	
+}
+
+form > #login:focus, form > #haslo:focus {
+	-moz-box-shadow: 0 0 3px 3px #1F96FF;
+	-webkit-box-shadow: 0 0 3px 3px #1F96FF;
+	box-shadow: 0 0 3px 3px #1F96FF;	
+}
+form > b {
+	margin-left:20px;
+}
+header > div > form > p {
+	margin-left:30px;
+	margin-bottom:5px;	
+}
