@@ -11,7 +11,7 @@
 		<link href="css/wyszukiwarka.css" rel="stylesheet" type="text/css" />
 		<link href="css/logowanie.css" rel="stylesheet" type="text/css" />
 		<link href="css/rejestracja.css" rel="stylesheet" type="text/css" />
-
+		<link href="//fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="js/prototype.js"></script>
 		<script type="text/javascript" src="js/suggest.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
@@ -65,9 +65,9 @@
                     <p class="dane"> Dane osobiste: (niewymagane)</p>
               		<hr />
                 	<p></p>
-               		<b>Imię:</b> <input type="text" placeholder="np. Jan" name="imie" id="imie"><br></br>
-                	<b>Nazwisko:</b> <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko"><br></br>
-                	<b>Szkoła / uczelnia:</b> <input type="text" placeholder="np. WMiI UMK" name="szkola" id="szkola"><br></br>
+               		<b>Imię:</b> <input type="text" placeholder="np. Jan" name="imie" id="imie" value=<?php echo $_SESSION['imie'];?>><br></br>
+                	<b>Nazwisko:</b> <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko" value=<?php echo $_SESSION['nazwisko'];?>><br></br>
+                	
          			<input type="submit" value="Zmień dane" name="zmien_dane" id="rejestruj_button" > <!--disabled-->
 				</form> 
 

@@ -1,5 +1,5 @@
 <?php 
-		require_once('statystyki.php');
+		require_once('php/statystyki.php');
 		require_once('php/najnowsze.php');
 ?>
 
@@ -19,12 +19,12 @@
         <link rel="stylesheet" type="text/css" href="css/suggest.css" />
 		<link rel="stylesheet" type="text/css" href="css/wyszukiwarka.css" />
         <link rel="stylesheet" type="text/css" href="css/slider1.css" />
-
+		<link href="//fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
         <link href="css/logowanie.css" rel="stylesheet" type="text/css" />
 		
         <!-- Skrypty JavaScript -->
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-  		<link href="//fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
+  		
 
         <script type="text/javascript" src="js/prototype.js"></script>
 		<script type="text/javascript" src="js/suggest.js"></script>
@@ -58,7 +58,7 @@
                     </ul>
                 </nav>
                 <div id="panel_logowania">
-                	<form method="POST" action="logowanie.php">
+                	<form method="POST" action='php/logowanie.php'>
                     	<center><p id="naglowek_panel"> Zaloguj się do Lecturer Show </p></center>
 						<p>Login:</p> <input type="text" name="login" id="login" placeholder="login"></br>
 						<p>Hasło:</p> <input type="password" name="haslo" id="haslo" placeholder="hasło"></br>

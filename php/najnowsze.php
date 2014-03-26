@@ -1,13 +1,13 @@
 <?php 
-require_once('connect.php');
-$najnowsze = "";
-$popularne = "";
-$najlepsze = "";
-$sql_najnowsze = "SELECT id, title, jpg FROM suggest ORDER BY id DESC";
-$sql_popularne = "SELECT id, title, jpg FROM suggest ORDER BY id DESC";
-$sql_najlepsze = "SELECT id, title, jpg FROM suggest ORDER BY id DESC";
-$query_najnowsze = mysql_query($sql_najnowsze) or die(mysql_error());
-while($row = mysql_fetch_array($query_najnowsze)){
+	require_once('php/connect.php');
+	$najnowsze = "";
+	$popularne = "";
+	$najlepsze = "";
+	$sql_najnowsze = "SELECT Id, Tytul, jpg, Wyswietlenia FROM movies ORDER BY Id DESC";
+	$sql_popularne = "SELECT Tytul, Wyswietlenia, jpg FROM movies ORDER BY Wyswietlenia DESC";
+	$sql_najlepsze = "SELECT Tytul, jpg, Ocena FROM movies ORDER BY Ocena DESC";
+	$query_najnowsze = mysql_query($sql_najnowsze) or die(mysql_error());
+	while($row = mysql_fetch_array($query_najnowsze)){
 		$id = $row["id"];
    		$title = $row["title"];
 		$jpg = $row["jpg"];

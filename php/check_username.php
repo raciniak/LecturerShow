@@ -1,10 +1,10 @@
 <?php
-	$db = new mysqli('localhost','root','','aus');
+	require_once('connect_mysqli.php');
 	
 		if(isset($_POST['login']))
 		{
 			$login = $_POST['login'];
-			$wynik = $db -> query("SELECT login FROM uzytkownicy WHERE login='$login'");
+			$wynik = $db -> query("SELECT Login FROM users WHERE Login='$login'");
 			$ile = $wynik -> num_rows;
 			if($ile==0)
 			{

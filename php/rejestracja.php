@@ -3,30 +3,23 @@ require_once('connect.php');
 /*mysql_connect("localhost","root");
 mysql_select_db("aus"); */
 
-function filtruj($zmienna)
-{
-    if(get_magic_quotes_gpc())
-        $zmienna = stripslashes($zmienna); // usuwamy slashe
-
-	// usuwamy spacje, tagi html oraz niebezpieczne znaki
-    return mysql_real_escape_string(htmlspecialchars(trim($zmienna)));
-}
-
 if (isset($_POST['rejestruj']))
 {
-	$login = filtruj($_POST['login']);
-	$haslo1 = filtruj($_POST['haslo1']);
-	$haslo2 = filtruj($_POST['haslo2']);
-	$email = filtruj($_POST['email1']);
-	$ip = filtruj($_SERVER['REMOTE_ADDR']);
+	$login = $_POST['login'];
+	$haslo1 = $_POST['haslo1'];
+	$haslo2 = $_POST['haslo2'];
+	$email = $_POST['email1'];
+	$imie = $_POST['imie'];
+	$nazwisko = $_POST['nazwisko'];
+
 
 	// sprawdzamy czy login nie jest już w bazie
-	if (mysql_num_rows(mysql_query("SELECT login FROM uzytkownicy WHERE login = '".$login."';")) == 0)
+	if (mysql_num_rows(mysql_query("SELECT Login FROM users WHERE Login = '".$login."';")) == 0)
 	{
 		if ($haslo1 == $haslo2) // sprawdzamy czy hasła takie same
 		{
-			mysql_query("INSERT INTO `uzytkownicy`(`login`, `haslo`, `email`, `rejestracja`, `logowanie`, `ip`)
-				VALUES ('".$login."', '".md5($haslo1)."', '".$email."', '".time()."', '".time()."', '".$ip."');");
+			mysql_query("INSERT INTO `users`(`Login`, `Haslo`, `Mail`, `Imie`, `Nazwisko`)
+				VALUES ('".$login."', '".md5($haslo1)."', '".$email."', '".$imie."', '".$nazwisko."');");
 
 			echo "Konto zostało utworzone!";
 			header("Refresh: 0; url=../zarejestrowany.html");

@@ -1,6 +1,6 @@
 <?php
 	require_once('php/connect.php');
-	$sqlUpdateCommand = "UPDATE suggest SET id=id+1 WHERE title='siemanko'";
+	$sqlUpdateCommand = "UPDATE movies SET Wyswietlenia=Wyswietlenia+1 WHERE Tytul='siemanko'";
 	$query = mysql_query($sqlUpdateCommand) or die(mysql_error());
 ?>
 <!DOCTYPE html>
@@ -10,18 +10,19 @@
         <meta charset="UTF-8">
         <meta name="keywords" content="" />
 		<meta name="description" content="" />
-		<link href="css/styl.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/prototype.js"></script>
-		<script type="text/javascript" src="js/suggest.js"></script>
-        <meta name="viewport" content="width=device-width">
+		<meta name="viewport" content="width=device-width">
         <!-- Style CSS -->
         <link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/wyszukiwarka.css" />
+        <link rel="stylesheet" type="text/css" href="css/logowanie.css" />
    		<link rel="stylesheet" type="text/css" href="css/player.css" media="all">
 		<!-- Skrypty JavaScript -->
+        <script type="text/javascript" src="js/prototype.js"></script>
+		<script type="text/javascript" src="js/suggest.js"></script>
         <script src="js/jquery-1.10.2.js" type='text/javascript'></script>
         <script type="text/javascript" src="js/player.js"></script>
         <script type="text/javascript" src="js/account.js"></script>
+        <script type="text/javascript" src="js/logowanie.js"></script>        		
 		<!-- <script type="text/javascript" src="script.js"></script> -->
 	</head>
     <body>
@@ -53,11 +54,19 @@
 					{
 						echo '<ul>';
                 		echo '<li><a id="rejestracja" href="rejestracja.html"> Rejestracja </a></li>';
-                    	echo '<li><a id="logowanie" href="logowanie.html"> Logowanie </a></li>';
+                    	echo '<li><input id="logowanie_link" onClick="pokaz_panel()" value="Logowanie" type="button"></li>';
                 		echo '</ul>';
 					}
 				?>
                 </nav>
+                <div id="panel_logowania">
+                	<form method="POST" action='php/logowanie.php'>
+                    	<center><p id="naglowek_panel"> Zaloguj się do Lecturer Show </p></center>
+						<p>Login:</p> <input type="text" name="login1" id="login1" placeholder="login"></br>
+						<p>Hasło:</p> <input type="password" name="haslo" id="haslo" placeholder="hasło"></br>
+						<center><input type="submit" value="Zaloguj" name="loguj" id="login_button"></center>
+					</form> 
+                </div>
         	</header>
 			<!-- Content -->    	
         	<section>
@@ -82,10 +91,9 @@
                     	<div id="volume_slider"><input id="volslider" type="range" min="0" max="30" value="30" step="1" style="width:140px"></div>
         			</nav>
                 </div>
+                <!-- Edytor video -->
                 <div id="edytor">
-                <?php 
-                	phpinfo();
-					?>
+                
                 </div>
 			</section>
 		</div>
