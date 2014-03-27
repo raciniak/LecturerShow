@@ -53,7 +53,7 @@
 					else
 					{
 						echo '<ul>';
-                		echo '<li><a id="rejestracja" href="rejestracja.html"> Rejestracja </a></li>';
+                		echo '<li><a id="rejestracja" href="editor.html"> Edytor </a></li>';
                     	echo '<li><input id="logowanie_link" onClick="pokaz_panel()" value="Logowanie" type="button"></li>';
                 		echo '</ul>';
 					}
