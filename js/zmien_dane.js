@@ -46,44 +46,7 @@ $(document).ready(function()
 		return false;
 	});
 	
-	/*
-	$("#email1").change(function()
-     {
-          var email1 = $("#email1").val();
-		  var msgbox = $("#status");
-		  var emailarea = document.getElementById("email1");
-		  
-          if(email1.length > 1)
-          {
-               
-               $.ajax({
-                    type: "POST",
-                    url: "check_email.php",
-                    data: "email1="+ email1,
-                    success: function(msg){
-                         $("#status").ajaxComplete(function(event, request){
-                              if(msg == 'OK_EMAIL')
-                              {
-                              		emailarea.style.boxShadow= "0 0 3px 3px #0F3";
-                              }
-                              else
-                              {
-                               		emailarea.style.boxShadow= "0 0 3px 3px #F00";
-                              }
-                    	});
-               		}
-         	 });
-
-     	}
-     else
-     {
-          $("#email1").addClass("red");
-          $("#status").html('<font color="#cc0000">Za mało znaków</font>');
-     }
-		return false;
-     });
-	 */
-	 $("#email2").change(function()
+	$("#email2").change(function()
 	{
 		var email1 = $("#email1").val();
 		var email2 = $("#email2").val();
@@ -117,21 +80,3 @@ $(document).ready(function()
     });
 	
 });
-function update_user_data() {
-	var fd = new FormData();
-	fd.append("login", document.getElementById('login').value);
-	fd.append("haslo1", document.getElementById('haslo1').value);
-	fd.append("haslo2", document.getElementById('haslo2').value);
-	fd.append("email1", document.getElementById('email1').value);
-	fd.append("email2", document.getElementById('email2').value);
-	fd.append("imie", document.getElementById('imie').value);
-	fd.append("nazwisko", document.getElementById('nazwisko').value);
-	var xhr = new XMLHttpRequest();
-	xhr.addEventListener("load", uploadComplete, false);
-	xhr.open("POST", "php/zmien_dane.php");
-	xhr.send(fd);
-}
-
-function uploadComplete(evt) {
-	alert(evt.target.responseText);
-}

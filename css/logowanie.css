@@ -14,7 +14,7 @@
 	background: #00B2E8;
 	color: #FFF;	
 }
-form > #login, form > #haslo{
+form > #login_l, form > #haslo_l{
 	height:30px;
 	width: 320px;
 	border-style:none;
@@ -24,7 +24,7 @@ form > #login, form > #haslo{
 	
 }
 
-form > #login:focus, form > #haslo:focus {
+form > #login_l:focus, form > #haslo_l:focus {
 	-moz-box-shadow: 0 0 3px 3px #1F96FF;
 	-webkit-box-shadow: 0 0 3px 3px #1F96FF;
 	box-shadow: 0 0 3px 3px #1F96FF;	
