@@ -9,8 +9,10 @@ mysql_select_db("aus"); */
 	$email = ($_POST['email1']);
 	$imie = ($_POST['imie']);
 	$nazwisko = ($_POST['nazwisko']);
+
+	echo $login;
+	/*
 	// sprawdzamy czy login nie jest już w bazie
-	
 	if (mysql_num_rows(mysql_query("SELECT Login FROM users WHERE Login = '".$login."';")) == 0)
 	{
 		if ($haslo1 == $haslo2) // sprawdzamy czy hasła takie same
@@ -26,7 +28,8 @@ mysql_select_db("aus"); */
 	}
 	else echo "Podany login jest już zajęty.";
 	header("Refresh: 0; url=../zarejestrowany.html");
-	
-	
+	/*
+	 * 
+	 */
 mysql_close($connection);
 ?>

@@ -150,7 +150,7 @@ $(document).ready(function()
 	  $(document).click(function() 
 	  {
         var rejestruj_button = document.getElementById("rejestruj_button")
-		if( dis_login == true && dis_password == true && dis_email == true )
+		if( dis_password == true && dis_email == true )
 		{
 			rejestruj_button.disabled = false;
 		}
@@ -158,3 +158,21 @@ $(document).ready(function()
     });
 	
 });
+
+function send_user_data() {
+	var fd = new FormData();
+	fd.append("login", document.getElementById('login').value);
+	fd.append("haslo1", document.getElementById('haslo1').value);
+	fd.append("haslo2", document.getElementById('haslo2').value);
+	fd.append("email1", document.getElementById('email1').value);
+	fd.append("imie", document.getElementById('imie').value);
+	fd.append("nazwisko", document.getElementById('nazwisko').value);
+	var xhr = new XMLHttpRequest();
+	xhr.addEventListener("load", uploadComplete, false);
+	xhr.open("POST", "php/rejestracja.php");
+	xhr.send(fd);
+}
+
+function uploadComplete(evt) {
+	alert(evt.target.responseText);
+}

@@ -51,7 +51,7 @@
 				</ul>
  				<div id="tab-1" class="tab">
         			<p class="naglowek">Zmień dane</p>
-                    <form method="POST" action="php/zmien_dane.php">
+                   
                     <p></p>
                     <p class="dane"> Dane konta:</p>
               		<hr />
@@ -68,8 +68,8 @@
                		<b>Imię:</b> <input type="text" placeholder="np. Jan" name="imie" id="imie" value=<?php echo $_SESSION['imie'];?>><br></br>
                 	<b>Nazwisko:</b> <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko" value=<?php echo $_SESSION['nazwisko'];?>><br></br>
                 	
-         			<input type="submit" value="Zmień dane" name="zmien_dane" id="rejestruj_button" > <!--disabled-->
-				</form> 
+         			<input type="submit" value="Zmień dane" name="zmien_dane" id="rejestruj_button" onclick="update_user_data()"> <!--disabled-->
+			
 
 				</div>
 				<div id="tab-2" class="tab">

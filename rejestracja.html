@@ -51,9 +51,10 @@
             	<p class="dane">Dane do rejestracji: </p> 
             	<hr />
            		<p> </p>
-            	<form method="POST" action='php/rejestracja.php'>
-					<b>Login:</b> <input type="text" placeholder="min. 6 znaków" name="login" id="login"><br></br>
-					<b>Hasło:</b> <input type="password" name="haslo1" placeholder="min. 6 znaków " id="haslo1"><br></br>
+            	<!--<form method="POST" action='php/rejestracja.php'></form>-->
+            	
+					<b>Login:</b> <input type="text" placeholder="min. 6 znaków" name="login" id="login"><br><br />
+					<b>Hasło:</b> <input type="password" name="haslo1" placeholder="min. 6 znaków " id="haslo1"><br><br />
 					<b>Powtórz hasło:</b> <input type="password" name="haslo2" id="haslo2"><br></br>
 					<b>E-mail:</b> <input type="email" name="email1" placeholder="np. jan.kowalski@gmail.com" id="email1"><br></br>
 					<b>Powtórz e-mail:</b> <input type="email" name="email2" id="email2"><br></br>
@@ -63,8 +64,8 @@
                 	<p></p>
                		<b>Imię:</b> <input type="text" placeholder="np. Jan" name="imie" id="imie"><br></br>
                 	<b>Nazwisko:</b> <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko"><br></br>
-         			<input type="submit" value="Utwórz konto" name="rejestruj" id="rejestruj_button" disabled> <!--disabled-->
-				</form> 
+         			<input type="submit" value="Utwórz konto" name="rejestruj" id="rejestruj_button" onclick="send_user_data()"> <!--disabled-->
+				
           	</section>
         </div>
      </body>
