@@ -10,7 +10,9 @@ $(document).ready(function(){
        document.getElementById("film").src = movieFileLocation;
        startPlayer();
        $('#playPause').click(function(){i=1;});
-       windowsik();
+       intID=setTimeout(function(){
+       	windowsik();
+       },150);
 });
 
 function obrazek(){
@@ -73,18 +75,14 @@ function pobierzPlik()
 function windowsik()
 {
 	var i;
-	alert("aa");
 	for(i=1;i<parseInt(a[0])+1;i++)
 	{
 		var divek = document.createElement('li');
         divek.className = 'slajd';
-        /*divek.innerHTML = "<img src='movies/movie1/images/"+a[i]+".jpg' width='140' height='70' alt='cos1'/>  Numer slajdu: "+i+    
-        " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";*/
-     //  $('#windows').html("aaaa");
+        divek.innerHTML = "<input type='checkbox' id='"+i+"' checked='checked' /> <img src='movies/movie1/images/"+a[i]+".jpg' width='140' height='70' alt='cos1'/>  Numer slajdu: "+i+    
+        " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";
         $("#windows").append(divek);
-         $('#windows').html("aaaa");
 	}
-	alert("aa");
 }
 
 
