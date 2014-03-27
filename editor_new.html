@@ -1,12 +1,7 @@
 <!DOCTYPE HTML>
-<!--
-	Halcyonic 3.0 by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
-		<title>One Column - Halcyonic by HTML5 UP</title>
+		<title>LecturerShow.pl - Edytor</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -14,6 +9,13 @@
 		<script src="js/libs/template/config.js"></script>
 		<script src="js/libs/template/skel.min.js"></script>
 		<script src="js/libs/template/skel-panels.min.js"></script>
+		<!-- Skrypty do playera -->
+		<script type="text/javascript" src="js/player.js"></script>
+        <script type="text/javascript" src="js/range.js"></script>
+		
+		<!-- Style do playera -->
+		        
+        		
 		<noscript>
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
 			<link rel="stylesheet" href="css/template/style.css" />
@@ -31,7 +33,7 @@
 						<div class="12u">
 
 							<!-- Logo -->
-								<h1><a href="#" id="logo">Halcyonic</a></h1>
+								<h1><a href="#" id="logo">LecturerShow.pl</a></h1>
 							
 							<!-- Nav -->
 								<nav id="nav">
@@ -57,57 +59,28 @@
 								<!-- Main Content -->
 									<section>
 										<header>
-											<h2>One Column</h2>
-											<h3>A generic one column layout</h3>
+											<h2>Tryb edycji</h2>
+											<h3>Zmodyfikuj swoje wideo</h3>
 										</header>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam metus, congue 
-											vel suscipit ut, dignissim non risus. Vestibulum ante est, fringilla nec placerat 
-											eu, vestibulum vitae diam. Integer eget egestas eros. Duis enim erat, mollis quis 
-											lacinia eget, blandit nec ipsum. Donec vitae turpis ipsum. Aliquam mauris libero, 
-											sagittis in eleifend at, mattis imperdiet velit. Donec urna risus, rutrum molestie 
-											varius ac, lacinia sit amet augue. Nam ultrices elementum eros.
-										</p>
-										<p>
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum 
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient 
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi 
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend 
-											hendrerit.
-										</p>
-										<p>
-											Mauris sit amet tellus urna. In facilisis, tortor vitae ultricies egestas, odio 
-											mi rhoncus arcu, quis euismod felis felis et velit. Mauris varius consectetur erat 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat dui auctor. 							
-										</p>
-										<p>
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum 
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient 
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi 
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend 
-											hendrerit.
-										</p>
-										<p>
-											Mauris sit amet tellus urna. In facilisis, tortor vitae ultricies egestas, odio 
-											mi rhoncus arcu, quis euismod felis felis et velit. Mauris varius consectetur erat 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat dui auctor. 							
-										</p>
-									</section>
+										
+										<!-- PLAYER -->
+											<div id="player_box">
+									            <div>
+									                <div id="vidbox">
+									                    <video id="vid" >
+									                        <source src="movies/movie1/trailer_test.mp4" type="video/mp4" id="film" >
+									                    </video>
+									                </div>
+									                <div id="slidesLoader" >
+									                    
+									                </div>
+									            </div>
+									
+									 
 
+									        </div>
+										<!-- END PLAYER -->
+									</section>
 							</div>
 						</div>
 					</div>
@@ -182,7 +155,7 @@
 
 		<!-- Copyright -->
 			<div id="copyright">
-				&copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 UP</a> | Images: <a href="http://fotogrph.com">fotogrph</a>
+				&copy; LecturerShow.pl. All rights reserved. 
 			</div>
 
 	</body>
