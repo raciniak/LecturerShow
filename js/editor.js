@@ -15,6 +15,10 @@ $(document).ready(function(){
        startPlayer();
        //odswieżana zmienna przy załadowaniu strony potrzebna do odtwarzacza slajdow
        $('#playPause').click(function(){i=1;});
+       //funkcja odpowiadajaca za funkcjonalne okienko pomocnicze pod edytorem
+       intID=setTimeout(function(){
+       	windowsik();
+       },150);
 });
 
 function obrazek(){
@@ -74,6 +78,19 @@ function pobierzPlik()
 		xmlhttp.send();
  }
             
+function windowsik()
+{
+	var i;
+	for(i=1;i<parseInt(a[0])+1;i++)
+	{
+		var divek = document.createElement('li');
+        divek.className = 'slajd';
+        divek.innerHTML = "<input type='checkbox' id='"+i+"' checked='checked' /> <img src='movies/movie1/images/"+a[i]+".jpg' width='140' height='70' alt='cos1'/>  Numer slajdu: "+i+    
+        " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";
+        $("#windows").append(divek);
+	}
+}
+
 
 function playPause() {
     if (vid.paused) {
@@ -126,4 +143,3 @@ function vidmute() {
 function volume() {
     vid.volume = volslider.value / 100;
 }
-

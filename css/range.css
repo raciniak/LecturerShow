@@ -1,8 +1,17 @@
+#timeline_editor{
+	background: #333; 
+	width: 100%; 
+	padding: 30px;
+}
+
 .range {
    // width: 1000px;
-   // display: inline-block;
+    //display: inline-block;
     //vertical-align: top;
     position: relative;
+    width: 80%; 
+    display:table; 
+    margin:auto;
 }
 .range:before {
     content : ' ';
