@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	
 	require_once('connect_mysqli.php');
 	
 	/*if(isset($_SESSION['zalogowany'])) 
@@ -14,16 +14,17 @@
 			$wynik = $db -> query($zapytanie);
 			if (($wynik -> num_rows)>0)
 			{
+				session_start();
 				$row = $wynik -> fetch_row();
-				echo $_SESSION['zalogowany'] = true;
-           		echo $_SESSION['login'] = $_POST['login1'];
-           		echo $_SESSION['haslo'] = $_POST['haslo'];
-				echo $_SESSION['email'] = $row[2];
-				echo $_SESSION['imie'] = $row[3];
-				echo $_SESSION['nazwisko'] = $row[4];
-				echo("zalogowano");
-				header("Refresh: 0; url=../index.php");
+				$_SESSION['zalogowany'] = true;
+           		$_SESSION['login'] = $_POST['login_l'];
+           		$_SESSION['haslo'] = $_POST['haslo_l'];
+				$_SESSION['email'] = $row[2];
+				$_SESSION['imie'] = $row[3];
+				$_SESSION['nazwisko'] = $row[4];
 				
+				$arr = array ('zalogowany'=>'true','login'=>$login, 'haslo'=>$_SESSION['haslo'], 'email'=>$row[2]);
+				echo json_encode($arr);
          	} 
 			else 
 			{	 
