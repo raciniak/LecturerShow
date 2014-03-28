@@ -1,18 +1,16 @@
 var intID;
 var a='';
 var i;
-var vid, plbtn, slider, czasObecny, czasTrwania;
-var movieFileLocation;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
 	//sciezka do aktualnego filmu
-	   movieFileLocation = new String("movies/movie1/trailer_test.mp4");
+	  // movieFileLocation = new String("movies/movie1/trailer_test.mp4");
 	   //funkcja do pobierania czasow odtwarzania slajdow, kazda funkcja ktora chce korzystac z tablicy a zawierajacej
 	   // czasy musi odczekac w jakis sposob chwile aby funkcja zdazyla sie wykonac
        pobierzPlik();
-       $('#load_JPG').html('<img src="images/logo.png" width="640" height="360" alt="cos1"/>');
+     //  $('#load_JPG').html('<img src="images/logo.png" width="640" height="360" alt="cos1"/>');
        //zaladowanie playera z odtwarzaczem slajdow
-       startPlayer();
+     //  startPlayer();
        //odswieżana zmienna przy załadowaniu strony potrzebna do odtwarzacza slajdow
        $('#playPause').click(function(){i=1;});
        //funkcja odpowiadajaca za funkcjonalne okienko pomocnicze pod edytorem
@@ -45,24 +43,6 @@ function obrazek(){
         }
 }
 
-function startPlayer() {
-    vid = document.getElementById("vid");
-    vid.load();
-    plbtn = document.getElementById("playPause");
-    slider = document.getElementById("slider");
-    czasObecny = document.getElementById("czasobecny");
-    czasTrwania = document.getElementById("czastrwania");
-    mute = document.getElementById("mute");
-    volslider = document.getElementById("volslider");
-    //obsluga elementow
-    plbtn.addEventListener("click", playPause, false);
-    slider.addEventListener("change", vidSeek, false);
-    vid.addEventListener("timeupdate", seekTimeUpdate, false);
-    vid.addEventListener("timeupdate", obrazek, false);
-    mute.addEventListener("click", vidmute, false);
-    volslider.addEventListener("change", volume, false);
-}
-
 
 function pobierzPlik()
 {
@@ -91,57 +71,4 @@ function windowsik()
         " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";
         $("#windows").append(divek);
 	}
-}
-
-
-function playPause() {
-    if (vid.paused) {
-        vid.play();
-        plbtn.textContent = "PAUZA";
-    } else {
-        vid.pause();
-        plbtn.textContent = "GRAJ";
-    }
-}
-
-function vidSeek() {
-    var seekto = vid.duration * (slider.value / 100);
-    vid.currentTime = seekto;
-}
-
-function seekTimeUpdate() {
-    var nt = vid.currentTime * (100 / vid.duration);
-    slider.value = nt;
-    var min = Math.floor(vid.currentTime / 60);
-    var sek = Math.floor(vid.currentTime - min * 60);
-    var dmin = Math.floor(vid.duration / 60);
-    var dsek = Math.round(vid.duration - dmin * 60);
-    if (sek < 10) {
-        sek = "0" + sek;
-    }
-    if (dsek < 10) {
-        dsek = "0" + dsek;
-    }
-    if (min < 10) {
-        min = "0" + min;
-    }
-    if (dmin < 10) {
-        dmin = "0" + dmin;
-    }
-    czasObecny.innerHTML = min + ":" + sek;
-    czasTrwania.innerHTML = dmin + ":" + dsek;
-}
-
-function vidmute() {
-    if (vid.muted) {
-        vid.muted = false;
-        mute.textContent = "CISZA";
-    } else {
-        vid.muted = true;
-        mute.textContent = "Głośno";
-    }
-}
-
-function volume() {
-    vid.volume = volslider.value / 100;
 }
