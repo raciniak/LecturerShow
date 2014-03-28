@@ -10,12 +10,9 @@
 		<script src="js/libs/template/skel.min.js"></script>
 		<script src="js/libs/template/skel-panels.min.js"></script>
 		<!-- Skrypty do playera -->
-		<script type="text/javascript" src="js/player.js"></script>
+		<script type="text/javascript" src="js/editor_new.js"></script>
         <script type="text/javascript" src="js/range.js"></script>
-		
-		<!-- Style do playera -->
-		        
-        		
+				
 		<noscript>
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
 			<link rel="stylesheet" href="css/template/style.css" />
@@ -23,6 +20,10 @@
 		</noscript>
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/template/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="js/libs/template/html5shiv.js"></script><![endif]-->
+		
+		<!-- Style do playera -->
+		<link rel="stylesheet" href="css/editor_new.css" />
+		
 	</head>
 	<body class="subpage">
 	
@@ -65,18 +66,21 @@
 										
 										<!-- PLAYER -->
 											<div id="player_box">
-									            <div>
-									                <div id="vidbox">
-									                    <video id="vid" >
-									                        <source src="movies/movie1/trailer_test.mp4" type="video/mp4" id="film" >
-									                    </video>
-									                </div>
-									                <div id="slidesLoader" >
-									                    
-									                </div>
+									        	<video id="myVideo">
+									            	<source src="movies/movie1/trailer_test.mp4" type="video/mp4">
+									            </video>
+									            
+									            <div class="imageLoader" >
+									            	<img src="images/logo.png" >	
 									            </div>
-									
-									 
+									            
+									            
+									            <div id="playerMenu"> 
+									            	<div id="timeLine"> <div class="belt"> </div> </div>
+									            	<button class="cupid-green" id="playButton" style="width: 80px; height: 35px;">Start</button>
+									       			<button class="cupid-green" id="pauseButton" style="width: 80px; height: 35px;">Stop</button>
+													<div id="czas">00:00</div>
+									            </div>
 
 									        </div>
 										<!-- END PLAYER -->

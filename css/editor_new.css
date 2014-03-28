@@ -1,0 +1,73 @@
+
+#player_box {
+	border: 0px;
+	padding: 5px;
+	background-color: #A0A8AB;
+}
+
+#player_box .vid {
+		border: 0px;
+	padding: 0px;
+	display: inline;
+}
+
+#player_box video {
+	width: 49%;
+	padding: 0px;
+	border: 0px;
+}
+
+#player_box .imageLoader {
+	display: inline;
+
+	width: 40%;
+	height: 600px;
+}
+
+#player_box img{
+
+	border: 0px;
+	padding: 0px;
+	width: 50%;
+	border: 1px solid #AAAAAA;
+}
+/* TimeLine */
+#timeLine {
+	
+	border: 1px solid #3E484A;
+	width: 100%;
+	height: 10px;
+}
+	#timeLine .belt {
+		background-color: #DE2A10;
+		width: 55%;
+		height: 100%;
+	}
+
+/* Przyciski playera */
+button.cupid-green {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #7FBF4D;
+    background-image: -moz-linear-gradient(center top , #7FBF4D, #63A62F);
+    border-color: #63A62F #63A62F #5B992B;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 0 #96CA6D inset;
+    color: #FFFFFF;
+    font: bold 11px/1 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+    padding: 7px 0 8px;
+    text-align: center;
+    text-shadow: 0 -1px 0 #4C9021;
+    width: 150px;
+}
+button.cupid-green:hover {
+    background-color: #76B347;
+    background-image: -moz-linear-gradient(center top , #76B347, #5E9E2E);
+    box-shadow: 0 1px 0 0 #8DBF67 inset;
+    cursor: pointer;
+}
