@@ -1,3 +1,4 @@
+
 function sendUserData() {
 	var fd = new FormData();
 	fd.append("login", document.getElementById('login').value);
@@ -28,15 +29,14 @@ function updateUserData() {
 }
 
 function logIn() {
-	alert("wysylam");
 	var fd = new FormData();
 	fd.append("login_l", document.getElementById('login_l').value);
 	fd.append("haslo_l", document.getElementById('haslo_l').value);
 	var xhr = new XMLHttpRequest();
-	xhr.addEventListener("load", uploadComplete, false);
+	xhr.addEventListener("load", logInLoadComplete, false);
 	xhr.open("POST", "php/logowanie.php");
 	xhr.send(fd);	
-	alert("wyslane");
+
 }
 
 function uploadComplete(evt) {
@@ -45,3 +45,15 @@ function uploadComplete(evt) {
 		window.location.href="glowna.php";
 	},100);
 }
+
+function logInLoadComplete(evt) {
+	var dane = JSON.parse(evt.target.responseText);
+	s_login = dane.login;
+	s_haslo = dane.haslo;
+	s_email = dane.email;
+	s_zalogowany = dane.zalogowany;
+	alert(s_zalogowany);
+	
+
+}
+
