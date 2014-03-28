@@ -5,9 +5,6 @@
 }
 
 .range {
-   // width: 1000px;
-    //display: inline-block;
-    //vertical-align: top;
     position: relative;
     width: 80%; 
     display:table; 
@@ -25,7 +22,10 @@
     background-color: #e9e9e9;
     border: 1px solid #d9d9d9;
     margin-top: -4px;
+    background:#0033FF;
 }
+
+
 
 .range > .slider,
 .range > .slider:before,
@@ -41,6 +41,7 @@
     top: 1px;
     width: 9px;
 }
+
 .range > .slider:before,
 .range > .slider:after {
     height: 0;

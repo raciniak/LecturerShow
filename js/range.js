@@ -1,4 +1,5 @@
 (function(){
+	var polozenieY=0;
     function each(fn, arr) {
         var i = arr.length;
         while(i--) {
@@ -67,7 +68,7 @@
 
     function createSlider(name, value, range) {
         var slider = document.createElement('div');
-        slider.className = 'slider';
+        slider.className = 'slider draggable';
         slider.setAttribute('data-name', name);
         slider.setAttribute('data-value', value);
         slider.setAttribute('tabindex', 0);
@@ -242,14 +243,29 @@
 
     function pokazslajd(e){
         if (isSlider(e.target)) {
-        		
+        	polozenieY=e.clientY;
+        	//alert(polozenieY);
+        	//alert($("#timeline_editor").clientY);
+        	dragdrop.set(e.target, {onstart: start, onmove: move, onstop: stop});
+    	}
     }
+    
+    function wyrzucslajd(e){
+    	if (isSlider(e.target)) {
+			var name = e.target.getAttribute('data-name');
+			var value = e.target.getAttribute('data-value');
+       		var range = e.target.parentNode;
+			range.removeChild(e.target); 
+			if(e.clientY-polozenieY<30){
+			initializeSlider(createSlider(name, value, range));
+			}
+    	}
     }
     
     
     addListener('mousedown', beginHandleDrag, document.documentElement);
-    //addListener('keydown', handleSlide, document.documentElement);
     addListener('mouseover', pokazslajd, document.documentElement);
+    addListener('mouseup', wyrzucslajd, document.documentElement);
 
 
     var initializeSliders = partial(each, initializeSlider);

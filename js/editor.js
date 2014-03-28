@@ -18,7 +18,9 @@ $(document).ready(function(){
        //funkcja odpowiadajaca za funkcjonalne okienko pomocnicze pod edytorem
        intID=setTimeout(function(){
        	windowsik();
-       },150);
+       },200);
+       var evt = new Event();
+       var dragdrop = new Dragdrop(evt);
 });
 
 function obrazek(){
