@@ -25,7 +25,7 @@
     	<div id="wrapper">
         	<header>
             	<div id="logo">
-                	<h1><img src="icons/logo.png" /></h1>
+                	<h1><img src="images/icons/logo.png" /></h1>
                 </div>
             	<div id="wyszukiwarka">
           			<form id="searchform" method="get" action="search_video.php" autocomplete="off"> 
@@ -68,7 +68,7 @@
                		<b>Imię:</b> <input type="text" placeholder="np. Jan" name="imie" id="imie" value=<?php echo $_SESSION['imie'];?>><br></br>
                 	<b>Nazwisko:</b> <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko" value=<?php echo $_SESSION['nazwisko'];?>><br></br>
                 	
-         			<input type="submit" value="Zmień dane" name="zmien_dane" id="rejestruj_button" onclick="update_user_data()"> <!--disabled-->
+         			<input type="submit" value="Zmień dane" name="zmien_dane" id="rejestruj_button" onclick="updateUserData()"> <!--disabled-->
 			
 
 				</div>

@@ -32,7 +32,7 @@
             <header> 
 				<!-- Logo i pasek wyszukiwania -->            
            		<div id="logo">
-               		<h1><img src="icons/logo.png" /></h1>
+               		<h1><img src="images/icons/logo.png" /></h1>
             	</div>
                 <div id="wyszukiwarka">
           			<form id="searchform" method="get" action="search_video.php" autocomplete="off"> 
@@ -54,7 +54,7 @@
 					else
 					{
 						echo '<ul>';
-                		echo '<li><a id="rejestracja" href="rejestracja.html"> Rejestracja </a></li>';
+                		echo '<li><a id="rejestracja" href="editor.html"> Edytor </a></li>';
                     	echo '<li><input id="logowanie_link" onClick="pokaz_panel()" value="Logowanie" type="button"></li>';
                 		echo '</ul>';
 					}

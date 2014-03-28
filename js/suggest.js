@@ -1,7 +1,7 @@
 function searchSuggest(){
 var str = escape(document.getElementById('searchinput').value);
 var myAjax = new Ajax.Request(
-      'suggest.php',
+      'php/suggest.php',
       {
          method: 'get',
          parameters: "search="+str,

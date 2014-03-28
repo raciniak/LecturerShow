@@ -21,17 +21,8 @@ section > input:focus {
 	box-shadow: 0 0 3px 3px #1F96FF;
 	color: #999;
 }
-#login {
-	border-radius: 5px;
-	width:300px;
-	height:30px;
-	float:right;
-	margin-right:62%;
-	
-	
-} 
 
-#haslo1 {
+#login, #haslo1, #haslo2, #email1, #email2, #imie, #nazwisko {
 	border-radius: 5px;
 	width:300px;
 	height:30px;
@@ -39,46 +30,6 @@ section > input:focus {
 	margin-right:62%;
 	border-style:none;
 	
-} 
-#haslo2 {
-	border-radius: 5px;
-	width:300px;
-	height:30px;
-	float:right;
-	margin-right:62%;
-	border-style:none;	
-} 
-#email1 {
-	border-radius: 5px;
-	width:300px;
-	height:30px;
-	float:right;
-	margin-right:62%;
-	border-style:none;
-} 
-#email2 {
-	border-radius: 5px;
-	width:300px;
-	height:30px;
-	float:right;
-	margin-right:62%;
-	border-style:none;
-} 
-#imie {
-	border-radius: 5px;
-	width:300px;
-	height:30px;
-	float:right;
-	margin-right:62%;
-	border-style:none;
-}
-#nazwisko {
-	border-radius: 5px;
-	width:300px;
-	height:30px;
-	float:right;
-	margin-right:62%;
-	border-style:none;
 } 
 
 section > p {
