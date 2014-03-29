@@ -17,6 +17,9 @@ var timeLine = $('#timeLine')[0];
 
 	// Funkcja wykonywana, kiedy player jest uruchomiony
 	$(myVideo).bind('timeupdate', updateTime);
+	// Funkcja do zmiany slajdow ze skryptu editor.js
+	$(myVideo).bind('timeupdate', obrazek);
+	
 	// Funkcja wykonywana po naciśnięciu w timeline
 	$(timeLine).click(function(e){
 		var posX = $(this).offset().left;
@@ -62,5 +65,4 @@ function setTimeLine(percent)
 
 // ---------------------------------------------------------------------------------
 //       jacek m
-
 // ---------------------------------------------------------------------------------
