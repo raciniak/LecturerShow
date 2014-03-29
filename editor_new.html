@@ -29,6 +29,8 @@
 		<link rel="stylesheet" href="css/editor_new.css" />
 		<!--styl do multirange-->
 		<link rel="stylesheet" href="css/range.css" />
+		<!-- styl do zakladek -->
+		<link rel="stylesheet" href="css/tabs.css" />
 		
 	</head>
 	<body class="subpage">
@@ -100,7 +102,14 @@
                										     </div>
             										</div>
             										<br/>
-            										<div id="windows"></div>
+            										<ul class="tabs">
+        												<li class="active"><a href="#tab-1" class="active">Edytor</a></li>
+        												<li><a href="#tab-2">Zakładka 2</a></li>
+        												<li><a href="#tab-3">Zakładka 3</a></li>
+													</ul>
+													<div id="tab-1" class="tab">
+        													<div id="windows"></div>
+													</div>
             							<!--multirange end-->
 									</section>
 							</div>

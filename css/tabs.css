@@ -1,0 +1,91 @@
+/* lista z tabami */
+    ul.tabs {
+        list-style-type:none;
+        margin:5px 0 0 0;
+        padding:0;
+        clear:both;
+        background:#fefefe repeat-x;
+        padding-bottom:10px;
+        overflow:hidden;
+    }
+ 
+/* zwykłe taby */
+    ul.tabs li {
+        height:31px;
+        float:left;
+        text-align:center;
+        line-height:31px;
+        background:url(../images/tab_all.gif) 0 0 no-repeat;
+        margin-right:1px;
+        position:relative;
+        min-width:110px;
+        cursor:pointer;
+        padding:0 10px;
+    }
+     
+    ul.tabs li span.right {
+        position:absolute;
+        right:0;
+        top:0;
+        width:9px;
+        height:32px;
+        background:url(../images/tab_all.gif) 0 -31px no-repeat;
+        overflow:hidden;
+    }
+     
+    ul.tabs li a {font-size:12px;
+        text-decoration:none;
+        color:#333;
+        outline:none;
+    }
+ 
+/* taby po najechaniu */               
+    ul.tabs li:hover {background-position:0 -62px;
+        color:#fff !important;
+    }
+ 
+    ul.tabs li:hover a {color:#fff;
+    }
+     
+    ul.tabs li:hover span.right {background-position:0 -93px;
+    }
+    /* taby aktywne */             
+     
+    ul.tabs li.active {background-position:0 -186px;
+        cursor:default;
+    }
+     
+    ul.tabs li.active a {color:#fff;
+        cursor:default;
+    }
+     
+    ul.tabs li.active span.right {
+        background-position:0 -217px;
+    }  
+ 
+/* taby wyłączone */           
+    ul.tabs li.disable {background-position:0 -124px;
+        cursor:default;
+    }
+ 
+    ul.tabs li.disable span.right {
+        background-position:0 -155px;
+    }  
+     
+    ul.tabs li.disable a {color:#999;
+        cursor:default;
+    }
+ 
+/* powierzchnia tabow */
+    .tab {
+        display:block;
+        border:1px solid #c0c0c0;
+        border-bottom-width:3px;
+        background:#F8F8F8;
+        min-height:50px;
+        clear:both;
+        padding:10px;
+        margin-top:-5px;
+        -moz-border-radius:8px;
+        -webkit-border-radius:8px;
+    }
