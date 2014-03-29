@@ -24,7 +24,7 @@
 	height: 600px;
 }
 
-#player_box img{
+#player_box .imageLoader img{
 
 	border: 0px;
 	padding: 0px;

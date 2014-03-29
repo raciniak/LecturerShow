@@ -9,13 +9,13 @@
 		<script src="js/libs/template/config.js"></script>
 		<script src="js/libs/template/skel.min.js"></script>
 		<script src="js/libs/template/skel-panels.min.js"></script>
+		<script type="text/javascript" src="js/Dragdrop.js"></script>
+        <script type="text/javascript" src="js/Event.js"></script>
 		<!-- Skrypty do playera -->
 		<script type="text/javascript" src="js/editor_new.js"></script>
-        <script type="text/javascript" src="js/range.js"></script>
         <!--FUNKCJE DO SLAJDOW I MULTIRANGE-->
+        <script type="text/javascript" src="js/range.js"></script>
         <script type="text/javascript" src="js/editor.js"></script>
-        <script type="text/javascript" src="js/Dragdrop.js"></script>
-        <script type="text/javascript" src="js/Event.js"></script>
 				
 		<noscript>
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
@@ -91,15 +91,17 @@
 										<!-- END PLAYER -->
 										<!--multirange-->
             										<div id="timeline_editor">
-                										<div class="range" data-min="0" data-max="800" data-step="1">
-                    									 <input id="poczatek" type="hidden" name="a" value="0" />
-                     									<input id="koniec" type="hidden" name="b" value="800" />
-                    								 <input type="hidden" name="1" value="300" />
-                   									  <input type="hidden" name="2" value="500" />
-                   									  <input type="hidden" name="3" value="400" />
-               										 </div>
-            									</div>
-            							<!--multi range end-->
+                										 <div class="range" data-min="0" data-max="800" data-step="1">
+                    									 	<input id="poczatek" type="hidden" name="a" value="0" />
+                     									 	<input id="koniec" type="hidden" name="b" value="800" />
+                    								     	<input type="hidden" name="1" value="300" />
+                   									     	<input type="hidden" name="2" value="500" />
+                   									     	<input type="hidden" name="3" value="400" />
+               										     </div>
+            										</div>
+            										<br/>
+            										<div id="windows"></div>
+            							<!--multirange end-->
 									</section>
 							</div>
 						</div>

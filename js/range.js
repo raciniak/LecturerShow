@@ -68,7 +68,7 @@
 
     function createSlider(name, value, range) {
         var slider = document.createElement('div');
-        slider.className = 'slider draggable';
+        slider.className = 'slider draggable kolko';
         slider.setAttribute('data-name', name);
         slider.setAttribute('data-value', value);
         slider.setAttribute('tabindex', 0);

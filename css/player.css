@@ -20,21 +20,6 @@
     visibility:visible
 }
 
-/*wyglad okienka pod multirangem edytora*/
-#windows{
-	width: 80%;
-	height: 40%;
-	background: green;
-	margin:0px auto;
-	padding: 10px 10px 10px 10px;
-	overflow:hidden;
-}
-.slajd{
-	//background: green;
-	margin: 20px;
-	list-style: none;
-}
-
 
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 			/* dotyczy paska odtwarzacza */
