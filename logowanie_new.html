@@ -9,8 +9,8 @@
 		<script src="js/libs/template/config.js"></script>
 		<script src="js/libs/template/skel.min.js"></script>
 		<script src="js/libs/template/skel-panels.min.js"></script>
-		<script src="js/rejestracja.js"></script>
 		<script src="js/xmlhttprequest.js"></script>
+		<script src="js/logowanie.js"></script>
 
 		        
         		
@@ -62,33 +62,15 @@
 								<!-- Main Content -->
 									<section>
 										<header>
-											<h2>Rejestracja</h2>
-											<h3>Utwórz nowe konto na platfomie LecturerShow</h3>
+											<h2>Logowanie</h2>
+											<h3>Zaloguj się, aby móc korzystać ze wszystkich możliwości serwisu LecturerShow</h3>
 										</header>
-										<!-- Formularz rejestracji -->
-										<p class="dane">Dane konta: </p> 
-                                        <hr id="line">
-                                        
-										<b class="b_rejestracja">Login:</b> 
-										<input type="text" placeholder="min. 6 znaków" name="login" id="login">
-										<span id="login_error"></span><br><br />
-                                        <b class="b_rejestracja">Hasło:</b> 
-                                        <input type="password" name="haslo1" placeholder="min. 6 znaków " id="haslo1">
-                                        <span id="password_error"></span><br><br />
-                                        <b class="b_rejestracja">Powtórz hasło:</b> 
-                                        <input type="password" name="haslo2" id="haslo2"><br><br />
-                                        <b class="b_rejestracja">E-mail:</b> 
-                                        <input type="email" name="email1" placeholder="np. jan.kowalski@gmail.com" id="email1">
-                                        <span id="email_error"></span><br><br />
-                                        <b class="b_rejestracja">Powtórz e-mail:</b> 
-                                        <input type="email" name="email2" id="email2"><br><br />
-                                        <p class="dane"> Dane osobiste: (niewymagane)</p> 
-                                        <hr id="line">
-                                        <b class="b_rejestracja">Imię:</b> 
-                                        <input type="text" placeholder="np. Jan" name="imie" id="imie"><br><br />
-                                        <b class="b_rejestracja">Nazwisko:</b> 
-                                        <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko"><br><br />
-                                        <input type="submit" value="Utwórz konto" class="button-big" name="rejestruj" id="rejestruj_button" onclick="sendUserData()" disabled> 
+										<!-- Formularz logowanie -->
+										<form>
+                                            <b>Login:</b> <input type="text" name="login_l" id="login_l"><br><br />
+                                            <b>Hasło:</b> <input type="password" name="haslo_l" id="haslo_l"><br><br />
+                                            <input type="submit" value="Zaloguj" name="loguj" class="button-big" onclick="logIn()">
+                                        </form> 
 									</section>
 							</div>
 						</div>

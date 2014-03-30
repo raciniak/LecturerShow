@@ -1,10 +1,7 @@
 $(document).ready(function() {
-
-        //dla każdego miejsca z tabami
         $('.tabs').each(function() {
             var $ul = $(this);
             var $li = $ul.children('li');
-            //przy wejsciu na strone ukrywamy tresc tabow i pokazujemy tylko aktywny...
             $li.each(function() { //pętla po wszystkich tabach
                 var $trescTaba = $($(this).children('a').attr('href'));
 				
