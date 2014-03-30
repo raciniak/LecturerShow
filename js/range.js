@@ -260,8 +260,11 @@
 			var value = e.target.getAttribute('data-value');
        		var range = e.target.parentNode;
 			range.removeChild(e.target); 
-			if(e.clientY-polozenieY<30){
+			if(e.clientY-polozenieY<40){
 			initializeSlider(createSlider(name, value, range));
+			}else{
+				var check = document.getElementById(name);
+				check.checked = false;
 			}
     	}
     }
@@ -270,7 +273,6 @@
     addListener('mousedown', beginHandleDrag, document.documentElement);
     addListener('mouseover', pokazslajd, document.documentElement);
     addListener('mouseup', wyrzucslajd, document.documentElement);
-   // alertt();
 	
     var initializeSliders = partial(each, initializeSlider);
     var initializeInputs = partial(each, initializeInput);

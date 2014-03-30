@@ -19,6 +19,7 @@ $(document).ready(function(){
        var dragdrop = new Dragdrop(evt);
 });
 
+// Utworzenie MultiRange z wszystkimi slajdami wyrzuconymi przez modełko
 function createRange(){
 		var min = document.getElementById("range").getAttribute("data-min");
 		var max = document.getElementById("range").getAttribute("data-max");
@@ -29,6 +30,7 @@ function createRange(){
       	}
 }
 
+// Utworzenie slidera z podpiętym slajdem
 function createSlider(name,value,left){
 		var slider = document.createElement('div');
 		slider.className = 'slider draggable';
@@ -40,6 +42,7 @@ function createSlider(name,value,left){
         $(".range").append(slider);
 }
 
+//Utworzenie inputów które przechowywują dane o slajdzie nawet gdy jest odpięty od MultiRange
 function uzupelnijMultiRange(){
 	var i;
 	for(i=1;i<parseInt(a[0])+1;i++)
@@ -52,6 +55,7 @@ function uzupelnijMultiRange(){
 	}
 }
 
+// Obsługa zakładek w edytorze
 function taby(){
 		//dla każdego miejsca z tabami
         $('.tabs').each(function() {
@@ -86,6 +90,7 @@ function taby(){
         });
 }
 
+// funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
 function obrazek(){
         var czas = Math.floor(myVideo.currentTime);
         var j=parseInt(a[0]);
@@ -107,7 +112,7 @@ function obrazek(){
         }
 }
 
-
+// funkcja odpowiadająca za pobranie pliku z czasami oraz liczbą slajdów
 function pobierzPlik()
 {
                 
@@ -123,7 +128,8 @@ function pobierzPlik()
 		};
 		xmlhttp.send();
  }
-            
+
+//funkcja odpowiadająca za uzupełnienie pola windows w edytorze do edycji slajdów
 function windowsik()
 {
 	var i;
@@ -137,15 +143,29 @@ function windowsik()
 	}
 }
 
-
+//Funkcja odpowiadająca za checkboxy tworzy albo usuwa slider z multirange
 function checkSlajd(checkbox)
 {
     if (checkbox.checked)
     {
-    	initializeSlider(createSlider(name, value, range));
-        alert("slajd podpiety");
-        
+    	var max = document.getElementById("range").getAttribute("data-max");
+    	var name = checkbox.getAttribute("id");
+    	// JQuery zwraca tablice elementów dlatego wywołujemy get na argumencie zerowym aby nie była to talbica i można na zminnej
+    	// wykonywać funkcje z javascript
+    	var value = $("input[name="+name+"]").get(0);
+    	value = value.getAttribute("value");
+    	var left="left: "+value/max*100+"%";
+    	createSlider(name,value,left);      
     }else{
-    	alert("slajd zostal odpiety");
+    	var name = checkbox.getAttribute("id");
+    	removeSlider(name);
     }
+}
+
+//Funkcja usuwajaca slider
+function removeSlider(id){
+	var el = $("div[data-name="+id+"]").get(0);
+   if (el){
+      el.parentNode.removeChild(el);
+   }
 }

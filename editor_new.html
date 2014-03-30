@@ -91,7 +91,7 @@
                                                                                     </div>
 									        </div>
 										<!-- END PLAYER -->
-										<!--multirange-->
+										<!--MultiRange-->
             										<div id="timeline_editor">
                 										 <div id="range" class="range" data-min="0" data-max="33" data-step="1">
                     									 	<input class="MovieTime" type="hidden" name="Początek filmu" value="0" />
@@ -99,15 +99,24 @@
                										     </div>
             										</div>
             										<br/>
+            							<!--zakładki-->
             										<ul class="tabs">
         												<li class="active"><a href="#tab-1" class="active">Edytor</a></li>
-        												<li><a href="#tab-2">Zakładka 2</a></li>
-        												<li><a href="#tab-3">Zakładka 3</a></li>
+        												<li><a href="#tab-2">Slajdy</a></li>
+        												<li><a href="#tab-3">Dodaj slajdy</a></li>
 													</ul>
 													<div id="tab-1" class="tab">
+        													<button id="Zapisz_edycje">Zapisz wszystkie zmiany</button>
+													</div>
+													<div id="tab-2" class="tab">
         													<div id="windows"></div>
 													</div>
-            							<!--multirange end-->
+													<div id="tab-3" class="tab">
+        													<video id="AddNewSlide">
+									            				<source src="movies/movie1/images/screens.wmv" type="video/wmv">
+									            			</video>
+													</div>
+            							<!--MultiRange END-->
 									</section>
 							</div>
 						</div>
