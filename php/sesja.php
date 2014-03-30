@@ -2,10 +2,11 @@
 session_start();
 	if(isset($_SESSION['login']))
 		{
-	echo $_SESSION['login'];
-}
-else
-{
-	echo "nieznany";
-}	
+			$arr = array ('login'=>$_SESSION['login'], 'haslo'=>$_SESSION['haslo'], 'email'=>$_SESSION['email'], 'imie'=>$_SESSION['imie'], 'nazwisko'=>$_SESSION['nazwisko']);
+			echo json_encode($arr);
+		}
+	else
+	{
+		echo "nieznany";
+	}	
 ?>

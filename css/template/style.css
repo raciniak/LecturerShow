@@ -250,12 +250,17 @@
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------*/	
 
-	/* CSS - znaczniki <b> formularza rejestracji */
+	/* CSS - znaczniki <b> formularza rejestracji i zmiany danych */
 	.b_rejestracja {
 		display:inline-block;
 		width: 8%;
 	}
-	/* Koniec CSS - znaczniki <b> formularza rejestracji */
+	
+	.b_aktualizacja {
+		display:inline-block;
+		width: 11%;
+	}
+	/* Koniec CSS - znaczniki <b> formularza rejestracji i zmiany danych */
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -295,3 +300,25 @@
 		float:right;
 		padding: 0 3% 0 0;
 	}
+	
+	#profil {
+        
+      }
+
+      #profil:after {
+        content:'';
+        display:block;
+        clear:both;
+      }
+
+      #menu_profil {
+        float:left;
+        width:25%;
+      
+      }
+
+      #content-profil {
+        float:left;
+        width:75%;
+        
+      }

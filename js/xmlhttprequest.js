@@ -15,17 +15,24 @@ function sendUserData() {
 
 function updateUserData() {
 	var fd = new FormData();
-	fd.append("login", document.getElementById('login').value);
-	fd.append("haslo1", document.getElementById('haslo1').value);
-	fd.append("haslo2", document.getElementById('haslo2').value);
-	fd.append("email1", document.getElementById('email1').value);
-	fd.append("email2", document.getElementById('email2').value);
-	fd.append("imie", document.getElementById('imie').value);
-	fd.append("nazwisko", document.getElementById('nazwisko').value);
+	fd.append("login", document.getElementById('login_aktualizacja').value);
+	fd.append("haslo1", document.getElementById('haslo1_aktualizacja').value);
+	fd.append("haslo2", document.getElementById('haslo2_aktualizacja').value);
+	fd.append("email1", document.getElementById('email1_aktualizacja').value);
+	fd.append("email2", document.getElementById('email2_aktualizacja').value);
+	fd.append("imie", document.getElementById('imie_aktualizacja').value);
+	fd.append("nazwisko", document.getElementById('nazwisko_aktualizacja').value);
 	var xhr = new XMLHttpRequest();
 	xhr.addEventListener("load", uploadComplete, false);
 	xhr.open("POST", "php/zmien_dane.php");
 	xhr.send(fd);
+}
+
+function uploadComplete(evt) {
+	alert(evt.target.responseText);
+	setTimeout(function(){
+		window.location.href="zarejestrowany_new.html";
+	},100);
 }
 
 function logIn() {
@@ -40,6 +47,22 @@ function logIn() {
 	alert("loguje");
 }
 
+function logInLoadComplete(evt) {
+	alert("zalogował");
+	var dane = JSON.parse(evt.target.responseText);
+	setTimeout(function(){
+		window.location.href="konto_new.html";
+	},5);
+}
+
+
+function logOutLoadComplete(evt) {
+	alert(evt.target.responseText);
+	setTimeout(function(){
+		window.location.href="konto_new.html";
+	},5);
+}
+
 function logOut() {
 	
 	var xhr = new XMLHttpRequest();
@@ -49,26 +72,7 @@ function logOut() {
 	
 }
 
-function logOutLoadComplete(evt) {
-	alert(evt.target.responseText);
-	setTimeout(function(){
-		window.location.href="konto_new.html";
-	},5);
-}
 
-function uploadComplete(evt) {
-	alert(evt.target.responseText);
-	setTimeout(function(){
-		window.location.href="zarejestrowany_new.html";
-	},100);
-}
-
-function logInLoadComplete() {
-	alert("zalogował");
-	setTimeout(function(){
-		window.location.href="konto_new.html";
-	},5);
-}
 $(document).ready(function(){
 	$.ajax({
         url: "php/sesja.php",
@@ -78,16 +82,22 @@ $(document).ready(function(){
             	//alert(msg);
             	document.getElementById("logowanie").innerHTML = "Zaloguj";
             	document.getElementById("logowanie").href = "logowanie_new.html";
-            		
-				document.getElementById("konto").innerHTML= msg;
+            	document.getElementById("konto").innerHTML= msg;
 				document.getElementById("konto").style.display = "none";
 				document.getElementById("rejestracja").style.visibility = "visible";
             	
 			}
             else
 			{	
-				//alert(msg);			
-				document.getElementById("konto").innerHTML= msg;
+				var dane = JSON.parse(msg);	
+				document.getElementById("login_aktualizacja").value = dane.login;	
+				document.getElementById("konto").innerHTML= dane.login;
+				document.getElementById("haslo1_aktualizacja").value = dane.haslo;
+				document.getElementById("haslo2_aktualizacja").value = dane.haslo;
+				document.getElementById("email1_aktualizacja").value = dane.email;
+				document.getElementById("email2_aktualizacja").value = dane.email;
+				document.getElementById("imie_aktualizacja").value = dane.imie;
+				document.getElementById("nazwisko_aktualizacja").value = dane.nazwisko;
 				document.getElementById("konto").style.visibility = "visible";
 				document.getElementById("rejestracja").style.display = "none";
 				document.getElementById("logowanie").innerHTML = "Wyloguj";
@@ -98,5 +108,21 @@ $(document).ready(function(){
 		{
         	console.log(err);
     	}
+	});
+	$.ajax({
+        url: "php/statystyki_profilu.php",
+        success : function(msg){
+        
+			var dane = JSON.parse(msg);
+			document.getElementById("ilosc_filmow").innerHTML = "Ilość filmow: " + dane.ilosc_filmow;
+			document.getElementById("ilosc_wyswietlen").innerHTML = "Łączna ilość wyświetleń Twoich filmów: " + dane.ilosc_wyswietlen;
+			
+			
+		},
+		error: function(err) 
+		{
+        	console.log(err);
+    	}
 	}); 
+
 });
