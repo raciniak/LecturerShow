@@ -289,3 +289,9 @@
 		background:#96a9b5;
 		margin-bottom:1%;
 	}
+	
+	#podpis
+	{
+		float:right;
+		padding: 0 3% 0 0;
+	}
