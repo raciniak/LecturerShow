@@ -25,9 +25,9 @@
 
     function partial(fn/*, ...args*/) {
         var args = Array.prototype.slice.call(arguments, 1);
-        return function() {
-            return fn.apply(this, args.concat(Array.prototype.slice.call(arguments)));
-        }
+       return function() {
+           return fn.apply(this, args.concat(Array.prototype.slice.call(arguments)));
+       }
     }
 
     function compose(/*...fns*/) {
@@ -58,7 +58,7 @@
     }
 
     function createInput(name, value, range) {
-        var input = document.createElement('input');
+        var input = document.createElement('input'); 
         input.setAttribute('type', 'hidden');
         input.setAttribute('name', name);
         input.setAttribute('value', value);
@@ -68,11 +68,15 @@
 
     function createSlider(name, value, range) {
         var slider = document.createElement('div');
-        slider.className = 'slider draggable kolko';
+        slider.className = 'slider draggable';
+        if("Początek filmu"===name || "Koniec filmu"===name)
+        {
+        	slider.className = 'slider MovieTime';
+        }
         slider.setAttribute('data-name', name);
         slider.setAttribute('data-value', value);
         slider.setAttribute('tabindex', 0);
-        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".jpg' width='140' height='70' alt='cos1'/>";
+        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".jpg' width='140' height='70' alt='"+name+"'/>";
         range.appendChild(slider);
         return slider;
     }
@@ -207,6 +211,7 @@
             }
             addListener('mouseup', endHandleDrag, document.documentElement);
             addListener('mousemove', handleDrag, document.documentElement);
+            
         }
     }
 
@@ -244,8 +249,7 @@
     function pokazslajd(e){
         if (isSlider(e.target)) {
         	polozenieY=e.clientY;
-        	//alert(polozenieY);
-        	//alert($("#timeline_editor").clientY);
+
         	dragdrop.set(e.target, {onstart: start, onmove: move, onstop: stop});
     	}
     }
@@ -261,17 +265,18 @@
 			}
     	}
     }
-    
+
     
     addListener('mousedown', beginHandleDrag, document.documentElement);
     addListener('mouseover', pokazslajd, document.documentElement);
     addListener('mouseup', wyrzucslajd, document.documentElement);
-
-
+   // alertt();
+	
     var initializeSliders = partial(each, initializeSlider);
     var initializeInputs = partial(each, initializeInput);
     addListener('DOMContentLoaded', partial(each, invoke, [
         compose(initializeSliders, partial(getSliders, document)),
         compose(initializeInputs, partial(getSliderInputs, document))
     ]), window);
+
 })();

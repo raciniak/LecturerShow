@@ -12,10 +12,45 @@ $(document).ready(function(){
        //funkcja odpowiadajaca za funkcjonalne okienko pomocnicze pod edytorem
        intID=setTimeout(function(){
        	windowsik();
+       	uzupelnijMultiRange();
+       	createRange();
        },200);
        var evt = new Event();
        var dragdrop = new Dragdrop(evt);
 });
+
+function createRange(){
+		var min = document.getElementById("range").getAttribute("data-min");
+		var max = document.getElementById("range").getAttribute("data-max");
+      	for(i=1;i<parseInt(a[0])+1;i++)
+      	{
+      		var left="left: "+a[i]/max*100+"%";
+      		createSlider(i,a[i],left);
+      	}
+}
+
+function createSlider(name,value,left){
+		var slider = document.createElement('div');
+		slider.className = 'slider draggable';
+        slider.setAttribute('data-name', name);
+        slider.setAttribute('data-value', value);
+        slider.setAttribute('tabindex', 0);
+        slider.setAttribute('style', left);
+        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".jpg' width='140' height='70' alt='Obrazek nr:"+name+"'/>";
+        $(".range").append(slider);
+}
+
+function uzupelnijMultiRange(){
+	var i;
+	for(i=1;i<parseInt(a[0])+1;i++)
+	{
+		var inpucik = document.createElement('input');
+        inpucik.setAttribute('type', 'hidden');
+        inpucik.setAttribute('name', i);
+        inpucik.setAttribute('value', a[i]);
+        $(".range").append(inpucik);
+	}
+}
 
 function taby(){
 		//dla każdego miejsca z tabami
@@ -67,7 +102,7 @@ function obrazek(){
         {
              if(czas>=a[i])
              {
-                 $('.imageLoader').html('<img src="movies/movie1/images/' + i + '.jpg" width="640" height="360" alt="cos'+i+'"/>');
+                 $('.imageLoader').html('<img src="movies/movie1/images/' + i + '.jpg" alt="Obrazek nr:'+i+'"/>');
              }
         }
 }
@@ -96,8 +131,21 @@ function windowsik()
 	{
 		var divek = document.createElement('li');
         divek.className = 'slajd';
-        divek.innerHTML = "<input type='checkbox' id='"+i+"' checked='checked' /> <img src='movies/movie1/images/"+i+".jpg' width='140' height='70' alt='cos1'/>  Numer slajdu: "+i+    
+        divek.innerHTML = "<input type='checkbox' id='"+i+"' checked='checked' onclick='checkSlajd(this)' /> <img src='movies/movie1/images/"+i+".jpg' width='140' height='70' alt='Obrazek nr:"+i+"'/>  Numer slajdu: "+i+    
         " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";
         $("#windows").append(divek);
 	}
+}
+
+
+function checkSlajd(checkbox)
+{
+    if (checkbox.checked)
+    {
+    	initializeSlider(createSlider(name, value, range));
+        alert("slajd podpiety");
+        
+    }else{
+    	alert("slajd zostal odpiety");
+    }
 }
