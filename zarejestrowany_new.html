@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>LecturerShow.pl - Rejestracja</title>
+		<title>LecturerShow.pl - Edytor</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -9,13 +9,8 @@
 		<script src="js/libs/template/config.js"></script>
 		<script src="js/libs/template/skel.min.js"></script>
 		<script src="js/libs/template/skel-panels.min.js"></script>
-		<script src="js/rejestracja.js"></script>
-		<script src="js/xmlhttprequest.js"></script>
-
-		        
-        		
+		        		
 		<noscript>
-		   
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
 			<link rel="stylesheet" href="css/template/style.css" />
 			<link rel="stylesheet" href="css/template/style-desktop.css" />
@@ -39,56 +34,33 @@
 									<a href="index.html">Homepage</a>
 									<a href="threecolumn.html">Three Column</a>
 									<a href="twocolumn1.html">Two Column #1</a>
-									<a id="rejestracja" href="rejestracja_new.html">Rejestracja</a>
-                                    <a id="konto" href="konto_new.html"> Twój profil</a>
-                                    <a id="logowanie" href="logowanie_new.html">Zaloguj</a>
+									<a href="twocolumn2.html">Two Column #2</a>
+									<a href="onecolumn.html">One Column</a>
 								</nav>
 
 						</div>
 					</div>
 				</header>
-				
 			</div>
+
 		<!-- Content -->
 			<div id="content-wrapper">
-			    
 				<div id="content">
-				  
 					<div class="container">
-					      
 						<div class="row">
 							<div class="12u">
 							
 								<!-- Main Content -->
 									<section>
 										<header>
-											<h2>Rejestracja</h2>
-											<h3>Utwórz nowe konto na platfomie LecturerShow</h3>
+											<h3>Konto zostało utworzone</h3>
 										</header>
-										<!-- Formularz rejestracji -->
-										<p class="dane">Dane konta: </p> 
-                                        <hr id="line">
-                                        
-										<b class="b_rejestracja">Login:</b> 
-										<input type="text" placeholder="min. 6 znaków" name="login" id="login">
-										<span id="login_error"></span><br><br />
-                                        <b class="b_rejestracja">Hasło:</b> 
-                                        <input type="password" name="haslo1" placeholder="min. 6 znaków " id="haslo1">
-                                        <span id="password_error"></span><br><br />
-                                        <b class="b_rejestracja">Powtórz hasło:</b> 
-                                        <input type="password" name="haslo2" id="haslo2"><br><br />
-                                        <b class="b_rejestracja">E-mail:</b> 
-                                        <input type="email" name="email1" placeholder="np. jan.kowalski@gmail.com" id="email1">
-                                        <span id="email_error"></span><br><br />
-                                        <b class="b_rejestracja">Powtórz e-mail:</b> 
-                                        <input type="email" name="email2" id="email2"><br><br />
-                                        <p class="dane"> Dane osobiste: (niewymagane)</p> 
-                                        <hr id="line">
-                                        <b class="b_rejestracja">Imię:</b> 
-                                        <input type="text" placeholder="np. Jan" name="imie" id="imie"><br><br />
-                                        <b class="b_rejestracja">Nazwisko:</b> 
-                                        <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko"><br><br />
-                                        <input type="submit" value="Utwórz konto" class="button-big" name="rejestruj" id="rejestruj_button" onclick="sendUserData()" disabled> 
+										<p> Twoje konto na LecturerShow.pl zostało pomyślnie utworzone. Aby móc się zalogować i dzielić się z innymi
+										    swoimi wykładami aktywuj swoje konto poprzez link aktywacyjny, który został wysłany na adres e-mail podany podczas rejestracji.
+										     </p>
+										     <br>
+										     <p id="podpis">Zespół LecturerShow</p>
+										
 									</section>
 							</div>
 						</div>

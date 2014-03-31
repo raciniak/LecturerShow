@@ -12,11 +12,50 @@ $(document).ready(function(){
        //funkcja odpowiadajaca za funkcjonalne okienko pomocnicze pod edytorem
        intID=setTimeout(function(){
        	windowsik();
+       	uzupelnijMultiRange();
+       	createRange();
        },200);
        var evt = new Event();
        var dragdrop = new Dragdrop(evt);
 });
 
+// Utworzenie MultiRange z wszystkimi slajdami wyrzuconymi przez modełko
+function createRange(){
+		var min = document.getElementById("range").getAttribute("data-min");
+		var max = document.getElementById("range").getAttribute("data-max");
+      	for(i=1;i<parseInt(a[0])+1;i++)
+      	{
+      		var left="left: "+a[i]/max*100+"%";
+      		createSlider(i,a[i],left);
+      	}
+}
+
+// Utworzenie slidera z podpiętym slajdem
+function createSlider(name,value,left){
+		var slider = document.createElement('div');
+		slider.className = 'slider draggable';
+        slider.setAttribute('data-name', name);
+        slider.setAttribute('data-value', value);
+        slider.setAttribute('tabindex', 0);
+        slider.setAttribute('style', left);
+        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".jpg' width='140' height='70' alt='Obrazek nr:"+name+"'/>";
+        $(".range").append(slider);
+}
+
+//Utworzenie inputów które przechowywują dane o slajdzie nawet gdy jest odpięty od MultiRange
+function uzupelnijMultiRange(){
+	var i;
+	for(i=1;i<parseInt(a[0])+1;i++)
+	{
+		var inpucik = document.createElement('input');
+        inpucik.setAttribute('type', 'hidden');
+        inpucik.setAttribute('name', i);
+        inpucik.setAttribute('value', a[i]);
+        $(".range").append(inpucik);
+	}
+}
+
+// Obsługa zakładek w edytorze
 function taby(){
 		//dla każdego miejsca z tabami
         $('.tabs').each(function() {
@@ -51,6 +90,7 @@ function taby(){
         });
 }
 
+// funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
 function obrazek(){
         var czas = Math.floor(myVideo.currentTime);
         var j=parseInt(a[0]);
@@ -67,12 +107,12 @@ function obrazek(){
         {
              if(czas>=a[i])
              {
-                 $('.imageLoader').html('<img src="movies/movie1/images/' + i + '.jpg" width="640" height="360" alt="cos'+i+'"/>');
+                 $('.imageLoader').html('<img src="movies/movie1/images/' + i + '.jpg" alt="Obrazek nr:'+i+'"/>');
              }
         }
 }
 
-
+// funkcja odpowiadająca za pobranie pliku z czasami oraz liczbą slajdów
 function pobierzPlik()
 {
                 
@@ -88,7 +128,8 @@ function pobierzPlik()
 		};
 		xmlhttp.send();
  }
-            
+
+//funkcja odpowiadająca za uzupełnienie pola windows w edytorze do edycji slajdów
 function windowsik()
 {
 	var i;
@@ -96,8 +137,35 @@ function windowsik()
 	{
 		var divek = document.createElement('li');
         divek.className = 'slajd';
-        divek.innerHTML = "<input type='checkbox' id='"+i+"' checked='checked' /> <img src='movies/movie1/images/"+i+".jpg' width='140' height='70' alt='cos1'/>  Numer slajdu: "+i+    
+        divek.innerHTML = "<input type='checkbox' id='"+i+"' checked='checked' onclick='checkSlajd(this)' /> <img src='movies/movie1/images/"+i+".jpg' width='140' height='70' alt='Obrazek nr:"+i+"'/>  Numer slajdu: "+i+    
         " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";
         $("#windows").append(divek);
 	}
+}
+
+//Funkcja odpowiadająca za checkboxy tworzy albo usuwa slider z multirange
+function checkSlajd(checkbox)
+{
+    if (checkbox.checked)
+    {
+    	var max = document.getElementById("range").getAttribute("data-max");
+    	var name = checkbox.getAttribute("id");
+    	// JQuery zwraca tablice elementów dlatego wywołujemy get na argumencie zerowym aby nie była to talbica i można na zminnej
+    	// wykonywać funkcje z javascript
+    	var value = $("input[name="+name+"]").get(0);
+    	value = value.getAttribute("value");
+    	var left="left: "+value/max*100+"%";
+    	createSlider(name,value,left);      
+    }else{
+    	var name = checkbox.getAttribute("id");
+    	removeSlider(name);
+    }
+}
+
+//Funkcja usuwajaca slider
+function removeSlider(id){
+	var el = $("div[data-name="+id+"]").get(0);
+   if (el){
+      el.parentNode.removeChild(el);
+   }
 }
