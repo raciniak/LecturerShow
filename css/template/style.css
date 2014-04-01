@@ -288,6 +288,7 @@
 		font-size: 1.4em;
 		margin:0 0 0.7em 0;
 	}
+	/* Koniec CSS - nagłówki rejestracji */
 
 	#line
 	{
@@ -300,7 +301,8 @@
 		float:right;
 		padding: 0 3% 0 0;
 	}
-	
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+	/* CSS - profil uzytkownika */	
 	#profil {
         
       }
@@ -322,3 +324,20 @@
         width:75%;
         
       }
+      #lista_filmow {
+      	display:block;
+      	margin: 0 auto;
+      	border: solid;
+      	background:#0000FF;
+      	width:20%;
+      }
+      #lista_filmow p {
+      	padding: 0;
+      	margin: 0;
+      }
+      
+      #zdjecie {
+      	width: 10%;
+      	height: 10%;
+      }
+	/* Koniec CSS - profil uzytkownika */	
