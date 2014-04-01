@@ -71,7 +71,7 @@
 										    <ul class="tabs">
 										        <li class="active"><a href="#tab1">Moje filmy</a></li>
 										        
-										        <li><a href="#tab2">Wrzuć film</a></li>
+										        <li><a href="#tab2">Dodaj film</a></li>
 										        <li><a href="#tab3">Statystyki</a></li>
 										        <li><a href="#tab4">Zmień dane</a></li>
 										    </ul>
@@ -82,8 +82,39 @@
 									           <div id="filmy"></div>
 									       </div> 
 									       <div id="tab2" class="tab">
-                                                <p class="dane">Wrzuć film</p>
-                                                <p> Tutaj kod Bartka </p>
+                                                <p class="dane">Dodaj film</p>
+                                                 <form id="form1" enctype="multipart/form-data" method="post" action="UploadServlet">
+                                                 <div class="row1">
+                                                      <b class="b_aktualizacja"> Nazwa filmu: </b>                                      
+                                                      <input class="input_update_file" type="text" name="name" id="name" required />
+                                                 </div>
+                                                 
+                                                      <b class="b_aktualizacja"> Opis filmu: </b> <br />
+                                                      <textarea name="opis" id="opis" rows="4" cols="70"required ></textarea>
+                                                 <div class="row1">
+                                                      <b class="b_update_video"> Wybierz film z prezentacja video </b>
+                                                      <input type="file" name="mowa" id="mowa" onchange="fileSelected('mowa');" accept="video/*"/>
+                                                 </div>
+                                                 <div id="fileName1"></div>
+                                                 <div id="fileSize1"></div>
+                                                 <div id="fileType1"></div>
+                                                 <br />
+                                                 <div class="row1">
+                                                      <b class="b_update_video"> Wybierz film/plik ze slajdami </b>
+                                                      <input type="file" name="slajdy" id="slajdy" onchange="fileSelected('slajdy');" accept="video/*, application/pdf"/>
+                                                 </div>
+                                                 <div id="fileName2"></div>
+                                                 <div id="fileSize2"></div>
+                                                 <div id="fileType2"></div>
+                                                 <br />
+                                                 <div id="progressNumber"></div>
+                                                 <div class="row1">
+                                                 <progress id="progressBar" value="0" max="100" style="width:50%;">
+                                                 </div>
+                                                 <div class="row1">
+                                                      <input class="button-big" type="button" onclick="uploadFile()" value="Dodaj film" />
+                                                 </div>
+                                              </form>
 									       </div>
 									       <div id="tab3" class="tab">
                                                 <p class="dane">Statystyki profilu</p>
