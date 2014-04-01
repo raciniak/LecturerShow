@@ -162,8 +162,9 @@ function windowsik()
 	{
 		var divek = document.createElement('li');
         divek.className = 'slajd';
-        divek.innerHTML = "<input type='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> <img src='movies/movie1/images/"+slajdy[i]+".jpg' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  Numer slajdu: "+slajdy[i]+    
-        " Sekunda slajdu: <input id='textbox"+slajdy[i]+"'type='text' value='"+czasy[i]+"'>";
+        divek.innerHTML = "<div class='windows_div'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> "+
+        "<img class='obrazek_windows' src='movies/movie1/images/"+slajdy[i]+".jpg' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
+        "</b> <b class='windows_element'>Sekunda slajdu: <input id='textbox"+slajdy[i]+"'type='text' value='"+czasy[i]+"'</b></div>";
         $("#windows").append(divek);
 	}
 }

@@ -150,6 +150,13 @@
         slider.style.left = percent + '%';
         slider.setAttribute('data-value', value);
         slide.input.setAttribute('value', value);
+        //moja zmianka odnosnie okienka windows
+        name=slide.input.getAttribute("name");
+        if(name!="Początek filmu" && name!="Koniec filmu")
+        {
+        	document.getElementById("textbox"+name).setAttribute('value', value);
+        }
+        //
         slide.value = value;
 
         if (init) return;

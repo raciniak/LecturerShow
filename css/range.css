@@ -33,6 +33,21 @@
 	list-style: none;
 }
 
+.obrazek_windows{
+	position:relative;
+	top:30px;
+	
+}
+.windows_div{
+	position:relative;
+	bottom:30px;
+}
+.windows_element{
+	//position:relative;
+	//left:50px;
+	margin-left: 100px;
+}
+
 /* Tło MultiRange */
 
 #timeline_editor{
