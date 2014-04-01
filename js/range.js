@@ -263,7 +263,7 @@
 			if(e.clientY-polozenieY<40){
 			initializeSlider(createSlider(name, value, range));
 			}else{
-				var check = document.getElementById(name);
+				var check = document.getElementById("checkbox"+name);
 				check.checked = false;
 			}
     	}

@@ -1,6 +1,10 @@
 var intID;
-var a='';
-var i;
+var i=0;
+var plik=new Array();
+var czasy=new Array();
+var slajdy=new Array();
+var iloscSlajdow;
+var time = 0;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
 	   //funkcja do pobierania czasow odtwarzania slajdow, kazda funkcja ktora chce korzystac z tablicy a zawierajacej
@@ -8,9 +12,11 @@ $(document).ready(function(){
        pobierzPlik();
        taby();
        //odswieżana zmienna przy załadowaniu strony potrzebna do odtwarzacza slajdow
-       $('#playPause').click(function(){i=1;});
+       $('#playButton').click(function(){time = Math.floor(myVideo.currentTime)-1;});
+       $('#timeLine').click(function(){time = Math.floor(myVideo.currentTime)-1;});
        //funkcja odpowiadajaca za funkcjonalne okienko pomocnicze pod edytorem
        intID=setTimeout(function(){
+       	PodzielPlik();
        	windowsik();
        	uzupelnijMultiRange();
        	createRange();
@@ -23,10 +29,10 @@ $(document).ready(function(){
 function createRange(){
 		var min = document.getElementById("range").getAttribute("data-min");
 		var max = document.getElementById("range").getAttribute("data-max");
-      	for(i=1;i<parseInt(a[0])+1;i++)
+      	for(i=0;i<iloscSlajdow;i++)
       	{
-      		var left="left: "+a[i]/max*100+"%";
-      		createSlider(i,a[i],left);
+      		var left="left: "+czasy[i]/max*100+"%";
+      		createSlider(slajdy[i],czasy[i],left);
       	}
 }
 
@@ -45,12 +51,12 @@ function createSlider(name,value,left){
 //Utworzenie inputów które przechowywują dane o slajdzie nawet gdy jest odpięty od MultiRange
 function uzupelnijMultiRange(){
 	var i;
-	for(i=1;i<parseInt(a[0])+1;i++)
+	for(i=0;i<iloscSlajdow;i++)
 	{
 		var inpucik = document.createElement('input');
         inpucik.setAttribute('type', 'hidden');
-        inpucik.setAttribute('name', i);
-        inpucik.setAttribute('value', a[i]);
+        inpucik.setAttribute('name', slajdy[i]);
+        inpucik.setAttribute('value', czasy[i]);
         $(".range").append(inpucik);
 	}
 }
@@ -93,52 +99,71 @@ function taby(){
 // funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
 function obrazek(){
         var czas = Math.floor(myVideo.currentTime);
-        var j=parseInt(a[0]);
-        var i=0;
-        while(i==0)
+        if(czas===time+1)
         {
-            if(czas>=parseInt(a[j]))
-                i=j;
-            if(j==0)
-                i=a[0];
-            j--;
-        }
-        if(i<parseInt(a[0])+1)
-        {
-             if(czas>=a[i])
-             {
-                 $('.imageLoader').html('<img src="movies/movie1/images/' + i + '.jpg" alt="Obrazek nr:'+i+'"/>');
-             }
-        }
+        	var j=iloscSlajdow-1;
+        	var i=0;
+        	var koniec=0;
+        	while(koniec==0)
+        	{
+            	if(j==0){
+                	i=iloscSlajdow;
+                	koniec=1;
+            	}
+            	if(czas>=czasy[j])
+            	{
+                	i=j;
+                	koniec=1;
+            	}
+            	j--;
+        	}
+
+        	if(i<iloscSlajdow)
+        	{
+                 $('.imageLoader').html('<img src="movies/movie1/images/' + slajdy[i] + '.jpg" alt="Obrazek nr: '+slajdy[i]+'"/>');
+        	}
+        	time=czas;
+       }
 }
 
 // funkcja odpowiadająca za pobranie pliku z czasami oraz liczbą slajdów
 function pobierzPlik()
 {
-                
 		var txt='';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET","movies/movie1/times.txt");
 		xmlhttp.onreadystatechange = function(){
 			if(xmlhttp.status==200 && xmlhttp.readyState==4){
 				txt=xmlhttp.responseText;
-                                a=txt.split('\n');
+                                plik=txt.split('\n');             
 			}
-                            
 		};
 		xmlhttp.send();
  }
+ 
+// Dzielimy wartość pliku na dwie tablice: tablica z indentyfikatorami obrazków, tablica z czasami odtwarzania
+function PodzielPlik()
+{
+	var j=1;
+	iloscSlajdow=parseInt(plik[0]);
+	for(i=0;i<iloscSlajdow;i++)
+		{
+			slajdy[i]=parseInt(plik[i+j]);
+			j++;
+			czasy[i]=parseInt(plik[i+j]);
+   		 }
+}
 
 //funkcja odpowiadająca za uzupełnienie pola windows w edytorze do edycji slajdów
 function windowsik()
 {
 	var i;
-	for(i=1;i<parseInt(a[0])+1;i++)
+	for(i=0;i<iloscSlajdow;i++)
 	{
 		var divek = document.createElement('li');
         divek.className = 'slajd';
-        divek.innerHTML = "<input type='checkbox' id='"+i+"' checked='checked' onclick='checkSlajd(this)' /> <img src='movies/movie1/images/"+i+".jpg' width='140' height='70' alt='Obrazek nr:"+i+"'/>  Numer slajdu: "+i+    
-        " Sekunda slajdu: <input id='"+i+"'type='text' value='"+a[i]+"'>";
+        divek.innerHTML = "<input type='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> <img src='movies/movie1/images/"+slajdy[i]+".jpg' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  Numer slajdu: "+slajdy[i]+    
+        " Sekunda slajdu: <input id='textbox"+slajdy[i]+"'type='text' value='"+czasy[i]+"'>";
         $("#windows").append(divek);
 	}
 }
@@ -150,6 +175,8 @@ function checkSlajd(checkbox)
     {
     	var max = document.getElementById("range").getAttribute("data-max");
     	var name = checkbox.getAttribute("id");
+    	name = name.split("checkbox");
+    	name = name[1];
     	// JQuery zwraca tablice elementów dlatego wywołujemy get na argumencie zerowym aby nie była to talbica i można na zminnej
     	// wykonywać funkcje z javascript
     	var value = $("input[name="+name+"]").get(0);
@@ -158,6 +185,8 @@ function checkSlajd(checkbox)
     	createSlider(name,value,left);      
     }else{
     	var name = checkbox.getAttribute("id");
+    	name = name.split("checkbox");
+    	name = name[1];
     	removeSlider(name);
     }
 }
