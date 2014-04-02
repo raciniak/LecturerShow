@@ -38,6 +38,20 @@
 }
 	#timeLine .belt {
 		background-color: #DE2A10;
+		width: 0%;
+		height: 100%;
+	}
+	
+/* volumeLine */
+#volumeLine {
+	border: 1px solid #3E484A;
+	width: 10%;
+	height: 10px;
+	float: right;
+	margin-top: 1%;
+}
+	#volumeLine .belt {
+		background-color: #DE2A10;
 		width: 55%;
 		height: 100%;
 	}

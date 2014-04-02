@@ -1,10 +1,12 @@
 $(document).ready(function(){
 
 //------------------------------------	
-var myVideo = $('#myVideo')[0];	
-var timeLine = $('#timeLine')[0];
+var myVideo    = $('#myVideo')[0];	
+var timeLine   = $('#timeLine')[0];
+var volumeLine = $('#volumeLine')[0];
 //------------------------------------
-
+	// Ustawiam pasek głośności
+	setVolumeLine(myVideo.volume*100);
 
 	$('#playButton').click(function() {
 		play();
@@ -16,7 +18,7 @@ var timeLine = $('#timeLine')[0];
 	);
 	
 	$('#muteButton').click(function() {
-		myVideo.muted = true;
+		mute();
 	}
 	);
 
@@ -24,19 +26,28 @@ var timeLine = $('#timeLine')[0];
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
 	$(myVideo).bind('timeupdate', obrazek);
+
 	
 	// Funkcja wykonywana po naciśnięciu w timeline
 	$(timeLine).click(function(e){
-		var posX = $(this).offset().left;
-        
+		var posX = $(this).offset().left;     
         // Szerokość timeLine-a
-        var width = $(this).width();
-        
+        var width = $(this).width();      
         // Obliczam procent timeLine-a
-        var percent = Math.floor((e.pageX-posX)/width*100);
-        
+        var percent = Math.floor((e.pageX-posX)/width*100);    
         setTimeLine(percent);
 	});
+	
+	// Funkcja wykonywana po naciśnięciu w volumeLine
+	$(volumeLine).click(function(e){
+		var posX = $(this).offset().left;     
+        // Szerokość timeLine-a
+        var width = $(this).width();      
+        // Obliczam procent timeLine-a
+        var percent = Math.floor((e.pageX-posX)/width*100);    
+        setVolumeLine(percent);
+	});
+	
 });
 
 function play() {
@@ -45,6 +56,17 @@ function play() {
 
 function pause() {
 	myVideo.pause();
+}
+
+function mute() {
+	if(myVideo.muted)
+	{
+		setVolumeLine(100);
+		myVideo.muted = !myVideo.muted;
+	}else{
+		setVolumeLine(0);
+		myVideo.muted = !myVideo.muted;
+	}
 }
 
 function updateTime(){
@@ -93,6 +115,18 @@ function setTimeLine(percent)
 	
 	myVideo.currentTime = percent/100 * myVideo.duration;
 }
+
+function setVolumeLine(percent)
+{
+	$('#volumeLine .belt').animate(
+		{"width" : percent+"%"},
+		{duration : 200}
+	);
+	
+	myVideo.volume = percent/100;
+	
+}
+
 
 // ---------------------------------------------------------------------------------
 //       jacek m
