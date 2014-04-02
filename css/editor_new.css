@@ -15,21 +15,19 @@
 	width: 49%;
 	padding: 0px;
 	border: 0px;
+	margin-left: 0.8%;
 }
 
 #player_box .imageLoader {
 	display: inline;
-
-	width: 40%;
+	width: 50%;
 	height: 600px;
 }
 
 #player_box .imageLoader img{
 
-	border: 0px;
 	padding: 0px;
-	width: 50%;
-	border: 1px solid #AAAAAA;
+	width: 49%;
 }
 /* TimeLine */
 #timeLine {
@@ -39,6 +37,20 @@
 	height: 10px;
 }
 	#timeLine .belt {
+		background-color: #DE2A10;
+		width: 0%;
+		height: 100%;
+	}
+	
+/* volumeLine */
+#volumeLine {
+	border: 1px solid #3E484A;
+	width: 10%;
+	height: 10px;
+	float: right;
+	margin-top: 1%;
+}
+	#volumeLine .belt {
 		background-color: #DE2A10;
 		width: 55%;
 		height: 100%;

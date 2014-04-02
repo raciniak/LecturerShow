@@ -1,10 +1,12 @@
 $(document).ready(function(){
 
 //------------------------------------	
-var myVideo = $('#myVideo')[0];	
-var timeLine = $('#timeLine')[0];
+var myVideo    = $('#myVideo')[0];	
+var timeLine   = $('#timeLine')[0];
+var volumeLine = $('#volumeLine')[0];
 //------------------------------------
-
+	// Ustawiam pasek głośności
+	setVolumeLine(myVideo.volume*100);
 
 	$('#playButton').click(function() {
 		play();
@@ -14,24 +16,38 @@ var timeLine = $('#timeLine')[0];
 		pause();
 	}
 	);
+	
+	$('#muteButton').click(function() {
+		mute();
+	}
+	);
 
 	// Funkcja wykonywana, kiedy player jest uruchomiony
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
 	$(myVideo).bind('timeupdate', obrazek);
+
 	
 	// Funkcja wykonywana po naciśnięciu w timeline
 	$(timeLine).click(function(e){
-		var posX = $(this).offset().left;
-        
+		var posX = $(this).offset().left;     
         // Szerokość timeLine-a
-        var width = $(this).width();
-        
+        var width = $(this).width();      
         // Obliczam procent timeLine-a
-        var percent = Math.floor((e.pageX-posX)/width*100);
-        
+        var percent = Math.floor((e.pageX-posX)/width*100);    
         setTimeLine(percent);
 	});
+	
+	// Funkcja wykonywana po naciśnięciu w volumeLine
+	$(volumeLine).click(function(e){
+		var posX = $(this).offset().left;     
+        // Szerokość timeLine-a
+        var width = $(this).width();      
+        // Obliczam procent timeLine-a
+        var percent = Math.floor((e.pageX-posX)/width*100);    
+        setVolumeLine(percent);
+	});
+	
 });
 
 function play() {
@@ -42,8 +58,45 @@ function pause() {
 	myVideo.pause();
 }
 
+function mute() {
+	if(myVideo.muted)
+	{
+		setVolumeLine(100);
+		myVideo.muted = !myVideo.muted;
+	}else{
+		setVolumeLine(0);
+		myVideo.muted = !myVideo.muted;
+	}
+}
+
 function updateTime(){
-	$('#czas').html(myVideo.currentTime);
+	
+	var seconds = Math.floor( myVideo.currentTime%60);
+	var minutes = Math.floor((myVideo.currentTime/60)%60);
+	var hours   = Math.floor(myVideo.currentTime/3600);
+	
+	if( seconds < 10 )
+		seconds = "0"+seconds;
+	if( seconds == 0)
+		seconds = "&#48&#48";
+	if( seconds % 60 == 0 )
+		seconds = Math.floor(seconds/60);
+
+	if( minutes < 10 )
+		minutes = "0"+minutes;
+	if( minutes == 0)
+		minutes = "&#48&#48";
+	if( minutes % 60 == 0 )
+		minutes = Math.floor(minutes/60);
+		
+	if( hours < 10)
+		hours = "0"+hours;
+	if( hours == 0)
+		hours = "&#48&#48";
+		
+	var outTime = "" + hours + ":" + minutes + ":" + seconds;
+	
+	$('#czas').html(outTime);
 	
 	$('#timeLine .belt').animate(
 		{"width" : myVideo.currentTime/myVideo.duration*100+"%"},
@@ -62,6 +115,18 @@ function setTimeLine(percent)
 	
 	myVideo.currentTime = percent/100 * myVideo.duration;
 }
+
+function setVolumeLine(percent)
+{
+	$('#volumeLine .belt').animate(
+		{"width" : percent+"%"},
+		{duration : 200}
+	);
+	
+	myVideo.volume = percent/100;
+	
+}
+
 
 // ---------------------------------------------------------------------------------
 //       jacek m

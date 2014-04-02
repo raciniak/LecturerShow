@@ -341,3 +341,22 @@
       	height: 10%;
       }
 	/* Koniec CSS - profil uzytkownika */	
+
+	.label_upload
+	{
+		display:inline-block;
+		width:20%;
+	}
+	.b_update_video{
+		display:block;
+		width: 25%;
+	}
+	.input_update_file{
+		width:50%;
+	}
+	#filmy{
+		width:10%;
+		display: block;
+		float:left;
+		margin: 0 auto;
+	}

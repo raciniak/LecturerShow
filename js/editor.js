@@ -140,7 +140,8 @@ function obrazek(){
         var czas = Math.floor(myVideo.currentTime);
         if(czas===time+1)
         {
-        	var j=iloscSlajdow-1;
+        	//var j=iloscSlajdow-1;
+        	var j = 4;
         	var i=0;
         	var koniec=0;
         	while(koniec==0)
