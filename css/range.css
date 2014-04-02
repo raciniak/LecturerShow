@@ -21,12 +21,14 @@
 }
 
 /*wyglad okienka pod multirangem edytora*/
-#windows{
+.windows{
 	width: 100%;
-	height: 40%;
+	height: 310px;
 	background:#99BBDD;
 	margin:0px auto;
 	overflow:hidden;
+	position: relative;
+	
 }
 .slajd{
 	margin: 20px;
@@ -43,8 +45,6 @@
 	bottom:30px;
 }
 .windows_element{
-	//position:relative;
-	//left:50px;
 	margin-left: 100px;
 }
 
@@ -105,3 +105,33 @@
     cursor: pointer;
 }
 
+/*Wyglad listy slajdow w edytorze*/
+.lista {
+      position:absolute;
+      top: 0px;
+}
+
+    
+/*przycisk do przewijania listy w edytorze w zakładce slajdy */
+.up {
+	margin-left: 90%;
+	margin-bottom: 2%;
+	background:#FFF;
+}
+.down {
+	margin-left: 90%;
+	margin-top: 2%;
+	background:#FFF;
+}
+
+.textboxWindows{
+	width: 50px;
+	background:#63A62F;
+}
+
+/*Wyglad odtwarzacza pokazu slajdów do łapania nowych */
+#AddNewSlide{
+	border: 0px;
+	background-color: #A0A8AB;
+	
+}

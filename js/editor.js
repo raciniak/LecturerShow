@@ -16,15 +16,54 @@ $(document).ready(function(){
        $('#timeLine').click(function(){time = Math.floor(myVideo.currentTime)-1;});
        //funkcja odpowiadajaca za funkcjonalne okienko pomocnicze pod edytorem
        intID=setTimeout(function(){
-       	PodzielPlik();
+     //  	PodzielPlik();
        	windowsik();
        	uzupelnijMultiRange();
        	createRange();
+       	//Funkcja list odpowiada za listę do przesuwania slajdów w okienku windows
+       	list();
        },200);
        var evt = new Event();
        var dragdrop = new Dragdrop(evt);
 });
 
+//Funkcja list odpowiada za listę do przesuwania slajdów w okienku windows
+function list(){
+	     var $sliders = $('.windows')[0];
+ 
+    //dla kazdego slidera na stronie...
+   // $sliders.each(function() {
+        var $current_slider = $($sliders);
+        var $lista = $('.lista', $current_slider);
+        var $li = $lista.children('li');
+ 
+        //jeżeli dla danego slidera LI jest więcej od 3 to będzie można przewijać, inaczej nie ma sensu
+        if ($li.length > 3) {
+            //odległość pojedynczego przesunięcia
+            var odleglosc = 100;
+            //Wyliczanie max przesunięcia
+            var maxLeft = odleglosc * $li.length - 3 * odleglosc;
+ 
+            //przesuwanie w górę i w dół
+            $('.down', $current_slider).click(function() {
+                if ($lista.position().top > -maxLeft) {
+                    $($lista).not(':animated').animate({
+                        'top' : '-='+odleglosc
+                    },500);
+                }
+            });
+ 
+            $('.up', $current_slider).click(function() {
+                if ($lista.position().top<0) {
+                    $($lista).not(':animated').animate({
+                        'top' : '+='+odleglosc
+                    },500);
+                }
+            });
+ 
+        }
+   // });
+}
 // Utworzenie MultiRange z wszystkimi slajdami wyrzuconymi przez modełko
 function createRange(){
 		var min = document.getElementById("range").getAttribute("data-min");
@@ -129,7 +168,7 @@ function obrazek(){
 // funkcja odpowiadająca za pobranie pliku z czasami oraz liczbą slajdów
 function pobierzPlik()
 {
-		var txt='';
+		/*var txt='';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET","movies/movie1/times.txt");
 		xmlhttp.onreadystatechange = function(){
@@ -138,12 +177,21 @@ function pobierzPlik()
                                 plik=txt.split('\n');             
 			}
 		};
-		xmlhttp.send();
+		xmlhttp.send();*/
+		
+		var namefile = '../movies/'+getParameterByName("id")+'/times.txt';
+		var name = {
+            namefile: namefile
+        };
+		$.post('php/readtime.php',name,PodzielPlik);
+		
+		
  }
  
 // Dzielimy wartość pliku na dwie tablice: tablica z indentyfikatorami obrazków, tablica z czasami odtwarzania
-function PodzielPlik()
+function PodzielPlik(data)
 {
+	plik=data.split('\n'); 
 	var j=1;
 	iloscSlajdow=parseInt(plik[0]);
 	for(i=0;i<iloscSlajdow;i++)
@@ -164,8 +212,8 @@ function windowsik()
         divek.className = 'slajd';
         divek.innerHTML = "<div class='windows_div'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> "+
         "<img class='obrazek_windows' src='movies/movie1/images/"+slajdy[i]+".jpg' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
-        "</b> <b class='windows_element'>Sekunda slajdu: <input id='textbox"+slajdy[i]+"'type='text' value='"+czasy[i]+"'</b></div>";
-        $("#windows").append(divek);
+        "</b> <b class='windows_element'>Sekunda slajdu: <input id='textbox"+slajdy[i]+"'type='text' class='textboxWindows' onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+czasy[i]+"'></b></div>";
+        $("#windows_lista").append(divek);
 	}
 }
 
@@ -198,4 +246,77 @@ function removeSlider(id){
    if (el){
       el.parentNode.removeChild(el);
    }
+}
+
+// funkcja odpowiadająca za aktualizację slidera względem wartości podanych w textboxie
+function chcecktextbox(textbox)
+{
+	var name = textbox.getAttribute("id");
+	var value = parseInt(textbox.value);
+	var max = parseInt(document.getElementById("range").getAttribute("data-max"));
+	if(value<=max)
+	{
+    	name = name.split("textbox");
+    	name = name[1];
+    	var input=$("input[name="+name+"]").get(0);
+    	input.setAttribute('value',value);
+    	removeSlider(name);
+    	var left="left: "+value/max*100+"%";
+    	createSlider(name,value,left);
+	}
+}
+
+// tylko liczby i nie wieksze od długości filmu w textboxie z numerem czasów
+function validate(evt,textbox) {
+	 var theEvent = evt || window.event;
+	 var key = theEvent.keyCode || theEvent.which; 
+	 key = String.fromCharCode( key ); 
+	 var regex = /[0-9]|\./; 
+	 if( !regex.test(key) && theEvent.keyCode!=8 && theEvent.keyCode!=46 && theEvent.keyCode!=37 && theEvent.keyCode!=39 && theEvent.keyCode!=46 ) 
+	 { 
+	 	theEvent.returnValue = false; 
+	 	if(theEvent.preventDefault) 
+	 	{
+	 		theEvent.preventDefault(); 
+	 	}
+	 } 
+	 if(regex.test(key))
+	 {
+		var value = textbox.value;
+		var max = parseInt(document.getElementById("range").getAttribute("data-max"));
+		value=value+key;
+		if(parseInt(value)<=max)
+		{
+			theEvent.returnValue = true; 
+		}else{
+			theEvent.returnValue = false; 
+	 		if(theEvent.preventDefault) 
+	 		{
+	 			theEvent.preventDefault(); 
+	 		}
+		}
+	}
+}
+
+function stopFrame(){
+	var video = document.getElementById('myVideo');
+	var canvas = document.createElement('canvas');
+	canvas.width = video.videoWidth;
+	canvas.height= video.videoHeight;
+	var ctx = canvas.getContext('2d');
+	ctx.drawImage(video, 0, 0);
+	window.open(canvas.toDataUrl('image/jpg').replace("image/jpg", "image/ocet-stream"));
+	//alert("2");
+	///wind/w.location.href=image;
+	//alert("3.3");
+	//window.open(obrazek);
+	//alert("3");
+}
+
+//pobieranie nazwy filmu z linku
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
