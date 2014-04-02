@@ -115,12 +115,19 @@
         													<button id="Zapisz_edycje">Zapisz wszystkie zmiany</button>
 													</div>
 													<div id="tab-2" class="tab">
-        													<div id="windows"></div>
+														<div class="windows">
+    														<input type="button" value='^' class="up" />
+        														<ul class='lista' id='windows_lista'>
+
+        														</ul>
+        													<input type="button" value='v' class="down"/>
+        												</div>
 													</div>
 													<div id="tab-3" class="tab">
-        													<video id="AddNewSlide">
+        													<video id="AddNewSlide" controls>
 									            				<source src="movies/movie1/slajdy_z_przejsciami_x264.mp4" type="video/mp4">
 									            			</video>
+									            			<button onclick="stopFrame()">Zapisz</button>
 													</div>
             							<!--MultiRange END-->
 									</section>
