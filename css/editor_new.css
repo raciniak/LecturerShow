@@ -15,21 +15,19 @@
 	width: 49%;
 	padding: 0px;
 	border: 0px;
+	margin-left: 0.8%;
 }
 
 #player_box .imageLoader {
 	display: inline;
-
-	width: 40%;
+	width: 50%;
 	height: 600px;
 }
 
 #player_box .imageLoader img{
 
-	border: 0px;
 	padding: 0px;
-	width: 50%;
-	border: 1px solid #AAAAAA;
+	width: 49%;
 }
 /* TimeLine */
 #timeLine {
