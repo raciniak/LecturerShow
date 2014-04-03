@@ -253,45 +253,51 @@
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------*/	
 
-	/* CSS - znaczniki <b> formularza rejestracji i zmiany danych */
+	/* CSS - rejestracji */
+	
 	.b_rejestracja {
 		display:inline-block;
 		width: 8%;
+		margin-left: 3%;
 	}
+	
+	#login, #haslo1, #haslo2, #email1, #email2, #imie, #nazwisko
+	{
+		width: 30%;
+		
+	}
+	
+	#login_error, #password_error, #email_error {
+		margin-left:1%;
+	}
+	
+	.dane
+	{
+		font-size: 1.4em;
+		margin:0 0 0.7em 0;
+	}
+	
+	/* Koniec CSS - rejestracji */
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+	/* CSS - aktualizacji danych */
 	
 	.b_aktualizacja {
 		margin-left: 3%;
 		display:inline-block;
 		width: 17%;
 	}
-	/* Koniec CSS - znaczniki <b> formularza rejestracji i zmiany danych */
-
-/*----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-	/* CSS - pola tekstowe (input) formularza rejestracji */
-	#login, #haslo1, #haslo2, #email1, #email2, #imie, #nazwisko
-	{
-		width: 30%;
-		
+	
+	.input_aktualizacja {
+		width: 40%;
 	}
-	/* Koniec CSS - pola tekstowe (input) formularza rejestracji */
-
-/*----------------------------------------------------------------------------------------------------------------------------------------------*/	
-
-	/* CSS - span błędów */
-	#login_error, #password_error, #email_error {
-		margin-left:1%;
-	}
-	/* Koniec CSS - span błędów */
+	
+	/* Koniec CSS - aktualizacji danych */
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------*/
 	
 	/* CSS - nagłówki rejestracji */
-	.dane
-	{
-		font-size: 1.4em;
-		margin:0 0 0.7em 0;
-	}
+	
 	/* Koniec CSS - nagłówki rejestracji */
 	.dane_upload {
 		font-size: 1.4em;
@@ -399,7 +405,4 @@
 		display : inline-block;
 		position: absolute;
 	}
-	.input_aktualizacja {
-		width: 40%;
-		
-	}
+	
