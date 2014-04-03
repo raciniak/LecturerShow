@@ -1,10 +1,13 @@
-$(document).ready(function(){
+var countingTimeFromTheEnd = false;
+
+$(document).ready(function () {
 
 //------------------------------------	
 var myVideo    = $('#myVideo')[0];	
 var timeLine   = $('#timeLine')[0];
 var volumeLine = $('#volumeLine')[0];
 //------------------------------------
+
 	// Ustawiam pasek głośności
 	setVolumeLine(myVideo.volume*100);
 
@@ -22,7 +25,12 @@ var volumeLine = $('#volumeLine')[0];
 	}
 	);
 
-	// Funkcja wykonywana, kiedy player jest uruchomiony
+	$('#timeDiv').click(function () {
+	    countingTimeFromTheEnd = !countingTimeFromTheEnd;
+	}
+    );
+
+    // Funkcja wykonywana, kiedy player jest uruchomiony
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
 	$(myVideo).bind('timeupdate', obrazek);
@@ -70,40 +78,51 @@ function mute() {
 }
 
 function updateTime(){
-	
-	var seconds = Math.floor( myVideo.currentTime%60);
-	var minutes = Math.floor((myVideo.currentTime/60)%60);
-	var hours   = Math.floor(myVideo.currentTime/3600);
-	
-	if( seconds < 10 )
-		seconds = "0"+seconds;
-	if( seconds == 0)
-		seconds = "&#48&#48";
-	if( seconds % 60 == 0 )
-		seconds = Math.floor(seconds/60);
 
-	if( minutes < 10 )
-		minutes = "0"+minutes;
-	if( minutes == 0)
-		minutes = "&#48&#48";
-	if( minutes % 60 == 0 )
-		minutes = Math.floor(minutes/60);
-		
-	if( hours < 10)
-		hours = "0"+hours;
-	if( hours == 0)
-		hours = "&#48&#48";
-		
-	var outTime = "" + hours + ":" + minutes + ":" + seconds;
-	
-	$('#czas').html(outTime);
-	
-	$('#timeLine .belt').animate(
-		{"width" : myVideo.currentTime/myVideo.duration*100+"%"},
-		{duration : 100}
-	);
-	
-	//$('#timeLine .belt').css("width", myVideo.currentTime/myVideo.duration*100+"%")
+    var seconds = Math.floor(myVideo.currentTime % 60);
+    var minutes = Math.floor((myVideo.currentTime / 60) % 60);
+    var hours = Math.floor(myVideo.currentTime / 3600);
+
+
+    if (countingTimeFromTheEnd) {
+
+        seconds = Math.floor((myVideo.duration % 60) - seconds);
+        minutes = Math.floor((myVideo.duration / 60) - minutes);
+        hours =   Math.floor((myVideo.duration / 3600) - hours);
+    }
+
+    // Obliczanie sekund
+    if (seconds < 10)
+        seconds = "0" + seconds;
+    if (seconds == 0)
+        seconds = "&#48&#48";
+    if (seconds % 60 == 0)
+        seconds = Math.floor(seconds / 60);
+
+    // Obliczanie minut
+    if (minutes < 10)
+        minutes = "0" + minutes;
+    if (minutes == 0)
+        minutes = "&#48&#48";
+    if (minutes % 60 == 0)
+        minutes = Math.floor(minutes / 60);
+
+    // Obliczanie godzin
+    if (hours < 10)
+        hours = "0" + hours;
+    if (hours == 0)
+        hours = "&#48&#48";
+
+    // Format wyświetlanego czasu
+    var outTime = "" + hours + ":" + minutes + ":" + seconds;
+
+    $('#timeDiv').html(outTime);
+
+    // Animacja
+    $('#timeLine .belt').animate(
+        { "width": myVideo.currentTime / myVideo.duration * 100 + "%" },
+        { duration: 100 }
+    );
 }
 
 function setTimeLine(percent)
