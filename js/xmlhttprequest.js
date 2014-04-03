@@ -189,6 +189,7 @@ $(document).ready(function(){
 			{	
 				var dane = JSON.parse(msg);	
 				document.getElementById("login_aktualizacja").value = dane.login;
+				login = dane.login;
 				document.getElementById("konto").innerHTML= dane.login;
 				document.getElementById("haslo1_aktualizacja").value = dane.haslo;
 				document.getElementById("haslo2_aktualizacja").value = dane.haslo;
