@@ -1,7 +1,7 @@
 <?php 
 	require_once('connect.php');
-	
-	$sqlCommand = "SELECT Tytul, Ocena, Wyswietlenia, Autor, Sciezka, Opis FROM movies WHERE Autor='bareq'";
+	session_start();
+	$sqlCommand = "SELECT Tytul, Ocena, Wyswietlenia, Autor, Sciezka, Opis FROM movies WHERE Autor='".$_SESSION['login']."'";
 	$query = mysql_query($sqlCommand) or die(mysql_error());
 	$count = mysql_num_rows($query);
 	if($count > 0){

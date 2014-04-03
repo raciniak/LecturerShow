@@ -82,7 +82,8 @@
 									           <div id="filmy"></div>
 									       </div> 
 									       <div id="tab2" class="tab">
-                                                <p class="dane">Dodaj film</p>
+									           <div id="upload_form">
+                                                <p class="dane_upload">Dodaj film</p>
                                                  <form id="form1" enctype="multipart/form-data" method="post" action="UploadServlet">
                                                  <div class="row1">
                                                       <b class="b_aktualizacja"> Nazwa filmu: </b>                                      
@@ -90,7 +91,7 @@
                                                  </div>
                                                  
                                                       <b class="b_aktualizacja"> Opis filmu: </b> <br />
-                                                      <textarea name="opis" id="opis" rows="4" cols="70"required ></textarea>
+                                                      <textarea name="opis" id="opis" required ></textarea>
                                                  <div class="row1">
                                                       <b class="b_update_video"> Wybierz film z prezentacja video </b>
                                                       <input type="file" name="mowa" id="mowa" onchange="fileSelected('mowa');" accept="video/*"/>
@@ -109,10 +110,12 @@
                                                  <br />
                                                  <div id="progressNumber"></div>
                                                  <div class="row1">
-                                                 <progress id="progressBar" value="0" max="100" style="width:50%;">
+                                                 <progress id="progressBar" value="0" max="100" style="display:block; margin: 0 auto; width:94%; margin-bottom: 1.5em">
+                                                 
                                                  </div>
                                                  <div class="row1">
-                                                      <input class="button-big" type="button" onclick="uploadFile()" value="Dodaj film" />
+                                                      <input class="button-big-upload" type="button" onclick="uploadFile()" value="Dodaj film" />
+                                                 </div>
                                                  </div>
                                               </form>
 									       </div>
@@ -128,23 +131,23 @@
                                                 <hr />
                                                 <p></p>
                                                 <b class="b_aktualizacja">Login:</b> 
-                                                <input type="text" placeholder="min. 6 znaków" name="login" id="login_aktualizacja" disabled><br><br />
+                                                <input type="text" placeholder="min. 6 znaków" name="login" class="input_aktualizacja" id="login_aktualizacja" disabled><br><br />
                                                 <b class="b_aktualizacja">Hasło:</b> 
-                                                <input type="password" name="haslo1" placeholder="min. 6 znaków " id="haslo1_aktualizacja" ><br><br />
+                                                <input type="password" name="haslo1" placeholder="min. 6 znaków " class="input_aktualizacja" id="haslo1_aktualizacja" ><br><br />
                                                 <b class="b_aktualizacja">Powtórz hasło:</b> 
-                                                <input type="password" name="haslo2" id="haslo2_aktualizacja" ><br><br />
+                                                <input type="password" name="haslo2" class="input_aktualizacja" id="haslo2_aktualizacja" ><br><br />
                                                 <b class="b_aktualizacja">E-mail:</b> 
-                                                <input type="email" name="email1" placeholder="np. jan.kowalski@gmail.com" id="email1_aktualizacja" ><br><br />
+                                                <input type="email" name="email1" placeholder="np. jan.kowalski@gmail.com" class="input_aktualizacja" id="email1_aktualizacja" ><br><br />
                                                 <b class="b_aktualizacja">Powtórz e-mail:</b> 
-                                                <input type="email" name="email2" id="email2_aktualizacja" ><br><br />
+                                                <input type="email" name="email2" class="input_aktualizacja" id="email2_aktualizacja" ><br><br />
                                                 <p></p>
                                                 <p class="dane"> Dane osobiste: (niewymagane)</p>
                                                 <hr />
                                                 <p></p>
                                                 <b class="b_aktualizacja">Imię:</b> 
-                                                <input type="text" placeholder="np. Jan" name="imie" id="imie_aktualizacja" ><br><br />
+                                                <input type="text" placeholder="np. Jan" name="imie" class="input_aktualizacja" id="imie_aktualizacja" ><br><br />
                                                 <b class="b_aktualizacja">Nazwisko:</b> 
-                                                <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko_aktualizacja" ><br><br /w>
+                                                <input type="text" placeholder="np. Kowalski" name="nazwisko" class="input_aktualizacja" id="nazwisko_aktualizacja" ><br><br /w>
                     
                                                 <input type="submit" value="Zmień dane" name="zmien_dane" class="button-big" onclick="updateUserData()"> <!--disabled-->
             

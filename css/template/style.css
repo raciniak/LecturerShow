@@ -201,7 +201,7 @@
 /*----------------------------------------------------------------------------------------------------------------------------------------------*/	
 	
 	/* CSS - przycisk rejestruj */
-	.button-big
+	.button-big, .button-big-upload
 	{
 		display: table;
 		background: #ed391b;
@@ -223,7 +223,7 @@
 		text-shadow: -1px -1px 1px rgba(0,0,0,0.5);
 	}
 
-	.button-big:hover
+	.button-big:hover, .button-big-upload:hover
 	{
 		background: #fd492b;
 		box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.75), inset 0px 2px 0px 0px rgba(255,192,192,0.5), inset 0px 0px 0px 2px rgba(255,96,96,0.85), 3px 3px 3px 1px rgba(0,0,0,0.15);
@@ -235,7 +235,7 @@
 		background-image: linear-gradient(top, #fd492b, #de2a10);
 	}
 
-	.button-big:active
+	.button-big:active, .button-big-upload:active
 	{
 		background: #ce1a00;
 		box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.75), inset 0px 2px 0px 0px rgba(255,192,192,0.5), inset 0px 0px 0px 2px rgba(255,96,96,0.85), 3px 3px 3px 1px rgba(0,0,0,0.15);
@@ -245,6 +245,9 @@
 		background-image: -ms-linear-gradient(top, #ce1a00, #ed391b);
 		background-image: -o-linear-gradient(top, #ce1a00, #ed391b);
 		background-image: linear-gradient(top, #ce1a00, #ed391b);
+	}
+	.button-big-upload {
+		
 	}
 	/* Koniec CSS - przycisk rejestruj */
 
@@ -257,8 +260,9 @@
 	}
 	
 	.b_aktualizacja {
+		margin-left: 3%;
 		display:inline-block;
-		width: 11%;
+		width: 17%;
 	}
 	/* Koniec CSS - znaczniki <b> formularza rejestracji i zmiany danych */
 
@@ -283,13 +287,16 @@
 /*----------------------------------------------------------------------------------------------------------------------------------------------*/
 	
 	/* CSS - nagłówki rejestracji */
-	.dane 
+	.dane
 	{
 		font-size: 1.4em;
 		margin:0 0 0.7em 0;
 	}
 	/* Koniec CSS - nagłówki rejestracji */
-
+	.dane_upload {
+		font-size: 1.4em;
+		margin: 0.7em 0 0.7em 1.0em;
+	}
 	#line
 	{
 		background:#96a9b5;
@@ -337,26 +344,62 @@
       }
       
       #zdjecie {
-      	width: 10%;
-      	height: 10%;
+      	width: 100%;
+      	height:100%;
       }
 	/* Koniec CSS - profil uzytkownika */	
 
-	.label_upload
-	{
+	.label_upload {
+		
 		display:inline-block;
-		width:20%;
+		padding-left: 3%;
+		width:30%;
 	}
-	.b_update_video{
+	
+	.b_update_video {
+		padding-left: 3%;
 		display:block;
-		width: 25%;
+		width: 50%;
 	}
-	.input_update_file{
-		width:50%;
+	
+	.input_update_file {
+	
+		width:75.5%;
 	}
+	
 	#filmy{
 		width:10%;
+		position: relative;
+		float: left;
+	}
+	
+	#upload_form {
+		//margin-left:8%;
+		width: 80%;
+		border: 1px solid silver;
+		border-radius: 5%;
+	}
+	
+	#slajdy, #mowa, #fileName1, #fileName2, #fileSize1, #fileSize2, #fileType1, #fileType2 {
+		margin-left: 3%;
+	}
+	
+	#opis {
+		width: 93%;
+		height: 90%;
+		resize: none;
 		display: block;
-		float:left;
 		margin: 0 auto;
+	}
+	
+	.row_upload_name {
+		width: 94%;
+	}
+	#lista {
+		display : inline-block;
+		position: absolute;
+	}
+	.input_aktualizacja {
+		width: 40%;
+		
 	}

@@ -1,4 +1,5 @@
-var login;
+﻿var login;
+alert(location.href);
 function fileSelected(plik) {
         var file = document.getElementById(plik).files[0];
         if (file) {
@@ -20,7 +21,7 @@ function fileSelected(plik) {
         }
       }
 
-      function uploadFile() {
+function uploadFile() {
         if(document.getElementById('fileType1').innerHTML.toString().contains("video") == false)
         {
             alert("Niepoprawny typ pliku mowy");
@@ -47,7 +48,7 @@ function fileSelected(plik) {
         xhr.send(fd);
       }
 
-      function uploadProgress(evt) {
+function uploadProgress(evt) {
         if (evt.lengthComputable) {
           var percentComplete = Math.round(evt.loaded * 100 / evt.total);
           document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
@@ -58,16 +59,16 @@ function fileSelected(plik) {
         }
       }
 
-      function uploadComplete(evt) {
+function uploadComplete(evt) {
         /* This event is raised when the server send back a response */
         alert(evt.target.responseText);
       }
 
-      function uploadFailed(evt) {
+function uploadFailed(evt) {
         alert("There was an error attempting to upload the file.");
       }
 
-      function uploadCanceled(evt) {
+function uploadCanceled(evt) {
         alert("The upload has been canceled by the user or the browser dropped the connection.");
       }
 // funkcja wysyłająca dane z formularza rejestracji 
@@ -158,14 +159,11 @@ function funkcja(x)
         			}
         			i=i%7;
         			x.src = "images/pic0" + i + ".jpg";
-        			x.style.width = "15%";
-        			x.style.height = "15%";
+        			x.style.width = "100%";
+        			x.style.height = "100%";
         			i++;
-        			//alert(x.src);
-        		}, 1000);
-        		
-        		
-        	}       
+       		}, 1000);
+}       
 function funkcja_powrot(x){
 	clearInterval(myVar);
 	x.src = 'images/60.jpg';
@@ -179,7 +177,7 @@ $(document).ready(function(){
         success : function(msg){
 			if(msg == 'nieznany')
             {
-            	
+            
             	document.getElementById("logowanie").innerHTML = "Zaloguj";
             	document.getElementById("logowanie").href = "logowanie_new.html";
             
@@ -189,10 +187,8 @@ $(document).ready(function(){
 			}
             else
 			{	
-				
 				var dane = JSON.parse(msg);	
 				document.getElementById("login_aktualizacja").value = dane.login;
-				login = dane.login;	
 				document.getElementById("konto").innerHTML= dane.login;
 				document.getElementById("haslo1_aktualizacja").value = dane.haslo;
 				document.getElementById("haslo2_aktualizacja").value = dane.haslo;
@@ -215,9 +211,8 @@ $(document).ready(function(){
 	$.ajax({
         url: "php/statystyki_profilu.php",
         success : function(msg){
-       
+       		
 			var dane = JSON.parse(msg);
-			
 			document.getElementById("ilosc_filmow").innerHTML = "Ilość filmow: " + dane.ilosc_filmow;
 			document.getElementById("ilosc_wyswietlen").innerHTML = "Łączna ilość wyświetleń Twoich filmów: " + dane.ilosc_wyswietlen;
 			document.getElementById("srednia_ocen").innerHTML = "Średnia ocen Twoich filmów: " + dane.srednia_ocen;
@@ -232,41 +227,23 @@ $(document).ready(function(){
 	$.ajax({
         url: "php/search_my_videos.php",
         success: function(msg){
-        	
-        	
         	elo1 = msg.replace(/}{/g, "},{");
         	var elo2 = "[" + elo1 + "]";
         	//alert(elo2);
         	var obj = $.parseJSON(elo2);
         	var lang = '';
+        	//document.getElementById"filmy".innerHTML = "<ul id='lista'>";
         	 $.each(obj, function() {
-        	document.getElementById("filmy").innerHTML += "<div id='film'> <a href='" + this['sciezka'] + "'>" + "<img id='zdjecie' onmouseover='funkcja(this)' onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a><p> Tytul: " + this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + this['autor'] + "</p><p> Ocena: " + this['ocena'] + "</p><a href='" + this['sciezka'] + "'>" + this['tytul'] + "</a></br></div>";
-        	//document.getElementById("filmy").innerHTML += "<p> Tytul: " + this['tytul'] + "</p>";
-        	//document.getElementById("filmy").innerHTML += "<p> Opis: " + this['opis'] + "</p>";
-        	//document.getElementById("filmy").innerHTML += "<p> Autor: " + this['autor'] + "</p>";
-        	//document.getElementById("filmy").innerHTML += "<p> Ocena: " + this['ocena'] + "</p>";
-        	//document.getElementById("filmy").innerHTML += "<a href='" + this['sciezka'] + "'>" + this['tytul'] + "</a></br></div>";
-			});
-			
-			
-        	/*var data = [{"Id": 10004, "PageName": "club"},{"Id": 10040, "PageName": "qaz"},{"Id": 10059, "PageName": "jjjjjjj"},];
-        	$.each(data, function(i,item){
-        		alert(data[i].PageName);
-        	}); */ 
-        	
-        	/*
-        	document.getElementById("filmy").innerHTML += "<a onmouseover = funkcja() onmouseout = funkcja_powrot() href='" + dane.sciezka + "'>" + "<img id='zdjecie'  src='images/60.jpg'></a>";
-        	document.getElementById("filmy").innerHTML += "<p> Tytul: " + dane.tytul + "</p>";
-        	document.getElementById("filmy").innerHTML += "<p> Opis: " + dane.opis + "</p>";
-        	document.getElementById("filmy").innerHTML += "<p> Autor: " + dane.autor + "</p>";
-        	document.getElementById("filmy").innerHTML += "<p> Ocena: " + dane.ocena + "</p>";
-        	document.getElementById("filmy").innerHTML += "<a href='" + dane.sciezka + "'>" + dane.tytul + "</a>";
-			*/
-        	
-			//alert(dane.tytul);
-			//alert(dane.opis);
-		
-			
+        	document.getElementById("filmy").innerHTML += "<li id='li_lista'><div id='film'>" +  
+							      "<a href='" + this['sciezka'] + "'>" + 
+							      "<img id='zdjecie' onmouseover='funkcja(this)'" + 
+							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a><p> Tytul: " + 
+							      this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
+							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
+							      "</p><a href='" + this['sciezka'] + "'>" + this['tytul'] + 
+							      "</a></br></div></li>";
+        	});
+        	//document.getElementById("filmy").innerHTML += "</ul>"
 		},
 		error: function(err) 
 		{

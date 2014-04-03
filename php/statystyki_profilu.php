@@ -1,6 +1,6 @@
 <?php
 	require_once("connect_mysqli.php");
-	
+	session_start();
 	$zapytanie_ilosc_filmow = "SELECT * FROM movies WHERE Autor='".$_SESSION['login']."'";
 	$zapytanie_srednia_ocen = "SELECT AVG(Ocena) FROM movies WHERE Autor='".$_SESSION['login']."'"; 
 	$zapytanie_ilosc_wyswietlen = "SELECT SUM(Wyswietlenia) FROM movies WHERE Autor='".$_SESSION['login']."'";
