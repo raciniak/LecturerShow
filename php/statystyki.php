@@ -10,4 +10,6 @@
 	$ile_znalezionych_v = $wynik_v->num_rows;
 	$row = $wynik_w->fetch_row();
 	$wyswietlenia = $row[0];
+	$err = array('liczba_uzytkownikow'=>$ile_znalezionych_u, 'liczba_filmow'=>$ile_znalezionych_v, 'liczba_wyswietlen'=>$wyswietlenia);
+	echo json_encode($err);
 ?>                          
