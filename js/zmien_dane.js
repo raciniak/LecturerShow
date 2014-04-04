@@ -3,11 +3,11 @@ var dis_email = false;
 
 $(document).ready(function()
 {
-	$("#haslo1").change(function()
+	$("#haslo1_aktualizacja").change(function()
 	{
-		var haslo1 = $("#haslo1").val();
+		var haslo1 = $("#haslo1_aktualizacja").val();
 		
-		var haslo1area = document.getElementById("haslo1");
+		var haslo1area = document.getElementById("haslo1_aktualizacja");
 		
 		if(haslo1.length > 5)
 	 	{
@@ -23,12 +23,12 @@ $(document).ready(function()
 		return false;
 	});
 	
-	$("#haslo2").change(function()
+	$("#haslo2_aktualizacja").change(function()
 	{
-		var haslo1 = $("#haslo1").val();
-		var haslo2 = $("#haslo2").val();
-		var haslo1area = document.getElementById("haslo1");
-		var haslo2area = document.getElementById("haslo2");	
+		var haslo1 = $("#haslo1_aktualizacja").val();
+		var haslo2 = $("#haslo2_aktualizacja").val();
+		var haslo1area = document.getElementById("haslo1_aktualizacja");
+		var haslo2area = document.getElementById("haslo2_aktualizacja");	
 		if(haslo1 == haslo2)
 	 	{
 			haslo1area.style.boxShadow= "0 0 3px 3px #0F3";
@@ -46,13 +46,13 @@ $(document).ready(function()
 		return false;
 	});
 	
-	$("#email2").change(function()
+	$("#email2_aktualizacja").change(function()
 	{
-		var email1 = $("#email1").val();
-		var email2 = $("#email2").val();
-		var email1area = document.getElementById("email1");
-		var email2area = document.getElementById("email2");
-		var rejestruj_button = document.getElementById("rejestruj_button");
+		var email1 = $("#email1_aktualizacja").val();
+		var email2 = $("#email2_aktualizacja").val();
+		var email1area = document.getElementById("email1_aktualizacja");
+		var email2area = document.getElementById("email2_aktualizacja");
+		var rejestruj_button = document.getElementById("aktualizuj_button");
 		
 		if(email1 == email2)
 	 	{
@@ -71,7 +71,7 @@ $(document).ready(function()
 	});
 	  $(document).click(function() 
 	  {
-        var rejestruj_button = document.getElementById("rejestruj_button")
+        var rejestruj_button = document.getElementById("aktualizuj_button");
 		if( dis_password == true && dis_email == true )
 		{
 			rejestruj_button.disabled = false;

@@ -1,5 +1,6 @@
 ﻿var login;
-alert(location.href);
+
+
 function fileSelected(plik) {
         var file = document.getElementById(plik).files[0];
         if (file) {
@@ -112,6 +113,7 @@ function uploadComplete(evt) {
 
 // funkcja logowania
 function logIn() {
+
 	alert("loguje");
 	var fd = new FormData();
 	fd.append("login_l", document.getElementById('login_l').value);
@@ -126,9 +128,12 @@ function logIn() {
 // funkcja wykonująca się po poprawnym zalogowaniu się
 function logInLoadComplete() {
 	alert("zalogował");
-	setTimeout(function(){
-		window.location.href="konto_new.html";
-	},500);
+	
+	document.location.href="konto_new.html";
+	
+	//setTimeout(function(){
+		//document.location.href="konto_new.html";
+	//},500);
 }
 
 // funkcja wylogowująca użytkownika
@@ -138,12 +143,14 @@ function logOut() {
 	xhr.addEventListener("load", logOutLoadComplete, false);
 	xhr.open("POST", "php/wyloguj.php");
 	xhr.send();
-	
+	document.getElementById("konto").style.display = "none";
 }
 
 // funkcja wykonująca się po poprawnym wylogowaniu się
 function logOutLoadComplete(evt) {
 	alert(evt.target.responseText);
+	document.getElementById("konto").style.display = "none";
+	
 	setTimeout(function(){
 		window.location.href="logowanie_new.html";
 	},5);
@@ -169,15 +176,20 @@ function funkcja_powrot(x){
 	x.src = 'images/60.jpg';
 }        	
 
+
+
+
+
+
 $(document).ready(function(){
-		
 	
 	$.ajax({
         url: "php/sesja.php",
         success : function(msg){
 			if(msg == 'nieznany')
             {
-            
+            	alert("niezalogowany");
+            	
             	document.getElementById("logowanie").innerHTML = "Zaloguj";
             	document.getElementById("logowanie").href = "logowanie_new.html";
             
@@ -187,7 +199,14 @@ $(document).ready(function(){
 			}
             else
 			{	
+				
+				alert("zalogowany");
 				var dane = JSON.parse(msg);	
+				login = dane.login;
+				document.getElementById("konto").style.visibility = "visible";
+				document.getElementById("rejestracja").style.display = "none";
+				document.getElementById("logowanie").innerHTML = "Wyloguj";
+				document.getElementById("logowanie").onclick = logOut;	
 				document.getElementById("login_aktualizacja").value = dane.login;
 				document.getElementById("konto").innerHTML= dane.login;
 				document.getElementById("haslo1_aktualizacja").value = dane.haslo;
@@ -196,10 +215,7 @@ $(document).ready(function(){
 				document.getElementById("email2_aktualizacja").value = dane.email;
 				document.getElementById("imie_aktualizacja").value = dane.imie;
 				document.getElementById("nazwisko_aktualizacja").value = dane.nazwisko;
-				document.getElementById("konto").style.visibility = "visible";
-				document.getElementById("rejestracja").style.display = "none";
-				document.getElementById("logowanie").innerHTML = "Wyloguj";
-				document.getElementById("logowanie").onclick = logOut;	
+				
             }
 		},
 		error: function(err) 
@@ -207,6 +223,7 @@ $(document).ready(function(){
         	console.log(err);
     	}
 	});
+
 	// funkcja pobierająca statystyki profilu zalogowanego użytkownika
 	$.ajax({
         url: "php/statystyki_profilu.php",
