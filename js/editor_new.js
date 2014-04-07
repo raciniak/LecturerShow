@@ -31,6 +31,11 @@ var volumeLine = $('#volumeLine')[0];
 	}
 	);
 
+	$('#fullScreenButton').click(function () {
+	    fullScreen();
+	}
+);
+
     // Funkcja wykonywana, kiedy player jest uruchomiony
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
@@ -76,6 +81,10 @@ function mute() {
 		setVolumeLine(0);
 		myVideo.muted = !myVideo.muted;
 	}
+}
+
+function fullScreen() {
+
 }
 
 function updateTime(){
