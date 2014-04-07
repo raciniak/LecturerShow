@@ -22,7 +22,7 @@ $(document).ready(function(){
        	createRange();
        	//Funkcja list odpowiada za listę do przesuwania slajdów w okienku windows
        	list();
-       },200);
+       },500);
        var evt = new Event();
        var dragdrop = new Dragdrop(evt);
 });
