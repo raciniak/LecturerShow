@@ -22,7 +22,7 @@ $(document).ready(function(){
        	createRange();
        	//Funkcja list odpowiada za listę do przesuwania slajdów w okienku windows
        	list();
-       },200);
+       },500);
        var evt = new Event();
        var dragdrop = new Dragdrop(evt);
 });
@@ -83,7 +83,7 @@ function createSlider(name,value,left){
         slider.setAttribute('data-value', value);
         slider.setAttribute('tabindex', 0);
         slider.setAttribute('style', left);
-        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".jpg' width='140' height='70' alt='Obrazek nr:"+name+"'/>";
+        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='Obrazek nr:"+name+"'/>";
         $(".range").append(slider);
 }
 
@@ -160,7 +160,7 @@ function obrazek(){
 
         	if(i<iloscSlajdow)
         	{
-                 $('.imageLoader').html('<img src="movies/movie1/images/' + slajdy[i] + '.jpg" alt="Obrazek nr: '+slajdy[i]+'"/>');
+                 $('.imageLoader').html('<img src="movies/movie1/images/' + slajdy[i] + '.png" alt="Obrazek nr: '+slajdy[i]+'"/>');
         	}
         	time=czas;
        }
@@ -201,7 +201,7 @@ function windowsik()
 		var divek = document.createElement('li');
         divek.className = 'slajd';
         divek.innerHTML = "<div class='windows_div'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> "+
-        "<img class='obrazek_windows' src='movies/movie1/images/"+slajdy[i]+".jpg' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
+        "<img class='obrazek_windows' src='movies/movie1/images/"+slajdy[i]+".png' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
         "</b> <b class='windows_element'>Sekunda slajdu: <input id='textbox"+slajdy[i]+"'type='text' class='textboxWindows' onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+czasy[i]+"'></b></div>";
         $("#windows_lista").append(divek);
 	}

@@ -76,7 +76,7 @@
         slider.setAttribute('data-name', name);
         slider.setAttribute('data-value', value);
         slider.setAttribute('tabindex', 0);
-        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".jpg' width='140' height='70' alt='"+name+"'/>";
+        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='"+name+"'/>";
         range.appendChild(slider);
         return slider;
     }
