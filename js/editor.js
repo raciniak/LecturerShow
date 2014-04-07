@@ -169,17 +169,6 @@ function obrazek(){
 // funkcja odpowiadająca za pobranie pliku z czasami oraz liczbą slajdów
 function pobierzPlik()
 {
-		/*var txt='';
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET","movies/movie1/times.txt");
-		xmlhttp.onreadystatechange = function(){
-			if(xmlhttp.status==200 && xmlhttp.readyState==4){
-				txt=xmlhttp.responseText;
-                                plik=txt.split('\n');             
-			}
-		};
-		xmlhttp.send();*/
-		
 		var namefile = '../movies/'+getParameterByName("id")+'/times.txt';
 		var name = {
             namefile: namefile
@@ -300,18 +289,24 @@ function validate(evt,textbox) {
 }
 
 function stopFrame(){
-	var video = document.getElementById('myVideo');
 	var canvas = document.createElement('canvas');
+	var video = document.getElementById('AddNewSlide');
 	canvas.width = video.videoWidth;
 	canvas.height= video.videoHeight;
-	var ctx = canvas.getContext('2d');
-	ctx.drawImage(video, 0, 0);
-	window.open(canvas.toDataUrl('image/jpg').replace("image/jpg", "image/ocet-stream"));
-	//alert("2");
-	///wind/w.location.href=image;
-	//alert("3.3");
-	//window.open(obrazek);
-	//alert("3");
+	canvas.getContext("2d").drawImage(video, 0, 0);
+	imgData=canvas.toDataURL("image/png");
+	var filename=getParameterByName("id");
+ var image ={
+		img:imgData,
+		numberSlide:iloscSlajdow+1,
+		filename:filename
+		
+	};
+	$.post('php/saveslide.php',image,AddSlide);
+}
+
+function AddSlide(data){
+		alert(data);
 }
 
 //pobieranie nazwy filmu z linku
