@@ -11,6 +11,12 @@ var volumeLine = $('#volumeLine')[0];
 	// Ustawiam pasek głośności
 	setVolumeLine(myVideo.volume*100);
 
+	$('#timeDiv').click(function () {
+	    countingTimeFromTheEnd = !countingTimeFromTheEnd;
+	    changeTime();
+	}
+    );
+
 	$('#playButton').click(function() {
 		play();
 	}
@@ -25,10 +31,10 @@ var volumeLine = $('#volumeLine')[0];
 	}
 	);
 
-	$('#timeDiv').click(function () {
-	    countingTimeFromTheEnd = !countingTimeFromTheEnd;
+	$('#fullScreenButton').click(function () {
+	    fullScreen();
 	}
-    );
+);
 
     // Funkcja wykonywana, kiedy player jest uruchomiony
 	$(myVideo).bind('timeupdate', updateTime);
@@ -77,8 +83,12 @@ function mute() {
 	}
 }
 
-function updateTime(){
+function fullScreen() {
 
+}
+
+function updateTime(){
+    
     var seconds = Math.floor(myVideo.currentTime % 60);
     var minutes = Math.floor((myVideo.currentTime / 60) % 60);
     var hours = Math.floor(myVideo.currentTime / 3600);
@@ -123,6 +133,11 @@ function updateTime(){
         { "width": myVideo.currentTime / myVideo.duration * 100 + "%" },
         { duration: 100 }
     );
+}
+
+function changeTime()
+{
+    updateTime();
 }
 
 function setTimeLine(percent)
