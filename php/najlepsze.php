@@ -2,10 +2,10 @@
 	require_once('connect.php');
 	session_start();
 	//$_SESSION['search_title'] = $_POST['search_title'];
-	$sql_najnowsze = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies ORDER BY Id DESC";
-	
 
-	$query = mysql_query($sql_najnowsze);
+	$sql_najlepsze = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies ORDER BY Ocena DESC";
+
+	$query = mysql_query($sql_najlepsze);
 	$count = mysql_num_rows($query);
 	if($count > 0){
 		while($row = mysql_fetch_array($query))

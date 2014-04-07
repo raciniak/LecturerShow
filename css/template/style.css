@@ -352,6 +352,7 @@
       #zdjecie {
       	width: 100%;
       	height:100%;
+      	margin-bottom:10%;
       }
 	/* Koniec CSS - profil uzytkownika */	
 
@@ -374,9 +375,27 @@
 	}
 	
 	#filmy{
-		width:10%;
-		position: relative;
-		float: left;
+		width:100%;
+		list-style: none;
+	
+	}
+	
+	#najnowsze{
+		width:100%;
+		list-style: none;
+	
+	}
+	
+	#najlepsze{
+		width:100%;
+		list-style: none;
+	
+	}
+	
+	#popularne{
+		width:100%;
+		list-style: none;
+	
 	}
 	
 	#upload_form {
@@ -401,8 +420,35 @@
 	.row_upload_name {
 		width: 94%;
 	}
-	#lista {
-		display : inline-block;
-		position: absolute;
+	
+	#film  {
+		width:24%;
+		display:block;
+		float:left;
+		line-height: 0px;
+		margin-right:1%;
+		margin-bottom: 5%;
+	}
+	
+	#wyszukiwarka {
+		height: 5%;
+		width: 1200px;
+		background:#FFF;
+		display: block;
+		margin: 0 auto;
+		margin-top: 0%;
+	}
+	
+	#wyszukiwarka p {
+		margin-bottom : 0%;
+		
+	}
+	
+	#input_wyszukiwarka{
+		width: 20%;
+		margin-left: 5%;
+		margin-right: 2%;
+		margin-top: 2%;
+		margin-bottom: 2%;
 	}
 	

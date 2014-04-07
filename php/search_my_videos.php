@@ -22,7 +22,7 @@
 	
 	else 
 	{
-		$search_output = "<hr /> Brak wyników <hr />";
+			
 	}
 ?>
 
