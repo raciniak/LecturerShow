@@ -3,7 +3,7 @@
 	$search = $_GET['search']; 
 	if(!empty($search))
 	{
-		$zapytanie = "SELECT DISTINCT Tytul FROM movies WHERE Tytul LIKE '%$search%' LIMIT 10";
+		$zapytanie = "SELECT DISTINCT Tytul FROM movies WHERE Tytul LIKE '$search%' LIMIT 10";
 		$wynik = $db->query($zapytanie);
     	$ile_znalezionych = $wynik->num_rows;
     	for ($i=0; $i <$ile_znalezionych; $i++)
@@ -13,5 +13,5 @@
    		}
     	$str .= "empty \n";
     	echo rtrim($str);
-	}                                      
+	}                              
 ?>

@@ -13,6 +13,7 @@
 		<script src="js/logowanie.js"></script>
 		<script src="js/tabs.js"></script>
 		<script src="js/zmien_dane.js"></script>
+		<!--<script src="js/prototype.js"></script>-->
         		
 		<noscript>
 		   
@@ -37,7 +38,7 @@
 							<!-- Nav -->
 								<nav id="nav">
 									<a href="index.html">Strona główna</a>
-									<a href="threecolumn.html">Kontakt</a>
+									<a onclick="show_search_input()">Wyszukiwarka</a>
 									<a href="o_projekcie.html">O projekcie</a>
 									<a id="rejestracja" href="rejestracja_new.html">Rejestracja</a>
 									<a id="konto" href="konto_new.html"> Twój profil</a>
@@ -50,9 +51,11 @@
 		<!-- Content -->
 			<div id="wyszukiwarka">
 					<p> Wyszukaj film: </p>
-			    	<input type="search" id="input_wyszukiwarka" placeholder="Wyszukaj film"/>
+			    	<input type="text" placeholder="Wyszukaj film ..." id="searchinput" name="searchinput" onkeyup="searchSuggest();"> 
 			    	<input type="submit" id="submit_wyszukiwarka" value="Szukaj" onclick="searchVideo()"/>
+			    	<div id="search_suggest"></div>
 			    </div>
+			    
 			<div id="content-wrapper">
 			    
 				<div id="content">
