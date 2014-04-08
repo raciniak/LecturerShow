@@ -133,5 +133,9 @@
 #AddNewSlide{
 	border: 0px;
 	background-color: #A0A8AB;
+	display:table;
+	 margin:auto;
+	 padding 10px;
+	 
 	
 }

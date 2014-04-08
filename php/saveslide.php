@@ -9,9 +9,20 @@ $data = base64_decode($img);
 $numberslide = $_POST['numberSlide'];
 $file = $upload_dir.$numberslide.'.png';
 $success = file_put_contents($file, $data);
-echo "udalo sie";
+
 /*Dopisanie nowych danych do pliku z czasami */
-$fp = fopen('../movies/'.$filename.'/times.txt', "a");
-fwrite($fp, "\r\n".$numberslide);
-fwrite($fp, "\r\n".'0');
+$fp = fopen('../movies/'.$filename.'/times.txt', "r+");
+//$tekst = file('../movies/'.$filename.'/times.txt')
+$tekst = file('../movies/'.$filename.'/times.txt');
+$tekst[0]= $numberslide;
+$tekst[2*$numberslide-1]=$numberslide;
+$tekst[2*$numberslide]='0';
+$string = '';
+for($i=0;$i<count($tekst);$i++)
+{
+   $string = $string.trim($tekst[$i])."\r\n";
+}
+fputs($fp, $string);
+fclose($fp);
+echo "ok";
 ?>

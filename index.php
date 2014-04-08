@@ -26,7 +26,6 @@
 		<!-- <script type="text/javascript" src="script.js"></script> -->
 	</head>
     <body>
-    	<a href="editor.html">edytor</a>
    		<div id="wrapper">
    	 		<!-- Naglowek -->
             <header> 
