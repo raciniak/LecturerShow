@@ -1,4 +1,6 @@
+
 $(document).ready(function() {
+		
         $('.tabs').each(function() {
             var $ul = $(this);
             var $li = $ul.children('li');
