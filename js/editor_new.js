@@ -84,7 +84,18 @@ function mute() {
 }
 
 function fullScreen() {
-
+	var pbox = document.getElementById("player_box");
+	if (pbox.requestFullscreen) {
+		pbox.requestFullscreen();
+	} else if (pbox.msRequestFullscreen) {
+		pbox.msRequestFullscreen();
+	} else if (pbox.mozRequestFullScreen) {
+		pbox.mozRequestFullScreen();
+		
+	} else if (pbox.webkitRequestFullscreen) {
+		pbox.webkitRequestFullscreen();
+		pbox.setAttribute("style", "width: 100%; height: 100%;");
+	}
 }
 
 function updateTime(){
@@ -165,3 +176,5 @@ function setVolumeLine(percent)
 // ---------------------------------------------------------------------------------
 //       jacek m
 // ---------------------------------------------------------------------------------
+
+
