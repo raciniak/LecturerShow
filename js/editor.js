@@ -3,7 +3,7 @@ var i=0;
 var plik=new Array();
 var czasy=new Array();
 var slajdy=new Array();
-var iloscSlajdow;
+var iloscSlajdow, refresh;
 var time = 0;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
@@ -16,7 +16,6 @@ $(document).ready(function(){
        $('#timeLine').click(function(){time = Math.floor(myVideo.currentTime)-1;});
        //funkcja odpowiadajaca za funkcjonalne okienko pomocnicze pod edytorem
        intID=setTimeout(function(){
-     //  	PodzielPlik();
        	windowsik();
        	uzupelnijMultiRange();
        	createRange();
@@ -25,14 +24,14 @@ $(document).ready(function(){
        },500);
        var evt = new Event();
        var dragdrop = new Dragdrop(evt);
+       
 });
+
 
 //Funkcja list odpowiada za listę do przesuwania slajdów w okienku windows
 function list(){
 	     var $sliders = $('.windows')[0];
  
-    //dla kazdego slidera na stronie...
-   // $sliders.each(function() {
         var $current_slider = $($sliders);
         var $lista = $('.lista', $current_slider);
         var $li = $lista.children('li');
@@ -62,7 +61,6 @@ function list(){
             });
  
         }
-   // });
 }
 // Utworzenie MultiRange z wszystkimi slajdami wyrzuconymi przez modełko
 function createRange(){
@@ -92,12 +90,18 @@ function uzupelnijMultiRange(){
 	var i;
 	for(i=0;i<iloscSlajdow;i++)
 	{
+		AddInput(i);
+	}
+}
+
+//Podfunkcja uzupelnijMultiRange odpowiadająca za dodanie pojedyńczego inputa
+function AddInput(i)
+{
 		var inpucik = document.createElement('input');
         inpucik.setAttribute('type', 'hidden');
         inpucik.setAttribute('name', slajdy[i]);
         inpucik.setAttribute('value', czasy[i]);
         $(".range").append(inpucik);
-	}
 }
 
 // Obsługa zakładek w edytorze
@@ -198,13 +202,19 @@ function windowsik()
 	var i;
 	for(i=0;i<iloscSlajdow;i++)
 	{
-		var divek = document.createElement('li');
+		slideAddWindows(i);
+	}
+}
+
+// podfunkcja funkcji windowsik, dodaje pojedyńczy slajd do okienka
+function slideAddWindows(i)
+{
+	var divek = document.createElement('li');
         divek.className = 'slajd';
         divek.innerHTML = "<div class='windows_div'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> "+
         "<img class='obrazek_windows' src='movies/movie1/images/"+slajdy[i]+".png' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
         "</b> <b class='windows_element'>Sekunda slajdu: <input id='textbox"+slajdy[i]+"'type='text' class='textboxWindows' onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+czasy[i]+"'></b></div>";
         $("#windows_lista").append(divek);
-	}
 }
 
 //Funkcja odpowiadająca za checkboxy tworzy albo usuwa slider z multirange
@@ -288,6 +298,7 @@ function validate(evt,textbox) {
 	}
 }
 
+// Zapisywanie nowego slajdu, edycja pliku z czasami i ilością slajdów
 function stopFrame(){
 	var canvas = document.createElement('canvas');
 	var video = document.getElementById('AddNewSlide');
@@ -305,8 +316,18 @@ function stopFrame(){
 	$.post('php/saveslide.php',image,AddSlide);
 }
 
+// Zmiany zachodzące po dodaniu nowego slajdu
 function AddSlide(data){
-		alert(data);
+	alert(data);
+		 czasy[iloscSlajdow] = 0;
+		 slajdy[iloscSlajdow]=iloscSlajdow+1;
+		 AddInput(iloscSlajdow);
+		 slideAddWindows(iloscSlajdow);
+		 iloscSlajdow = iloscSlajdow+1;
+         list();
+         $('#checkbox'+iloscSlajdow).prop('checked', false);
+         
+		 
 }
 
 //pobieranie nazwy filmu z linku
@@ -315,4 +336,8 @@ function getParameterByName(name) {
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function SaveChanges(){
+	
 }
