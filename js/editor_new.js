@@ -91,10 +91,9 @@ function fullScreen() {
 		pbox.msRequestFullscreen();
 	} else if (pbox.mozRequestFullScreen) {
 		pbox.mozRequestFullScreen();
-		
+		pbox.setAttribute("style","padding-top : 45%");
 	} else if (pbox.webkitRequestFullscreen) {
 		pbox.webkitRequestFullscreen();
-		pbox.setAttribute("style", "width: 100%; height: 100%;");
 	}
 }
 
