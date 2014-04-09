@@ -3,10 +3,14 @@ var i=0;
 var plik=new Array();
 var czasy=new Array();
 var slajdy=new Array();
+var czasyB=new Array();
+var slajdyB=new Array();
 var iloscSlajdow, refresh;
 var time = 0;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
+	//ukryte okienko, wyświetla się przy zapisie wszystkich zmian w edytorze
+	$(".overlay, .overlay-message").hide();
 	   //funkcja do pobierania czasow odtwarzania slajdow, kazda funkcja ktora chce korzystac z tablicy a zawierajacej
 	   // czasy musi odczekac w jakis sposob chwile aby funkcja zdazyla sie wykonac
        pobierzPlik();
@@ -14,19 +18,30 @@ $(document).ready(function(){
        //odswieżana zmienna przy załadowaniu strony potrzebna do odtwarzacza slajdow
        $('#playButton').click(function(){time = Math.floor(myVideo.currentTime)-1;});
        $('#timeLine').click(function(){time = Math.floor(myVideo.currentTime)-1;});
-       //funkcja odpowiadajaca za funkcjonalne okienko pomocnicze pod edytorem
-       intID=setTimeout(function(){
-       	windowsik();
-       	uzupelnijMultiRange();
-       	createRange();
-       	//Funkcja list odpowiada za listę do przesuwania slajdów w okienku windows
-       	list();
-       },500);
+
+	   //korzystanie z bibliotek
        var evt = new Event();
        var dragdrop = new Dragdrop(evt);
        
+       //do zrobienia(wykrywanie bledu i co potem)
+		document.getElementById('AddNewSlide').addEventListener('error',errorSlideVideo,true);
+		
+		//timowanie najnowszych czasów zapisanych w edytorze do wyświetlenia w czasie edytowania filmu wraz z wprowadzonymi zmianami
+		$("#playButton").click(function(){
+			timetimes();
+			sort_times();
+		});
+		$("#timeLine").click(function(){
+			timetimes();
+			sort_times();
+		});
+		
 });
 
+
+function errorSlideVideo(){
+	alert("error");
+}
 
 //Funkcja list odpowiada za listę do przesuwania slajdów w okienku windows
 function list(){
@@ -139,13 +154,33 @@ function taby(){
         });
 }
 
+// sortowanie czasów przed otworzeniem w razie większych zmian slajdów
+function sort_times(){
+	slajdyB=slajdy.slice();
+	czasyB=czasy.slice();
+	var tmp=0;
+	var i,j;
+	
+	for(j = iloscSlajdow-1; j>0; j--)
+    {
+    p = 1;
+    for(i = 0; i < j; i++)
+      if(czasyB[i] > czasyB[i + 1])
+      {
+        x = czasyB[i]; czasyB[i] = czasyB[i + 1]; czasyB[i + 1] = x;
+        x = slajdyB[i]; slajdyB[i] = slajdyB[i + 1]; slajdyB[i + 1] = x;
+        p = 0;
+      }
+    if(p) break;
+    }
+}
+
 // funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
 function obrazek(){
         var czas = Math.floor(myVideo.currentTime);
         if(czas===time+1)
         {
-        	//var j=iloscSlajdow-1;
-        	var j = 4;
+        	var j = iloscSlajdow;
         	var i=0;
         	var koniec=0;
         	while(koniec==0)
@@ -154,7 +189,7 @@ function obrazek(){
                 	i=iloscSlajdow;
                 	koniec=1;
             	}
-            	if(czas>=czasy[j])
+            	if(czas>=czasyB[j])
             	{
                 	i=j;
                 	koniec=1;
@@ -164,7 +199,7 @@ function obrazek(){
 
         	if(i<iloscSlajdow)
         	{
-                 $('.imageLoader').html('<img src="movies/movie1/images/' + slajdy[i] + '.png" alt="Obrazek nr: '+slajdy[i]+'"/>');
+                 $('.imageLoader').html('<img src="movies/movie1/images/' + slajdyB[i] + '.png" alt="Obrazek nr: '+slajdyB[i]+'"/>');
         	}
         	time=czas;
        }
@@ -194,6 +229,11 @@ function PodzielPlik(data)
 			j++;
 			czasy[i]=parseInt(plik[i+j]);
    		 }
+   		 
+    	windowsik();
+       	uzupelnijMultiRange();
+       	createRange();
+       	list();
 }
 
 //funkcja odpowiadająca za uzupełnienie pola windows w edytorze do edycji slajdów
@@ -216,6 +256,7 @@ function slideAddWindows(i)
         "</b> <b class='windows_element'>Sekunda slajdu: <input id='textbox"+slajdy[i]+"'type='text' class='textboxWindows' onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+czasy[i]+"'></b></div>";
         $("#windows_lista").append(divek);
 }
+
 
 //Funkcja odpowiadająca za checkboxy tworzy albo usuwa slider z multirange
 function checkSlajd(checkbox)
@@ -257,9 +298,9 @@ function chcecktextbox(textbox)
 	if(value<=max)
 	{
     	name = name.split("textbox");
-    	name = name[1];
+    	name = parseInt(name[1]);
     	var input=$("input[name="+name+"]").get(0);
-    	input.setAttribute('value',value);
+    	document.getElementById("textbox"+name).setAttribute('value',value);
     	removeSlider(name);
     	var left="left: "+value/max*100+"%";
     	createSlider(name,value,left);
@@ -310,22 +351,22 @@ function stopFrame(){
  var image ={
 		img:imgData,
 		numberSlide:iloscSlajdow+1,
-		filename:filename
-		
+		filename:filename,
+		path:slajdy[iloscSlajdow-1]+1
 	};
 	$.post('php/saveslide.php',image,AddSlide);
 }
 
 // Zmiany zachodzące po dodaniu nowego slajdu
-function AddSlide(data){
-	alert(data);
+function AddSlide(data)
+{	
 		 czasy[iloscSlajdow] = 0;
-		 slajdy[iloscSlajdow]=iloscSlajdow+1;
+		 slajdy[iloscSlajdow] = slajdy[iloscSlajdow-1]+1;
 		 AddInput(iloscSlajdow);
 		 slideAddWindows(iloscSlajdow);
 		 iloscSlajdow = iloscSlajdow+1;
          list();
-         $('#checkbox'+iloscSlajdow).prop('checked', false);
+         $('#checkbox'+slajdy[iloscSlajdow-1]).prop('checked', false);
          
 		 
 }
@@ -338,6 +379,63 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+//kontrola zabezpieczającego okienka zapisu głównego i akcje wykonane w związku z dalszym postępem
 function SaveChanges(){
-	
+	var w = window.innerWidth-100;
+    var h = window.innerHeight-50;
+    $(".overlay-message").css("top",w);
+    $(".overlay-message").css("left",h);
+  $(".overlay, .overlay-message").show();
+    
+    $("#yess").click(function() {
+        $(".overlay, .overlay-message").hide();
+        timetimes();
+        SaveSlides();
+    });
+    $("#noo").click(function() {
+        $(".overlay, .overlay-message").hide();
+    });
 }
+
+//Zapis główny edytora
+function SaveSlides(){
+	var tab_czas = new Array();
+	var tab_id = new Array();
+	var j=0;
+	for(i=0;i<iloscSlajdow;i++)
+	{
+		var checkbox = document.getElementById("checkbox"+slajdy[i]);
+		if (checkbox.checked)
+    	{
+    		tab_id[j]=slajdy[i];
+    		tab_czas[j]=czasy[i];
+    		j++;
+    	}
+	}
+	var filename1=getParameterByName("id");
+	var times ={
+		id:tab_id,
+		time:tab_czas,
+		numberSlides:j,
+		filename:filename1
+	};
+	$.post('php/SaveAllEdit.php',times,completSave);
+	//na koniec przekierowanie do odtwarzacza z tym filmem
+}
+
+//odpowiedź po zapisie głownym
+function completSave(data){
+	alert("Zapis nowych danych odbył się pomyślnie");
+	location.reload();
+}
+
+// integracja czasów
+function timetimes(){
+	for(i=0;i<iloscSlajdow;i++)
+	{
+		var textbox = document.getElementById("textbox"+slajdy[i]);
+		var wartosc_textbox=textbox.getAttribute("value");
+		czasy[i]=wartosc_textbox;
+	}
+}
+

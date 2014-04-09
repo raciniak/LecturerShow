@@ -16,6 +16,8 @@
         <!--FUNKCJE DO SLAJDOW I MULTIRANGE-->
         <script type="text/javascript" src="js/range.js"></script>
         <script type="text/javascript" src="js/editor.js"></script>
+        <!--Funkcje do okien dialogowych-->
+        <script type="text/javascript" src="js/CustomDialog.js"></script>
 				
 		<noscript>
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
@@ -82,7 +84,7 @@
 									            </video>
 
 									            <div class="imageLoader" >
-									            	<img src="movies/movie1/images/1.jpg" alt="logo">	
+									            	<img src="movies/movie1/images/1.png" alt="logo">	
 									            </div>
 									            
 									            
@@ -114,7 +116,7 @@
         												<li><a href="#tab-3">Dodaj slajdy</a></li>
 													</ul>
 													<div id="tab-1" class="tab">
-        													<button id="Zapisz_edycje" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
+        													<button id="Zapisz_edycje" class="cupid-green" style="width: 120px; height: 35px;" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
 													</div>
 													<div id="tab-2" class="tab">
 														<div class="windows">
@@ -132,6 +134,13 @@
 									            			<b>Nie klikac bo narobicie bałaganu!!!</b>
 									            			<button class="cupid-green" onclick="stopFrame()" style="width: 80px; height: 35px;">Zapisz slajd</button>
 													</div>
+													<!--<div class="overlay overlay-message" id="Save_changes"></div>-->
+													<div class="overlay"></div>
+														<div class="overlay-message">
+															<b>Czy na pewno chcesz zapisać wszystkie zmiany ?</b>
+    														<button id="yess" class="cupid-green" style="width: 120px; height: 35px;">Tak</button>
+    														<button id="noo" class="cupid-green" style="width: 120px; height: 35px;">Nie</button>
+														</div>
             							<!--MultiRange END-->
 									</section>
 							</div>
