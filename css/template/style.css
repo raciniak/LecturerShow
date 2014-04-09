@@ -373,7 +373,7 @@
 	
 		width:75.5%;
 	}
-	
+	/* Wyświetlanie filmów w profilu użytkownika i results.html */
 	#filmy{
 		width:100%;
 		list-style: none;
@@ -397,11 +397,19 @@
 		list-style: none;
 	
 	}
+	#uzytkownika{
+		
+		width:100%;
+		list-style: none;
+	
+	}
 	
 	#popularne a{
 		float:left;
 	
 	}
+	
+	/* Koniec CSS Wyświetlanie filmów w profilu użytkownika i results.html */
 	
 	#upload_form {
 		//margin-left:8%;
@@ -434,7 +442,18 @@
 		margin-right:1%;
 		margin-bottom: 5%;
 	}
-	
+	#film_5  {
+		width:100%;
+		display:block;
+		float:left;
+		
+		
+	}
+	#zdjecie_5 {
+      	width: 100%;
+      	height:100%;
+      	
+      }
 	#wyszukiwarka {
 		height: 5%;
 		width: 1200px;
@@ -477,3 +496,43 @@
 		margin: 0 auto;
 		margin-top: 0%;
 	}
+	
+	#video_list {
+		position:relative;
+		float:right;
+		background:#B5BEC3;
+		width:35%;
+		height: 40%;
+	}
+	
+	#film_zdjecie_5 {
+		position:relative;
+		float: left;
+		width:20%;
+		margin-left:5%;
+	}
+	#opis_5 {
+		display:block;
+		position:relative;
+		float: left;
+		margin-left: 5%;
+		width: 70%;
+		height: 100%;
+		font-size:0.9em;
+		
+	}
+	
+	
+	#opis_5 p {
+		line-height: 0;
+		
+	}
+	
+	.li_lista_5 {
+		margin-top:5%;
+		display:block;
+	}
+	#li_lista_5:hover {
+		background:#0000FF;
+	}
+	
