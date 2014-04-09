@@ -16,6 +16,8 @@
         <!--FUNKCJE DO SLAJDOW I MULTIRANGE-->
         <script type="text/javascript" src="js/range.js"></script>
         <script type="text/javascript" src="js/editor.js"></script>
+        <script type="text/javascript" src="js/libs/template/playerScalingScript.js"></script>
+        <script type="text/javascript" src="js/libs/template/playerEffects.js"></script>
 				
 		<noscript>
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
@@ -71,68 +73,101 @@
 											<h2>Tryb edycji</h2>
 											<h3>Zmodyfikuj swoje wideo</h3>
 										</header>
-										
-										<!-- PLAYER -->
-											<div id="player_box">
-									        	<video id="myVideo">
-									            	<source src="movies/movie1/movie.mp4" type="video/mp4" \> 
-									            	<source src="movies/movie1/movie.ogv" type='video/ogg; codecs="theora, vorbis"' \>
-									            	<source src="vmovies/movie1/movie.webm" type="video/webm">
-													Twoja przeglądarka nie obsługuje znacznika filmów wideo
-									            </video>
-
-									            <div class="imageLoader" >
-									            	<img src="movies/movie1/images/1.jpg" alt="logo">	
-									            </div>
-									            
-									            
-									            <div id="playerMenu"> 
-									            	<div id="timeLine"> <div class="belt"></div> </div>
-									            	<button class="cupid-green" id="playButton" style="width: 80px; height: 35px;">Start</button>
-									       			<button class="cupid-green" id="pauseButton" style="width: 80px; height: 35px;">Stop</button>
-									       			<button class="cupid-green" id="muteButton" style="width: 80px; height: 35px;">Wycisz</button>
-                                                    <button class="cupid-green" id="fullScreenButton" style="width: 80px; height: 35px;">Na FULA!</button>
-									       			<div id="volumeLine"> <div class="belt"></div> </div>
-
-													<div id="timeDiv">00:00</div>
-                                               	</div>
-									        </div>
-										<!-- END PLAYER -->
-										<!--MultiRange-->
-            										<div id="timeline_editor">
-                										 <div id="range" class="range" data-min="0" data-max="33" data-step="1">
-                    									 	<input class="MovieTime" type="hidden" name="Początek filmu" value="0" />
-                     									 	<input class="MovieTime" type="hidden" name="Koniec filmu" value="33" />
-               										     </div>
-            										</div>
-            										<br/>
-            							<!--zakładki-->
-            										<canvas id="can_do"></canvas>
-            										<ul class="tabs">
-        												<li class="active"><a href="#tab-1" class="active">Edytor</a></li>
-        												<li><a href="#tab-2">Slajdy</a></li>
-        												<li><a href="#tab-3">Dodaj slajdy</a></li>
-													</ul>
-													<div id="tab-1" class="tab">
-        													<button id="Zapisz_edycje" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
+     							
+											<div id="myPlayer">
+												<div class="playerScreen">	
+													<div class="playerScreenLeft"> </div>
+													
+											        	<video id="myVideo">
+											            	<source src="movies/movie1/movie.mp4" type="video/mp4" \> 
+											            	<source src="movies/movie1/movie.ogv" type='video/ogg; codecs="theora, vorbis"' \>
+											            	<source src="vmovies/movie1/movie.webm" type="video/webm">
+															Twoja przeglądarka nie obsługuje znacznika filmów wideo
+											            </video>
+											            
+													    <div class="imageLoader" >
+											            	<img src="movies/movie1/images/3.png" alt="Test" />
+											        	</div>
+											        
+													<div class="playerScreenRight"> </div>	
+												</div>
+												
+												<div class="playerMenu">
+													<div class="playerMenuLeft"> </div>
+													
+													<button id="playButton" > </button> 
+													<button id="pauseButton" > </button>
+													<button id="stopButton" > </button>
+													<div class="separator"> </div>
+													
+													<div class="sliderSpace"> 
+														<div id="timeLine"><div class="belt"> </div></div>
 													</div>
-													<div id="tab-2" class="tab">
-														<div class="windows">
-    														<input type="button" value='^' class="up" />
-        														<ul class='lista' id='windows_lista'>
-
-        														</ul>
-        													<input type="button" value='v' class="down"/>
-        												</div>
-													</div>
-													<div id="tab-3" class="tab">
-        													<video id="AddNewSlide" controls>
-									            				<source src="movies/movie1/movie.mp4" type="video/mp4">
-									            			</video>
-									            			<b>Nie klikac bo narobicie bałaganu!!!</b>
-									            			<button class="cupid-green" onclick="stopFrame()" style="width: 80px; height: 35px;">Zapisz slajd</button>
-													</div>
-            							<!--MultiRange END-->
+													
+													<div id="timeDiv">00:00:00</div>
+													
+													<div class="separator"> </div>
+													
+													<button id="volumeButton" > 
+														<div id="bodyVolumeLine">
+															<div id="volumeLine"> 
+																<div class="belt"> </div>
+															</div> 
+														</div>
+													</button>
+													
+													<div class="separator"> </div>
+													
+													<button id="hdButton" > </button>
+													<button id="fullScreenButton" > </button>
+													
+													<div class="playerMenuRight"> </div>													
+												</div>
+												
+												<div class="playerEditMenu">
+													<div class="playerEditMenuLeft"> </div>
+													<div class="playerEditMenuRight"> </div>
+												</div>
+												
+											</div>
+									
+											
+											
+											<!-- Time line -->
+											<div id="timeline_editor">
+		                						<div id="range" class="range" data-min="0" data-max="33" data-step="1">
+		                    						<input class="MovieTime" type="hidden" name="Początek filmu" value="0" />
+		                     						<input class="MovieTime" type="hidden" name="Koniec filmu" value="33" />
+		               							</div>
+		            						</div>
+		            										
+		            						<canvas id="can_do"></canvas>
+		            										
+		            						<ul class="tabs">
+		        								<li class="active"><a href="#tab-1" class="active">Edytor</a></li>
+		        								<li><a href="#tab-2">Slajdy</a></li>
+		        								<li><a href="#tab-3">Dodaj slajdy</a></li>
+											</ul>
+											
+											<div id="tab-1" class="tab">
+		        								<button id="Zapisz_edycje" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
+											</div>
+											
+											<div id="tab-2" class="tab">
+												<div class="windows">
+		    										<input type="button" value='^' class="up" />
+		        									<ul class='lista' id='windows_lista'> </ul>
+		        									<input type="button" value='v' class="down"/>
+		        								</div>
+											</div>
+															
+											<div id="tab-3" class="tab">
+		        								<video id="AddNewSlide" controls>
+											    	<source src="movies/movie1/movie.mp4" type="video/mp4"> </video>
+											        <b>Nie klikac bo narobicie bałaganu!!!</b>
+											        <button class="cupid-green" onclick="stopFrame()" style="width: 80px; height: 35px;">Zapisz slajd</button>
+											</div>
+									
 									</section>
 							</div>
 						</div>

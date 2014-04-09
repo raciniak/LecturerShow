@@ -1,5 +1,5 @@
 var countingTimeFromTheEnd = false;
-
+var playClicked = false;
 $(document).ready(function () {
 
 //------------------------------------	
@@ -7,7 +7,9 @@ var myVideo    = $('#myVideo')[0];
 var timeLine   = $('#timeLine')[0];
 var volumeLine = $('#volumeLine')[0];
 //------------------------------------
-
+	
+	// Chowam przycisk "pauza"
+	$("#pauseButton").hide();
 	// Ustawiam pasek głośności
 	setVolumeLine(myVideo.volume*100);
 
@@ -18,11 +20,28 @@ var volumeLine = $('#volumeLine')[0];
     );
 
 	$('#playButton').click(function() {
-		play();
+
+			$(this).hide();
+			play();
+			$("#pauseButton").show();
 	}
 	);
 	$('#pauseButton').click(function() {
-		pause();
+
+			$(this).hide();
+			pause();
+			$("#playButton").show();
+	}
+	);
+	
+	
+	$('#stopButton').click(function() {
+		if( myVideo.currentTime != 0 )
+		{
+			stop();
+			$("#playButton").show();
+			$("#pauseButton").hide();
+		}
 	}
 	);
 	
@@ -72,6 +91,12 @@ function pause() {
 	myVideo.pause();
 }
 
+function stop() {
+	pause();
+	myVideo.currentTime = 0;
+	setTimeLine(0);
+}
+
 function mute() {
 	if(myVideo.muted)
 	{
@@ -84,6 +109,8 @@ function mute() {
 }
 
 function fullScreen() {
+	// Sorry Piotrek, ale zmieniłem wygląd całego playera i elementu player_box już nie ma
+	// musisz to sobie zmienić, albo wstawić w player jakiś dodatkowy div, który nie rozpieprzy reszty :D
 	var pbox = document.getElementById("player_box");
 	if (pbox.requestFullscreen) {
 		pbox.requestFullscreen();

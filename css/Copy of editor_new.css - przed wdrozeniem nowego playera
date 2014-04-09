@@ -1,4 +1,89 @@
+#player_box {
+	border: none;
+	padding: 5px;
+	background-color: #A0A8AB;
+}
 
+#player_box .vid {
+		border: 0px;
+	padding: 0px;
+	display: inline;
+}
+
+#player_box video {
+	width: 49%;
+	padding: 0px;
+	border: 0px;
+	margin-left: 0.8%;
+}
+
+#player_box .imageLoader {
+	display: inline;
+	width: 50%;
+	height: 600px;
+}
+
+#player_box .imageLoader img{
+
+	padding: 0px;
+	width: 49%;
+}
+/* TimeLine */
+#timeLine {
+	
+	border: 1px solid #3E484A;
+	width: 100%;
+	height: 10px;
+}
+	#timeLine .belt {
+		background-color: #DE2A10;
+		width: 0%;
+		height: 100%;
+	}
+	
+/* volumeLine */
+#volumeLine {
+	border: 1px solid #3E484A;
+	width: 10%;
+	height: 10px;
+	float: right;
+	margin-top: 1%;
+}
+	#volumeLine .belt {
+		background-color: #DE2A10;
+		width: 55%;
+		height: 100%;
+	}
+
+/* Przyciski playera */
+button.cupid-green {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #7FBF4D;
+    background-image: -moz-linear-gradient(center top , #7FBF4D, #63A62F);
+    border-color: #63A62F #63A62F #5B992B;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 0 #96CA6D inset;
+    color: #FFFFFF;
+    font: bold 11px/1 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+    padding: 7px 0 8px;
+    text-align: center;
+    text-shadow: 0 -1px 0 #4C9021;
+    width: 150px;
+}
+button.cupid-green:hover {
+    background-color: #76B347;
+    background-image: -moz-linear-gradient(center top , #76B347, #5E9E2E);
+    box-shadow: 0 1px 0 0 #8DBF67 inset;
+    cursor: pointer;
+}
+
+/* --------------------------------------------------------------------- */
 
 #myPlayer {
 	height: 610px;
@@ -32,21 +117,21 @@
 	left: 95.51%;
 }
 
-#myPlayer .playerScreen #myVideo {
+#myPlayer .playerScreen #newVideo {
 	height: 94.75%;
 	float: left;
 	margin-left: -4.6%;
 	margin-top: 1.65%;
 }
 
-#myPlayer .playerScreen .imageLoader {
+#myPlayer .playerScreen .playerImageLoader {
 	float: right;
 	margin-top: 1.65%;
 	position: relative;
 	z-index: 2;
 }
 
-#myPlayer .playerScreen .imageLoader img{
+#myPlayer .playerScreen .playerImageLoader img{
 	width: 100%;
 	height: 100%;	
 }
@@ -68,7 +153,7 @@
 }
 
 #myPlayer .playerMenu .sliderSpace {
-	width: 52%;
+	width: 55%;
 	height: 59px;
 	float: left;
 	background: url("/images/template/Player/playerSliderBackground.png");
@@ -87,7 +172,7 @@
 	margin-right: 10px;
 }
 
-#myPlayer .playerMenu #playButton {
+#myPlayer .playerMenu .playerPlayButton {
 	width: 21px;
 	height: 23px;
 	background: url("/images/icons/playerPlayButton.png");
@@ -95,30 +180,10 @@
 	border: none;
 	float: left;
 	margin-top: 23px;
-	margin-left: 1px;
 	top: 0px;
 }
 
-#myPlayer .playerMenu #playButton:hover, #playButton:focus {
-	background-position: 21px;
-}
-
-#myPlayer .playerMenu #pauseButton {
-	width: 22px;
-	height: 28px;
-	background: url("/images/icons/playerPauseButton.png");
-	background-position-y: 0px;
-	border: none;
-	float: left;
-	margin-top: 19px;
-	top: 0px;
-}
-
-#myPlayer .playerMenu #pauseButton:hover, #pauseButton:focus {
-	background-position: 22px;
-}
-
-#myPlayer .playerMenu #stopButton {
+#myPlayer .playerMenu .playerStopButton {
 	width: 28px;
 	height: 28px;
 	margin-top: 1.8%;
@@ -129,12 +194,7 @@
 	margin-left: 25px;
 }
 
-#myPlayer .playerMenu #stopButton:hover, #stopButton:active {
-	background-position: 28px;
-
-}
-
-#myPlayer .playerMenu #volumeButton {
+#myPlayer .playerMenu .playerVolumeButton {
 	width: 32px;
 	height: 30px;
 	background: url("/images/icons/playerVolumeButton.png");
@@ -143,11 +203,7 @@
 	margin-top: 18px;
 }
 
-#myPlayer .playerMenu #volumeButton:hover, #volumeButton:active {
-	background-position: bottom;
-}
-
-#myPlayer .playerMenu #hdButton {
+#myPlayer .playerMenu .playerHdButton {
 	width: 32px;
 	height: 21px;
 	background: url("/images/icons/playerHdButton.png");
@@ -157,11 +213,7 @@
 	margin-left: 30px;
 }
 
-#myPlayer .playerMenu #hdButton:hover, #hdButton:active {
-	background-position: bottom;
-}
-
-#myPlayer .playerMenu #fullScreenButton {
+#myPlayer .playerMenu .playerFullScreenButton {
 	width: 32px;
 	height: 25px;
 	background: url("/images/icons/playerFullScreenButton.png");
@@ -171,13 +223,9 @@
 	margin-left: 20px;
 }
 
-#myPlayer .playerMenu #fullScreenButton:hover, #fullScreenButton:active {
-	background-position: bottom;
-}
-
 /********************** Pasek postepu ***********************/
 
-#timeLine {
+#playerTimeLine {
 	border: 1px solid #3E484A;
 	width: 100%;
 	height: 16px;	
@@ -186,67 +234,29 @@
 	margin-top: 20px;
 	border-radius: 5px; 
 	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px; 	
+	-webkit-border-radius: 5px; 
+
+	
 }
 
-#timeLine .belt {
+#playerTimeLine .belt {
 		background: url("/images/template/Player/sliderBackground.png");
-		width: 0%;
+		width: 70%;
 		height: 100%;
 		border-radius: 5px; 
 		-moz-border-radius: 5px; 
 		-webkit-border-radius: 5px; 
 }
-/**********************Pasek głośności***********************/
-#bodyVolumeLine {
-	width: 60px;
-	height: 150px;
-	background-color: #99BBDD;
-	position: relative;
-	z-index: 3;
-	top: -180px;
-	left: -20px;
-	padding-bottom: 30px;
-	
-	border-radius: 5px; 
-	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px;
-	border: 1px solid rgba(35,35,35,.6);
-	background-color: rgba(35,35,35,.5); 
-}
-
-#bodyVolumeLine #volumeLine {
-	width: 10px;
-	height: 100px;
-	border: 1px solid #000000;
-	position: relative;
-	left: 23px;
-	top: 25px;
-	z-index: 3;
-	
-	-webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-}
-
-#bodyVolumeLine #volumeLine .belt {
-	width: 100%;
-	height: 50%;
-	background-color: red;
-}
-/************************************************************/
-
 /************************************************************/
 /************************** CZAS ****************************/
-#timeDiv {
+#videoTime {
 	float: left;
 	margin-top: 17px;
 	margin-left: 10px;
 	color: #FEFEFE;
 	font-size: 7;
 	padding: 0;
+	text-align: center;
 }
 /************************************************************/
 #myPlayer .playerMenu .playerMenuRight {
