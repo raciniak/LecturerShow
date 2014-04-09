@@ -2,12 +2,7 @@
 	
 	require_once('connect_mysqli.php');
 	
-	/*if(isset($_SESSION['zalogowany'])) 
-	{
-		header("Refresh: 0; url=../index.php"); 
-	}
-	else
-	{*/
+
 			$login = $_POST['login_l'];
 			$haslo = $_POST['haslo_l'];
 			$zapytanie = "SELECT Login, Haslo, Mail, Imie, Nazwisko FROM users WHERE Login = '".$login."' && Haslo = '".md5($haslo)."'";
@@ -31,6 +26,5 @@
 				echo "Nie ma takiego użytkownika";
 			}
 	
-//	} 
 
 ?>

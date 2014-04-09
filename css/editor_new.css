@@ -83,3 +83,11 @@ button.cupid-green:hover {
     box-shadow: 0 1px 0 0 #8DBF67 inset;
     cursor: pointer;
 }
+
+/*full screen */
+
+#player_box:-webkit-full-screen	{ 
+	width: 100%; 
+	height: 100%;	
+}
+

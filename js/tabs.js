@@ -18,7 +18,7 @@ $(document).ready(function() {
             });
                      
             //mały trik - gdy klikamy na tab, wtedy wykonujemy zdarzenie dla linka, który się w nim znajduje (dzieki temu możemy kliknąć na cały tab, a nie tylko na linka)
-            $li.click(function() {$(this).children('a').click()});
+            $li.click(function() {$(this).children('a').click();});
             //po kliknięciu na link...
             $li.children('a').click(function() {
                 //usuwamy z tabów klasę active

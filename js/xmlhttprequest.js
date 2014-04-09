@@ -245,19 +245,35 @@ function logOutLoadComplete() {
 	window.location.href="logowanie_new.html";
 	},5);
 }
-
+/*
 function searchVideo() {
+	
+	
+
+
 	var fd = new FormData();
-	fd.append("search_title", document.getElementById("searchinput").value);
+	fd.append("title", document.getElementById('searchinput').value);
+
 	var xhr = new XMLHttpRequest();
 	xhr.addEventListener("load", searchVideoComplete, false);
-	xhr.open("POST", "php/najnowsze.php");
+	xhr.open("POST", "php/search.php");
 	xhr.send(fd);
+	
 }
+	
+	
+
 
 function searchVideoComplete (evt) {
-	window.location.href="konto_new.html"; 
+	msg = evt.target.responseText;
+	
+	window.location.href = "results.html";
+	alert("ok");
+	data = parseJSON(evt);
+	
+	
 } 
+*/
 
 var myVar;
 function funkcja(x)
@@ -314,13 +330,13 @@ $(document).ready(function(){
 				
 				var dane = JSON.parse(msg);	
 				login = dane.login;
+				document.getElementById("konto").innerHTML= dane.login;
 				document.getElementById("konto").style.visibility = "visible";
 				document.getElementById("rejestracja").style.display = "none";
 				document.getElementById("logowanie").innerHTML = "Wyloguj";
 				document.getElementById("logowanie").onclick = logOut;	
 				
 				document.getElementById("login_aktualizacja").value = dane.login;
-				document.getElementById("konto").innerHTML= dane.login;
 				document.getElementById("haslo1_aktualizacja").value = dane.haslo;
 				document.getElementById("haslo2_aktualizacja").value = dane.haslo;
 				document.getElementById("email1_aktualizacja").value = dane.email;
@@ -449,9 +465,10 @@ $(document).ready(function(){
 	$.ajax({
         url: "php/najpopularniejsze.php",
         success: function(msg){
+        	
         	msg = msg.replace(/}{/g, "},{");
         	msg = "[" + msg + "]";
-        	//alert(msg);
+        	
         	var obj = $.parseJSON(msg);
         	var lang = '';
         	 $.each(obj, function() {
@@ -471,15 +488,33 @@ $(document).ready(function(){
     	}
 	}); 
 	
+	 
+	
 	$.ajax({
         url: "php/search.php",
         success: function(msg){
-        	alert(msg);
+        	//alert(msg);
+        /*	msg = msg.replace(/}{/g, "},{");
+        	msg = "[" + msg + "]";
+        	var obj = $.parseJSON(msg);
+        	var lang = '';
+        	 $.each(obj, function() {
+        	document.getElementById("uzytkownika").innerHTML += "<li id='li_lista'><div id='film'>" +  
+							      "<a href='" + this['sciezka'] + "'>" + 
+							      "<img id='zdjecie' onmouseover='funkcja(this)'" + 
+							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a><p> Tytul: " + 
+							      this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
+							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
+							      "</p><a href='" + this['sciezka'] + "'>" + this['tytul'] + 
+							      "</a></br></div></li>";
+        	}); */
 		},
 		error: function(err) 
 		{
         	console.log(err);
     	}
 	}); 
+	
+
 	
 });

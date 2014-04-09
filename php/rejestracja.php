@@ -1,7 +1,5 @@
 <?php
 require_once('connect.php');
-/*mysql_connect("localhost","root");
-mysql_select_db("aus"); */
 
 	$login = ($_POST['login']);
 	$haslo1 = ($_POST['haslo1']);
