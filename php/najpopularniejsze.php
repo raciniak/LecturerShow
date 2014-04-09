@@ -1,4 +1,5 @@
 <?php 
+	
 	require_once('connect.php');
 	$sql_popularne = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies ORDER BY Wyswietlenia DESC";
 	$query = mysql_query($sql_popularne);
@@ -22,7 +23,6 @@
 	else 
 	{
 			
-	}
-	
+	} 
 ?>
 

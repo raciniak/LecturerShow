@@ -442,6 +442,9 @@
 		margin-right:1%;
 		margin-bottom: 5%;
 	}
+	#film_slider{
+		width:100%;
+	}
 	#film_5  {
 		width:100%;
 		display:block;
@@ -454,6 +457,26 @@
       	height:100%;
       	
       }
+    
+    #zdjecie_slider {
+    	
+    	width:98%;
+    	margin-left:1%;
+    	height:100%;
+    	display: block;
+    	
+    	
+    	
+    }
+    
+    #tytul_slider {
+    	
+    	margin: 0;
+    	display:block;
+    }
+   	#autor_slider { 
+   		margin: 0;
+   	}
 	#wyszukiwarka {
 		height: 5%;
 		width: 1200px;
@@ -536,3 +559,29 @@
 		background:#0000FF;
 	}
 	
+	#zdjecie_li {
+		width: 100%;
+	}
+	
+	/* Formularz kontaktowy */
+	
+	#b_formularz {
+		width: 20%;
+		display:inline-block;
+		float: left;
+	}
+	
+	#e-mail_formularz {
+		width: 75%;
+	}
+	
+	#opis_formularz{
+		resize: none;
+		width: 75%;
+		margin-bottom: 4%;
+	}
+	
+	#button_formularz {
+		display: block;
+		margin: 0 auto;
+	}

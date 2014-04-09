@@ -161,6 +161,20 @@ function uploadFailed(evt) {
 function uploadCanceled(evt) {
         alert("The upload has been canceled by the user or the browser dropped the connection.");
       }
+function sendReport() {
+	var fd = new FormData();
+	fd.append("e-mail", document.getElementById("e-mail_formularz").value);
+	fd.append("tresc", document.getElementById("opis_formularz").value);
+	var xhr = new XMLHttpRequest;
+	xhr.addEventListener("load", sendReportComplete, false);
+	xhr.open("POST","php/sendReport.php");
+	xhr.send(fd);
+}
+function sendReportComplete(evt) {
+	document.getElementById("e-mail_formularz").value = '';
+	document.getElementById("opis_formularz").value = ' ';
+	alert("dodano wpis");
+}
 // funkcja wysyłająca dane z formularza rejestracji 
 function sendUserData() {
 	var fd = new FormData();
@@ -218,7 +232,7 @@ function logIn() {
 function logInLoadComplete() {
 	alert("zalogował");
 	
-	document.location.href="konto_new.html";
+	document.location.href="glowna.html";
 	
 	//setTimeout(function(){
 		//document.location.href="konto_new.html";
@@ -247,34 +261,28 @@ function logOutLoadComplete() {
 }
 /*
 function searchVideo() {
-	
-	
-
-
-	var fd = new FormData();
-	fd.append("title", document.getElementById('searchinput').value);
-
 	var xhr = new XMLHttpRequest();
-	xhr.addEventListener("load", searchVideoComplete, false);
-	xhr.open("POST", "php/search.php");
-	xhr.send(fd);
-	
+	var url = "php/search.php";
+	var title = document.getElementById("searchinput");
+	var vars = "title=" + title;
+	xhr.open("POST", url, true);
+	xhr.onreadystatechange = function() {
+    if(xhr.readyState == 4 && xhr.status == 200) {
+    	var return_data = xhr.responseText;
+		alert(return_data);
+   		}
+   	}
+	xhr.send(vars);
+	alert("ok");
 }
 	
-	
-
-
 function searchVideoComplete (evt) {
-	msg = evt.target.responseText;
-	
-	window.location.href = "results.html";
-	alert("ok");
-	data = parseJSON(evt);
-	
+	alert(evt.target.responseText);
+	window.location.href="results.html";
 	
 } 
-*/
 
+*/
 var myVar;
 function funkcja(x)
         	{
@@ -301,7 +309,19 @@ function funkcja_powrot(x){
 
 
 $(document).ready(function(){
-	
+	 $("#submit_wyszukiwarka").click(function(event){
+          $.post( 
+             "/php/search.php",
+             { 
+             	title: document.getElementById("searchinput").value 
+             	},
+             function(data) {
+             	alert(data);
+             }
+
+          );
+      });
+   
 	$.ajax({
         url: "php/sesja.php",
         success : function(msg){
@@ -454,6 +474,7 @@ $(document).ready(function(){
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
 							      "</p><a href='" + this['sciezka'] + "'>" + this['tytul'] + 
 							      "</a></br></div></li>";
+			
         	});
 		},
 		error: function(err) 
@@ -465,6 +486,7 @@ $(document).ready(function(){
 	$.ajax({
         url: "php/najpopularniejsze.php",
         success: function(msg){
+        
         	
         	msg = msg.replace(/}{/g, "},{");
         	msg = "[" + msg + "]";
@@ -480,7 +502,7 @@ $(document).ready(function(){
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
 							      "</p><a href='" + this['sciezka'] + "'>" + this['tytul'] + 
 							      "</a></br></div></li>";
-        	});
+        	}); 
 		},
 		error: function(err) 
 		{
@@ -488,13 +510,81 @@ $(document).ready(function(){
     	}
 	}); 
 	
-	 
+	$.ajax({
+        url: "php/najnowsze.php",
+        success: function(msg){
+        	msg = msg.replace(/}{/g, "},{");
+        	msg = "[" + msg + "]";
+        	//alert(msg);
+        	var obj = $.parseJSON(msg);
+        	var lang = '';
+        	 $.each(obj, function() {
+        	document.getElementById("najnowsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='" + this['sciezka'] +
+        							 "'><img id='zdjecie_slider' onmouseover='funkcja(this)'" + 
+							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
+							      this['tytul'] + "</p><p id='autor_slider'>" + 
+							      this['autor'] + "</p></br></div></div></li>";
+        	});
+		},
+		error: function(err) 
+		{
+        	console.log(err);
+    	}
+	});
+	
+	$.ajax({
+        url: "php/najlepsze.php",
+        success: function(msg){
+        	msg = msg.replace(/}{/g, "},{");
+        	msg = "[" + msg + "]";
+        	//alert(msg);
+        	var obj = $.parseJSON(msg);
+        	var lang = '';
+        	 $.each(obj, function() {
+        	document.getElementById("najlepsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='" + this['sciezka'] +
+        							 "'><img id='zdjecie_slider' onmouseover='funkcja(this)'" + 
+							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
+							      this['tytul'] + "</p><p id='autor_slider'>" + 
+							      this['autor'] + "</p></br></div></div></li>";
+			
+        	});
+		},
+		error: function(err) 
+		{
+        	console.log(err);
+    	}
+	});
+	
+	$.ajax({
+        url: "php/najpopularniejsze.php",
+        success: function(msg){
+        
+        	
+        	msg = msg.replace(/}{/g, "},{");
+        	msg = "[" + msg + "]";
+        	
+        	var obj = $.parseJSON(msg);
+        	var lang = '';
+        	 $.each(obj, function() {
+        	document.getElementById("popularne_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='" + this['sciezka'] +
+        							 "'><img id='zdjecie_slider' onmouseover='funkcja(this)'" + 
+							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
+							      this['tytul'] + "</p><p id='autor_slider'>" + 
+							      this['autor'] + "</p></br></div></div></li>";
+        	}); 
+		},
+		error: function(err) 
+		{
+        	console.log(err);
+    	}
+	});  
 	
 	$.ajax({
         url: "php/search.php",
         success: function(msg){
-        	//alert(msg);
-        /*	msg = msg.replace(/}{/g, "},{");
+        	
+        	//alert("ajax: " + msg);
+        	/*msg = msg.replace(/}{/g, "},{");
         	msg = "[" + msg + "]";
         	var obj = $.parseJSON(msg);
         	var lang = '';
