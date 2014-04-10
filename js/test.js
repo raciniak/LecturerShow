@@ -7,12 +7,13 @@ $(document).ready(function() {
         var $current_slider = $(this);
         var $lista = $('.lista', $current_slider);
         var $li = $lista.children('li');
-		if ($li.length > 5) {
-			$('.prev').css("visibility","hidden");
+		
+			
             var odleglosc = $li.eq(0).outerWidth() + parseInt($li.eq(0).css('margin-left')) + parseInt($li.eq(0).css('margin-right'));
  			var maxLeft = odleglosc * $li.length - 7 * odleglosc;
  			var koniec;
 			var poczatek;
+			alert(odleglosc);
 			$('.next', $current_slider).click(function() {
 			koniec = maxLeft + $lista.position().left;
 			koniec = Math.floor(koniec);
@@ -60,12 +61,6 @@ $(document).ready(function() {
 				
             });
  
-        } else {
-            $('.next, .prev', $current_slider).click(function() {
-                $(this).preventDefault();
-                return false;
-            });
- 
-        }
+       
     });
 });
