@@ -74,7 +74,7 @@
         slider.innerHTML = "<div class='underSlider'><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
         if("PoczatekFilmu"===name || "KoniecFilmu"===name)
         {
-        	slider.className = 'slider MovieTime';
+        	slider.className = 'slider MovieTimes';
         	slider.innerHTML = "<div class='underSliderTime'><b>"+name+"</b><p id='movetime"+name+"'>"+timee+"</p></div>";
         }
         slider.setAttribute('data-name', name);

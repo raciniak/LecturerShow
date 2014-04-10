@@ -123,7 +123,7 @@
 }
 
 /*wyglad ranga oznaczajacego poczatek i koniec filmu*/
-.range > .MovieTime{
+.range > .MovieTimes{
 	background-color: blue;
 	border-radius: 50%;
     color:white;

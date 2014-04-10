@@ -19,7 +19,7 @@
         <script type="text/javascript" src="js/libs/template/playerScalingScript.js"></script>
         <script type="text/javascript" src="js/libs/template/playerEffects.js"></script>
         <!--Funkcje do okien dialogowych-->
-        <script type="text/javascript" src="js/CustomDialog.js"></script>
+       <!-- <script type="text/javascript" src="js/CustomDialog.js"></script>-->
 				
 		<noscript>
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
@@ -89,7 +89,7 @@
 											            </video>
 											            
 													    <div class="imageLoader" >
-											            	<img src="movies/movie1/images/3.png" alt="Test" />
+											            	<img src="movies/movie1/images/1.png" alt="Test" />
 											        	</div>
 											        
 													<div class="playerScreenRight"> </div>	
@@ -139,12 +139,11 @@
 											<!-- Time line -->
 											<div id="timeline_editor">
 		                						<div id="range" class="range" data-min="0" data-max="33" data-step="1">
-		                    						<input class="MovieTime" type="hidden" name="Początek filmu" value="0" />
-		                     						<input class="MovieTime" type="hidden" name="Koniec filmu" value="33" />
+		                    						<input class="MovieTime" type="hidden" name="PoczatekFilmu" value="0" />
+		                     						<input class="MovieTime" type="hidden" name="KoniecFilmu" value="33" />
 		               							</div>
 		            						</div>
 		            										
-		            				
 		            										
 		            						<ul class="tabs">
 		        								<li class="active"><a href="#tab-1" class="active">Edytor</a></li>
@@ -153,7 +152,7 @@
 											</ul>
 											
 											<div id="tab-1" class="tab">
-		        								<button id="Zapisz_edycje" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
+		        								<button id="Zapisz_edycje" class="cupid-green" style="width: 120px; height: 40px;" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
 											</div>
 											
 											<div id="tab-2" class="tab">

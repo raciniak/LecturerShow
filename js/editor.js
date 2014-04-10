@@ -39,6 +39,7 @@ $(document).ready(function(){
 		//timowanie najnowszych czasów zapisanych w edytorze do wyświetlenia w czasie edytowania filmu wraz z wprowadzonymi zmianami
 		$("#playButton").click(function(){
 			timetimes();
+			alert("11");
 			sort_times();
 		});
 		$("#timeLine").click(function(){
@@ -513,11 +514,18 @@ function completSave(data){
 
 // integracja czasów
 function timetimes(){
+	alert(iloscSlajdow);
 	for(i=0;i<iloscSlajdow;i++)
 	{
-		var textbox = document.getElementById("textbox"+slajdy[i]);
-		var wartosc_textbox=textbox.getAttribute("value");
-		czasy[i]=wartosc_textbox;
+		var textbox1 = document.getElementById("textboxhour"+slajdy[i]);
+		var textbox2 = document.getElementById("textboxmin"+slajdy[i]);
+		var textbox3 = document.getElementById("textboxsek"+slajdy[i]);
+		var wartosc_textbox1=textbox1.getAttribute("value");
+		var wartosc_textbox2=textbox2.getAttribute("value");
+		var wartosc_textbox3=textbox3.getAttribute("value");
+		
+		timee1 = decodingTime(wartosc_textbox1, wartosc_textbox2, wartosc_textbox3);
+		czasy[i]=timee1;
 	}
 }
 
