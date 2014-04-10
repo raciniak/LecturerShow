@@ -585,3 +585,9 @@
 		display: block;
 		margin: 0 auto;
 	}
+	
+	#fb_link, #tw_link, #wmii_link {
+		width:60%;
+	
+	}
+	

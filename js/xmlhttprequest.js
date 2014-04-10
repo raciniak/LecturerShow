@@ -1,8 +1,9 @@
 ﻿var login;
 
+/*
 function searchSuggest(){
 var str = escape(document.getElementById('searchinput').value);
-/*	$.ajax({
+	$.ajax({
 		type: "GET",
 		data: "search=" + str,
         url: "php/suggest.php",
@@ -26,7 +27,7 @@ var str = escape(document.getElementById('searchinput').value);
 		{
         	alert("blad");
     	}
-}); */
+}); 
 var myAjax = new Ajax.Request(
       'php/suggest.php',
       {
@@ -70,7 +71,7 @@ function show_search_input() {
 		wyszukiwarka.style.display = "block";
 		
 	}
-}
+} 
 function showAlert(MyRequest) {
         alert("Operacja nie powiodła się");
 }
@@ -88,7 +89,7 @@ function setSearch(value) {
         search_suggest.style.visibility = "hidden";
         document.getElementById('searchinput').value = value;
         document.getElementById('search_suggest').innerHTML = '';
-}
+} */
 
 function fileSelected(plik) {
         var file = document.getElementById(plik).files[0];
@@ -259,30 +260,21 @@ function logOutLoadComplete() {
 	window.location.href="logowanie_new.html";
 	},5);
 }
-/*
+
 function searchVideo() {
+	var fd = new FormData();
+	fd.append("title_l", document.getElementById('searchinput').value);
 	var xhr = new XMLHttpRequest();
-	var url = "php/search.php";
-	var title = document.getElementById("searchinput");
-	var vars = "title=" + title;
-	xhr.open("POST", url, true);
-	xhr.onreadystatechange = function() {
-    if(xhr.readyState == 4 && xhr.status == 200) {
-    	var return_data = xhr.responseText;
-		alert(return_data);
-   		}
-   	}
-	xhr.send(vars);
-	alert("ok");
+	xhr.addEventListener("load", searchVideoComplete, false);
+	xhr.open("POST", "php/search.php");
+	xhr.send(fd);
 }
 	
 function searchVideoComplete (evt) {
-	alert(evt.target.responseText);
-	window.location.href="results.html";
-	
-} 
+	window.location.href = "results.html";
+}
 
-*/
+
 var myVar;
 function funkcja(x)
         	{
@@ -309,19 +301,31 @@ function funkcja_powrot(x){
 
 
 $(document).ready(function(){
-	 $("#submit_wyszukiwarka").click(function(event){
-          $.post( 
-             "/php/search.php",
-             { 
-             	title: document.getElementById("searchinput").value 
-             	},
-             function(data) {
-             	alert(data);
-             }
-
-          );
-      });
-   
+	
+	$('#fb_link').hover(
+    function(){
+      $(this).attr('src','images/icons/fb_hover.png');
+    },
+    function(){
+      $(this).attr('src','images/icons/fb.png');
+    }
+);
+   $('#tw_link').hover(
+    function(){
+      $(this).attr('src','images/icons/twitter_hover.png');
+    },
+    function(){
+      $(this).attr('src','images/icons/twitter.png');
+    }
+);
+   $('#wmii_link').hover(
+    function(){
+      $(this).attr('src','images/icons/wmii_hover.png');
+    },
+    function(){
+      $(this).attr('src','images/icons/wmii.png');
+    }
+);
 	$.ajax({
         url: "php/sesja.php",
         success : function(msg){
@@ -580,11 +584,9 @@ $(document).ready(function(){
 	});  
 	
 	$.ajax({
-        url: "php/search.php",
+        url: "php/search1.php",
         success: function(msg){
-        	
-        	//alert("ajax: " + msg);
-        	/*msg = msg.replace(/}{/g, "},{");
+        	msg = msg.replace(/}{/g, "},{");
         	msg = "[" + msg + "]";
         	var obj = $.parseJSON(msg);
         	var lang = '';
@@ -597,7 +599,7 @@ $(document).ready(function(){
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
 							      "</p><a href='" + this['sciezka'] + "'>" + this['tytul'] + 
 							      "</a></br></div></li>";
-        	}); */
+        	}); 
 		},
 		error: function(err) 
 		{
