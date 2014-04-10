@@ -12,12 +12,38 @@
 }
 
 
-/*ukrywanie i pokazywanie obrazkow pod multirangem edytora*/
-.slider img{
-    visibility:hidden;
+/*ukrywanie i pokazywanie slajdów i czasów lub identyfikatorów sliderów odpowiedzialnych za ramy czasu*/
+.slider div{
+	background:#212F35;
+	visibility:hidden;
+	position:relative;
+    right:65px;
+    top:30px;
+    display:block;
+    margin:auto;
+    text-align:center
 }
-.slider:hover img{
+.slider:hover div{
     visibility:visible
+}
+
+/*Szczególy wyglądu okienka po najechaniu na slider*/
+.slider .underSlider{
+	width:150px;
+	height:100px;
+}
+.slider .underSliderTime{
+	width:150px;
+	height:65px;
+}
+
+.slider div img{
+   padding-top:5px;
+}
+
+.slider .timeSlider{
+	position:relative;
+	bottom: 15px;
 }
 
 /*wyglad okienka pod multirangem edytora*/
@@ -125,8 +151,9 @@
 }
 
 .textboxWindows{
-	width: 50px;
-	background:#63A62F;
+	width: 20px;
+	background:#00B2E8;
+
 }
 
 /*Wyglad odtwarzacza pokazu slajdów do łapania nowych */

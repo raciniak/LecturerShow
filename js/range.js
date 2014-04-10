@@ -67,19 +67,46 @@
     }
 
     function createSlider(name, value, range) {
+    	var timee;
         var slider = document.createElement('div');
         slider.className = 'slider draggable';
-        if("Początek filmu"===name || "Koniec filmu"===name)
+        timee = upConversionTimes(value);
+        slider.innerHTML = "<div class='underSlider'><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
+        if("PoczatekFilmu"===name || "KoniecFilmu"===name)
         {
         	slider.className = 'slider MovieTime';
+        	slider.innerHTML = "<div class='underSliderTime'><b>"+name+"</b><p id='movetime"+name+"'>"+timee+"</p></div>";
         }
         slider.setAttribute('data-name', name);
         slider.setAttribute('data-value', value);
         slider.setAttribute('tabindex', 0);
-       // slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='"+name+"'/>";
         range.appendChild(slider);
         return slider;
     }
+    
+    //  Konwersja czasów podanych w sekundach na czas w postaci 00:00:00 do wyświetlania
+    function upConversionTimes(times)
+	{
+		var sek, min, hour, timee;
+		hour=Math.floor(times/3600);
+		timee=times%3600;
+		min=Math.floor(timee/60);
+		sek=timee%60;
+		if(hour<10)
+		{
+			hour='0'+hour;
+		}
+		if(min<10)
+		{
+			min='0'+min;
+		}
+		if(sek<10)
+		{
+			sek='0'+sek;
+		}
+		times=hour+':'+min+':'+sek;
+		return times;
+	}
 
     function getSliders(root) {
         return root.querySelectorAll ?
@@ -140,6 +167,44 @@
         } while((el = el.offsetParent));
         return o;
     }
+    
+    
+    //wlasny innerhtml
+    function doInnerHTML(elementId, stringHTML) 
+    {
+ 
+   try {
+      var elem = document.getElementById(elementId);
+      var children = elem.childNodes;
+ 
+      for (var i = 0; i < children.length; i++) {
+         elem.removeChild(children[i]);
+      }
+ 
+      var nodes = new DOMParser().parseFromString(
+         stringHTML, 'text/xml');
+      var range = document.createRange();
+      range.selectNodeContents(
+         document.getElementById(elementId));
+      range.deleteContents();
+ 
+      for (var i = 0; i < nodes.childNodes.length; i++) {
+         document.getElementById(elementId).appendChild(
+            nodes.childNodes[i]);
+      }
+      return true;
+      } catch (e) {
+         try {
+            document.getElementById(elementId).innerHTML =
+               stringHTML;
+            return true;
+         }
+      catch(ee) {
+         return false;
+      }
+   }
+}
+    
     function moveSlider(slider, slide, value, init) {
         if (value > slide.max) value = slide.max;
         else if (value < slide.min) value = slide.min;
@@ -150,11 +215,17 @@
         slider.style.left = percent + '%';
         slider.setAttribute('data-value', value);
         slide.input.setAttribute('value', value);
-        //moja zmianka odnosnie okienka windows
+        //moja zmianka odnosnie okienka windows i zmiany na zywo czasu pod slajdem slidera
+        var timee=0;
+        timee = upConversionTimes(value);
         name=slide.input.getAttribute("name");
-        if(name!="Początek filmu" && name!="Koniec filmu")
+        doInnerHTML("movetime"+name, "<b>"+timee+"</b>");
+        timee = timee.split(":");
+        if(name!="PoczatekFilmu" && name!="KoniecFilmu")
         {
-        	document.getElementById("textbox"+name).setAttribute('value', value);
+        	document.getElementById("textboxhour"+name).setAttribute('value', timee[0]);
+        	document.getElementById("textboxmin"+name).setAttribute('value', timee[1]);
+        	document.getElementById("textboxsek"+name).setAttribute('value', timee[2]);
         }
         //
         slide.value = value;

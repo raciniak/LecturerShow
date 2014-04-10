@@ -1,12 +1,22 @@
-var intID;
-var i=0;
+/**
+*
+* @author Jacek Murawski <JacekMurawskii@gmail.com>
+*/
+
+//tablice na czasy i identyfikatory slajdów
 var plik=new Array();
 var czasy=new Array();
 var slajdy=new Array();
+//dodatkowe tablice na czasy i identyfikatory slajdów
 var czasyB=new Array();
 var slajdyB=new Array();
+var convertTime=new Array();
+//inne
+var buffer_textbox='';
 var iloscSlajdow, refresh;
 var time = 0;
+var intID;
+var i=0;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
 	//ukryte okienko, wyświetla się przy zapisie wszystkich zmian w edytorze
@@ -35,12 +45,38 @@ $(document).ready(function(){
 			timetimes();
 			sort_times();
 		});
+
 		
 });
 
-
+// Obsługa błędu video w zakładce do wyszukiwania slajdów
 function errorSlideVideo(){
 	alert("error");
+}
+
+
+//  Konwersja czasów podanych w sekundach na czas w postaci 00:00:00 do wyświetlania
+function upConversionTime(times)
+{
+		var sek, min, hour, timee;
+		hour=Math.floor(times/3600);
+		timee=times%3600;
+		min=Math.floor(timee/60);
+		sek=timee%60;
+		if(hour<10)
+		{
+			hour='0'+hour;
+		}
+		if(min<10)
+		{
+			min='0'+min;
+		}
+		if(sek<10)
+		{
+			sek='0'+sek;
+		}
+		times=hour+':'+min+':'+sek;
+		return times;
 }
 
 //Funkcja list odpowiada za listę do przesuwania slajdów w okienku windows
@@ -90,13 +126,15 @@ function createRange(){
 
 // Utworzenie slidera z podpiętym slajdem
 function createSlider(name,value,left){
+		var timee;
 		var slider = document.createElement('div');
 		slider.className = 'slider draggable';
         slider.setAttribute('data-name', name);
         slider.setAttribute('data-value', value);
         slider.setAttribute('tabindex', 0);
         slider.setAttribute('style', left);
-        slider.innerHTML = "</br><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='Obrazek nr:"+name+"'/>";
+        timee = upConversionTime(value);
+        slider.innerHTML = "<div class='underSlider'><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='Obrazek nr:"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
         $(".range").append(slider);
 }
 
@@ -249,14 +287,20 @@ function windowsik()
 // podfunkcja funkcji windowsik, dodaje pojedyńczy slajd do okienka
 function slideAddWindows(i)
 {
-	var divek = document.createElement('li');
+		var divek = document.createElement('li');
+		var timee;
+		timee = upConversionTime(czasy[i]);
+		timee = timee.split(":");
         divek.className = 'slajd';
         divek.innerHTML = "<div class='windows_div'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> "+
         "<img class='obrazek_windows' src='movies/movie1/images/"+slajdy[i]+".png' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
-        "</b> <b class='windows_element'>Sekunda slajdu: <input id='textbox"+slajdy[i]+"'type='text' class='textboxWindows' onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+czasy[i]+"'></b></div>";
+        "</b> <b class='windows_element'>Czas slajdu(hh:mm:ss): <b class='textboxhour"+slajdy[i]+"'><input id='textboxhour"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+timee[0]+"'></b>:"+
+        "<b class='textboxmin"+slajdy[i]+"'><input id='textboxmin"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+timee[1]+"'></b>:"+
+        "<b class='textboxsek"+slajdy[i]+"'><input id='textboxsek"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+timee[2]+"'></b></b></div>";
         $("#windows_lista").append(divek);
-}
 
+
+}
 
 //Funkcja odpowiadająca za checkboxy tworzy albo usuwa slider z multirange
 function checkSlajd(checkbox)
@@ -289,26 +333,81 @@ function removeSlider(id){
    }
 }
 
+//odkodowuje czas na sekundy z postaci 00
+function decodingTime(hour, min, sek){
+	var timee;
+	timee=parseInt(sek)+(parseInt(hour)*3600)+(parseInt(min)*60);
+	return timee;
+}
+
+
 // funkcja odpowiadająca za aktualizację slidera względem wartości podanych w textboxie
 function chcecktextbox(textbox)
 {
-	var name = textbox.getAttribute("id");
-	var value = parseInt(textbox.value);
-	var max = parseInt(document.getElementById("range").getAttribute("data-max"));
-	if(value<=max)
-	{
-    	name = name.split("textbox");
-    	name = parseInt(name[1]);
-    	var input=$("input[name="+name+"]").get(0);
-    	document.getElementById("textbox"+name).setAttribute('value',value);
-    	removeSlider(name);
-    	var left="left: "+value/max*100+"%";
-    	createSlider(name,value,left);
-	}
+		var name,name2;
+		var buffer = buffer_textbox;
+		var value = new Array();
+		var id;
+		var i;
+		var timee1;
+		var max = parseInt(document.getElementById("range").getAttribute("data-max"));
+
+		name = $(textbox).attr('id');
+		id=name[name.length-1];
+		name2 = name.split(id);
+		value[0] = $("#textboxhour"+id).val();
+		value[1] = $("#textboxmin"+id).val();
+		value[2] = $("#textboxsek"+id).val();
+		
+		for(i=0;i<3;i++){
+			if(value[i]=='')
+			{
+				value[i]='00';
+				textbox.value=buffer;
+				textbox.setAttribute('value',buffer);
+			}
+		}
+		if(name2[0]=='textboxhour')
+		{
+			name2[0]=0;
+		}else if(name2[0]=='textboxmin')
+		{
+			name2[0]=1;
+		}else if(name2[0]=='textboxsek')
+		{
+			name2[0]=2;
+		}
+		
+		timee1 = decodingTime(value[0], value[1], value[2]);
+
+			if(timee1>max)
+			{
+				textbox.value=buffer;
+				textbox.setAttribute('value',buffer);
+				//usuniecie starego inputa i wstawienie nowego
+				if (textbox){
+      				textbox.parentNode.removeChild(textbox);
+  				}
+  				$('.'+name).append("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+buffer+"'>");
+			}else if(timee1<=max)
+			{
+				var input=$("input[name="+id+"]").get(0);
+    			removeSlider(id);
+    			var left="left: "+timee1/max*100+"%";
+    			createSlider(id,timee1,left);
+    			//usuniecie starego inputa i wstawienie nowego
+   				if (textbox){
+      				textbox.parentNode.removeChild(textbox);
+  				}
+  				$('.'+name).html("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+value[name2[0]]+"'>");
+			}
 }
+
 
 // tylko liczby i nie wieksze od długości filmu w textboxie z numerem czasów
 function validate(evt,textbox) {
+	var value = textbox.value;
+		buffer_textbox=value;
 	 var theEvent = evt || window.event;
 	 var key = theEvent.keyCode || theEvent.which; 
 	 key = String.fromCharCode( key ); 
@@ -321,22 +420,6 @@ function validate(evt,textbox) {
 	 		theEvent.preventDefault(); 
 	 	}
 	 } 
-	 if(regex.test(key))
-	 {
-		var value = textbox.value;
-		var max = parseInt(document.getElementById("range").getAttribute("data-max"));
-		value=value+key;
-		if(parseInt(value)<=max)
-		{
-			theEvent.returnValue = true; 
-		}else{
-			theEvent.returnValue = false; 
-	 		if(theEvent.preventDefault) 
-	 		{
-	 			theEvent.preventDefault(); 
-	 		}
-		}
-	}
 }
 
 // Zapisywanie nowego slajdu, edycja pliku z czasami i ilością slajdów
@@ -367,8 +450,7 @@ function AddSlide(data)
 		 iloscSlajdow = iloscSlajdow+1;
          list();
          $('#checkbox'+slajdy[iloscSlajdow-1]).prop('checked', false);
-         
-		 
+         	 
 }
 
 //pobieranie nazwy filmu z linku
