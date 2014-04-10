@@ -6,7 +6,7 @@
  * 
  */
 
-var panelIsOpened = false;
+var mouseOnVolumePanel = false;
 $(document).ready(function () {
 
 	var playPauseButton = $("#playButton")[0];
@@ -21,16 +21,22 @@ $(document).ready(function () {
 	$(volumePanel).hide();
 	
 	
-	$(volumeButton).click(function() {
-		if( panelIsOpened)
-		{
+	$(volumeButton).mouseover(function() {
 			$(volumePanel).show();
-			panelIsOpened = !panelIsOpened;
-		}else{
-			$(volumePanel).hide();
-			panelIsOpened = !panelIsOpened;
-		}
 	});
+	
+	$(volumeButton).mouseout(function() {
+		if( !mouseOnVolumePanel )
+			$(volumePanel).hide();
+	});
+	
+	$(volumePanel).mouseover(function() {
+			mouseOnVolumePanel = true;
+	});
+	$(volumePanel).mouseout(function() {
+			mouseOnVolumePanel = false;
+	});
+	
 	
 	
 });

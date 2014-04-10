@@ -133,7 +133,7 @@
 
 }
 
-#myPlayer .playerMenu #volumeButton {
+#myPlayer .playerMenu .volumeButton {
 	width: 32px;
 	height: 30px;
 	background: url("/images/icons/playerVolumeButton.png");
@@ -142,7 +142,50 @@
 	margin-top: 18px;
 }
 
-#myPlayer .playerMenu #volumeButton:hover, #volumeButton:active {
+
+#myPlayer .playerMenu .volumeButton:hover, .volumeButton:active {
+	background-position: bottom;
+}
+
+#myPlayer .playerMenu .volumeButtonMuted {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButtonMuted.png");
+	float: left;
+	border: none;
+	margin-top: 18px;
+}
+
+
+#myPlayer .playerMenu .volumeButtonMuted:hover, .volumeButtonMuted:active {
+	background-position: bottom;
+}
+
+#myPlayer .playerMenu .volumeButton30 {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButton30.png");
+	float: left;
+	border: none;
+	margin-top: 18px;
+}
+
+
+#myPlayer .playerMenu .volumeButton30:hover, .volumeButton30:active {
+	background-position: bottom;
+}
+
+#myPlayer .playerMenu .volumeButton60 {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButton60.png");
+	float: left;
+	border: none;
+	margin-top: 18px;
+}
+
+
+#myPlayer .playerMenu .volumeButton60:hover, .volumeButton60:active {
 	background-position: bottom;
 }
 
@@ -210,30 +253,37 @@
 	border-radius: 5px; 
 	-moz-border-radius: 5px; 
 	-webkit-border-radius: 5px;
-	border: 1px solid rgba(35,35,35,.6);
-	background-color: rgba(35,35,35,.5); 
+	border: 1px solid rgba(239,239,239,.3);
+	background-color: rgba(28,28,33,.5); 
 }
 
 #bodyVolumeLine #volumeLine {
-	width: 10px;
-	height: 100px;
+	width: 14px;
+	height: 130px;
 	border: 1px solid #000000;
 	position: relative;
-	left: 23px;
-	top: 25px;
+	left: 22px;
+	top: 20px;
 	z-index: 3;
 	
-	-webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.4);
+	background-color: rgba(28,28,33,.5); 
 }
 
 #bodyVolumeLine #volumeLine .belt {
 	width: 100%;
 	height: 50%;
-	background-color: red;
+	background: url("/images/template/Player/volumeLineBackground.png");
+	background-repeat: repeat-y;
+	position: absolute;
+	bottom: 0;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
 }
 /************************************************************/
 

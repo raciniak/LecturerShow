@@ -1,5 +1,5 @@
 var countingTimeFromTheEnd = false;
-var playClicked = false;
+var volumeSliderClicked = false;
 $(document).ready(function () {
 
 //------------------------------------	
@@ -45,15 +45,15 @@ var volumeLine = $('#volumeLine')[0];
 	}
 	);
 	
-	$('#muteButton').click(function() {
+	$('#volumeButton').click(function() {
+		if(!volumeSliderClicked)
 		mute();
 	}
 	);
 
 	$('#fullScreenButton').click(function () {
 	    fullScreen();
-	}
-);
+	});
 
     // Funkcja wykonywana, kiedy player jest uruchomiony
 	$(myVideo).bind('timeupdate', updateTime);
@@ -73,15 +73,24 @@ var volumeLine = $('#volumeLine')[0];
 	
 	// Funkcja wykonywana po naciśnięciu w volumeLine
 	$(volumeLine).click(function(e){
-		var posX = $(this).offset().left;     
+		volumeSliderClicked = true;
+		
+		
+		var posY = $(this).offset().top;     
         // Szerokość timeLine-a
-        var width = $(this).width();      
+        var height = $(this).height();      
         // Obliczam procent timeLine-a
-        var percent = Math.floor((e.pageX-posX)/width*100);    
+        var percent = 100 - Math.floor((e.pageY-posY)/height*100);    
         setVolumeLine(percent);
+        setTimeout('sleep()', 1000);
 	});
 	
 });
+
+// Ta funkcja opóźnia zmianę wartości zmiennej, żeby uniknąć wyciszenia
+function sleep(){
+	volumeSliderClicked = false;
+}
 
 function play() {
 	myVideo.play();
@@ -102,9 +111,11 @@ function mute() {
 	{
 		setVolumeLine(100);
 		myVideo.muted = !myVideo.muted;
+		$("#volumeButton")[0].className = "volumeButton";
 	}else{
 		setVolumeLine(0);
 		myVideo.muted = !myVideo.muted;
+		$("#volumeButton")[0].className = "volumeButtonMuted";
 	}
 }
 
@@ -190,11 +201,24 @@ function setTimeLine(percent)
 function setVolumeLine(percent)
 {
 	$('#volumeLine .belt').animate(
-		{"width" : percent+"%"},
+		{"height" : percent+"%"},
 		{duration : 200}
 	);
 	
 	myVideo.volume = percent/100;
+	
+	if(percent <= 30 && percent > 0)
+	{
+		$("#volumeButton")[0].className = "volumeButton30";
+	}
+	if(percent <= 60 && percent > 30)
+	{
+		$("#volumeButton")[0].className = "volumeButton60";
+	}
+	if(percent <= 100 && percent > 60)
+	{
+		$("#volumeButton")[0].className = "volumeButton";
+	}
 	
 }
 
