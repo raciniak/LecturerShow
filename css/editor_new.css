@@ -1,55 +1,339 @@
+#myPlayer {
+	border: none;
+	height: 610px;
+	width: 100%;
+	padding-bottom: 100px;
+}
 
-#player_box {
+#myPlayer .playerScreen .playerScreenLeft {
+	float: left;
+	width: 75px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerScreenLeft.png");
+	background-repeat: no-repeat;
+}
+
+#myPlayer .playerScreen {
+	height: 447px;
+	width: 100%;
 	border: 0px;
-	padding: 5px;
-	background-color: #A0A8AB;
+	background-image: url("/images/template/Player/playerScreenBackground.png");
+	background-repeat: repeat-x;
 }
 
-#player_box .vid {
-		border: 0px;
-	padding: 0px;
-	display: inline;
+#myPlayer .playerScreen .playerScreenRight {
+	width: 75px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerScreenRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	z-index: 1;
+	left: 95.51%;
 }
 
-#player_box video {
-	width: 49%;
-	padding: 0px;
+#myPlayer .playerScreen #myVideo {
+	height: 94.75%;
+	float: left;
+	margin-left: -4.6%;
+	margin-top: 1.65%;
+}
+
+#myPlayer .playerScreen .imageLoader {
+	float: right;
+	margin-top: 1.65%;
+	position: relative;
+	z-index: 2;
+}
+
+#myPlayer .playerScreen .imageLoader img{
+	width: 100%;
+	height: 100%;	
+}
+
+#myPlayer .playerMenu .playerMenuLeft {
+	float: left;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerMenuLeft.png");
+	background-repeat: no-repeat;
+}
+
+#myPlayer .playerMenu {
+	width: 100%;
+	height: 68px;
 	border: 0px;
-	margin-left: 0.8%;
+	background-image: url("/images/template/Player/playerMenuBackground.png");
+	background-repeat: repeat-x;
 }
 
-#player_box .imageLoader {
-	display: inline;
-	width: 50%;
-	height: 600px;
+#myPlayer .playerMenu .sliderSpace {
+	width: 52%;
+	height: 59px;
+	float: left;
+	background: url("/images/template/Player/playerSliderBackground.png");
+	margin-top: 5px;
 }
 
-#player_box .imageLoader img{
+/**************** Przyciski menu i separator *************************/
 
-	padding: 0px;
-	width: 49%;
+#myPlayer .playerMenu .separator {
+	width: 17px;
+	height: 61px;
+	background: url("/images/template/Player/separator.png");
+	float: left;
+	margin-top: 3px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
-/* TimeLine */
+
+#myPlayer .playerMenu #playButton {
+	width: 21px;
+	height: 23px;
+	background: url("/images/icons/playerPlayButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-top: 23px;
+	margin-left: 1px;
+	top: 0px;
+}
+
+#myPlayer .playerMenu #playButton:hover, #playButton:focus {
+	background-position: 21px;
+}
+
+#myPlayer .playerMenu #pauseButton {
+	width: 22px;
+	height: 28px;
+	background: url("/images/icons/playerPauseButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-top: 19px;
+	top: 0px;
+}
+
+#myPlayer .playerMenu #pauseButton:hover, #pauseButton:focus {
+	background-position: 22px;
+}
+
+#myPlayer .playerMenu #stopButton {
+	width: 28px;
+	height: 28px;
+	margin-top: 1.8%;
+	background: url("/images/icons/playerStopButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-left: 25px;
+}
+
+#myPlayer .playerMenu #stopButton:hover, #stopButton:active {
+	background-position: 28px;
+
+}
+
+#myPlayer .playerMenu .volumeButton {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/playerVolumeButton.png");
+	float: left;
+	border: none;
+	margin-top: 18px;
+}
+
+
+#myPlayer .playerMenu .volumeButton:hover, .volumeButton:active {
+	background-position: bottom;
+}
+
+#myPlayer .playerMenu .volumeButtonMuted {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButtonMuted.png");
+	float: left;
+	border: none;
+	margin-top: 18px;
+}
+
+
+#myPlayer .playerMenu .volumeButtonMuted:hover, .volumeButtonMuted:active {
+	background-position: bottom;
+}
+
+#myPlayer .playerMenu .volumeButton30 {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButton30.png");
+	float: left;
+	border: none;
+	margin-top: 18px;
+}
+
+
+#myPlayer .playerMenu .volumeButton30:hover, .volumeButton30:active {
+	background-position: bottom;
+}
+
+#myPlayer .playerMenu .volumeButton60 {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButton60.png");
+	float: left;
+	border: none;
+	margin-top: 18px;
+}
+
+
+#myPlayer .playerMenu .volumeButton60:hover, .volumeButton60:active {
+	background-position: bottom;
+}
+
+#myPlayer .playerMenu #hdButton {
+	width: 32px;
+	height: 21px;
+	background: url("/images/icons/playerHdButton.png");
+	float: left;
+	border: none;
+	margin-top: 22px;
+	margin-left: 30px;
+}
+
+#myPlayer .playerMenu #hdButton:hover, #hdButton:active {
+	background-position: bottom;
+}
+
+#myPlayer .playerMenu #fullScreenButton {
+	width: 32px;
+	height: 25px;
+	background: url("/images/icons/playerFullScreenButton.png");
+	float: left;
+	border: none;
+	margin-top: 19px;
+	margin-left: 20px;
+}
+
+#myPlayer .playerMenu #fullScreenButton:hover, #fullScreenButton:active {
+	background-position: bottom;
+}
+
+/********************** Pasek postepu ***********************/
+
 #timeLine {
-	
 	border: 1px solid #3E484A;
 	width: 100%;
-	height: 10px;
+	height: 16px;	
+	float: left;
+	background: rgba(235,235,234, .6);
+	margin-top: 20px;
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 	
 }
-	#timeLine .belt {
-		background-color: #DE2A10;
+
+#timeLine .belt {
+		background: url("/images/template/Player/sliderBackground.png");
 		width: 0%;
 		height: 100%;
-	}
-	
-/* volumeLine */
-#volumeLine {
-	border: 1px solid #3E484A;
-	width: 10%;
-	height: 10px;
-	float: right;
-	margin-top: 1%;
+		border-radius: 5px; 
+		-moz-border-radius: 5px; 
+		-webkit-border-radius: 5px; 
 }
+/**********************Pasek głośności***********************/
+#bodyVolumeLine {
+	width: 60px;
+	height: 150px;
+	background-color: #99BBDD;
+	position: relative;
+	z-index: 3;
+	top: -180px;
+	left: -20px;
+	padding-bottom: 30px;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.3);
+	background-color: rgba(28,28,33,.5); 
+}
+
+#bodyVolumeLine #volumeLine {
+	width: 14px;
+	height: 130px;
+	border: 1px solid #000000;
+	position: relative;
+	left: 22px;
+	top: 20px;
+	z-index: 3;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.4);
+	background-color: rgba(28,28,33,.5); 
+}
+
+#bodyVolumeLine #volumeLine .belt {
+	width: 100%;
+	height: 50%;
+	background: url("/images/template/Player/volumeLineBackground.png");
+	background-repeat: repeat-y;
+	position: absolute;
+	bottom: 0;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+/************************************************************/
+
+/************************************************************/
+/************************** CZAS ****************************/
+#timeDiv {
+	float: left;
+	margin-top: 17px;
+	margin-left: 10px;
+	color: #FEFEFE;
+	font-size: 7;
+	padding: 0;
+}
+/************************************************************/
+#myPlayer .playerMenu .playerMenuRight {
+	float: right;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerMenuRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	left: 2.4%;
+
+}
+
+#myPlayer .playerEditMenu .playerEditMenuLeft {
+	float: left;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerEditMenuLeft.png");
+	background-repeat: no-repeat;
+}
+
+#myPlayer .playerEditMenu {
+	width: 100%;
+	height: 95px;
+	border: 0px;
+	background-image: url("/images/template/Player/playerEditMenuBackground.png");
+}
+
+#myPlayer .playerEditMenu .playerEditMenuRight {
+	float: right;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerEditMenuRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	left: 2.4%;
+}
+
 	#volumeLine .belt {
 		background-color: #DE2A10;
 		width: 55%;
@@ -65,7 +349,7 @@ button.cupid-green {
     background-color: #7FBF4D;
     background-image: -moz-linear-gradient(center top , #7FBF4D, #63A62F);
     border-color: #63A62F #63A62F #5B992B;
-    border-image: none;
+    border: none;
     border-radius: 3px;
     border-style: solid;
     border-width: 1px;

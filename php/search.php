@@ -1,6 +1,6 @@
 <?php 
 	require_once('connect.php');
-	
+
  	$sql_popularne = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies WHERE Tytul LIKE '".$_POST['title']."' ORDER BY Wyswietlenia DESC";
 
 
@@ -26,9 +26,6 @@
 	{
 			
 	}
-	
-
-	
 	
 ?>
 

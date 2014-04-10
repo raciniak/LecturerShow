@@ -1,0 +1,296 @@
+#player_box {
+	border: none;
+	padding: 5px;
+	background-color: #A0A8AB;
+}
+
+#player_box .vid {
+		border: 0px;
+	padding: 0px;
+	display: inline;
+}
+
+#player_box video {
+	width: 49%;
+	padding: 0px;
+	border: 0px;
+	margin-left: 0.8%;
+}
+
+#player_box .imageLoader {
+	display: inline;
+	width: 50%;
+	height: 600px;
+}
+
+#player_box .imageLoader img{
+
+	padding: 0px;
+	width: 49%;
+}
+/* TimeLine */
+#timeLine {
+	
+	border: 1px solid #3E484A;
+	width: 100%;
+	height: 10px;
+}
+	#timeLine .belt {
+		background-color: #DE2A10;
+		width: 0%;
+		height: 100%;
+	}
+	
+/* volumeLine */
+#volumeLine {
+	border: 1px solid #3E484A;
+	width: 10%;
+	height: 10px;
+	float: right;
+	margin-top: 1%;
+}
+	#volumeLine .belt {
+		background-color: #DE2A10;
+		width: 55%;
+		height: 100%;
+	}
+
+/* Przyciski playera */
+button.cupid-green {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #7FBF4D;
+    background-image: -moz-linear-gradient(center top , #7FBF4D, #63A62F);
+    border-color: #63A62F #63A62F #5B992B;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 0 #96CA6D inset;
+    color: #FFFFFF;
+    font: bold 11px/1 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+    padding: 7px 0 8px;
+    text-align: center;
+    text-shadow: 0 -1px 0 #4C9021;
+    width: 150px;
+}
+button.cupid-green:hover {
+    background-color: #76B347;
+    background-image: -moz-linear-gradient(center top , #76B347, #5E9E2E);
+    box-shadow: 0 1px 0 0 #8DBF67 inset;
+    cursor: pointer;
+}
+
+/* --------------------------------------------------------------------- */
+
+#myPlayer {
+	height: 610px;
+	width: 100%;
+	padding-bottom: 100px;
+}
+
+#myPlayer .playerScreen .playerScreenLeft {
+	float: left;
+	width: 75px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerScreenLeft.png");
+	background-repeat: no-repeat;
+}
+
+#myPlayer .playerScreen {
+	height: 447px;
+	width: 100%;
+	border: 0px;
+	background-image: url("/images/template/Player/playerScreenBackground.png");
+	background-repeat: repeat-x;
+}
+
+#myPlayer .playerScreen .playerScreenRight {
+	width: 75px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerScreenRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	z-index: 1;
+	left: 95.51%;
+}
+
+#myPlayer .playerScreen #newVideo {
+	height: 94.75%;
+	float: left;
+	margin-left: -4.6%;
+	margin-top: 1.65%;
+}
+
+#myPlayer .playerScreen .playerImageLoader {
+	float: right;
+	margin-top: 1.65%;
+	position: relative;
+	z-index: 2;
+}
+
+#myPlayer .playerScreen .playerImageLoader img{
+	width: 100%;
+	height: 100%;	
+}
+
+#myPlayer .playerMenu .playerMenuLeft {
+	float: left;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerMenuLeft.png");
+	background-repeat: no-repeat;
+}
+
+#myPlayer .playerMenu {
+	width: 100%;
+	height: 68px;
+	border: 0px;
+	background-image: url("/images/template/Player/playerMenuBackground.png");
+	background-repeat: repeat-x;
+}
+
+#myPlayer .playerMenu .sliderSpace {
+	width: 55%;
+	height: 59px;
+	float: left;
+	background: url("/images/template/Player/playerSliderBackground.png");
+	margin-top: 5px;
+}
+
+/**************** Przyciski menu i separator *************************/
+
+#myPlayer .playerMenu .separator {
+	width: 17px;
+	height: 61px;
+	background: url("/images/template/Player/separator.png");
+	float: left;
+	margin-top: 3px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#myPlayer .playerMenu .playerPlayButton {
+	width: 21px;
+	height: 23px;
+	background: url("/images/icons/playerPlayButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-top: 23px;
+	top: 0px;
+}
+
+#myPlayer .playerMenu .playerStopButton {
+	width: 28px;
+	height: 28px;
+	margin-top: 1.8%;
+	background: url("/images/icons/playerStopButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-left: 25px;
+}
+
+#myPlayer .playerMenu .playerVolumeButton {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/playerVolumeButton.png");
+	float: left;
+	border: none;
+	margin-top: 18px;
+}
+
+#myPlayer .playerMenu .playerHdButton {
+	width: 32px;
+	height: 21px;
+	background: url("/images/icons/playerHdButton.png");
+	float: left;
+	border: none;
+	margin-top: 22px;
+	margin-left: 30px;
+}
+
+#myPlayer .playerMenu .playerFullScreenButton {
+	width: 32px;
+	height: 25px;
+	background: url("/images/icons/playerFullScreenButton.png");
+	float: left;
+	border: none;
+	margin-top: 19px;
+	margin-left: 20px;
+}
+
+/********************** Pasek postepu ***********************/
+
+#playerTimeLine {
+	border: 1px solid #3E484A;
+	width: 100%;
+	height: 16px;	
+	float: left;
+	background: rgba(235,235,234, .6);
+	margin-top: 20px;
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+
+	
+}
+
+#playerTimeLine .belt {
+		background: url("/images/template/Player/sliderBackground.png");
+		width: 70%;
+		height: 100%;
+		border-radius: 5px; 
+		-moz-border-radius: 5px; 
+		-webkit-border-radius: 5px; 
+}
+/************************************************************/
+/************************** CZAS ****************************/
+#videoTime {
+	float: left;
+	margin-top: 17px;
+	margin-left: 10px;
+	color: #FEFEFE;
+	font-size: 7;
+	padding: 0;
+	text-align: center;
+}
+/************************************************************/
+#myPlayer .playerMenu .playerMenuRight {
+	float: right;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerMenuRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	left: 2.4%;
+
+}
+
+#myPlayer .playerEditMenu .playerEditMenuLeft {
+	float: left;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerEditMenuLeft.png");
+	background-repeat: no-repeat;
+}
+
+#myPlayer .playerEditMenu {
+	width: 100%;
+	height: 95px;
+	border: 0px;
+	background-image: url("/images/template/Player/playerEditMenuBackground.png");
+}
+
+#myPlayer .playerEditMenu .playerEditMenuRight {
+	float: right;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerEditMenuRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	left: 2.4%;
+}
