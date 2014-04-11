@@ -160,7 +160,7 @@ function AddInput(i)
 // Obsługa zakładek w edytorze
 function taby(){
 		//dla każdego miejsca z tabami
-        $('.tabs').each(function() {
+        $('.bookmarks').each(function() {
             var $ul = $(this);
             var $li = $ul.children('li');
             //przy wejsciu na strone ukrywamy tresc tabow i pokazujemy tylko aktywny...

@@ -67,7 +67,7 @@
 }
 
 #myPlayer .playerMenu .sliderSpace {
-	width: 52%;
+	width: 54%;
 	height: 59px;
 	float: left;
 	background: url("/images/template/Player/playerSliderBackground.png");
@@ -77,7 +77,7 @@
 /**************** Przyciski menu i separator *************************/
 
 #myPlayer .playerMenu .separator {
-	width: 17px;
+	width: 9px;
 	height: 61px;
 	background: url("/images/template/Player/separator.png");
 	float: left;
@@ -367,6 +367,14 @@ button.cupid-green:hover {
     background-image: -moz-linear-gradient(center top , #76B347, #5E9E2E);
     box-shadow: 0 1px 0 0 #8DBF67 inset;
     cursor: pointer;
+}
+
+/***************************** Obszar wykorzystywany np. na podstronie edytora (zakładki) ************************************/
+.whiteSection
+{
+	width: 100%;
+	min-height: 200px;
+	background-color: #FFFFFF;
 }
 
 /*full screen */
