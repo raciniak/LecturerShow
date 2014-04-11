@@ -331,6 +331,7 @@
 	background-image: url("/images/template/Player/playerEditMenuRight.png");
 	background-repeat: no-repeat;
 	position: relative;
+	top: -53px;
 	left: 2.4%;
 }
 

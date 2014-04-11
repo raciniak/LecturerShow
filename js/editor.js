@@ -39,7 +39,6 @@ $(document).ready(function(){
 		//timowanie najnowszych czasów zapisanych w edytorze do wyświetlenia w czasie edytowania filmu wraz z wprowadzonymi zmianami
 		$("#playButton").click(function(){
 			timetimes();
-			alert("11");
 			sort_times();
 		});
 		$("#timeLine").click(function(){
@@ -514,7 +513,6 @@ function completSave(data){
 
 // integracja czasów
 function timetimes(){
-	alert(iloscSlajdow);
 	for(i=0;i<iloscSlajdow;i++)
 	{
 		var textbox1 = document.getElementById("textboxhour"+slajdy[i]);
