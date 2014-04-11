@@ -91,6 +91,7 @@ function setSearch(value) {
         document.getElementById('search_suggest').innerHTML = '';
 } */
 
+/* funkcje odpowiadająca za wybranie filmu/slajów */
 function fileSelected(plik) {
         var file = document.getElementById(plik).files[0];
         if (file) {
@@ -112,6 +113,7 @@ function fileSelected(plik) {
         }
       }
 
+/* funkcja wysyłająca filmy/slajdy na serwer */
 function uploadFile() {
         if(document.getElementById('fileType1').innerHTML.toString().contains("video") == false)
         {
@@ -139,6 +141,7 @@ function uploadFile() {
         xhr.send(fd);
       }
 
+/* funkcja odpowiadająca za pasek postępu */
 function uploadProgress(evt) {
         if (evt.lengthComputable) {
           var percentComplete = Math.round(evt.loaded * 100 / evt.total);
@@ -150,6 +153,7 @@ function uploadProgress(evt) {
         }
       }
 
+/* funkcje wykonujące się po poprawnym wykonaniu powyższych funkcji */
 function uploadComplete(evt) {
         /* This event is raised when the server send back a response */
         alert(evt.target.responseText);
@@ -162,6 +166,8 @@ function uploadFailed(evt) {
 function uploadCanceled(evt) {
         alert("The upload has been canceled by the user or the browser dropped the connection.");
       }
+      
+/* funkcja wysyłajaca dane z formularza kontaktowego */      
 function sendReport() {
 	var fd = new FormData();
 	fd.append("e-mail", document.getElementById("e-mail_formularz").value);
@@ -171,11 +177,13 @@ function sendReport() {
 	xhr.open("POST","php/sendReport.php");
 	xhr.send(fd);
 }
+
+/* funkcja wykonująca się po poprawnym wykonaniu się funkcji sendReport */
 function sendReportComplete(evt) {
 	document.getElementById("e-mail_formularz").value = '';
 	document.getElementById("opis_formularz").value = ' ';
-	alert("dodano wpis");
 }
+
 // funkcja wysyłająca dane z formularza rejestracji 
 function sendUserData() {
 	var fd = new FormData();
@@ -217,13 +225,14 @@ function uploadComplete(evt) {
 
 // funkcja logowania
 function logIn() {
-
 	alert("loguje");
 	var fd = new FormData();
 	fd.append("login_l", document.getElementById('login_l').value);
 	fd.append("haslo_l", document.getElementById('haslo_l').value);
 	var xhr = new XMLHttpRequest();
 	xhr.addEventListener("load", logInLoadComplete, false);
+	xhr.addEventListener("error", logInError, false);
+	xhr.addEventListener("abort",logInError, false);
 	xhr.open("POST", "php/logowanie.php");
 	xhr.send(fd);
 	alert("loguje");
@@ -232,50 +241,68 @@ function logIn() {
 // funkcja wykonująca się po poprawnym zalogowaniu się
 function logInLoadComplete() {
 	alert("zalogował");
-	
 	document.location.href="glowna.html";
-	
 	//setTimeout(function(){
 		//document.location.href="konto_new.html";
 	//},500);
+} 
+
+// funkcja wykonująca się po błędzie logowania 
+function logInError() {
+	alert("Błąd logowanie. Proszę spróbować ponownie.");
+	setTimeout(function(){
+		document.location.href="logowanie_new.html";
+	});
 }
 
 // funkcja wylogowująca użytkownika
 function logOut() {
-	
 	var xhr = new XMLHttpRequest();
 	xhr.addEventListener("load", logOutLoadComplete, false);
+	xhr.addEventListener("error", logOutError, false);
+	xhr.addEventListener("abort", logOutError, false);
 	xhr.open("POST", "php/wyloguj.php");
 	xhr.send();
 	document.getElementById("konto").style.display = "none";
-	//location.href = "logowanie_new.html";
 }
 
 // funkcja wykonująca się po poprawnym wylogowaniu się
 function logOutLoadComplete() {
-
 	document.getElementById("konto").style.display = "none";
-	
 	setTimeout(function(){
-	window.location.href="logowanie_new.html";
+		window.location.href="logowanie_new.html";
 	},5);
 }
+// funkcja wykonująca się po błędzie podczas wylogowywania się
+function logOutError() {
+	alert("Błąd wylogowywania. Proszę spróbować ponownie.");
+	document.location.href = "konto_new.html";
+}
 
+// funkcja wysyłająca treść inputa wyszukiwarki 
 function searchVideo() {
 	var fd = new FormData();
 	fd.append("title_l", document.getElementById('searchinput').value);
 	var xhr = new XMLHttpRequest();
 	xhr.addEventListener("load", searchVideoComplete, false);
+	xhr.addEventListener("error", searchVideoError, false);
+	xhr.addEventListener("abort", searchVideoError, false);
 	xhr.open("POST", "php/search.php");
 	xhr.send(fd);
 }
-	
-function searchVideoComplete (evt) {
+
+// funkcja wykonująca się po poprawnym wykonaniu funkcji searchVideo	
+function searchVideoComplete(evt) {
 	window.location.href = "results.html";
 }
 
-
+// funkcja wykonująca się po errorze w funkcji searchVideo
+function searchVideoError() {
+	window.location.href = "glowna.html";
+} 
 var myVar;
+
+// funkcja zmieniajaca obrazki miniaturek
 function funkcja(x)
         	{
         		var i=1;
@@ -288,20 +315,15 @@ function funkcja(x)
         	
         			i++;
        		}, 1000);
-}       
+}    
+// cd funkcji
 function funkcja_powrot(x){
 	clearInterval(myVar);
 	x.src = 'images/60.jpg';
-
 }        	
 
-
-
-
-
-
 $(document).ready(function(){
-	
+	// funkcje zmieniające obrazki linków
 	$('#fb_link').hover(
     function(){
       $(this).attr('src','images/icons/fb_hover.png');
@@ -326,6 +348,7 @@ $(document).ready(function(){
       $(this).attr('src','images/icons/wmii.png');
     }
 );
+	// funkcja pobierająca dane sesji
 	$.ajax({
         url: "php/sesja.php",
         success : function(msg){
@@ -393,6 +416,7 @@ $(document).ready(function(){
         	console.log(err);
     	}
 	}); 
+	
 	// funkcja pobierająxa statystyki serwisu
 	$.ajax({
         url: "php/statystyki.php",
@@ -411,6 +435,7 @@ $(document).ready(function(){
         	console.log(err);
     	}
 	}); 
+	
 	// funkcja wyświetlająca filmy zalogowanego użytkownika
 	$.ajax({
         url: "php/search_my_videos.php",
@@ -437,6 +462,7 @@ $(document).ready(function(){
     	}
 	}); 
 	
+	// funkcja pobierająca najnowsze filmy z bazy
 	$.ajax({
         url: "php/najnowsze.php",
         success: function(msg){
@@ -461,6 +487,8 @@ $(document).ready(function(){
         	console.log(err);
     	}
 	});
+	
+	// j.w ... najlepsze
 	$.ajax({
         url: "php/najlepsze.php",
         success: function(msg){
@@ -487,6 +515,7 @@ $(document).ready(function(){
     	}
 	});
 	
+	// j.w. najpopularniejsze
 	$.ajax({
         url: "php/najpopularniejsze.php",
         success: function(msg){
@@ -514,6 +543,7 @@ $(document).ready(function(){
     	}
 	}); 
 	
+	// podobne funkcje co wyżej tylko do sliderow strony glownej
 	$.ajax({
         url: "php/najnowsze.php",
         success: function(msg){
@@ -583,6 +613,7 @@ $(document).ready(function(){
     	}
 	});  
 	
+	// funkcja pobierająca dane filmów wyszukanych przez uzytkownika
 	$.ajax({
         url: "php/search1.php",
         success: function(msg){
