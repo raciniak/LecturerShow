@@ -9,22 +9,32 @@ $(document).ready(function() {
         var $li = $lista.children('li');
 		
 			
-            var odleglosc = $li.eq(0).outerWidth() + parseInt($li.eq(0).css('margin-left')) + parseInt($li.eq(0).css('margin-right'));
- 			var maxLeft = odleglosc * $li.length - 7 * odleglosc;
+            var odleglosc = $li.eq(0).outerWidth() + parseInt($li.eq(0).css('margin-left'));
+ 			var maxLeft = 1000;
  			var koniec;
 			var poczatek;
-			alert(odleglosc);
+			//alert($lista.position().left);
 			$('.next', $current_slider).click(function() {
 			koniec = maxLeft + $lista.position().left;
 			koniec = Math.floor(koniec);
 			
 				if ($lista.position().left==0)
 				{
+					
 					$('.prev', $current_slider).css("visibility","visible");
+					$($lista).not(':animated').animate({
+                        'left' : '-='+100
+						
+                    },400);
 				}
 				if ($lista.position().left!=0)
 				{
+						
 					$('.prev', $current_slider).css("visibility","visible");
+					$($lista).not(':animated').animate({
+                        'left' : '-='+100
+						
+                    },400);
 				}
 				if ($lista.position().left > -maxLeft) {
 					

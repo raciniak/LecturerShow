@@ -49,6 +49,12 @@
 			</div>
 
 		<!-- Content -->
+			<div id="wyszukiwarka">
+					<p> Wyszukaj film: </p>
+			    	<input type="text" placeholder="Wyszukaj film ..." id="searchinput" name="searchinput"/> 
+			    	<input type="submit" id="submit_wyszukiwarka" onclick="searchVideo()" value="Szukaj"/>
+			    	<div id="search_suggest"></div>
+			    </div>
 			<div id="content-wrapper">
 				<div id="content">
 					<div class="container">
@@ -60,7 +66,7 @@
 										<header>
 											<h3>TOP 4 </h3>
 										</header>
-										<video src="video/trailer_test.ogg" height="40%" width="65%" ></video>
+										<video src="video/trailer_test.ogg" height="40%" width="65%" autoplay></video>
 										<ul id="video_list"></ul>
 									</section>
 					<section>
