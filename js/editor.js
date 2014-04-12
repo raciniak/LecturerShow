@@ -49,8 +49,8 @@ $(document).ready(function(){
 		});
 		
 		//ustawienie max długości multirange 
-		var czas = Math.floor(myVideo.duration);
-		$('#range')[0].setAttribute('data-max',czas);
+		//var czas = Math.floor(myVideo.duration);
+		//$('#range')[0].setAttribute('data-max',czas);
 		
 });
 
@@ -290,10 +290,14 @@ function pobierzPliki()
         var name2 = {
             namefile: namefile2
         };
+        var video = $("#myPlayer .playerScreen #myVideo")[0];
+        $(video).bind('loadedmetadata', function(){
+        	var czas = Math.floor(myVideo.duration);
+		$('#range')[0].setAttribute('data-max',czas);
 		$.post('php/readtime.php',name1,PodzielPlik);
 		
 		$.post('php/readtime.php',name2,OpenTimeVideo);
-		
+		});
  }
  
  //przyjęcie czsów grania filmu z pliku
@@ -317,11 +321,11 @@ function PodzielPlik(data)
 			j++;
 			czasy[i]=parseInt(plik[i+j]);
    		 }
-   		 
     	windowsik();
        	uzupelnijMultiRange();
        	createRange();
        	list();
+   
 }
 
 //funkcja odpowiadająca za uzupełnienie pola windows w edytorze do edycji slajdów
