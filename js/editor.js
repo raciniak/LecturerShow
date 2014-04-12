@@ -41,7 +41,6 @@ $(document).ready(function(){
 		//timowanie najnowszych czasów zapisanych w edytorze do wyświetlenia w czasie edytowania filmu wraz z wprowadzonymi zmianami
 		$("#playButton").click(function(){
 			timetimes();
-			alert("11");
 			sort_times();
 		});
 		$("#timeLine").click(function(){
@@ -168,7 +167,7 @@ function AddInput(i)
 // Obsługa zakładek w edytorze
 function taby(){
 		//dla każdego miejsca z tabami
-        $('.tabs').each(function() {
+        $('.bookmarks').each(function() {
             var $ul = $(this);
             var $li = $ul.children('li');
             //przy wejsciu na strone ukrywamy tresc tabow i pokazujemy tylko aktywny...
@@ -323,7 +322,7 @@ function slideAddWindows(i)
 
 //dodanie texboxow z czasami odtwarzania filmu
 function CompletPlayedMovieTime(){
-	/*var timeeStart,timeeStop;
+	var timeeStart,timeeStop;
 	timeeStart = upConversionTime(startPlay);
 	timeeStop = upConversionTime(stopPlay);
 	timeeStart = timeeStart.split(":");
@@ -334,7 +333,7 @@ function CompletPlayedMovieTime(){
 	"<b class='textboxPlay'>Stop: <b class='textbox01' ><input id='textbox01' type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[0]+"'></b>"+
 	"<b class='textbox11' ><input id='textbox11' type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[1]+"'></b>"+
 	"<b class='textbox21' ><input id='textbox21' type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[2]+"'></b></b>");
-*/
+
 }
 
 //Funkcja odpowiadająca za checkboxy tworzy albo usuwa slider z multirange
@@ -634,7 +633,6 @@ function completSave(data){
 
 // integracja czasów
 function timetimes(){
-	alert(iloscSlajdow);
 	for(i=0;i<iloscSlajdow;i++)
 	{
 		var textbox1 = document.getElementById("textboxhour"+slajdy[i]);
