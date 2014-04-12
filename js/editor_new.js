@@ -136,7 +136,6 @@ function fullScreen() {
 }
 
 function updateTime(){
-    
     var seconds = Math.floor(myVideo.currentTime % 60);
     var minutes = Math.floor((myVideo.currentTime / 60) % 60);
     var hours = Math.floor(myVideo.currentTime / 3600);

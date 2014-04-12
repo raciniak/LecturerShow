@@ -47,7 +47,10 @@ $(document).ready(function(){
 			timetimes();
 			sort_times();
 		});
-
+		
+		//ustawienie max długości multirange 
+		var czas = Math.floor(myVideo.duration);
+		$('#range')[0].setAttribute('data-max',czas);
 		
 });
 
@@ -117,13 +120,21 @@ function list(){
 }
 // Utworzenie MultiRange z wszystkimi slajdami wyrzuconymi przez modełko
 function createRange(){
-		var min = document.getElementById("range").getAttribute("data-min");
 		var max = document.getElementById("range").getAttribute("data-max");
       	for(i=0;i<iloscSlajdow;i++)
       	{
       		var left="left: "+czasy[i]/max*100+"%";
       		createSlider(slajdy[i],czasy[i],left);
       	}
+}
+
+// Utworzenie MultiRange z ramami odtwarzania filmu
+function createRangeTime(){
+		var max = document.getElementById("range").getAttribute("data-max");
+      	var left="left: "+startPlay/max*100+"%";
+      	createSlider("PoczatekFilmu",startPlay,left);
+      	left="left: "+stopPlay/max*100+"%";
+      	createSlider("KoniecFilmu",stopPlay,left);
 }
 
 // Utworzenie slidera z podpiętym slajdem
@@ -152,15 +163,33 @@ function uzupelnijMultiRange(){
 	{
 		AddInput(i);
 	}
+	AddInputTime("PoczatekFilmu");
+	AddInputTime("KoniecFilmu");
 }
 
-//Podfunkcja uzupelnijMultiRange odpowiadająca za dodanie pojedyńczego inputa
+//Podfunkcja uzupelnijMultiRange odpowiadająca za dodanie pojedyńczego inputa ze slajdem
 function AddInput(i)
 {
 		var inpucik = document.createElement('input');
         inpucik.setAttribute('type', 'hidden');
         inpucik.setAttribute('name', slajdy[i]);
         inpucik.setAttribute('value', czasy[i]);
+        $(".range").append(inpucik);
+}
+
+//Podfunkcja uzupelnijMultiRange odpowiadająca za dodanie pojedyńczego inputa z poczatkiem i końcem odtwarzania filmu
+function AddInputTime(sliderr)
+{
+		var inpucik = document.createElement('input');
+        inpucik.setAttribute('type', 'hidden');
+        inpucik.setAttribute('name', sliderr);
+        if(sliderr==="PoczatekFilmu")
+        {
+        		inpucik.setAttribute('value', startPlay);
+        }else if(sliderr==="KoniecFilmu")
+        {
+        		inpucik.setAttribute('value', stopPlay);
+        }
         $(".range").append(inpucik);
 }
 
@@ -273,6 +302,7 @@ function OpenTimeVideo(data){
 	startPlay=plik[0];
 	stopPlay=plik[1];
 	CompletPlayedMovieTime();
+	createRangeTime();
 }
  
 // Dzielimy wartość pliku na dwie tablice: tablica z indentyfikatorami obrazków, tablica z czasami odtwarzania
@@ -380,9 +410,10 @@ function chcecktextbox(evt,textbox)
 		var name,name2;
 		var buffer = buffer_textbox;
 		var value = new Array();
-		var id;
+		var id='';
 		var i;
 		var timee1;
+		var bool=true;
 		var max = parseInt(document.getElementById("range").getAttribute("data-max"));
 		
 		var theEvent = evt || window.event;
@@ -392,7 +423,15 @@ function chcecktextbox(evt,textbox)
 	 	if( regex.test(key) || theEvent.keyCode==8 || theEvent.keyCode==46 ) 
 	 	{ 
 		name = $(textbox).attr('id');
-		id=name[name.length-1];
+		//znajdujemy numer slajdu w identyfikatorze
+		for(i=0;i<name.length;i++)
+		{
+			bool = isNaN(name[i]);
+			if(bool===false)
+			{
+				id=id+name[i];
+			}
+		}
 		name2 = name.split(id);
 		value[0] = $("#textboxhour"+id).val();
 		value[1] = $("#textboxmin"+id).val();
@@ -587,8 +626,8 @@ function SaveChanges(){
     var h = window.innerHeight-50;
     $(".overlay-message").css("top",w);
     $(".overlay-message").css("left",h);
-  $(".overlay, .overlay-message").show();
-    
+    $(".overlay, .overlay-message").show();
+    alert("1");
     $("#yess").click(function() {
         $(".overlay, .overlay-message").hide();
         timetimes();

@@ -131,9 +131,9 @@
 													<div class="playerEditMenuLeft"> </div>
 																								
 											<div id="timeline_editor">
-		                						<div id="range" class="range" data-min="0" data-max="33" data-step="1">
-		                    						<input class="MovieTime" type="hidden" name="PoczatekFilmu" value="0" />
-		                     						<input class="MovieTime" type="hidden" name="KoniecFilmu" value="33" />
+		                						<div id="range" class="range" data-min="0" data-max="1" data-step="1">
+		                    						<!--<input  type="hidden" name="PoczatekFilmu" value="0" />
+		                     						<input  type="hidden" name="KoniecFilmu" value="33" />-->
 		               							</div>
 		            						</div>
 													<div class="playerEditMenuRight"> </div>
@@ -169,6 +169,12 @@
 											        <b>Nie klikac bo narobicie bałaganu!!!</b>
 											        <button class="cupid-green" onclick="stopFrame()" style="width: 80px; height: 35px;">Zapisz slajd</button>
 											</div>	
+												<div class="overlay"></div>
+													<div class="overlay-message">
+														<b>Czy na pewno chcesz zapisać wszystkie zmiany ?</b>
+     													<button id="yess" class="cupid-green" style="width: 120px; height: 35px;">Tak</button>
+     													<button id="noo" class="cupid-green" style="width: 120px; height: 35px;">Nie</button>
+												</div>
 									</section>
 									
 							</div>
