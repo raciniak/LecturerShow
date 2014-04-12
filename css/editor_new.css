@@ -380,7 +380,7 @@ button.cupid-green:hover {
 /*full screen */
 
 #myPlayer:-webkit-full-screen{ 
-		
+		background : none;
 }
 
 #myPlayer:-moz-full-screen {
