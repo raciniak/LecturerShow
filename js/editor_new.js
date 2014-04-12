@@ -119,21 +119,40 @@ function mute() {
 	}
 }
 
+
 function fullScreen() {
-	// Sorry Piotrek, ale zmieniłem wygląd całego playera i elementu player_box już nie ma
-	// musisz to sobie zmienić, albo wstawić w player jakiś dodatkowy div, który nie rozpieprzy reszty :D
-	var pbox = document.getElementById("player_box");
-	if (pbox.requestFullscreen) {
-		pbox.requestFullscreen();
-	} else if (pbox.msRequestFullscreen) {
-		pbox.msRequestFullscreen();
-	} else if (pbox.mozRequestFullScreen) {
-		pbox.mozRequestFullScreen();
-		pbox.setAttribute("style","padding-top : 45%");
-	} else if (pbox.webkitRequestFullscreen) {
-		pbox.webkitRequestFullscreen();
-	}
+
+	var pbox = document.getElementById("myPlayer");
+	if (pbox.requestFullscreen)
+		if (document.fullScreenElement) {
+			document.cancelFullScreen();
+		} else {
+			pbox.requestFullscreen();
+		}
+	else if (pbox.msRequestFullscreen)
+		if (document.msFullscreenElement) {
+			document.msExitFullscreen();
+		} else {
+			pbox.msRequestFullscreen();
+		}
+	else if (pbox.mozRequestFullScreen)
+		if (document.mozFullScreenElement) {
+			document.mozCancelFullScreen();
+		} else {
+			pbox.mozRequestFullScreen();
+		}
+	else if (pbox.webkitRequestFullscreen)
+		if (document.webkitFullscreenElement) {
+			document.webkitCancelFullScreen();
+		} else {
+			pbox.webkitRequestFullscreen();
+		}
 }
+
+
+
+
+
 
 function updateTime(){
     
