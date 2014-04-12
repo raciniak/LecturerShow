@@ -11,6 +11,8 @@ var slajdy=new Array();
 var czasyB=new Array();
 var slajdyB=new Array();
 var convertTime=new Array();
+//Ramy grania filmu
+var startPlay=0, stopPlay=0;
 //inne
 var buffer_textbox='';
 var iloscSlajdow, refresh;
@@ -23,7 +25,7 @@ $(document).ready(function(){
 	$(".overlay, .overlay-message").hide();
 	   //funkcja do pobierania czasow odtwarzania slajdow, kazda funkcja ktora chce korzystac z tablicy a zawierajacej
 	   // czasy musi odczekac w jakis sposob chwile aby funkcja zdazyla sie wykonac
-       pobierzPlik();
+       pobierzPliki();
        taby();
        //odswieżana zmienna przy załadowaniu strony potrzebna do odtwarzacza slajdow
        $('#playButton').click(function(){time = Math.floor(myVideo.currentTime)-1;});
@@ -136,6 +138,11 @@ function createSlider(name,value,left){
         slider.setAttribute('style', left);
         timee = upConversionTime(value);
         slider.innerHTML = "<div class='underSlider'><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='Obrazek nr:"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
+        if("PoczatekFilmu"===name || "KoniecFilmu"===name)
+        {
+        	slider.className = 'slider MovieTimes';
+        	slider.innerHTML = "<div class='underSliderTime'><b>"+name+"</b><p id='movetime"+name+"'>"+timee+"</p></div>";
+        }
         $(".range").append(slider);
 }
 
@@ -245,16 +252,29 @@ function obrazek(){
 }
 
 // funkcja odpowiadająca za pobranie pliku z czasami oraz liczbą slajdów
-function pobierzPlik()
+function pobierzPliki()
 {
-		var namefile = '../movies/'+getParameterByName("id")+'/times.txt';
-		var name = {
-            namefile: namefile
+		var namefile1 = '../movies/'+getParameterByName("id")+'/times.txt';
+		var namefile2 = '../movies/'+getParameterByName("id")+'/timesMovie.txt';
+		var name1 = {
+            namefile: namefile1
         };
-		$.post('php/readtime.php',name,PodzielPlik);
+        var name2 = {
+            namefile: namefile2
+        };
+		$.post('php/readtime.php',name1,PodzielPlik);
 		
+		$.post('php/readtime.php',name2,OpenTimeVideo);
 		
  }
+ 
+ //przyjęcie czsów grania filmu z pliku
+function OpenTimeVideo(data){
+	plik=data.split('\n');
+	startPlay=plik[0];
+	stopPlay=plik[1];
+	CompletPlayedMovieTime();
+}
  
 // Dzielimy wartość pliku na dwie tablice: tablica z indentyfikatorami obrazków, tablica z czasami odtwarzania
 function PodzielPlik(data)
@@ -295,12 +315,26 @@ function slideAddWindows(i)
         divek.className = 'slajd';
         divek.innerHTML = "<div class='windows_div'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> "+
         "<img class='obrazek_windows' src='movies/movie1/images/"+slajdy[i]+".png' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
-        "</b> <b class='windows_element'>Czas slajdu(hh:mm:ss): <b class='textboxhour"+slajdy[i]+"'><input id='textboxhour"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+timee[0]+"'></b>:"+
-        "<b class='textboxmin"+slajdy[i]+"'><input id='textboxmin"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+timee[1]+"'></b>:"+
-        "<b class='textboxsek"+slajdy[i]+"'><input id='textboxsek"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+timee[2]+"'></b></b></div>";
+        "</b> <b class='windows_element'>Czas slajdu(hh:mm:ss): <b class='textboxhour"+slajdy[i]+"'><input id='textboxhour"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[0]+"'></b>:"+
+        "<b class='textboxmin"+slajdy[i]+"'><input id='textboxmin"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[1]+"'></b>:"+
+        "<b class='textboxsek"+slajdy[i]+"'><input id='textboxsek"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[2]+"'></b></b></div>";
         $("#windows_lista").append(divek);
+}
 
-
+//dodanie texboxow z czasami odtwarzania filmu
+function CompletPlayedMovieTime(){
+	/*var timeeStart,timeeStop;
+	timeeStart = upConversionTime(startPlay);
+	timeeStop = upConversionTime(stopPlay);
+	timeeStart = timeeStart.split(":");
+	timeeStop = timeeStop.split(":");
+	$('#TimeMoviePlayed').html("<b class='textboxPlay'>Start: <b class=textbox00><input id='textbox00'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStart[0]+"'></b>"+
+	"<b class=textbox10><input id='textbox10'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStart[1]+"'></b>"+
+	"<b class=textbox20><input id='textbox20'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStart[2]+"'></b></b>"+
+	"<b class='textboxPlay'>Stop: <b class='textbox01' ><input id='textbox01' type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[0]+"'></b>"+
+	"<b class='textbox11' ><input id='textbox11' type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[1]+"'></b>"+
+	"<b class='textbox21' ><input id='textbox21' type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[2]+"'></b></b>");
+*/
 }
 
 //Funkcja odpowiadająca za checkboxy tworzy albo usuwa slider z multirange
@@ -341,9 +375,8 @@ function decodingTime(hour, min, sek){
 	return timee;
 }
 
-
 // funkcja odpowiadająca za aktualizację slidera względem wartości podanych w textboxie
-function chcecktextbox(textbox)
+function chcecktextbox(evt,textbox)
 {
 		var name,name2;
 		var buffer = buffer_textbox;
@@ -352,7 +385,13 @@ function chcecktextbox(textbox)
 		var i;
 		var timee1;
 		var max = parseInt(document.getElementById("range").getAttribute("data-max"));
-
+		
+		var theEvent = evt || window.event;
+	 	var key = theEvent.keyCode || theEvent.which; 
+		key = String.fromCharCode( key ); 
+	 	var regex = /[0-9]|\./; 
+	 	if( regex.test(key) || theEvent.keyCode==8 || theEvent.keyCode==46 ) 
+	 	{ 
 		name = $(textbox).attr('id');
 		id=name[name.length-1];
 		name2 = name.split(id);
@@ -389,7 +428,8 @@ function chcecktextbox(textbox)
 				if (textbox){
       				textbox.parentNode.removeChild(textbox);
   				}
-  				$('.'+name).append("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+buffer+"'>");
+  				$('.'+name).append("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+buffer+"'>");
+  				document.getElementById(name).focus();
 			}else if(timee1<=max)
 			{
 				var input=$("input[name="+id+"]").get(0);
@@ -400,10 +440,90 @@ function chcecktextbox(textbox)
    				if (textbox){
       				textbox.parentNode.removeChild(textbox);
   				}
-  				$('.'+name).html("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(this)' onkeypress='validate(event,this)' value='"+value[name2[0]]+"'>");
+  				$('.'+name).html("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+value[name2[0]]+"'>");
+				document.getElementById(name).focus();
 			}
+		}
 }
 
+// funkcja odpowiadająca za aktualizację slidera względem wartości podanych w textboxie
+function chcecktextboxPlay(evt,textbox)
+{
+		var name,name2;
+		var buffer = buffer_textbox;
+		var value = new Array();
+		var id;
+		var i;
+		var timee1;
+		var max = parseInt(document.getElementById("range").getAttribute("data-max"));
+		
+		var theEvent = evt || window.event;
+	 	var key = theEvent.keyCode || theEvent.which; 
+		key = String.fromCharCode( key ); 
+	 	var regex = /[0-9]|\./; 
+	 	if( regex.test(key) || theEvent.keyCode==8 || theEvent.keyCode==46 ) 
+	 	{ 
+		name = $(textbox).attr('id'); //textbox(0/1/2)(0/1)
+		id=name[name.length-1]; // (0/1)
+		name2 = name.split(id); //name2[0]=textbox(0/1/2)
+		value[0] = $("#textbox0"+id).val();
+		value[1] = $("#textbox1"+id).val();
+		value[2] = $("#textbox2"+id).val();
+		
+		for(i=0;i<3;i++){
+			if(value[i]=='')
+			{
+				value[i]='00';
+				textbox.value=buffer;
+				textbox.setAttribute('value',buffer);
+			}
+		}
+		if(name2[0]=='textbox0')
+		{
+			name2[0]=0;
+		}else if(name2[0]=='textbox1')
+		{
+			name2[0]=1;
+		}else if(name2[0]=='textbox2')
+		{
+			name2[0]=2;
+		}
+		
+		timee1 = decodingTime(value[0], value[1], value[2]);
+
+			if(timee1>max)
+			{
+				textbox.value=buffer;
+				textbox.setAttribute('value',buffer);
+				//usuniecie starego inputa i wstawienie nowego
+				if (textbox){
+      				textbox.parentNode.removeChild(textbox);
+  				}
+  				$('.'+name).append("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+buffer+"'>");
+  				document.getElementById(name).focus();
+			}else if(timee1<=max)
+			{	
+				if(id=="0")
+				{
+					var input=$("input[name=PoczatekFilmu]").get(0);
+					id="PoczatekFilmu";
+    			}else if(id=="1")
+    			{
+    				var input=$("input[name=KoniecFilmu]").get(0);
+    				id="KoniecFilmu";
+    			}
+    			removeSlider(id);
+    			var left="left: "+timee1/max*100+"%";
+    			createSlider(id,timee1,left);
+    			//usuniecie starego inputa i wstawienie nowego
+   				if (textbox){
+      				textbox.parentNode.removeChild(textbox);
+  				}
+  				$('.'+name).html("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+value[name2[0]]+"'>");
+				document.getElementById(name).focus();
+			}
+		}
+}
 
 // tylko liczby i nie wieksze od długości filmu w textboxie z numerem czasów
 function validate(evt,textbox) {
@@ -413,7 +533,7 @@ function validate(evt,textbox) {
 	 var key = theEvent.keyCode || theEvent.which; 
 	 key = String.fromCharCode( key ); 
 	 var regex = /[0-9]|\./; 
-	 if( !regex.test(key) && theEvent.keyCode!=8 && theEvent.keyCode!=46 && theEvent.keyCode!=37 && theEvent.keyCode!=39 && theEvent.keyCode!=46 ) 
+	 if( !regex.test(key) && theEvent.keyCode!=8 && theEvent.keyCode!=37 && theEvent.keyCode!=39 && theEvent.keyCode!=46 ) 
 	 { 
 	 	theEvent.returnValue = false; 
 	 	if(theEvent.preventDefault) 

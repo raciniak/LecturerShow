@@ -31,10 +31,12 @@
 .slider .underSlider{
 	width:150px;
 	height:100px;
+	z-index:1;
 }
 .slider .underSliderTime{
 	width:150px;
 	height:65px;
+	z-index:1;
 }
 
 .slider div img{
@@ -72,6 +74,9 @@
 }
 .windows_element{
 	margin-left: 100px;
+}
+
+.textboxPlay{
 }
 
 /* Tło MultiRange */
@@ -198,3 +203,6 @@
     box-sizing:border-box;
     padding-left:2px;
 }
+
+
+

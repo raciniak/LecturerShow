@@ -226,7 +226,22 @@
         	document.getElementById("textboxhour"+name).setAttribute('value', timee[0]);
         	document.getElementById("textboxmin"+name).setAttribute('value', timee[1]);
         	document.getElementById("textboxsek"+name).setAttribute('value', timee[2]);
-        }
+        }/*else
+        if(name=="KoniecFilmu")
+        {
+        	alert("11");
+        	document.getElementById("textbox01").setAttribute('value', timee[0]);
+        	document.getElementById("textbox11").setAttribute('value', timee[1]);
+        	document.getElementById("textbox21").setAttribute('value', timee[2]);
+        	alert("22");
+        }/*else
+        if(name=="PoczatekFilmu")
+        {
+        	//alert(timee[0]+' '+timee[1]+' '+timee[2]);
+        	document.getElementById("textbox00").setAttribute('value', timee[0]);
+        	document.getElementById("textbox10").setAttribute('value', timee[1]);
+        	document.getElementById("textbox20").setAttribute('value', timee[2]);
+        }*/
         //
         slide.value = value;
 
