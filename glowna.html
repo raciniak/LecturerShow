@@ -66,17 +66,17 @@
 										<header>
 											<h3>TOP 4 </h3>
 										</header>
-										<video src="video/trailer_test.ogg" height="40%" width="65%" autoplay></video>
+										<video id="mini_player" src="video/1.ogg" onclick="srcVideo()" height="40%" width="65%" ></video>
 										<ul id="video_list"></ul>
 									</section>
-					<section>
+					
             		
                 	<h1 id="naglowek_film"> Najnowsze filmy </h1>
                     <div class="slider" onselect="return false">
                     <input type="button" class="prev" value="<" >
                     <div class="wyniki">
-                    	<ul class="lista">
-                			<div id="najnowsze_slider"></div>
+                    	<ul class="lista" id="najnowsze_slider">
+                			
                 		</ul>
                     </div>
                     <input type="button" value=">" class="next" >
@@ -85,8 +85,8 @@
                     <div class="slider">
                     <input type="button" value="<" class="prev">
                     <div class="wyniki">
-                    	<ul class="lista">
-                			<div id="popularne_slider"></div>
+                    	<ul class="lista" id="popularne_slider">
+                			
                 		</ul>
                     </div>
                      <input type="button" value=">" class="next">
@@ -95,8 +95,8 @@
                     <div class="slider">
                     	<input type="button" value="<" class="prev">
                     	<div class="wyniki">
-                    		<ul class="lista">
-                				<div id="najlepsze_slider"></div>
+                    		<ul class="lista" id="najlepsze_slider">
+                				
                 			</ul>
                     	</div>
                      	<input type="button" value=">" class="next">

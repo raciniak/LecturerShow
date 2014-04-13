@@ -545,7 +545,7 @@ $(document).ready(function(){
 	
 	// podobne funkcje co wyżej tylko do sliderow strony glownej
 	$.ajax({
-        url: "php/najnowsze.php",
+        url: "php/najnowsze_slider.php",
         success: function(msg){
         	msg = msg.replace(/}{/g, "},{");
         	msg = "[" + msg + "]";
@@ -567,7 +567,7 @@ $(document).ready(function(){
 	});
 	
 	$.ajax({
-        url: "php/najlepsze.php",
+        url: "php/najlepsze_slider.php",
         success: function(msg){
         	msg = msg.replace(/}{/g, "},{");
         	msg = "[" + msg + "]";
@@ -590,7 +590,7 @@ $(document).ready(function(){
 	});
 	
 	$.ajax({
-        url: "php/najpopularniejsze.php",
+        url: "php/najpopularniejsze_slider.php",
         success: function(msg){
         
         	

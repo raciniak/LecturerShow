@@ -379,8 +379,15 @@ button.cupid-green:hover {
 
 /*full screen */
 
-#player_box:-webkit-full-screen	{ 
-	width: 100%; 
-	height: 100%;	
+#myPlayer:-webkit-full-screen{ 
+		background : none;
+}
+
+#myPlayer:-moz-full-screen {
+	
+}
+
+#myPlayer:-ms-fullscreen {
+	
 }
 
