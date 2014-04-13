@@ -3,7 +3,7 @@
 	session_start();
 	//$_SESSION['search_title'] = $_POST['search_title'];
 
-	$sql_najlepsze = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies ORDER BY Ocena DESC";
+	$sql_najlepsze = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies ORDER BY Ocena DESC LIMIT 21";
 
 	$query = mysql_query($sql_najlepsze);
 	$count = mysql_num_rows($query);
