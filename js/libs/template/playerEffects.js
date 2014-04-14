@@ -7,6 +7,7 @@
  */
 
 var mouseOnVolumePanel = false;
+
 $(document).ready(function () {
 
 	var playPauseButton = $("#playButton")[0];
@@ -16,27 +17,40 @@ $(document).ready(function () {
 	var fullScreenButton = $("#fullScreenButton")[0];
 	var volumePanel = $("#bodyVolumeLine")[0];
 	
+		
+	hideVolumePanel();
+
+	$(volumePanel).mouseover(function() {
+		mouseOnVolumePanel = true;
+	});	
+	$(volumePanel).mouseout(function() {
+		mouseOnVolumePanel = false;
+		setTimeout(function(){hideVolumePanel();}, 200);
+	});	
 	
-	
-	//$(volumePanel).hide();
-	
-	
-	/*$(volumeButton).mouseover(function() {
-			$(volumePanel).show();
+	$(volumeButton).mouseover(function() {
+		setTimeout(function(){showVolumePanel();}, 200);
 	});
 	
 	$(volumeButton).mouseout(function() {
+		setTimeout(function(){hideVolumePanel();}, 200);
+		//hideVolumePanel();
+	});
+
+
+	/* FUNKCJE */
+	function hideVolumePanel()
+	{
 		if( !mouseOnVolumePanel )
-			$(volumePanel).hide();
-	});
+			$(volumePanel).css("z-index", 1);
+	}
 	
-	$(volumePanel).mouseover(function() {
-			mouseOnVolumePanel = true;
-	});
-	$(volumePanel).mouseout(function() {
-			mouseOnVolumePanel = false;
-	});*/
-	
-	
-	
+	function showVolumePanel()
+	{
+		if( !mouseOnVolumePanel )
+			$(volumePanel).css("z-index", 2);
+	}	
+
 });
+
+

@@ -80,7 +80,7 @@ var volumeLine = $('#volumeLine')[0];
         // Szerokość timeLine-a
         var height = $(this).height();      
         // Obliczam procent timeLine-a
-        var percent = 100 - Math.floor((e.pageY-posY)/height*100);    
+        var percent = (100 - Math.floor((e.pageY-posY)/height*100)) < 0 ? 0 : 100 - Math.floor((e.pageY-posY)/height*100);    
         setVolumeLine(percent);
         setTimeout('sleep()', 1000);
 	});

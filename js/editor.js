@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 // Obsługa błędu video w zakładce do wyszukiwania slajdów
 function errorSlideVideo(){
-	alert("error");
+	//alert("error");
 }
 
 
