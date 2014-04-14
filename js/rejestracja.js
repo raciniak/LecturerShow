@@ -103,6 +103,14 @@ $(document).ready(function()
 		var email1area = document.getElementById("email1");
 		var email2area = document.getElementById("email2");
 		var rejestruj_button = document.getElementById("rejestruj_button");
+		
+		var test_email = /^([A-Za-z0-9\-]*\w)+@+([A-Za-z0-9\-]*\w)+(\.[A-Za-z]*\w)+$/;
+		var wynik = email1.match(test_email);
+		if(wynik == null)
+		{
+			document.getElementById("email_error").innerHTML = "To nie jest format adresu e-mail!";
+		}
+		else {
 		$.ajax({
                     type: "POST",
                     url: "php/check_email.php",
@@ -138,6 +146,7 @@ $(document).ready(function()
 		if(email1.length == 0 && email2.length == 0) {}
 		
 		return false;
+		}
 	});
 	 $("#email2").change(function()
 	{
