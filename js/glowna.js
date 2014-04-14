@@ -1,29 +1,26 @@
 
-
+var intervalHandler;
 function changeVideo(tab_src) {
-	
 	mini_player = document.getElementById("mini_player");
 	var i = 0;
-	var intervalHandler=setInterval(function(){
+	intervalHandler=setInterval(function(){
 		i++;
 		i = i % 4;
-		mini_player.src = tab_src[i];
-		//alert(i);
-	},5000);
-	
+		mini_player.src = "res/" + tab_src[i] + "/speech.mp4";
+	},20000);
 }
 
 function srcVideo() {
 	mini_player = document.getElementById("mini_player");
 	sciezka = mini_player.src;
-	document.location.href = sciezka;
+	sciezka = sciezka.slice(sciezka.length-22,sciezka.length-11);
+	document.location.href = "player.html?id=" + sciezka;
 }  
 
 function changeSrcVideo(x){
 	mini_player = document.getElementById("mini_player");
-	mini_player.src =  x + "/speech.mp4";
+	mini_player.src =  "res/" + x + "/speech.mp4";
 	clearInterval(intervalHandler);
-	alert("ergh");
 }
 
 $(document).ready(function(){
@@ -43,13 +40,13 @@ $(document).ready(function(){
         	document.getElementById("video_list").innerHTML += "<li class='li_lista_5'><div id='film_zdjecie_5'>" + "<img id='zdjecie_5' onclick = 'changeSrcVideo(\u0022" + 
         							this['sciezka']  + "\u0022)' onmouseover='funkcja(this)'" + 
 							      " onmouseout = funkcja_powrot(this) src='images/60.jpg'></div><div  id='opis_5'><p> Tytul: " + 
-							      this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
-							      this['autor'] + "</p></div></li>";
+							      this['tytul'] + "</p><p> Autor: " + 
+							      this['autor'] + "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></div></li>";
 							      i++;
         	});
         	mini_player = document.getElementById("mini_player");
-        	mini_player.src = tab[0];
-        	changeVideo(tab);
+        	mini_player.src = "res/" + tab[0] + "/speech.mp4";
+       		changeVideo(tab);
 		},
 		error: function(err) 
 		{

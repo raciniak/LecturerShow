@@ -1,7 +1,9 @@
-<?php 
-	
+<?php
 	require_once('connect.php');
-	$sql_popularne = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies ORDER BY Wyswietlenia DESC";
+	session_start();
+	$sql_popularne = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies WHERE Tytul LIKE '".$_SESSION['title']."' ORDER BY Wyswietlenia DESC";
+
+
 	$query = mysql_query($sql_popularne);
 	$count = mysql_num_rows($query);
 	if($count > 0){
@@ -16,6 +18,7 @@
 			
 			$info_video = array('tytul'=>$tytul, 'opis'=>$opis, 'autor'=>$autor, 'wyswietlenia'=>$wyswietenia, 'ocena'=>$ocena, 'sciezka'=>$sciezka);
 			echo json_encode($info_video);
+			
 		}
 		
 	}
