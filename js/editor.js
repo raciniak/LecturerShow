@@ -25,6 +25,7 @@ $(document).ready(function(){
 	$(".overlay, .overlay-message").hide();
 	   //funkcja do pobierania czasow odtwarzania slajdow, kazda funkcja ktora chce korzystac z tablicy a zawierajacej
 	   // czasy musi odczekac w jakis sposob chwile aby funkcja zdazyla sie wykonac
+
        pobierzPliki();
        taby();
        //odswieżana zmienna przy załadowaniu strony potrzebna do odtwarzacza slajdow
@@ -47,10 +48,6 @@ $(document).ready(function(){
 			timetimes();
 			sort_times();
 		});
-		
-		//$('#playButton').click(function() {
-		//myVideo.currentTime=startPlay;
-		//});
 		
 });
 
@@ -710,7 +707,7 @@ function SaveSlides(){
 //odpowiedź po zapisie głownym
 function completSave(data){
 	alert("Zapis nowych danych odbył się pomyślnie");
-	//location.reload();
+	location.reload();
 }
 
 //odpowiedz zapisu ram czasowych filmu

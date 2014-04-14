@@ -1,7 +1,10 @@
 var countingTimeFromTheEnd = false;
 var volumeSliderClicked = false;
-$(document).ready(function () {
 
+$(document).ready(function () {
+//Zaladowanie sciezki do filmu
+var namefile = 'movies/'+getParameterByName("id")+'/speech.mp4';
+$("#myVideo").html("<source src='"+namefile+"' type='video/mp4' \>");
 //------------------------------------	
 var myVideo    = $('#myVideo')[0];	
 var timeLine   = $('#timeLine')[0];
