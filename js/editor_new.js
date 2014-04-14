@@ -59,23 +59,20 @@ var volumeLine = $('#volumeLine')[0];
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
 	$(myVideo).bind('timeupdate', obrazek);
-
 	
 	// Funkcja wykonywana po naciśnięciu w timeline
-	$(timeLine).click(function(e){
+	$(timeLine).mousedown(function(e){
 		var posX = $(this).offset().left;     
-        // Szerokość timeLine-a
-        var width = $(this).width();      
-        // Obliczam procent timeLine-a
-        var percent = Math.floor((e.pageX-posX)/width*100);    
-        setTimeLine(percent);
+		// Szerokość timeLine-a
+		var width = $(this).width();      
+		// Obliczam procent timeLine-a
+		var percent = Math.floor((e.pageX-posX)/width*100);    
+		setTimeLine(percent);
 	});
-	
+		
 	// Funkcja wykonywana po naciśnięciu w volumeLine
-	$(volumeLine).click(function(e){
+	$(volumeLine).mousedown(function(e){
 		volumeSliderClicked = true;
-		
-		
 		var posY = $(this).offset().top;     
         // Szerokość timeLine-a
         var height = $(this).height();      
@@ -148,11 +145,6 @@ function fullScreen() {
 			pbox.webkitRequestFullscreen();
 		}
 }
-
-
-
-
-
 
 function updateTime(){
     var seconds = Math.floor(myVideo.currentTime % 60);

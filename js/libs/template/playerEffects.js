@@ -18,10 +18,10 @@ $(document).ready(function () {
 	
 	
 	
-	$(volumePanel).hide();
+	//$(volumePanel).hide();
 	
 	
-	$(volumeButton).mouseover(function() {
+	/*$(volumeButton).mouseover(function() {
 			$(volumePanel).show();
 	});
 	
@@ -35,7 +35,7 @@ $(document).ready(function () {
 	});
 	$(volumePanel).mouseout(function() {
 			mouseOnVolumePanel = false;
-	});
+	});*/
 	
 	
 	

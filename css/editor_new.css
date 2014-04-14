@@ -245,7 +245,7 @@
 	height: 150px;
 	background-color: #99BBDD;
 	position: relative;
-	z-index: 3;
+	z-index: 5;
 	top: -180px;
 	left: -20px;
 	padding-bottom: 30px;
