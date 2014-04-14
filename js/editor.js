@@ -25,6 +25,7 @@ $(document).ready(function(){
 	$(".overlay, .overlay-message").hide();
 	   //funkcja do pobierania czasow odtwarzania slajdow, kazda funkcja ktora chce korzystac z tablicy a zawierajacej
 	   // czasy musi odczekac w jakis sposob chwile aby funkcja zdazyla sie wykonac
+
        pobierzPliki();
        taby();
        //odswieżana zmienna przy załadowaniu strony potrzebna do odtwarzacza slajdow
@@ -47,10 +48,6 @@ $(document).ready(function(){
 			timetimes();
 			sort_times();
 		});
-		
-		//ustawienie max długości multirange 
-		//var czas = Math.floor(myVideo.duration);
-		//$('#range')[0].setAttribute('data-max',czas);
 		
 });
 
@@ -155,7 +152,6 @@ function createSlider(name,value,left){
         }
         $(".range").append(slider);
 }
-
 //Utworzenie inputów które przechowywują dane o slajdzie nawet gdy jest odpięty od MultiRange
 function uzupelnijMultiRange(){
 	var i;
@@ -252,6 +248,12 @@ function sort_times(){
 // funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
 function obrazek(){
         var czas = Math.floor(myVideo.currentTime);
+        
+        //sprawdzamy czy czas filmu nie osiagnął ustawionego czasu stopPlay, jeśli tak to zatrzymujemy
+        if(myVideo.currentTime > stopPlay){
+   			myVideo.pause();
+  		}
+  		//
         if(czas===time+1)
         {
         	var j = iloscSlajdow;
@@ -307,6 +309,14 @@ function OpenTimeVideo(data){
 	stopPlay=plik[1];
 	CompletPlayedMovieTime();
 	createRangeTime();
+	//myVideo.currentTime=startPlay;
+  		myVideo.currentTime = startPlay;
+	/*$(video).bind('timeupdate', function() {
+  		if(this.currentTime > stopPlay){
+  			alert("stop");
+   			this.pause();
+  		}
+	});*/
 }
  
 // Dzielimy wartość pliku na dwie tablice: tablica z indentyfikatorami obrazków, tablica z czasami odtwarzania
@@ -488,21 +498,26 @@ function chcecktextbox(evt,textbox)
 		}
 }
 
-// funkcja odpowiadająca za aktualizację slidera względem wartości podanych w textboxie
+// funkcja odpowiadająca za aktualizację sliderow ram czasowych filmow względem wartości podanych w textboxie
 function chcecktextboxPlay(evt,textbox)
 {
 		var name,name2;
 		var buffer = buffer_textbox;
 		var value = new Array();
 		var id;
-		var i;
+		var i,j;
 		var timee1;
 		var max = parseInt(document.getElementById("range").getAttribute("data-max"));
+		var bool=true;
+		var textboxy=new Array();
+		var timee2=new Array();
 		
 		var theEvent = evt || window.event;
 	 	var key = theEvent.keyCode || theEvent.which; 
 		key = String.fromCharCode( key ); 
 	 	var regex = /[0-9]|\./; 
+
+
 	 	if( regex.test(key) || theEvent.keyCode==8 || theEvent.keyCode==46 ) 
 	 	{ 
 		name = $(textbox).attr('id'); //textbox(0/1/2)(0/1)
@@ -511,7 +526,21 @@ function chcecktextboxPlay(evt,textbox)
 		value[0] = $("#textbox0"+id).val();
 		value[1] = $("#textbox1"+id).val();
 		value[2] = $("#textbox2"+id).val();
-		
+		//pobieranie czasow i sprawdzenie czy sie zgadzaja
+		for(i=0;i<2;i++)
+		{
+			for(j=0;j<3;j++)
+			{
+				textboxy[j]=$("#textbox"+j+i).val();
+			}
+			timee2[i] = decodingTime(textboxy[0], textboxy[1], textboxy[2]);
+		}
+        	var koniec;
+        	if(timee2[0] >= timee2[1])
+        	{
+        		bool=false;
+       	 	}
+        //
 		for(i=0;i<3;i++){
 			if(value[i]=='')
 			{
@@ -532,9 +561,9 @@ function chcecktextboxPlay(evt,textbox)
 		}
 		
 		timee1 = decodingTime(value[0], value[1], value[2]);
-
-			if(timee1>max)
+			if((timee1>max) || (bool===false))
 			{
+				alert("false");
 				textbox.value=buffer;
 				textbox.setAttribute('value',buffer);
 				//usuniecie starego inputa i wstawienie nowego
@@ -543,8 +572,9 @@ function chcecktextboxPlay(evt,textbox)
   				}
   				$('.'+name).append("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+buffer+"'>");
   				document.getElementById(name).focus();
-			}else if(timee1<=max)
+			}else if((timee1<=max) && (bool===true))
 			{	
+				alert("true");
 				if(id=="0")
 				{
 					var input=$("input[name=PoczatekFilmu]").get(0);
@@ -631,7 +661,6 @@ function SaveChanges(){
     $(".overlay-message").css("top",w);
     $(".overlay-message").css("left",h);
     $(".overlay, .overlay-message").show();
-    alert("1");
     $("#yess").click(function() {
         $(".overlay, .overlay-message").hide();
         timetimes();
@@ -665,6 +694,13 @@ function SaveSlides(){
 		filename:filename1
 	};
 	$.post('php/SaveAllEdit.php',times,completSave);
+	tab_czas[0]=startPlay;
+	tab_czas[1]=stopPlay;
+	timesFilm={
+		time:tab_czas,
+		filename:filename1
+	};
+	$.post('php/SaveEditFilmTime.php',times,completSaveTime);
 	//na koniec przekierowanie do odtwarzacza z tym filmem
 }
 
@@ -672,6 +708,12 @@ function SaveSlides(){
 function completSave(data){
 	alert("Zapis nowych danych odbył się pomyślnie");
 	location.reload();
+}
+
+//odpowiedz zapisu ram czasowych filmu
+function completSaveTime(data)
+{
+	//alert(data);
 }
 
 // integracja czasów
@@ -688,5 +730,19 @@ function timetimes(){
 		timee1 = decodingTime(wartosc_textbox1, wartosc_textbox2, wartosc_textbox3);
 		czasy[i]=timee1;
 	}
+	var timess=new Array();
+	for(i=0;i<2;i++)
+	{
+		var textbox1 = document.getElementById("textbox0"+i);
+		var textbox2 = document.getElementById("textbox1"+i);
+		var textbox3 = document.getElementById("textbox2"+i);
+		var wartosc_textbox1=textbox1.getAttribute("value");
+		var wartosc_textbox2=textbox2.getAttribute("value");
+		var wartosc_textbox3=textbox3.getAttribute("value");
+		
+		timess[i] = decodingTime(wartosc_textbox1, wartosc_textbox2, wartosc_textbox3);
+	}
+	startPlay=timess[0];
+	stopPlay=timess[1];
 }
 
