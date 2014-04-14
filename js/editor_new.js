@@ -197,10 +197,16 @@ function updateTime(){
 
     $('#timeDiv').html(outTime);
 
+	//Wyliczamy w procentach długość timelina playera, oraz omijamy błąd
+	var lengthTimeline = ((myVideo.currentTime-startPlay) / (stopPlay-startPlay) * 100 );
+	if(((myVideo.currentTime-startPlay) / (stopPlay-startPlay) * 100 )>100)
+	{
+		lengthTimeline=100;
+	}
     // Animacja
     $('#timeLine .belt').animate(
       //  { "width": myVideo.currentTime / myVideo.duration * 100 + "%" },
-      { "width": (myVideo.currentTime-startPlay) / (stopPlay-startPlay) * 100 + "%" },
+      { "width": lengthTimeline + "%" },
         { duration: 100 }
     );
 }
