@@ -102,7 +102,9 @@ function pause() {
 
 function stop() {
 	pause();
-	myVideo.currentTime = 0;
+	//myVideo.currentTime = 0;
+	//Po kliknieciu stop wartosc currentTime filmu ustawia sie na poczatkowa
+	myVideo.currentTime = startPlay;
 	setTimeLine(0);
 }
 
@@ -155,16 +157,22 @@ function fullScreen() {
 
 
 function updateTime(){
-    var seconds = Math.floor(myVideo.currentTime % 60);
+   /* var seconds = Math.floor(myVideo.currentTime % 60);
     var minutes = Math.floor((myVideo.currentTime / 60) % 60);
-    var hours = Math.floor(myVideo.currentTime / 3600);
+    var hours = Math.floor(myVideo.currentTime / 3600);*/
+   var seconds = Math.floor((myVideo.currentTime-startPlay) % 60);
+    var minutes = Math.floor(((myVideo.currentTime-startPlay) / 60) % 60);
+    var hours = Math.floor((myVideo.currentTime-startPlay) / 3600);
 
 
     if (countingTimeFromTheEnd) {
 
-        seconds = Math.floor((myVideo.duration % 60) - seconds);
+      /*  seconds = Math.floor((myVideo.duration % 60) - seconds);
         minutes = Math.floor((myVideo.duration / 60) - minutes);
-        hours =   Math.floor((myVideo.duration / 3600) - hours);
+        hours =   Math.floor((myVideo.duration / 3600) - hours);*/
+       seconds = Math.floor(((stopPlay-startPlay) % 60) - seconds);
+        minutes = Math.floor(((stopPlay-startPlay) / 60) - minutes);
+        hours =   Math.floor(((stopPlay-startPlay)/ 3600) - hours);
     }
 
     // Obliczanie sekund
@@ -196,7 +204,8 @@ function updateTime(){
 
     // Animacja
     $('#timeLine .belt').animate(
-        { "width": myVideo.currentTime / myVideo.duration * 100 + "%" },
+      //  { "width": myVideo.currentTime / myVideo.duration * 100 + "%" },
+      { "width": (myVideo.currentTime-startPlay) / (stopPlay-startPlay) * 100 + "%" },
         { duration: 100 }
     );
 }
@@ -207,13 +216,14 @@ function changeTime()
 }
 
 function setTimeLine(percent)
-{
+{   
 	$('#timeLine .belt').animate(
 		{"width" : percent+"%"},
 		{duration : 200}
 	);
 	
-	myVideo.currentTime = percent/100 * myVideo.duration;
+//	myVideo.currentTime = percent/100 * myVideo.duration;
+myVideo.currentTime = startPlay+(percent/100 * (stopPlay-startPlay));
 }
 
 function setVolumeLine(percent)

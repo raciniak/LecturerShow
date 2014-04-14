@@ -48,9 +48,9 @@ $(document).ready(function(){
 			sort_times();
 		});
 		
-		//ustawienie max długości multirange 
-		//var czas = Math.floor(myVideo.duration);
-		//$('#range')[0].setAttribute('data-max',czas);
+		//$('#playButton').click(function() {
+		//myVideo.currentTime=startPlay;
+		//});
 		
 });
 
@@ -251,6 +251,12 @@ function sort_times(){
 // funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
 function obrazek(){
         var czas = Math.floor(myVideo.currentTime);
+        
+        //sprawdzamy czy czas filmu nie osiagnął ustawionego czasu stopPlay, jeśli tak to zatrzymujemy
+        if(myVideo.currentTime > stopPlay){
+   			myVideo.pause();
+  		}
+  		//
         if(czas===time+1)
         {
         	var j = iloscSlajdow;
@@ -306,6 +312,14 @@ function OpenTimeVideo(data){
 	stopPlay=plik[1];
 	CompletPlayedMovieTime();
 	createRangeTime();
+	//myVideo.currentTime=startPlay;
+  		myVideo.currentTime = startPlay;
+	/*$(video).bind('timeupdate', function() {
+  		if(this.currentTime > stopPlay){
+  			alert("stop");
+   			this.pause();
+  		}
+	});*/
 }
  
 // Dzielimy wartość pliku na dwie tablice: tablica z indentyfikatorami obrazków, tablica z czasami odtwarzania
