@@ -11,6 +11,7 @@
 		<script src="js/libs/template/skel-panels.min.js"></script>
 		<script type="text/javascript" src="js/Dragdrop.js"></script>
         <script type="text/javascript" src="js/Event.js"></script>
+        <script src="js/xmlhttprequest.js"></script>
 		<!-- Skrypty do playera -->
 		<script type="text/javascript" src="js/editor_new.js"></script>
         <!--FUNKCJE DO SLAJDOW I MULTIRANGE-->
@@ -46,15 +47,16 @@
 						<div class="12u">
 
 							<!-- Logo -->
-								<h1><a href="#" id="logo">LecturerShow.pl</a></h1>
+								<h1><a href="index.html" id="logo">LecturerShow.pl</a></h1>
 							
 							<!-- Nav -->
 								<nav id="nav">
-									<a href="index.html">Homepage</a>
-									<a href="threecolumn.html">Three Column</a>
-									<a href="twocolumn1.html">Two Column #1</a>
-									<a href="twocolumn2.html">Two Column #2</a>
-									<a href="onecolumn.html">One Column</a>
+									<a href="index.html">Strona główna</a>
+									<a id="test" onclick="show_search_input()">Wyszukiwarka</a>
+									<a href="o_projekcie.html">O projekcie</a>
+									<a id="rejestracja" href="rejestracja_new.html">Rejestracja</a>
+									<a id="konto" href="konto_new.html"> Twój profil</a>
+									<a id="logowanie" href="logowanie_new.html">Zaloguj</a>
 								</nav>
 
 						</div>
@@ -79,64 +81,85 @@
      							
 											<div id="myPlayer">
 												<div class="playerScreen">	
-													<div class="playerScreenLeft"> </div>
-													
+
 											        	<video id="myVideo">
-											            	<source src="movies/movie1/movie.mp4" type="video/mp4" \> 
+											            <!--	<source src="movies/movie1/movie.mp4" type="video/mp4" \> 
 											            	<source src="movies/movie1/movie.ogv" type='video/ogg; codecs="theora, vorbis"' \>
 											            	<source src="vmovies/movie1/movie.webm" type="video/webm">
-															Twoja przeglądarka nie obsługuje znacznika filmów wideo
+															Twoja przeglądarka nie obsługuje znacznika filmów wideo-->
 											            </video>
 											            
 													    <div id="imgLoad" class="imageLoader" >
 											            	<img src="movies/movie1/images/1.png" alt="Test" />
 											        	</div>
-											        
-													<div class="playerScreenRight"> </div>	
-												</div>
+
+												</div>	
 												
-												<div class="playerMenu">
-													<div class="playerMenuLeft"> </div>
+																								<div id="bodyVolumeLine">
+													<div id="volumeLine"> 
+														<div class="belt"> </div>
+													</div> 
+												</div>	
+												
+												<div id="qualityPanel">
+													<form action="">
+														<input type="checkbox" name="1080p" value="1920x1080">1080p
+														<br />
+														<input type="checkbox" name="720p" value="1280x720">720p
+														<br />
+														<input type="checkbox" name="480p" value="854x480">480p
+														<br />
+														<input type="checkbox" name="360p" value="640x360">360p
+														<br />
+														<input type="checkbox" name="240p" value="426x240">240p
+
+													</form>
+												</div>	
+												
+											</div>
+											
+										
+												
+											
+												
+												<div id="playerNavigation">
+													<div class="playerMenu">
+														<div class="playerMenuLeft"> </div>
+														
+														<button id="playButton" > </button> 
+														<button id="pauseButton" > </button>
+														<button id="stopButton" > </button>
+														<div class="separator"> </div>
+														
+														<div class="sliderSpace"> 
+															<div id="timeLine"><div class="belt"> </div></div>
+														</div>
+														
+														<div id="timeDiv">00:00:00</div>
+														
+														<div class="separator"> </div>
+														
+														<button id="volumeButton" class="volumeButton"> 
+														</button>
+														
 													
-													<button id="playButton" > </button> 
-													<button id="pauseButton" > </button>
-													<button id="stopButton" > </button>
-													<div class="separator"> </div>
-													
-													<div class="sliderSpace"> 
-														<div id="timeLine"><div class="belt"> </div></div>
+														<div class="separator"> </div>
+														
+														<button id="hdButton" > </button>
+														<button id="fullScreenButton" > </button>
+														
+														<div class="playerMenuRight"> </div>													
 													</div>
 													
-													<div id="timeDiv">00:00:00</div>
 													
-													<div class="separator"> </div>
-													
-													<button id="volumeButton" class="volumeButton"> 
-														<div id="bodyVolumeLine">
-															<div id="volumeLine"> 
-																<div class="belt"> </div>
-															</div> 
-														</div>
-													</button>
-													
-													<div class="separator"> </div>
-													
-													<button id="hdButton" > </button>
-													<button id="fullScreenButton" > </button>
-													
-													<div class="playerMenuRight"> </div>													
+													<div class="playerEditMenu">
+														<div class="playerEditMenuLeft"> </div>											
+															<div id="timeline_editor">
+						                						<div id="range" class="range" data-min="0" data-max="1" data-step="1"> </div>
+						            						</div>
+														<div class="playerEditMenuRight"> </div>
+													</div>
 												</div>
-												
-												<div class="playerEditMenu">
-													<div class="playerEditMenuLeft"> </div>
-																								
-											<div id="timeline_editor">
-		                						<div id="range" class="range" data-min="0" data-max="1" data-step="1">
-		               							</div>
-		            						</div>
-													<div class="playerEditMenuRight"> </div>
-												</div>
-											</div>
 					
 									</section>
 									
@@ -188,32 +211,17 @@
 						
 							<!-- Links -->
 								<section>
-									<h2>Links to Important Stuff</h2>
+									<h2>Ważne linki</h2>
 									<div>
 										<div class="row">
 											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
+												<a href="http://www.facebook.pl"><img id="fb_link" src="images/icons/fb.png"></a>
 											</div>
 											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
+												<a href="http://www.twitter.com"><img id="tw_link" src="images/icons/twitter.png"></a>
 											</div>
 											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
+												<a href="http://mat.umk.pl"><img id="wmii_link" src="images/icons/wmii.png"></a>
 											</div>
 											<div class="3u">
 												<ul class="link-list last-child">

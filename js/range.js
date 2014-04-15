@@ -204,21 +204,63 @@
       }
    }
 }
+    //funkcja szukajaca elementu po atrybucie i jego wartości
+    function getAllElementsWithAttribute(attribute,value)
+	{
+  		var matchingElements = [];
+  		var element;
+ 		 var allElements = document.getElementsByTagName('*');
+  		for (var i = 0, n = allElements.length; i < n; i++)
+  		{
+    		if (allElements[i].getAttribute(attribute))
+    		{
+     	 	matchingElements.push(allElements[i]);
+    		}
+  		}
+  		for(var i=0;i<matchingElements.length;i++)
+  		{
+  			if(matchingElements[i].getAttribute(attribute)==value)
+  			{
+  				element=matchingElements[i];
+  				return element;
+  			}
+  		}
+	}
     
     function moveSlider(slider, slide, value, init) {
         if (value > slide.max) value = slide.max;
         else if (value < slide.min) value = slide.min;
-        
+        //PoczatekFilmu musi byc mniejszy niz koniec
+        name=slide.input.getAttribute("name");
+        if(name==="PoczatekFilmu")
+        {
+        	var koniec;
+        	koniec = getAllElementsWithAttribute("data-name","KoniecFilmu");
+        	if(value >= parseInt(koniec.getAttribute("data-value")))
+        	{
+        		return;
+       	 	}
+        }else if(name==="KoniecFilmu")
+        {
+        	var poczatek;
+        	poczatek = getAllElementsWithAttribute("data-name","PoczatekFilmu");
+        	if(value <= parseInt(poczatek.getAttribute("data-value")))
+        	{
+        		return;
+       	 	}	
+        }
+        //
         if (!init && value === slide.value) return;
         
         var percent = 100*(value - slide.min) / slide.width;
         slider.style.left = percent + '%';
         slider.setAttribute('data-value', value);
         slide.input.setAttribute('value', value);
+       
         //moja zmianka odnosnie okienka windows i zmiany na zywo czasu pod slajdem slidera
         var timee=0;
         timee = upConversionTimes(value);
-        name=slide.input.getAttribute("name");
+        //name=slide.input.getAttribute("name");
         doInnerHTML("movetime"+name, "<b>"+timee+"</b>");
         timee = timee.split(":");
         if(name!="PoczatekFilmu" && name!="KoniecFilmu")

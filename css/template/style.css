@@ -484,19 +484,20 @@
 		display: block;
 		margin: 0 auto;
 		margin-top: 0%;
+	
 	}
 	
 	#wyszukiwarka p {
 		margin-bottom : 0%;
 		display: inline-block;
 		width: 20%;
-		
+	
 	}
 	
 	#searchinput{
 		
 		width: 20%;
-		
+	
 	}
 	
 	#search_suggest {
@@ -514,7 +515,7 @@
 
 	#wyszukiwarka {
 		width: 1200px;
-		
+	
 		display: block;
 		margin: 0 auto;
 		margin-top: 0%;
@@ -523,10 +524,11 @@
 	#video_list {
 		position:relative;
 		float:right;
-		background:#B5BEC3;
+	
 		width:35%;
 		height: 40%;
 	}
+	
 	
 	#film_zdjecie_5 {
 		position:relative;
@@ -555,7 +557,7 @@
 		margin-top:5%;
 		display:block;
 	}
-	#li_lista_5:hover {
+	.li_lista_5:hover {
 		background:#0000FF;
 	}
 	

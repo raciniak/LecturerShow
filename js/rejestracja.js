@@ -18,7 +18,6 @@ $(document).ready(function()
                     url: "php/check_username.php",
                     data: "login=" + login,
                     success : function(msg){
-						
                               if(msg == 'OK')
                               {
                               		logarea.style.boxShadow= "0 0 3px 3px #0F3";
@@ -33,8 +32,8 @@ $(document).ready(function()
 						
                		},
 					error: function(err) {
-        	console.log(err);
-    }
+        				console.log(err);
+    				}
 				}); 
 			}
      		else
@@ -48,6 +47,7 @@ $(document).ready(function()
 	
 	$("#haslo1").change(function()
 	{
+		 
 		var haslo1 = $("#haslo1").val();
 		
 		var haslo1area = document.getElementById("haslo1");
@@ -94,52 +94,48 @@ $(document).ready(function()
 		}
 		return false;
 	});
-	
-	/*
-	$("#email1").change(function()
-     {
-          var email1 = $("#email1").val();
-		  var msgbox = $("#status");
-		  var emailarea = document.getElementById("email1");
-		  
-          if(email1.length > 1)
-          {
-               
-               $.ajax({
-                    type: "POST",
-                    url: "check_email.php",
-                    data: "email1="+ email1,
-                    success: function(msg){
-                         $("#status").ajaxComplete(function(event, request){
-                              if(msg == 'OK_EMAIL')
-                              {
-                              		emailarea.style.boxShadow= "0 0 3px 3px #0F3";
-                              }
-                              else
-                              {
-                               		emailarea.style.boxShadow= "0 0 3px 3px #F00";
-                              }
-                    	});
-               		}
-         	 });
 
-     	}
-     else
-     {
-          $("#email1").addClass("red");
-          $("#status").html('<font color="#cc0000">Za mało znaków</font>');
-     }
-		return false;
-     });
-	 */
 	$("#email1").change(function()
 	{
+		
 		var email1 = $("#email1").val();
 		var email2 = $("#email2").val();
 		var email1area = document.getElementById("email1");
 		var email2area = document.getElementById("email2");
 		var rejestruj_button = document.getElementById("rejestruj_button");
 		
+		var test_email = /^([A-Za-z0-9\-]*\w)+@+([A-Za-z0-9\-]*\w)+(\.[A-Za-z]*\w)+$/;
+		var wynik = email1.match(test_email);
+		if(wynik == null)
+		{
+			document.getElementById("email_error").innerHTML = "To nie jest format adresu e-mail!";
+		}
+		else {
+		$.ajax({
+                    type: "POST",
+                    url: "php/check_email.php",
+                    data: "email1=" + email1,
+                    success : function(msg){
+								
+                              if(msg == 'OK')
+                              {
+                              	
+                              		email1area.style.boxShadow= "0 0 3px 3px #0F3";
+                              		document.getElementById("email_error").innerHTML = "";
+									dis_login = true;
+							  }
+                              if(msg == 'ZAJETY')
+							  {				
+							  				
+                               		email1area.style.boxShadow= "0 0 3px 3px #F00";
+                               		document.getElementById("email_error").innerHTML = "Podany e-mail jest już używany!";
+                              }
+						
+               		},
+					error: function(err) {
+        				console.log(err);
+    				}
+				});
 		if(email1 == email2)
 	 	{
 			email1area.style.boxShadow= "0 0 3px 3px #0F3";
@@ -148,14 +144,9 @@ $(document).ready(function()
 			dis_email = true;
 	 	}
 		if(email1.length == 0 && email2.length == 0) {}
-		if(email1 != email2)
-		{
-	 		email1area.style.boxShadow= "0 0 3px 3px #F00";
-			email2area.style.boxShadow= "0 0 3px 3px #F00";
-			document.getElementById("email_error").innerHTML = "Adresy e-mail są różne!";
-			
-		}
+		
 		return false;
+		}
 	});
 	 $("#email2").change(function()
 	{

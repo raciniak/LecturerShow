@@ -14,11 +14,16 @@ $(document).ready(function()
 			haslo1area.style.boxShadow= "0 0 3px 3px #0F3";
 		 	haslo2area.style.boxShadow= "0 0 3px 3px #0F3";
 	 	}
+	 	if(haslo1.length < 6 && haslo1.length > 0)
+	 	{
+	 		document.getElementById("password_error").innerHTML = "Hasło jest za krótkie!";
+	 	}
 		if(haslo1.length == 0 && haslo2.length == 0) {}
 		else
 		{
 	 		haslo1area.style.boxShadow= "0 0 3px 3px #F00";
 			haslo2area.style.boxShadow= "0 0 3px 3px #F00";
+			document.getElementById("password_error").innerHTML = "Hasło jest za krótkie!";
 		}
 		return false;
 	});
@@ -34,14 +39,14 @@ $(document).ready(function()
 			haslo1area.style.boxShadow= "0 0 3px 3px #0F3";
 		 	haslo2area.style.boxShadow= "0 0 3px 3px #0F3";
 			dis_password = true;
-			
+			document.getElementById("password_error").innerHTML = "";
 	 	}
 		if(haslo1.length == 0 && haslo2.length == 0) {}
 		if(haslo1 != haslo2)
 		{
 	 		haslo1area.style.boxShadow= "0 0 3px 3px #F00";
 			haslo2area.style.boxShadow= "0 0 3px 3px #F00";
-			
+			document.getElementById("password_error").innerHTML = "Hasła są różne!";
 		}
 		return false;
 	});
@@ -59,13 +64,14 @@ $(document).ready(function()
 			email1area.style.boxShadow= "0 0 3px 3px #0F3";
 		 	email2area.style.boxShadow= "0 0 3px 3px #0F3";
 			dis_email = true;
+			document.getElementById("email_error").innerHTML = "";
 	 	}
 		if(email1.length == 0 && email2.length == 0) {}
 		if(email1 != email2)
 		{
 	 		email1area.style.boxShadow= "0 0 3px 3px #F00";
 			email2area.style.boxShadow= "0 0 3px 3px #F00";
-			
+			document.getElementById("email_error").innerHTML = "Adresy e-mail są różne!";
 		}
 		return false;
 	});

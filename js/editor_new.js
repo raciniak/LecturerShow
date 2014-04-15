@@ -1,7 +1,10 @@
 var countingTimeFromTheEnd = false;
 var volumeSliderClicked = false;
-$(document).ready(function () {
 
+$(document).ready(function () {
+//Zaladowanie sciezki do filmu
+var namefile = 'movies/'+getParameterByName("id")+'/speech.mp4';
+$("#myVideo").html("<source src='"+namefile+"' type='video/mp4' \>");
 //------------------------------------	
 var myVideo    = $('#myVideo')[0];	
 var timeLine   = $('#timeLine')[0];
@@ -59,28 +62,25 @@ var volumeLine = $('#volumeLine')[0];
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
 	$(myVideo).bind('timeupdate', obrazek);
-
 	
 	// Funkcja wykonywana po naciśnięciu w timeline
-	$(timeLine).click(function(e){
+	$(timeLine).mousedown(function(e){
 		var posX = $(this).offset().left;     
-        // Szerokość timeLine-a
-        var width = $(this).width();      
-        // Obliczam procent timeLine-a
-        var percent = Math.floor((e.pageX-posX)/width*100);    
-        setTimeLine(percent);
+		// Szerokość timeLine-a
+		var width = $(this).width();      
+		// Obliczam procent timeLine-a
+		var percent = Math.floor((e.pageX-posX)/width*100);    
+		setTimeLine(percent);
 	});
-	
+		
 	// Funkcja wykonywana po naciśnięciu w volumeLine
-	$(volumeLine).click(function(e){
+	$(volumeLine).mousedown(function(e){
 		volumeSliderClicked = true;
-		
-		
 		var posY = $(this).offset().top;     
         // Szerokość timeLine-a
         var height = $(this).height();      
         // Obliczam procent timeLine-a
-        var percent = 100 - Math.floor((e.pageY-posY)/height*100);    
+        var percent = (100 - Math.floor((e.pageY-posY)/height*100)) < 0 ? 0 : 100 - Math.floor((e.pageY-posY)/height*100);    
         setVolumeLine(percent);
         setTimeout('sleep()', 1000);
 	});
@@ -102,7 +102,9 @@ function pause() {
 
 function stop() {
 	pause();
-	myVideo.currentTime = 0;
+	//myVideo.currentTime = 0;
+	//Po kliknieciu stop wartosc currentTime filmu ustawia sie na poczatkowa
+	myVideo.currentTime = startPlay;
 	setTimeLine(0);
 }
 
@@ -174,21 +176,6 @@ function fullScreen() {
 
 	});
 	
-	/*$(pic).dbclick(function(){
-		$(pic).animate({height: screen.height},1000)
-		.animate({width: screen.width},1000)
-		.css({
-			"z-index" : "-10",
-			"position" : "absolute",
-			"align" : "center"
-		});
-		$(vid).animate({height: "50%"},1000)
-			.animate({width: "50%"},1000);
-		$(function() {
-			$(vid).draggable();
-		}); 
-		
-	});*/
 	
 	$("body").append(full);
 	
@@ -234,22 +221,23 @@ function fullScreen() {
 }
 
 
-
-
-
-
-
 function updateTime(){
-    var seconds = Math.floor(myVideo.currentTime % 60);
+   /* var seconds = Math.floor(myVideo.currentTime % 60);
     var minutes = Math.floor((myVideo.currentTime / 60) % 60);
-    var hours = Math.floor(myVideo.currentTime / 3600);
+    var hours = Math.floor(myVideo.currentTime / 3600);*/
+   var seconds = Math.floor((myVideo.currentTime-startPlay) % 60);
+    var minutes = Math.floor(((myVideo.currentTime-startPlay) / 60) % 60);
+    var hours = Math.floor((myVideo.currentTime-startPlay) / 3600);
 
 
     if (countingTimeFromTheEnd) {
 
-        seconds = Math.floor((myVideo.duration % 60) - seconds);
+      /*  seconds = Math.floor((myVideo.duration % 60) - seconds);
         minutes = Math.floor((myVideo.duration / 60) - minutes);
-        hours =   Math.floor((myVideo.duration / 3600) - hours);
+        hours =   Math.floor((myVideo.duration / 3600) - hours);*/
+       seconds = Math.floor(((stopPlay-startPlay) % 60) - seconds);
+        minutes = Math.floor(((stopPlay-startPlay) / 60) - minutes);
+        hours =   Math.floor(((stopPlay-startPlay)/ 3600) - hours);
     }
 
     // Obliczanie sekund
@@ -279,9 +267,16 @@ function updateTime(){
 
     $('#timeDiv').html(outTime);
 
+	//Wyliczamy w procentach długość timelina playera, oraz omijamy błąd
+	var lengthTimeline = ((myVideo.currentTime-startPlay) / (stopPlay-startPlay) * 100 );
+	if(((myVideo.currentTime-startPlay) / (stopPlay-startPlay) * 100 )>100)
+	{
+		lengthTimeline=100;
+	}
     // Animacja
     $('#timeLine .belt').animate(
-        { "width": myVideo.currentTime / myVideo.duration * 100 + "%" },
+      //  { "width": myVideo.currentTime / myVideo.duration * 100 + "%" },
+      { "width": lengthTimeline + "%" },
         { duration: 100 }
     );
 }
@@ -292,13 +287,14 @@ function changeTime()
 }
 
 function setTimeLine(percent)
-{
+{   
 	$('#timeLine .belt').animate(
 		{"width" : percent+"%"},
 		{duration : 200}
 	);
 	
-	myVideo.currentTime = percent/100 * myVideo.duration;
+//	myVideo.currentTime = percent/100 * myVideo.duration;
+myVideo.currentTime = startPlay+(percent/100 * (stopPlay-startPlay));
 }
 
 function setVolumeLine(percent)
