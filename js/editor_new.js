@@ -120,34 +120,119 @@ function mute() {
 }
 
 
-function fullScreen() {
 
-	var pbox = document.getElementById("myPlayer");
-	if (pbox.requestFullscreen)
+function fullScreen() {
+	var full = document.createElement('div');
+	var vid = $("#myVideo")[0];
+	var pic = $("#imgLoad")[0];
+	
+	$(full).append(vid, pic);
+	
+	$(full).css({
+		"border" : "none",
+		"z-index" : "-20",
+		"width" : screen.width,
+		"height" : screen.height
+	});
+	
+	$(vid).css({
+		"float" : "left",
+		"postion" : "relative",
+		"width":0.5*screen.width+"px",
+	});
+	
+	$(pic).css({
+		//"width":0.5*screen.width;	
+		"float" : "right",
+		"postion" : "relative",
+		
+	});
+
+	//powiekszenie playera wideo i "zmniejszenie" obrazkowego z mozliwoscia przesuwania
+	$(vid).dblclick(function() {
+		$(vid)
+		.animate({
+			width : screen.width
+		}, 1000)
+		.animate({
+			height : screen.height
+		}, 1000)
+		.css({
+			"z-index" : "-10",
+			"position" : "absolute",
+			"align" : "center"
+		});
+		
+		$(pic).css({
+			"height" : "50%",
+			"width" : "50%"
+		});
+		
+		$(function() {
+			$(pic).draggable();
+		}); 
+
+	});
+	
+	/*$(pic).dbclick(function(){
+		$(pic).animate({height: screen.height},1000)
+		.animate({width: screen.width},1000)
+		.css({
+			"z-index" : "-10",
+			"position" : "absolute",
+			"align" : "center"
+		});
+		$(vid).animate({height: "50%"},1000)
+			.animate({width: "50%"},1000);
+		$(function() {
+			$(vid).draggable();
+		}); 
+		
+	});*/
+	
+	$("body").append(full);
+	
+	//fullscreen
+	if (full.requestFullscreen)
 		if (document.fullScreenElement) {
 			document.cancelFullScreen();
+			location.reload();
+			full.remove();
 		} else {
-			pbox.requestFullscreen();
+			full.requestFullscreen();
 		}
-	else if (pbox.msRequestFullscreen)
+	else if (full.msRequestFullscreen)
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
+			location.reload();
+			full.remove();
 		} else {
-			pbox.msRequestFullscreen();
+			full.msRequestFullscreen();
 		}
-	else if (pbox.mozRequestFullScreen)
+	else if (full.mozRequestFullScreen)
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
+			location.reload();
+			full.remove();
 		} else {
-			pbox.mozRequestFullScreen();
+			full.mozRequestFullScreen();
 		}
-	else if (pbox.webkitRequestFullscreen)
+	else if (full.webkitRequestFullscreen)
 		if (document.webkitFullscreenElement) {
 			document.webkitCancelFullScreen();
+			location.reload();
+			full.remove();
 		} else {
-			pbox.webkitRequestFullscreen();
+			full.webkitRequestFullscreen();
 		}
+			
+	vid.play();
+	timetimes();
+	sort_times();
+	
+	
 }
+
 
 
 
@@ -244,5 +329,3 @@ function setVolumeLine(percent)
 // ---------------------------------------------------------------------------------
 //       jacek m
 // ---------------------------------------------------------------------------------
-
-
