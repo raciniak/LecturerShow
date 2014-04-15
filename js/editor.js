@@ -150,7 +150,7 @@ function createSlider(name,value,left){
         slider.setAttribute('tabindex', 0);
         slider.setAttribute('style', left);
         timee = upConversionTime(value);
-        slider.innerHTML = "<div class='underSlider'><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='Obrazek nr:"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
+        slider.innerHTML = "<div class='underSlider'><img src='movies/"+getParameterByName("id")+"/"+name+".png' width='140' height='70' alt='Obrazek nr:"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
         if("PoczatekFilmu"===name || "KoniecFilmu"===name)
         {
         	slider.className = 'slider MovieTimes';
@@ -406,7 +406,7 @@ function slideAddWindows(i)
 		timee = timee.split(":");
         divek.className = 'slajd';
         divek.innerHTML = "<div class='windows_div'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> "+
-        "<img class='obrazek_windows' src='movies/movie1/images/"+slajdy[i]+".png' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
+        "<img class='obrazek_windows' src='movies/"+getParameterByName("id")+"/"+slajdy[i]+".png' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
         "</b> <b class='windows_element'>Czas slajdu(hh:mm:ss): <b class='textboxhour"+slajdy[i]+"'><input id='textboxhour"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[0]+"'></b>:"+
         "<b class='textboxmin"+slajdy[i]+"'><input id='textboxmin"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[1]+"'></b>:"+
         "<b class='textboxsek"+slajdy[i]+"'><input id='textboxsek"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[2]+"'></b></b></div>";
