@@ -65,10 +65,9 @@ var volumeLine = $('#volumeLine')[0];
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
 	$(myVideo).bind('timeupdate', updateSlide);
-
 	
 	// Funkcja wykonywana po naciśnięciu w timeline
-	$(timeLine).click(function(e){
+	$(timeLine).mousedown(function(e){
 		var posX = $(this).offset().left;     
         // Szerokość timeLine-a
         var width = $(this).width();      
@@ -76,17 +75,15 @@ var volumeLine = $('#volumeLine')[0];
         var percent = Math.floor((e.pageX-posX)/width*100);   
         setTimeLine(percent);
 	});
-	
+		
 	// Funkcja wykonywana po naciśnięciu w volumeLine
-	$(volumeLine).click(function(e){
+	$(volumeLine).mousedown(function(e){
 		volumeSliderClicked = true;
-		
-		
 		var posY = $(this).offset().top;     
         // Szerokość timeLine-a
         var height = $(this).height();      
         // Obliczam procent timeLine-a
-        var percent = 100 - Math.floor((e.pageY-posY)/height*100);    
+        var percent = (100 - Math.floor((e.pageY-posY)/height*100)) < 0 ? 0 : 100 - Math.floor((e.pageY-posY)/height*100);    
         setVolumeLine(percent);
         setTimeout('sleep()', 1000);
 	});
@@ -128,38 +125,162 @@ function mute() {
 }
 
 
-function fullScreen() {
 
-	var pbox = document.getElementById("myPlayer");
-	if (pbox.requestFullscreen)
+function fullScreen() {
+	var full = $("#myPlayer")[0];
+	var vid = $("#myVideo")[0];
+	var pic = $("#imgLoad")[0];
+	var pscr = $('.playerScreen');
+	
+	//ustawianie elementow fullscreena
+	$(full).css({
+		"width" : screen.width,
+		"height" : screen.height,
+		"padding":"0px"
+	});
+	
+	$(pscr).css({
+		"width":screen.width,
+		"height":screen.height,
+		"top":"0px",
+		"left":"0px",
+		"padding":"0px"
+	});
+
+	$(vid).css({
+		"width":0.49*screen.width,
+		"height":screen.height,
+		"float":"left",
+		"padding":"0px",
+	});
+
+	$(pic).css({
+		"width":0.49*screen.width,
+		"height":screen.height,
+		 "float" :"right",
+		 "padding":"0px",
+	});
+	
+	
+	
+	//klikanie na wideo
+	$(vid).dblclick(function() {
+		$(vid)
+		.animate({
+			width : screen.width,
+			left: "auto",
+			right :"auto",
+			top : "auto",
+			bottom : "auto"
+		}, 1000)
+		.animate({
+			height : screen.height,
+		}, 1000)
+		.css({
+			"z-index" : "-10",
+			"position" : "absolute",
+		});
+		
+		
+		
+		$(pic).animate({
+			width : 0.35 * screen.width
+		}, 1000).animate({
+			height : 0.35 * screen.height
+		}, 1000).css({
+			"z-index": "10",
+			"float":"right",
+			 
+		}); 
+
+		
+		$(function() {
+			$(pic).draggable();
+		}); 
+
+	});
+	
+	//klikanie na obrazek
+	$(pic).dblclick(function() {
+		$(pic)
+		.animate({
+			width : screen.width,
+			left: "auto",
+			right :"auto",
+			top : "auto",
+			bottom : "auto"
+		}, 1000)
+		.animate({
+			height : screen.height,
+		}, 1000)
+		.css({
+			"z-index" : "-10",
+			"position" : "absolute",
+		});
+		
+		
+		$(vid).animate({
+			width : 0.35 * screen.width
+		}, 1000).animate({
+			height : 0.35 * screen.height
+		}, 1000).css({
+			"z-index" : "10",
+			"float":"right"
+		}); 
+
+		
+		$(function() {
+			$(vid).draggable();
+		}); 
+
+	});
+	
+	
+	//fullscreen
+	if (full.requestFullscreen)
 		if (document.fullScreenElement) {
 			document.cancelFullScreen();
+			location.reload();
 		} else {
-			pbox.requestFullscreen();
+			full.requestFullscreen();
 		}
-	else if (pbox.msRequestFullscreen)
+	else if (full.msRequestFullscreen)
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
+			location.reload();
+			
 		} else {
-			pbox.msRequestFullscreen();
+			full.msRequestFullscreen();
 		}
-	else if (pbox.mozRequestFullScreen)
+	else if (full.mozRequestFullScreen)
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
+			location.reload();
+			
 		} else {
-			pbox.mozRequestFullScreen();
+			full.mozRequestFullScreen();
 		}
-	else if (pbox.webkitRequestFullscreen)
+	else if (full.webkitRequestFullscreen)
 		if (document.webkitFullscreenElement) {
 			document.webkitCancelFullScreen();
+			location.reload();
+		
 		} else {
-			pbox.webkitRequestFullscreen();
+			full.webkitRequestFullscreen();
 		}
+		
+		//funkcja tymczasowa ktora po wcisnieciu esc odswieza strone
+		var KEYCODE_ESC = 27;
+		$(document).keyup(function(e) {
+   			if (e.keyCode == KEYCODE_ESC) { location.reload(); } 
+		});
+		
+		
+		//tymczasowe automatyczne startowanie playera fullscreenowego
+		vid.play();
+		timetimes();
+		sort_times();
 }
-
-
-
-
 
 
 function updateTime(){
@@ -268,5 +389,3 @@ function setVolumeLine(percent)
 // ---------------------------------------------------------------------------------
 //       jacek m
 // ---------------------------------------------------------------------------------
-
-

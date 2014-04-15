@@ -484,19 +484,20 @@
 		display: block;
 		margin: 0 auto;
 		margin-top: 0%;
+	
 	}
 	
 	#wyszukiwarka p {
 		margin-bottom : 0%;
 		display: inline-block;
 		width: 20%;
-		
+	
 	}
 	
 	#searchinput{
 		
 		width: 20%;
-		
+	
 	}
 	
 	#search_suggest {
@@ -514,7 +515,7 @@
 
 	#wyszukiwarka {
 		width: 1200px;
-		
+	
 		display: block;
 		margin: 0 auto;
 		margin-top: 0%;

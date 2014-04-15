@@ -1,24 +1,36 @@
 #myPlayer {
 	border: none;
-	height: 610px;
+	height: 347px;
 	width: 100%;
 	padding-bottom: 100px;
+	position: relative;
 }
 
 #myPlayer .playerScreen .playerScreenLeft {
 	float: left;
-	width: 75px;
+	width: 76px;
 	height: 100%;
 	background-image: url("/images/template/Player/playerScreenLeft.png");
 	background-repeat: no-repeat;
 }
 
 #myPlayer .playerScreen {
-	height: 447px;
-	width: 100%;
+	position: relative;
+	left: 1.4%;
+	top: 3.2%;
+	z-index: 2;
+	height: 436px;
+	width: 98.5%;
 	border: 0px;
-	background-image: url("/images/template/Player/playerScreenBackground.png");
+	background-color: rgb(30,31,32);
 	background-repeat: repeat-x;
+	
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	 border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 #myPlayer .playerScreen .playerScreenRight {
@@ -32,15 +44,21 @@
 }
 
 #myPlayer .playerScreen #myVideo {
-	height: 94.75%;
+	height: 97%;
 	float: left;
-	margin-left: -4.6%;
-	margin-top: 1.65%;
+	margin-left: 0.5%;
+	margin-top: 0.75%;
+	
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+ 	border-top-left-radius: 5px;
+
 }
 
 #myPlayer .playerScreen .imageLoader {
-	float: right;
-	margin-top: 1.65%;
+	float: left;
+	margin-left: 2px;
+	margin-top: 0.75%;
 	position: relative;
 	z-index: 2;
 }
@@ -48,9 +66,18 @@
 #myPlayer .playerScreen .imageLoader img{
 	width: 100%;
 	height: 100%;	
+
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
-#myPlayer .playerMenu .playerMenuLeft {
+#playerNavigation {
+	width: 1076px;
+	height: 200px;
+}
+
+#playerNavigation .playerMenu .playerMenuLeft {
 	float: left;
 	width: 55px;
 	height: 100%;
@@ -58,69 +85,70 @@
 	background-repeat: no-repeat;
 }
 
-#myPlayer .playerMenu {
+#playerNavigation .playerMenu {
 	width: 100%;
-	height: 68px;
+	height: 72px;
 	border: 0px;
 	background-image: url("/images/template/Player/playerMenuBackground.png");
 	background-repeat: repeat-x;
+	position: relative;
 }
 
-#myPlayer .playerMenu .sliderSpace {
+#playerNavigation .playerMenu .sliderSpace {
 	width: 54%;
 	height: 59px;
 	float: left;
 	background: url("/images/template/Player/playerSliderBackground.png");
-	margin-top: 5px;
+	margin-top: 8px;
 }
 
 /**************** Przyciski menu i separator *************************/
 
-#myPlayer .playerMenu .separator {
+#playerNavigation .playerMenu .separator {
 	width: 9px;
 	height: 61px;
 	background: url("/images/template/Player/separator.png");
 	float: left;
-	margin-top: 3px;
+	margin-top: 7px;
 	margin-left: 10px;
 	margin-right: 10px;
 }
 
-#myPlayer .playerMenu #playButton {
+#playerNavigation .playerMenu #playButton {
 	width: 21px;
 	height: 23px;
 	background: url("/images/icons/playerPlayButton.png");
 	background-position-y: 0px;
 	border: none;
 	float: left;
-	margin-top: 23px;
+	margin-top: 26px;
 	margin-left: 1px;
 	top: 0px;
 }
 
-#myPlayer .playerMenu #playButton:hover, #playButton:focus {
+#playerNavigation .playerMenu #playButton:hover, #playButton:focus {
 	background-position: 21px;
 }
 
-#myPlayer .playerMenu #pauseButton {
+#playerNavigation .playerMenu #pauseButton {
 	width: 22px;
 	height: 28px;
 	background: url("/images/icons/playerPauseButton.png");
 	background-position-y: 0px;
 	border: none;
 	float: left;
-	margin-top: 19px;
+	margin-top: 23px;
 	top: 0px;
 }
 
-#myPlayer .playerMenu #pauseButton:hover, #pauseButton:focus {
+#playerNavigation .playerMenu #pauseButton:hover, #pauseButton:focus {
 	background-position: 22px;
 }
 
-#myPlayer .playerMenu #stopButton {
+#playerNavigation .playerMenu #stopButton {
 	width: 28px;
 	height: 28px;
-	margin-top: 1.8%;
+	margin-top: 2.2%;
 	background: url("/images/icons/playerStopButton.png");
 	background-position-y: 0px;
 	border: none;
@@ -128,92 +156,92 @@
 	margin-left: 25px;
 }
 
-#myPlayer .playerMenu #stopButton:hover, #stopButton:active {
+#playerNavigation .playerMenu #stopButton:hover, #stopButton:active {
 	background-position: 28px;
 
 }
 
-#myPlayer .playerMenu .volumeButton {
+#playerNavigation .playerMenu .volumeButton {
 	width: 32px;
 	height: 30px;
 	background: url("/images/icons/playerVolumeButton.png");
 	float: left;
 	border: none;
-	margin-top: 18px;
+	margin-top: 23px;
 }
 
 
-#myPlayer .playerMenu .volumeButton:hover, .volumeButton:active {
+#playerNavigation .playerMenu .volumeButton:hover, .volumeButton:active {
 	background-position: bottom;
 }
 
-#myPlayer .playerMenu .volumeButtonMuted {
+#playerNavigation .playerMenu .volumeButtonMuted {
 	width: 32px;
 	height: 30px;
 	background: url("/images/icons/volumeButtonMuted.png");
 	float: left;
 	border: none;
-	margin-top: 18px;
+	margin-top: 23px;
 }
 
 
-#myPlayer .playerMenu .volumeButtonMuted:hover, .volumeButtonMuted:active {
+#playerNavigation .playerMenu .volumeButtonMuted:hover, .volumeButtonMuted:active {
 	background-position: bottom;
 }
 
-#myPlayer .playerMenu .volumeButton30 {
+#playerNavigation .playerMenu .volumeButton30 {
 	width: 32px;
 	height: 30px;
 	background: url("/images/icons/volumeButton30.png");
 	float: left;
 	border: none;
-	margin-top: 18px;
+	margin-top: 23px;
 }
 
 
-#myPlayer .playerMenu .volumeButton30:hover, .volumeButton30:active {
+#playerNavigation .playerMenu .volumeButton30:hover, .volumeButton30:active {
 	background-position: bottom;
 }
 
-#myPlayer .playerMenu .volumeButton60 {
+#playerNavigation .playerMenu .volumeButton60 {
 	width: 32px;
 	height: 30px;
 	background: url("/images/icons/volumeButton60.png");
 	float: left;
 	border: none;
-	margin-top: 18px;
+	margin-top: 23px;
 }
 
 
-#myPlayer .playerMenu .volumeButton60:hover, .volumeButton60:active {
+#playerNavigation .playerMenu .volumeButton60:hover, .volumeButton60:active {
 	background-position: bottom;
 }
 
-#myPlayer .playerMenu #hdButton {
+#playerNavigation .playerMenu #hdButton {
 	width: 32px;
 	height: 21px;
 	background: url("/images/icons/playerHdButton.png");
 	float: left;
 	border: none;
-	margin-top: 22px;
+	margin-top: 26px;
 	margin-left: 30px;
 }
 
-#myPlayer .playerMenu #hdButton:hover, #hdButton:active {
+#playerNavigation .playerMenu #hdButton:hover, #hdButton:active {
 	background-position: bottom;
 }
 
-#myPlayer .playerMenu #fullScreenButton {
+#playerNavigation .playerMenu #fullScreenButton {
 	width: 32px;
 	height: 25px;
 	background: url("/images/icons/playerFullScreenButton.png");
 	float: left;
 	border: none;
-	margin-top: 19px;
+	margin-top: 23px;
 	margin-left: 20px;
 }
 
-#myPlayer .playerMenu #fullScreenButton:hover, #fullScreenButton:active {
+#playerNavigation .playerMenu #fullScreenButton:hover, #fullScreenButton:active {
 	background-position: bottom;
 }
 
@@ -239,16 +267,44 @@
 		-moz-border-radius: 5px; 
 		-webkit-border-radius: 5px; 
 }
+
+/**********************Panel jakości*************************/
+#qualityPanel {
+	width: 150px;
+	height: 170px;
+	background-color: #99BBDD;
+	border: 1px solid red;
+	position: relative;
+	z-index: 1;
+
+	top: -96.5%;
+	left: 80%;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.3);
+	background-color: rgba(28,28,33,.5); 
+	color: white;
+	font-size: 16px;
+	text-align: left;
+}
+
+#qualityPanel form {
+	width: 80%;
+	padding-left: 50px;
+}
+
 /**********************Pasek głośności***********************/
 #bodyVolumeLine {
 	width: 60px;
-	height: 150px;
+	height: 170px;
 	background-color: #99BBDD;
 	position: relative;
-	z-index: 3;
-	top: -180px;
-	left: -20px;
-	padding-bottom: 30px;
+	z-index: 2;
+
+	top: -47%;
+	left: 75.3%;
 	
 	border-radius: 5px; 
 	-moz-border-radius: 5px; 
@@ -291,14 +347,14 @@
 /************************** CZAS ****************************/
 #timeDiv {
 	float: left;
-	margin-top: 17px;
+	margin-top: 20px;
 	margin-left: 10px;
 	color: #FEFEFE;
 	font-size: 7;
 	padding: 0;
 }
 /************************************************************/
-#myPlayer .playerMenu .playerMenuRight {
+#playerNavigation .playerMenu .playerMenuRight {
 	float: right;
 	width: 55px;
 	height: 100%;
@@ -309,7 +365,7 @@
 
 }
 
-#myPlayer .playerEditMenu .playerEditMenuLeft {
+#playerNavigation .playerEditMenu .playerEditMenuLeft {
 	float: left;
 	width: 55px;
 	height: 100%;
@@ -317,14 +373,14 @@
 	background-repeat: no-repeat;
 }
 
-#myPlayer .playerEditMenu {
+#playerNavigation .playerEditMenu {
 	width: 100%;
 	height: 95px;
 	border: 0px;
 	background-image: url("/images/template/Player/playerEditMenuBackground.png");
 }
 
-#myPlayer .playerEditMenu .playerEditMenuRight {
+#playerNavigation .playerEditMenu .playerEditMenuRight {
 	float: right;
 	width: 55px;
 	height: 100%;
@@ -378,16 +434,4 @@ button.cupid-green:hover {
 }
 
 /*full screen */
-
-#myPlayer:-webkit-full-screen{ 
-		background : none;
-}
-
-#myPlayer:-moz-full-screen {
-	
-}
-
-#myPlayer:-ms-fullscreen {
-	
-}
 
