@@ -162,7 +162,6 @@ function fullScreen() {
 	
 	//klikanie na wideo
 	$(vid).dblclick(function() {
-		$(vid).draggable(false);
 		$(vid)
 		.animate({
 			width : screen.width,
@@ -182,9 +181,9 @@ function fullScreen() {
 		
 		
 		$(pic).animate({
-			width : 0.25 * screen.width
+			width : 0.35 * screen.width
 		}, 1000).animate({
-			height : 0.25 * screen.height
+			height : 0.35 * screen.height
 		}, 1000).css({
 			"z-index": "10",
 			"float":"right",
@@ -200,7 +199,6 @@ function fullScreen() {
 	
 	//klikanie na obrazek
 	$(pic).dblclick(function() {
-		$(pic).draggable(false);
 		$(pic)
 		.animate({
 			width : screen.width,
@@ -219,9 +217,9 @@ function fullScreen() {
 		
 		
 		$(vid).animate({
-			width : 0.25 * screen.width
+			width : 0.35 * screen.width
 		}, 1000).animate({
-			height : 0.25 * screen.height
+			height : 0.35 * screen.height
 		}, 1000).css({
 			"z-index" : "10",
 			"float":"right"
@@ -267,6 +265,12 @@ function fullScreen() {
 		} else {
 			full.webkitRequestFullscreen();
 		}
+		
+		//funkcja tymczasowa ktora po wcisnieciu esc odswieza strone
+		var KEYCODE_ESC = 27;
+		$(document).keyup(function(e) {
+   			if (e.keyCode == KEYCODE_ESC) { location.reload(); } 
+		});
 		
 		
 		//tymczasowe automatyczne startowanie playera fullscreenowego
