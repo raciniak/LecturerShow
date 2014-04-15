@@ -13,6 +13,8 @@ var slajdyB=new Array();
 var convertTime=new Array();
 //Ramy grania filmu
 var startPlay=0, stopPlay=0;
+//bufor obrazka
+var img = new Image();
 //inne
 var buffer_textbox='';
 var iloscSlajdow, refresh;
@@ -47,13 +49,17 @@ $(document).ready(function(){
 		$("#timeLine").click(function(){
 			timetimes();
 			sort_times();
+			ClickTimelineUpdateSlide();
+		});
+		$("#stopButton").click(function(){
+			firstImage();
 		});
 		
 });
 
 // Obsługa błędu video w zakładce do wyszukiwania slajdów
 function errorSlideVideo(){
-	alert("error");
+	$("a[href='#tab-3']").remove();
 }
 
 
@@ -245,8 +251,15 @@ function sort_times(){
     }
 }
 
+// wczytanie pierwszego obrazka
+function firstImage(){
+	sort_times();
+	$('.imageLoader').html('<img src="movies/movie1/images/' + slajdyB[0] + '.png" alt="Obrazek nr: '+slajdyB[0]+'"/>');
+	img.src = 'movies/movie1/images/' + slajdyB[0] + '.png';
+}
+
 // funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
-function obrazek(){
+function updateSlide(){
         var czas = Math.floor(myVideo.currentTime);
         
         //sprawdzamy czy czas filmu nie osiagnął ustawionego czasu stopPlay, jeśli tak to zatrzymujemy
@@ -275,7 +288,48 @@ function obrazek(){
 
         	if(i<iloscSlajdow)
         	{
+                 $('.imageLoader img').attr("src", img.src);
+                 //ładujemy nowy slajd
+                 if(czasyB[i+1]-1==czas)
+                 {
+                 	img.src = 'movies/movie1/images/' + slajdyB[i+1] + '.png';
+                 }
+        	}
+        	time=czas;
+       }
+}
+
+// funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
+function ClickTimelineUpdateSlide(){
+        var czas = Math.floor(myVideo.currentTime);
+
+        if(czas===time+1)
+        {
+        	var j = iloscSlajdow;
+        	var i=0;
+        	var koniec=0;
+        	while(koniec==0)
+        	{
+            	if(j==0){
+                	i=iloscSlajdow;
+                	koniec=1;
+            	}
+            	if(czas>=czasyB[j])
+            	{
+                	i=j;
+                	koniec=1;
+            	}
+            	j--;
+        	}
+
+        	if(i<iloscSlajdow)
+        	{
                  $('.imageLoader').html('<img src="movies/movie1/images/' + slajdyB[i] + '.png" alt="Obrazek nr: '+slajdyB[i]+'"/>');
+                 //ładujemy nowy slajd
+                 if(czasyB[i+1]-1==czas)
+                 {
+                 	img.src = 'movies/movie1/images/' + slajdyB[i+1] + '.png';
+                 }
         	}
         	time=czas;
        }
@@ -305,18 +359,12 @@ function pobierzPliki()
  //przyjęcie czsów grania filmu z pliku
 function OpenTimeVideo(data){
 	plik=data.split('\n');
-	startPlay=plik[0];
-	stopPlay=plik[1];
+	startPlay=parseInt(plik[0]);
+	stopPlay=parseInt(plik[1]);
 	CompletPlayedMovieTime();
 	createRangeTime();
-	//myVideo.currentTime=startPlay;
-  		myVideo.currentTime = startPlay;
-	/*$(video).bind('timeupdate', function() {
-  		if(this.currentTime > stopPlay){
-  			alert("stop");
-   			this.pause();
-  		}
-	});*/
+    myVideo.currentTime = startPlay;
+	
 }
  
 // Dzielimy wartość pliku na dwie tablice: tablica z indentyfikatorami obrazków, tablica z czasami odtwarzania
@@ -335,6 +383,7 @@ function PodzielPlik(data)
        	uzupelnijMultiRange();
        	createRange();
        	list();
+       	firstImage();
    
 }
 

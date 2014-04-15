@@ -5,6 +5,9 @@ $(document).ready(function () {
 //Zaladowanie sciezki do filmu
 var namefile = 'movies/'+getParameterByName("id")+'/speech.mp4';
 $("#myVideo").html("<source src='"+namefile+"' type='video/mp4' \>");
+//Zaladowanie sciezki do filmu ze slajdami
+var namefileslide = 'movies/'+getParameterByName("id")+'/slides.mp4';
+$("#AddNewSlide").html("<source src='"+namefileslide+"' type='video/mp4' \>");
 //------------------------------------	
 var myVideo    = $('#myVideo')[0];	
 var timeLine   = $('#timeLine')[0];
@@ -61,7 +64,7 @@ var volumeLine = $('#volumeLine')[0];
     // Funkcja wykonywana, kiedy player jest uruchomiony
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
-	$(myVideo).bind('timeupdate', obrazek);
+	$(myVideo).bind('timeupdate', updateSlide);
 
 	
 	// Funkcja wykonywana po naciśnięciu w timeline
@@ -70,7 +73,7 @@ var volumeLine = $('#volumeLine')[0];
         // Szerokość timeLine-a
         var width = $(this).width();      
         // Obliczam procent timeLine-a
-        var percent = Math.floor((e.pageX-posX)/width*100);    
+        var percent = Math.floor((e.pageX-posX)/width*100);   
         setTimeLine(percent);
 	});
 	
@@ -230,9 +233,11 @@ function setTimeLine(percent)
 		{"width" : percent+"%"},
 		{duration : 200}
 	);
-	
-//	myVideo.currentTime = percent/100 * myVideo.duration;
-myVideo.currentTime = startPlay+(percent/100 * (stopPlay-startPlay));
+
+	//myVideo.currentTime = percent/100 * myVideo.duration;
+	var liczba = startPlay+(percent/100 * (stopPlay-startPlay));
+	liczba = liczba.toFixed(2);
+	myVideo.currentTime = liczba;
 }
 
 function setVolumeLine(percent)
