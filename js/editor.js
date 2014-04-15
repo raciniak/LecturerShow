@@ -254,8 +254,8 @@ function sort_times(){
 // wczytanie pierwszego obrazka
 function firstImage(){
 	sort_times();
-	$('.imageLoader').html('<img src="movies/movie1/images/' + slajdyB[0] + '.png" alt="Obrazek nr: '+slajdyB[0]+'"/>');
-	img.src = 'movies/movie1/images/' + slajdyB[0] + '.png';
+	$('.imageLoader').html('<img src="movies/'+getParameterByName("id")+'/' + slajdyB[0] + '.png" alt="Obrazek nr: '+slajdyB[0]+'"/>');
+	img.src = 'movies/'+getParameterByName("id")+'/' + slajdyB[0] + '.png';
 }
 
 // funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
@@ -292,7 +292,7 @@ function updateSlide(){
                  //ładujemy nowy slajd
                  if(czasyB[i+1]-1==czas)
                  {
-                 	img.src = 'movies/movie1/images/' + slajdyB[i+1] + '.png';
+                 	img.src = 'movies/'+getParameterByName("id")+'/' + slajdyB[i+1] + '.png';
                  }
         	}
         	time=czas;
@@ -324,11 +324,11 @@ function ClickTimelineUpdateSlide(){
 
         	if(i<iloscSlajdow)
         	{
-                 $('.imageLoader').html('<img src="movies/movie1/images/' + slajdyB[i] + '.png" alt="Obrazek nr: '+slajdyB[i]+'"/>');
+                 $('.imageLoader').html('<img src="movies/'+getParameterByName("id")+'/' + slajdyB[i] + '.png" alt="Obrazek nr: '+slajdyB[i]+'"/>');
                  //ładujemy nowy slajd
                  if(czasyB[i+1]-1==czas)
                  {
-                 	img.src = 'movies/movie1/images/' + slajdyB[i+1] + '.png';
+                 	img.src = 'movies/'+getParameterByName("id")+'/' + slajdyB[i+1] + '.png';
                  }
         	}
         	time=czas;
