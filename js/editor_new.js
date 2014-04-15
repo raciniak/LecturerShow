@@ -132,6 +132,7 @@ function fullScreen() {
 	var pic = $("#imgLoad")[0];
 	var pscr = $('.playerScreen');
 	
+	
 	//ustawianie elementow fullscreena
 	$(full).css({
 		"width" : screen.width,
@@ -152,6 +153,7 @@ function fullScreen() {
 		"height":screen.height,
 		"float":"left",
 		"padding":"0px",
+		
 	});
 
 	$(pic).css({
@@ -159,9 +161,11 @@ function fullScreen() {
 		"height":screen.height,
 		 "float" :"right",
 		 "padding":"0px",
-	});
-	
-	
+		 "-moz-user-select": "none",
+    		"-webkit-user-select": "none",
+    		"user-select": "none",
+});
+
 	
 	//klikanie na wideo
 	$(vid).dblclick(function() {
@@ -172,33 +176,31 @@ function fullScreen() {
 			right :"auto",
 			top : "auto",
 			bottom : "auto"
-		}, 1000)
+		}, 300)
 		.animate({
 			height : screen.height,
-		}, 1000)
+		}, 300)
 		.css({
 			"z-index" : "-10",
 			"position" : "absolute",
-		});
-		
-		
+		}).draggable({disabled:true});
 		
 		$(pic).animate({
 			width : 0.35 * screen.width
-		}, 1000).animate({
+		}, 300).animate({
 			height : 0.35 * screen.height
-		}, 1000).css({
+		}, 300);
+		$(pic).css({
 			"z-index": "10",
 			"float":"right",
-			 
-		}); 
-
-		
-		$(function() {
-			$(pic).draggable();
-		}); 
-
-	});
+			"-moz-user-select": "none",
+    		"-webkit-user-select": "none",
+    		"user-select": "none",
+			"-moz-border-radius": "10px",
+			"-webkit-border-radius": "10px",
+			"border-radius": "10px",
+		}).draggable({disabled:false}); 
+});
 	
 	//klikanie na obrazek
 	$(pic).dblclick(function() {
@@ -209,29 +211,31 @@ function fullScreen() {
 			right :"auto",
 			top : "auto",
 			bottom : "auto"
-		}, 1000)
+		}, 300)
 		.animate({
 			height : screen.height,
-		}, 1000)
+		}, 300)
 		.css({
 			"z-index" : "-10",
 			"position" : "absolute",
-		});
+			"-moz-user-select": "none",
+    		"-webkit-user-select": "none",
+    		"user-select": "none",
+		}).draggable({disabled:true});
 		
 		
 		$(vid).animate({
 			width : 0.35 * screen.width
-		}, 1000).animate({
+		}, 300).animate({
 			height : 0.35 * screen.height
-		}, 1000).css({
+		}, 300);
+		$(vid).css({
 			"z-index" : "10",
-			"float":"right"
-		}); 
-
-		
-		$(function() {
-			$(vid).draggable();
-		}); 
+			"float":"right",
+			"-moz-border-radius": "10px",
+			"-webkit-border-radius": "10px",
+			"border-radius": "10px",
+		}).draggable({disabled:false}); 
 
 	});
 	
@@ -240,14 +244,12 @@ function fullScreen() {
 	if (full.requestFullscreen)
 		if (document.fullScreenElement) {
 			document.cancelFullScreen();
-			location.reload();
 		} else {
 			full.requestFullscreen();
 		}
 	else if (full.msRequestFullscreen)
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
-			location.reload();
 			
 		} else {
 			full.msRequestFullscreen();
@@ -255,7 +257,6 @@ function fullScreen() {
 	else if (full.mozRequestFullScreen)
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
-			location.reload();
 			
 		} else {
 			full.mozRequestFullScreen();
@@ -263,8 +264,6 @@ function fullScreen() {
 	else if (full.webkitRequestFullscreen)
 		if (document.webkitFullscreenElement) {
 			document.webkitCancelFullScreen();
-			location.reload();
-		
 		} else {
 			full.webkitRequestFullscreen();
 		}
