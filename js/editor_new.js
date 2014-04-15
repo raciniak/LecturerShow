@@ -124,51 +124,73 @@ function mute() {
 
 
 function fullScreen() {
-	var full = document.createElement('div');
+	var full = $("#myPlayer")[0];
 	var vid = $("#myVideo")[0];
 	var pic = $("#imgLoad")[0];
+	var pscr = $('.playerScreen');
 	
-	$(full).append(vid, pic);
-	
+	//ustawianie elementow fullscreena
 	$(full).css({
-		"border" : "none",
-		"z-index" : "-20",
 		"width" : screen.width,
-		"height" : screen.height
+		"height" : screen.height,
+		"padding":"0px"
 	});
 	
-	$(vid).css({
-		"float" : "left",
-		"postion" : "relative",
-		"width":0.5*screen.width+"px",
-	});
-	
-	$(pic).css({
-		//"width":0.5*screen.width;	
-		"float" : "right",
-		"postion" : "relative",
-		
+	$(pscr).css({
+		"width":screen.width,
+		"height":screen.height,
+		"top":"0px",
+		"left":"0px",
+		"padding":"0px"
 	});
 
-	//powiekszenie playera wideo i "zmniejszenie" obrazkowego z mozliwoscia przesuwania
+	$(vid).css({
+		"width":0.49*screen.width,
+		"height":screen.height,
+		"float":"left",
+		"padding":"0px",
+	});
+
+	$(pic).css({
+		"width":0.49*screen.width,
+		"height":screen.height,
+		 "float" :"right",
+		 "padding":"0px",
+	});
+	
+	
+	
+	//klikanie na wideo
 	$(vid).dblclick(function() {
+		$(vid).draggable(false);
 		$(vid)
 		.animate({
-			width : screen.width
+			width : screen.width,
+			left: "auto",
+			right :"auto",
+			top : "auto",
+			bottom : "auto"
 		}, 1000)
 		.animate({
-			height : screen.height
+			height : screen.height,
 		}, 1000)
 		.css({
 			"z-index" : "-10",
 			"position" : "absolute",
-			"align" : "center"
 		});
 		
-		$(pic).css({
-			"height" : "50%",
-			"width" : "50%"
-		});
+		
+		
+		$(pic).animate({
+			width : 0.25 * screen.width
+		}, 1000).animate({
+			height : 0.25 * screen.height
+		}, 1000).css({
+			"z-index": "10",
+			"float":"right",
+			 
+		}); 
+
 		
 		$(function() {
 			$(pic).draggable();
@@ -176,15 +198,48 @@ function fullScreen() {
 
 	});
 	
+	//klikanie na obrazek
+	$(pic).dblclick(function() {
+		$(pic).draggable(false);
+		$(pic)
+		.animate({
+			width : screen.width,
+			left: "auto",
+			right :"auto",
+			top : "auto",
+			bottom : "auto"
+		}, 1000)
+		.animate({
+			height : screen.height,
+		}, 1000)
+		.css({
+			"z-index" : "-10",
+			"position" : "absolute",
+		});
+		
+		
+		$(vid).animate({
+			width : 0.25 * screen.width
+		}, 1000).animate({
+			height : 0.25 * screen.height
+		}, 1000).css({
+			"z-index" : "10",
+			"float":"right"
+		}); 
+
+		
+		$(function() {
+			$(vid).draggable();
+		}); 
+
+	});
 	
-	$("body").append(full);
 	
 	//fullscreen
 	if (full.requestFullscreen)
 		if (document.fullScreenElement) {
 			document.cancelFullScreen();
 			location.reload();
-			full.remove();
 		} else {
 			full.requestFullscreen();
 		}
@@ -192,7 +247,7 @@ function fullScreen() {
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
 			location.reload();
-			full.remove();
+			
 		} else {
 			full.msRequestFullscreen();
 		}
@@ -200,7 +255,7 @@ function fullScreen() {
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
 			location.reload();
-			full.remove();
+			
 		} else {
 			full.mozRequestFullScreen();
 		}
@@ -208,16 +263,16 @@ function fullScreen() {
 		if (document.webkitFullscreenElement) {
 			document.webkitCancelFullScreen();
 			location.reload();
-			full.remove();
+		
 		} else {
 			full.webkitRequestFullscreen();
 		}
-			
-	vid.play();
-	timetimes();
-	sort_times();
-	
-	
+		
+		
+		//tymczasowe automatyczne startowanie playera fullscreenowego
+		vid.play();
+		timetimes();
+		sort_times();
 }
 
 
