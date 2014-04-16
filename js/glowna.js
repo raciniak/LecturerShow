@@ -39,11 +39,11 @@ $(document).ready(function(){
         	 $.each(obj, function() {
         	tab[i] = this['sciezka']; 	
         	
-        	document.getElementById("video_list").innerHTML += "<li class='li_lista_5'><div id='film_zdjecie_5'>" + 
+        	document.getElementById("video_list").innerHTML += "<li class='li_lista_5'><div id='list_element'><div id='film_zdjecie_5'>" + 
         														"<img id='zdjecie_5' onclick ='changeSrcVideo(\u0022" + this['sciezka']  + "\u0022)' onmouseover='funkcja(this," + "\u0022" + this['sciezka'] + "\u0022" + ")'" + 
 							      " onmouseout = funkcja_powrot(this,\u0022"  + this['sciezka'] + "\u0022) " + "src='res/" + this['sciezka'] + "/1.png'></div><div id='opis_5'><p> Tytul: " + 
 							      this['tytul'] + "</p><p> Autor: " + 
-							      this['autor'] + "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></div></li>";
+							      this['autor'] + "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></div></div></li>";
 							      i++;
         	});
         	mini_player = document.getElementById("mini_player");

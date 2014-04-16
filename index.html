@@ -21,7 +21,8 @@
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
 			<link rel="stylesheet" href="css/template/style.css" />
 			<link rel="stylesheet" href="css/template/style-desktop.css" />
-			
+			<link rel="stylesheet" href="css/glowna.css" />
+
 		</noscript>
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/template/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="js/libs/template/html5shiv.js"></script><![endif]-->
@@ -70,41 +71,62 @@
 										<header>
 											<h3> TOP 4 LecturerShow </h3>
 										</header>
-										<video id="mini_player" onclick="srcVideo()" height="40%" width="65%" autoplay></video>
-										<ul id="video_list"></ul>
+										<div id="mini_player_and_list">
+											<video id="mini_player" onclick="srcVideo()" height="40%" width="65%" autoplay></video>
+											<div id="video_list"></div>
+										</div>
 									</section>
 					
+            		<section>
+						<header>
+							<h3> Najnowsze</h3>
+						</header>
+					
+	                    <div class="slider" onselect="return false">
+		                    <input type="button" class="prev" value="<" >
+			                    <div class="wyniki">
+			                    	<ul class="lista" id="najnowsze_slider">
+			                			
+			                		</ul>
+			                    </div>
+		                    <input type="button" value=">" class="next" >
+	                    </div>						
+					</section>
             		
-                	<h1 id="naglowek_film"> Najnowsze filmy </h1>
-                    <div class="slider" onselect="return false">
-                    <input type="button" class="prev" value="<" >
-                    <div class="wyniki">
-                    	<ul class="lista" id="najnowsze_slider">
-                			
-                		</ul>
-                    </div>
-                    <input type="button" value=">" class="next" >
-                    </div>
-                    <h1 id="naglowek_film"> Najczęściej wyświetlane </h1>
-                    <div class="slider">
-                    <input type="button" value="<" class="prev">
-                    <div class="wyniki">
-                    	<ul class="lista" id="popularne_slider">
-                			
-                		</ul>
-                    </div>
-                     <input type="button" value=">" class="next">
-                    </div>
-                    <h1 id="naglowek_film"> Najlepiej oceniane </h1>
-                    <div class="slider">
-                    	<input type="button" value="<" class="prev">
-                    	<div class="wyniki">
-                    		<ul class="lista" id="najlepsze_slider">
-                				
-                			</ul>
-                    	</div>
-                     	<input type="button" value=">" class="next">
-                    </div>
+            		<section>
+						<header>
+							<h3> Popularne </h3>
+						</header>
+					
+	                    <div class="slider">
+		                    <input type="button" value="<" class="prev">
+			                    <div class="wyniki">
+			                    	<ul class="lista" id="popularne_slider">
+			                			
+			                		</ul>
+			                    </div>
+		                     <input type="button" value=">" class="next">
+	                    </div>					
+					</section>            		
+
+            		<section>
+						<header>
+							<h3> Najlepsze </h3>
+						</header>
+					
+	                    <div class="slider">
+	                    	<input type="button" value="<" class="prev">
+	                    	<div class="wyniki">
+	                    		<ul class="lista" id="najlepsze_slider">
+	                				
+	                			</ul>
+	                    	</div>
+	                     	<input type="button" value=">" class="next">
+	                    </div>				
+					</section> 
+	                    
+            
+
                 
 							</div>
 						</div>

@@ -74,7 +74,7 @@ $(document).ready(function () {
 						$(imageLoader).css("width", beginWidth+"px");
 						$(imageLoader).css("height", beginHeight+"px");
 						$(video).css("margin-bottom", newMargin);
-						$(playerScreen).css("height", beginPlayerScreenHeight+"px");		
+						$(playerScreen).css("height", 334+"px");		
 		
 		
 						playerEffectClick++;
@@ -104,7 +104,7 @@ $(document).ready(function () {
 						$(video).css("height", videoHeight+imageHeight/2.5+"px");
 						$(imageLoader).css("width", imageWidth/1.7+"px");
 						$(imageLoader).css("height", imageHeight/1.7+"px");
-						$(playerScreen).css("height", $(playerScreen).height()+videoHeight/2.5+"px");		
+						$(playerScreen).css("height", $(playerScreen).height()+videoHeight/5.75+"px");		
 						
 						playerEffectClick=1;
 					break;
