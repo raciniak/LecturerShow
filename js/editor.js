@@ -94,24 +94,26 @@ function list(){
         var $current_slider = $($sliders);
         var $lista = $('.lista', $current_slider);
         var $li = $lista.children('li');
+        var $tab = $('.tab')[0];
+        var $current_tab = $($tab);
  
         //jeżeli dla danego slidera LI jest więcej od 3 to będzie można przewijać, inaczej nie ma sensu
-        if ($li.length > 3) {
+        if ($li.length > 18) {
             //odległość pojedynczego przesunięcia
-            var odleglosc = 100;
+            var odleglosc = 110;
             //Wyliczanie max przesunięcia
-            var maxLeft = odleglosc * $li.length - 3 * odleglosc;
- 
+            var maxBottom = (Math.floor($li.length/6)+1)*odleglosc;
+ 			maxBottom = maxBottom-(3*odleglosc);
             //przesuwanie w górę i w dół
-            $('.down', $current_slider).click(function() {
-                if ($lista.position().top > -maxLeft) {
+            $('.down').click(function() {
+                if ($lista.position().top > -maxBottom) {
                     $($lista).not(':animated').animate({
                         'top' : '-='+odleglosc
                     },500);
                 }
             });
  
-            $('.up', $current_slider).click(function() {
+            $('.up').click(function() {
                 if ($lista.position().top<0) {
                     $($lista).not(':animated').animate({
                         'top' : '+='+odleglosc
@@ -150,7 +152,7 @@ function createSlider(name,value,left){
         slider.setAttribute('tabindex', 0);
         slider.setAttribute('style', left);
         timee = upConversionTime(value);
-        slider.innerHTML = "<div class='underSlider'><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='Obrazek nr:"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
+        slider.innerHTML = "<div class='underSlider'><img src='res/"+getParameterByName("id")+"/"+name+".png' width='140' height='70' alt='Obrazek nr:"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
         if("PoczatekFilmu"===name || "KoniecFilmu"===name)
         {
         	slider.className = 'slider MovieTimes';
@@ -254,8 +256,8 @@ function sort_times(){
 // wczytanie pierwszego obrazka
 function firstImage(){
 	sort_times();
-	$('.imageLoader').html('<img src="movies/'+getParameterByName("id")+'/' + slajdyB[0] + '.png" alt="Obrazek nr: '+slajdyB[0]+'"/>');
-	img.src = 'movies/'+getParameterByName("id")+'/' + slajdyB[0] + '.png';
+	$('.imageLoader').html('<img src="res/'+getParameterByName("id")+'/' + slajdyB[0] + '.png" alt="Obrazek nr: '+slajdyB[0]+'"/>');
+	img.src = 'res/'+getParameterByName("id")+'/' + slajdyB[0] + '.png';
 }
 
 // funkcja odpowiadajaca za wyświetlanie się slajdów w odpowiednim czasie
@@ -292,7 +294,7 @@ function updateSlide(){
                  //ładujemy nowy slajd
                  if(czasyB[i+1]-1==czas)
                  {
-                 	img.src = 'movies/'+getParameterByName("id")+'/' + slajdyB[i+1] + '.png';
+                 	img.src = 'res/'+getParameterByName("id")+'/' + slajdyB[i+1] + '.png';
                  }
         	}
         	time=czas;
@@ -324,11 +326,11 @@ function ClickTimelineUpdateSlide(){
 
         	if(i<iloscSlajdow)
         	{
-                 $('.imageLoader').html('<img src="movies/'+getParameterByName("id")+'/' + slajdyB[i] + '.png" alt="Obrazek nr: '+slajdyB[i]+'"/>');
+                 $('.imageLoader').html('<img src="res/'+getParameterByName("id")+'/' + slajdyB[i] + '.png" alt="Obrazek nr: '+slajdyB[i]+'"/>');
                  //ładujemy nowy slajd
                  if(czasyB[i+1]-1==czas)
                  {
-                 	img.src = 'movies/'+getParameterByName("id")+'/' + slajdyB[i+1] + '.png';
+                 	img.src = 'res/'+getParameterByName("id")+'/' + slajdyB[i+1] + '.png';
                  }
         	}
         	time=czas;
@@ -338,8 +340,8 @@ function ClickTimelineUpdateSlide(){
 // funkcja odpowiadająca za pobranie pliku z czasami oraz liczbą slajdów
 function pobierzPliki()
 {
-		var namefile1 = '../movies/'+getParameterByName("id")+'/times.txt';
-		var namefile2 = '../movies/'+getParameterByName("id")+'/timesMovie.txt';
+		var namefile1 = '../res/'+getParameterByName("id")+'/times.txt';
+		var namefile2 = '../res/'+getParameterByName("id")+'/timesMovie.txt';
 		var name1 = {
             namefile: namefile1
         };
@@ -405,12 +407,48 @@ function slideAddWindows(i)
 		timee = upConversionTime(czasy[i]);
 		timee = timee.split(":");
         divek.className = 'slajd';
-        divek.innerHTML = "<div class='windows_div'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> "+
-        "<img class='obrazek_windows' src='movies/movie1/images/"+slajdy[i]+".png' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/>  <b class='windows_element'>Numer slajdu: "+slajdy[i]+    
-        "</b> <b class='windows_element'>Czas slajdu(hh:mm:ss): <b class='textboxhour"+slajdy[i]+"'><input id='textboxhour"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[0]+"'></b>:"+
+        divek.innerHTML = "<div class='windows_div' id='ControlWindows"+slajdy[i]+"' onmouseout='onselecdSlideWindows(this)' onmouseover='selecdSlideWindows(this)'><img id='Images"+slajdy[i]+"' class='obrazek_windows' src='res/"+getParameterByName("id")+"/"+slajdy[i]+".png' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/> "+
+        "<div id='ControlPanel"+slajdy[i]+"' class='ControlPanel'></div><div id='ControlPanel"+slajdy[i]+"Items' class='ControlPanelItems'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> <b class='windows_element1'>Numer slajdu: "+slajdy[i]+    
+        "</b> <br /><b class='windows_element2'>Czas slajdu: <b class='textboxhour"+slajdy[i]+"'><input id='textboxhour"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[0]+"'></b>:"+
         "<b class='textboxmin"+slajdy[i]+"'><input id='textboxmin"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[1]+"'></b>:"+
-        "<b class='textboxsek"+slajdy[i]+"'><input id='textboxsek"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[2]+"'></b></b></div>";
+        "<b class='textboxsek"+slajdy[i]+"'><input id='textboxsek"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[2]+"'></b></b></div></div>";
         $("#windows_lista").append(divek);
+}
+
+function selecdSlideWindows(img)
+{
+	var name;
+	var id='';
+	name = $(img).attr('id');
+		//znajdujemy numer slajdu w identyfikatorze
+		for(i=0;i<name.length;i++)
+		{
+			bool = isNaN(name[i]);
+			if(bool===false)
+			{
+				id=id+name[i];
+			}
+		}
+	document.getElementById("ControlPanel"+id).style.zIndex='3';
+	document.getElementById("ControlPanel"+id+"Items").style.zIndex='4';
+}
+
+function onselecdSlideWindows(img)
+{
+	var name;
+	var id='';
+	name = $(img).attr('id');
+		//znajdujemy numer slajdu w identyfikatorze
+		for(i=0;i<name.length;i++)
+		{
+			bool = isNaN(name[i]);
+			if(bool===false)
+			{
+				id=id+name[i];
+			}
+		}
+	document.getElementById("ControlPanel"+id).style.zIndex='1';
+	document.getElementById("ControlPanel"+id+"Items").style.zIndex='1';
 }
 
 //dodanie texboxow z czasami odtwarzania filmu

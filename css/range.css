@@ -49,36 +49,91 @@
 }
 
 /*wyglad okienka pod multirangem edytora*/
+#tab-1{
+	//background:#212F35;
+}
+
 .windows{
-	width: 100%;
-	height: 310px;
-	background:#99BBDD;
+	width: 1100px;
+	height: 330px;
+	background-image: url("/images/template/bg03.jpg");
 	margin:0px auto;
 	overflow:hidden;
 	position: relative;
 	
 }
+
+.up{
+	position:relative;
+}
+
+.down{
+	position:relative;
+}
+
+.rightbuttonlist{
+	float:right;
+	bottom:33px;
+	right:35px;
+}
+
+.leftbuttonlist{
+	float:left;
+}
 .slajd{
+	float:left;
 	margin: 20px;
 	list-style: none;
 }
 
+.windows_div{
+	width:140px;
+	height:70px;
+	position:relative;
+}
+
 .obrazek_windows{
 	position:relative;
-	top:30px;
-	
+	z-index: 2;
 }
-.windows_div{
+
+.ControlPanel{
+	width:140px;
+	height:70px;
 	position:relative;
-	bottom:30px;
-}
-.windows_element{
-	margin-left: 100px;
-}
-
-.textboxPlay{
+	background-color:#000000;
+	opacity:0.6;
+	bottom:80px;
+	z-index: 1;
 }
 
+.ControlPanelItems{
+	width:140px;
+	height:70px;
+	position:relative;
+	bottom:156px;
+	z-index: 1;
+}
+
+.windows_element1{
+	position:relative;
+	left:30px;
+	font-size:14px;
+	color:white;
+}
+
+.windows_element2{
+	position:relative;
+	left:5px;
+	font-size:14px;
+	color:white;
+}
+
+.checkbox{
+	position:relative;
+	top:2px;
+	left:15px
+}
 /* Tło MultiRange */
 
 #timeline_editor{
@@ -141,7 +196,7 @@
 
     
 /*przycisk do przewijania listy w edytorze w zakładce slajdy */
-.up {
+/*.up {
 	margin-left: 90%;
 	margin-bottom: 2%;
 	background:#FFF;
@@ -150,11 +205,11 @@
 	margin-left: 90%;
 	margin-top: 2%;
 	background:#FFF;
-}
+}*/
 
 .textboxWindows{
 	width: 20px;
-	background:#00B2E8;
+	background-image: url("/images/template/bg03.jpg");
 
 }
 
