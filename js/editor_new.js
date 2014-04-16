@@ -5,6 +5,9 @@ $(document).ready(function () {
 //Zaladowanie sciezki do filmu
 var namefile = 'movies/'+getParameterByName("id")+'/speech.mp4';
 $("#myVideo").html("<source src='"+namefile+"' type='video/mp4' \>");
+//Zaladowanie sciezki do filmu ze slajdami
+var namefileslide = 'movies/'+getParameterByName("id")+'/slides.mp4';
+$("#AddNewSlide").html("<source src='"+namefileslide+"' type='video/mp4' \>");
 //------------------------------------	
 var myVideo    = $('#myVideo')[0];	
 var timeLine   = $('#timeLine')[0];
@@ -61,16 +64,16 @@ var volumeLine = $('#volumeLine')[0];
     // Funkcja wykonywana, kiedy player jest uruchomiony
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
-	$(myVideo).bind('timeupdate', obrazek);
+	$(myVideo).bind('timeupdate', updateSlide);
 	
 	// Funkcja wykonywana po naciśnięciu w timeline
 	$(timeLine).mousedown(function(e){
 		var posX = $(this).offset().left;     
-		// Szerokość timeLine-a
-		var width = $(this).width();      
-		// Obliczam procent timeLine-a
-		var percent = Math.floor((e.pageX-posX)/width*100);    
-		setTimeLine(percent);
+        // Szerokość timeLine-a
+        var width = $(this).width();      
+        // Obliczam procent timeLine-a
+        var percent = Math.floor((e.pageX-posX)/width*100);   
+        setTimeLine(percent);
 	});
 		
 	// Funkcja wykonywana po naciśnięciu w volumeLine
@@ -129,6 +132,7 @@ function fullScreen() {
 	var pic = $("#imgLoad")[0];
 	var pscr = $('.playerScreen');
 	
+	
 	//ustawianie elementow fullscreena
 	$(full).css({
 		"width" : screen.width,
@@ -149,6 +153,7 @@ function fullScreen() {
 		"height":screen.height,
 		"float":"left",
 		"padding":"0px",
+		
 	});
 
 	$(pic).css({
@@ -156,9 +161,11 @@ function fullScreen() {
 		"height":screen.height,
 		 "float" :"right",
 		 "padding":"0px",
-	});
-	
-	
+		 "-moz-user-select": "none",
+    		"-webkit-user-select": "none",
+    		"user-select": "none",
+});
+
 	
 	//klikanie na wideo
 	$(vid).dblclick(function() {
@@ -169,33 +176,31 @@ function fullScreen() {
 			right :"auto",
 			top : "auto",
 			bottom : "auto"
-		}, 1000)
+		}, 300)
 		.animate({
 			height : screen.height,
-		}, 1000)
+		}, 300)
 		.css({
 			"z-index" : "-10",
 			"position" : "absolute",
-		});
-		
-		
+		}).draggable({disabled:true});
 		
 		$(pic).animate({
 			width : 0.35 * screen.width
-		}, 1000).animate({
+		}, 300).animate({
 			height : 0.35 * screen.height
-		}, 1000).css({
+		}, 300);
+		$(pic).css({
 			"z-index": "10",
 			"float":"right",
-			 
-		}); 
-
-		
-		$(function() {
-			$(pic).draggable();
-		}); 
-
-	});
+			"-moz-user-select": "none",
+    		"-webkit-user-select": "none",
+    		"user-select": "none",
+			"-moz-border-radius": "10px",
+			"-webkit-border-radius": "10px",
+			"border-radius": "10px",
+		}).draggable({disabled:false}); 
+});
 	
 	//klikanie na obrazek
 	$(pic).dblclick(function() {
@@ -206,29 +211,31 @@ function fullScreen() {
 			right :"auto",
 			top : "auto",
 			bottom : "auto"
-		}, 1000)
+		}, 300)
 		.animate({
 			height : screen.height,
-		}, 1000)
+		}, 300)
 		.css({
 			"z-index" : "-10",
 			"position" : "absolute",
-		});
+			"-moz-user-select": "none",
+    		"-webkit-user-select": "none",
+    		"user-select": "none",
+		}).draggable({disabled:true});
 		
 		
 		$(vid).animate({
 			width : 0.35 * screen.width
-		}, 1000).animate({
+		}, 300).animate({
 			height : 0.35 * screen.height
-		}, 1000).css({
+		}, 300);
+		$(vid).css({
 			"z-index" : "10",
-			"float":"right"
-		}); 
-
-		
-		$(function() {
-			$(vid).draggable();
-		}); 
+			"float":"right",
+			"-moz-border-radius": "10px",
+			"-webkit-border-radius": "10px",
+			"border-radius": "10px",
+		}).draggable({disabled:false}); 
 
 	});
 	
@@ -237,14 +244,12 @@ function fullScreen() {
 	if (full.requestFullscreen)
 		if (document.fullScreenElement) {
 			document.cancelFullScreen();
-			location.reload();
 		} else {
 			full.requestFullscreen();
 		}
 	else if (full.msRequestFullscreen)
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
-			location.reload();
 			
 		} else {
 			full.msRequestFullscreen();
@@ -252,7 +257,6 @@ function fullScreen() {
 	else if (full.mozRequestFullScreen)
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
-			location.reload();
 			
 		} else {
 			full.mozRequestFullScreen();
@@ -260,8 +264,6 @@ function fullScreen() {
 	else if (full.webkitRequestFullscreen)
 		if (document.webkitFullscreenElement) {
 			document.webkitCancelFullScreen();
-			location.reload();
-		
 		} else {
 			full.webkitRequestFullscreen();
 		}
@@ -351,9 +353,11 @@ function setTimeLine(percent)
 		{"width" : percent+"%"},
 		{duration : 200}
 	);
-	
-//	myVideo.currentTime = percent/100 * myVideo.duration;
-myVideo.currentTime = startPlay+(percent/100 * (stopPlay-startPlay));
+
+	//myVideo.currentTime = percent/100 * myVideo.duration;
+	var liczba = startPlay+(percent/100 * (stopPlay-startPlay));
+	liczba = liczba.toFixed(2);
+	myVideo.currentTime = liczba;
 }
 
 function setVolumeLine(percent)

@@ -1,7 +1,7 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 	<head>
-		<title>LecturerShow.pl - Wyszukiwarka</title>
+		<title>LecturerShow.pl - Player</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -9,19 +9,31 @@
 		<script src="js/libs/template/config.js"></script>
 		<script src="js/libs/template/skel.min.js"></script>
 		<script src="js/libs/template/skel-panels.min.js"></script>
-		<script src="js/xmlhttprequest.js"></script>
-		<script src="js/logowanie.js"></script>
-		<script src="js/tabs.js"></script>
-		<script src="js/zmien_dane.js"></script>
-        		
+		<script type="text/javascript" src="js/Dragdrop.js"></script>
+        <script type="text/javascript" src="js/Event.js"></script>
+        <script src="js/xmlhttprequest.js"></script>
+		<!-- Skrypty do playera -->
+		<script type="text/javascript" src="js/player.js"></script>
+        <!--FUNKCJE DO SLAJDOW I MULTIRANGE-->
+        <!-- <script type="text/javascript" src="js/range.js"></script> -->
+        <script type="text/javascript" src="js/player_dodatkowy.js"></script>
+        <script type="text/javascript" src="js/libs/template/playerScalingScript.js"></script>
+        <script type="text/javascript" src="js/libs/template/playerEffects.js"></script>
+        <!--Funkcje do okien dialogowych-->
+       <!-- <script type="text/javascript" src="js/CustomDialog.js"></script>-->
+		<!--Piotrek dodal--><script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>		
 		<noscript>
-		   
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
 			<link rel="stylesheet" href="css/template/style.css" />
 			<link rel="stylesheet" href="css/template/style-desktop.css" />
 		</noscript>
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/template/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="js/libs/template/html5shiv.js"></script><![endif]-->
+		
+		<!-- Style do playera -->
+		<link rel="stylesheet" href="css/editor_new.css" />
+
+		
 	</head>
 	<body class="subpage">
 	
@@ -37,66 +49,107 @@
 							<!-- Nav -->
 								<nav id="nav">
 									<a href="index.html">Strona główna</a>
-									
+									<a id="test" onclick="show_search_input()">Wyszukiwarka</a>
 									<a href="o_projekcie.html">O projekcie</a>
 									<a id="rejestracja" href="rejestracja_new.html">Rejestracja</a>
 									<a id="konto" href="konto_new.html"> Twój profil</a>
 									<a id="logowanie" href="logowanie_new.html">Zaloguj</a>
 								</nav>
+
 						</div>
 					</div>
 				</header>
 			</div>
+
 		<!-- Content -->
-			<div id="wyszukiwarka">
-					<p> Wyszukaj film: </p>
-			    	<input type="text" placeholder="Wyszukaj film ..." id="searchinput" name="searchinput"/> 
-			    	<input type="submit" id="submit_wyszukiwarka" onclick="searchVideo()" value="Szukaj"/>
-			    	<div id="search_suggest"></div>
-			    </div>
 			<div id="content-wrapper">
-			    
 				<div id="content">
-				 
 					<div class="container">
-					      
 						<div class="row">
-							
 							<div class="12u">
 							
 								<!-- Main Content -->
 									<section>
-										
 										<header>
-											<h2>Wyniki wyszukiwania</h2>
-											<h3>Udostępniaj swoje filmy i przeglądaj statystyki swojego profilu</h3>
+											<h2>Tryb edycji</h2>
+											<h3>Zmodyfikuj swoje wideo</h3>
 										</header>
-										<div id="profil">
-										<div id="menu_profil">
-											<p>Sortuj wg.</p>
-										    <ul class="tabs">
-										        <li class="active"><a href="#tab1">Daty</a></li>
-										        
-										        <li><a href="#tab2">Wyświetleń</a></li>
-										        <li><a href="#tab3">Oceny</a></li>
-										    
-										    </ul>
-										</div>
-										<div id="content-profil">
-									       <div id="tab1" class="tab">
-									           <div id="najnowsze"></div>
-									       </div> 
-									       <div id="tab2" class="tab">
-									           <div id="popularne"></div>
-                                        
-									       </div>
-									       <div id="tab3" class="tab">
-                                                <div id="najlepsze"></div>
-                                          </div>
-                                       </div>
-									</div>
-									    
-								</section>
+
+     							
+											<div id="myPlayer">
+												<div class="playerScreen">	
+
+											        	<video id="myVideo">
+											            </video>
+											           
+													    <div id="imgLoad" class="imageLoader" >
+											        	</div>
+
+												</div>	
+												
+																								<div id="bodyVolumeLine">
+													<div id="volumeLine"> 
+														<div class="belt"> </div>
+													</div> 
+												</div>	
+												
+												<div id="qualityPanel">
+													<form action="">
+														<input type="checkbox" name="1080p" value="1920x1080">1080p
+														<br />
+														<input type="checkbox" name="720p" value="1280x720">720p
+														<br />
+														<input type="checkbox" name="480p" value="854x480">480p
+														<br />
+														<input type="checkbox" name="360p" value="640x360">360p
+														<br />
+														<input type="checkbox" name="240p" value="426x240">240p
+
+													</form>
+												</div>	
+												
+											</div>
+											
+										
+												
+											
+												
+												<div id="playerNavigation">
+													<div class="playerMenu">
+														<div class="playerMenuLeft"> </div>
+														
+														<button id="playButton" > </button> 
+														<button id="pauseButton" > </button>
+														<button id="stopButton" > </button>
+														<div class="separator"> </div>
+														
+														<div class="sliderSpace"> 
+															<div id="timeLine"><div class="belt"> </div></div>
+														</div>
+														
+														<div id="timeDiv">00:00:00</div>
+														
+														<div class="separator"> </div>
+														
+														<button id="volumeButton" class="volumeButton"> 
+														</button>
+														
+													
+														<div class="separator"> </div>
+														
+														<button id="hdButton" > </button>
+														<button id="fullScreenButton" > </button>
+														
+														<div class="playerMenuRight"> </div>													
+													</div>
+													
+													
+ 													
+												</div> 
+					
+									</section>
+									
+
 							</div>
 						</div>
 					</div>

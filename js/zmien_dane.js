@@ -51,20 +51,74 @@ $(document).ready(function()
 		return false;
 	});
 	
-	$("#email2_aktualizacja").change(function()
+	$("#email1_aktualizacja").change(function()
+	{
+		
+		var email1 = $("#email1_aktualizacja").val();
+		var email2 = $("#email2_aktualizacja").val();
+		var email1area = document.getElementById("email1_aktualizacja");
+		var email2area = document.getElementById("email2_aktualizacja");
+		var rejestruj_button = document.getElementById("rejestruj_button");
+		
+		var test_email = /^([A-Za-z0-9\-]*\w)+@+([A-Za-z0-9\-]*\w)+(\.[A-Za-z]*\w)+$/;
+		var wynik = email1.match(test_email);
+		if(wynik == null)
+		{
+			email1area.style.boxShadow= "0 0 3px 3px #F00";
+			document.getElementById("email_error").innerHTML = "To nie jest format adresu e-mail!";
+		}
+		else {
+		$.ajax({
+                    type: "POST",
+                    url: "php/check_email.php",
+                    data: "email1=" + email1,
+                    success : function(msg){
+								
+                              if(msg == 'OK')
+                              {
+                              	
+                              		email1area.style.boxShadow= "0 0 3px 3px #0F3";
+                              		document.getElementById("email_error").innerHTML = "";
+									dis_email = true;
+							  }
+                              if(msg == 'ZAJETY')
+							  {				
+							  				
+                               		email1area.style.boxShadow= "0 0 3px 3px #F00";
+                               		document.getElementById("email_error").innerHTML = "Podany e-mail jest już używany!";
+                              }
+						
+               		},
+					error: function(err) {
+        				console.log(err);
+    				}
+				});
+		if(email1 == email2)
+	 	{
+			email1area.style.boxShadow= "0 0 3px 3px #0F3";
+		 	email2area.style.boxShadow= "0 0 3px 3px #0F3";
+		 	document.getElementById("email_error").innerHTML = "";
+			dis_email = true;
+	 	}
+		if(email1.length == 0 && email2.length == 0) {}
+		
+		return false;
+		}
+	});
+	 $("#email2").change(function()
 	{
 		var email1 = $("#email1_aktualizacja").val();
 		var email2 = $("#email2_aktualizacja").val();
 		var email1area = document.getElementById("email1_aktualizacja");
 		var email2area = document.getElementById("email2_aktualizacja");
-		var rejestruj_button = document.getElementById("aktualizuj_button");
+		var rejestruj_button = document.getElementById("rejestruj_button");
 		
 		if(email1 == email2)
 	 	{
 			email1area.style.boxShadow= "0 0 3px 3px #0F3";
 		 	email2area.style.boxShadow= "0 0 3px 3px #0F3";
+		 	document.getElementById("email_error").innerHTML = "";
 			dis_email = true;
-			document.getElementById("email_error").innerHTML = "";
 	 	}
 		if(email1.length == 0 && email2.length == 0) {}
 		if(email1 != email2)
@@ -72,6 +126,7 @@ $(document).ready(function()
 	 		email1area.style.boxShadow= "0 0 3px 3px #F00";
 			email2area.style.boxShadow= "0 0 3px 3px #F00";
 			document.getElementById("email_error").innerHTML = "Adresy e-mail są różne!";
+			
 		}
 		return false;
 	});

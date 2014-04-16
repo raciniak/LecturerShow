@@ -24,30 +24,26 @@ var i=0;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
 	//ukryte okienko, wyświetla się przy zapisie wszystkich zmian w edytorze
-	$(".overlay, .overlay-message").hide();
+
 	   //funkcja do pobierania czasow odtwarzania slajdow, kazda funkcja ktora chce korzystac z tablicy a zawierajacej
 	   // czasy musi odczekac w jakis sposob chwile aby funkcja zdazyla sie wykonac
 
        pobierzPliki();
-       taby();
+
        //odswieżana zmienna przy załadowaniu strony potrzebna do odtwarzacza slajdow
        $('#playButton').click(function(){time = Math.floor(myVideo.currentTime)-1;});
        $('#timeLine').click(function(){time = Math.floor(myVideo.currentTime)-1;});
 
 	   //korzystanie z bibliotek
-       var evt = new Event();
-       var dragdrop = new Dragdrop(evt);
+
        
        //do zrobienia(wykrywanie bledu i co potem)
-		document.getElementById('AddNewSlide').addEventListener('error',errorSlideVideo,true);
 		
 		//timowanie najnowszych czasów zapisanych w edytorze do wyświetlenia w czasie edytowania filmu wraz z wprowadzonymi zmianami
 		$("#playButton").click(function(){
-			timetimes();
 			sort_times();
 		});
 		$("#timeLine").click(function(){
-			timetimes();
 			sort_times();
 			ClickTimelineUpdateSlide();
 		});
@@ -338,6 +334,7 @@ function ClickTimelineUpdateSlide(){
 // funkcja odpowiadająca za pobranie pliku z czasami oraz liczbą slajdów
 function pobierzPliki()
 {
+		
 		var namefile1 = '../movies/'+getParameterByName("id")+'/times.txt';
 		var namefile2 = '../movies/'+getParameterByName("id")+'/timesMovie.txt';
 		var name1 = {
@@ -348,8 +345,6 @@ function pobierzPliki()
         };
         var video = $("#myPlayer .playerScreen #myVideo")[0];
         $(video).bind('loadedmetadata', function(){
-        	var czas = Math.floor(myVideo.duration);
-		$('#range')[0].setAttribute('data-max',czas);
 		$.post('php/readtime.php',name1,PodzielPlik);
 		
 		$.post('php/readtime.php',name2,OpenTimeVideo);
@@ -361,8 +356,6 @@ function OpenTimeVideo(data){
 	plik=data.split('\n');
 	startPlay=parseInt(plik[0]);
 	stopPlay=parseInt(plik[1]);
-	CompletPlayedMovieTime();
-	createRangeTime();
     myVideo.currentTime = startPlay;
 	
 }
@@ -379,10 +372,8 @@ function PodzielPlik(data)
 			j++;
 			czasy[i]=parseInt(plik[i+j]);
    		 }
-    	windowsik();
-       	uzupelnijMultiRange();
-       	createRange();
-       	list();
+
+
        	firstImage();
    
 }
