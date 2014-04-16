@@ -1,7 +1,7 @@
 <?php
 /*Php odpowiedzialny za zapisywanie nowych slajdów wyłapywanych przez usera*/
 $filename = $_POST['filename'];
-$upload_dir ='../movies/'.$filename.'/images/';
+$upload_dir ='../movies/'.$filename.'/';
 $img = $_POST['img'];
 $img = str_replace('data:image/png;base64,', '', $img);
 $img = str_replace(' ', '+', $img);
