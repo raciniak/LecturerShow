@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html>
 	<head>
-		<title>LecturerShow.pl - Edytor</title>
+		<title>LecturerShow.pl - Player</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -13,10 +13,10 @@
         <script type="text/javascript" src="js/Event.js"></script>
         <script src="js/xmlhttprequest.js"></script>
 		<!-- Skrypty do playera -->
-		<script type="text/javascript" src="js/editor_new.js"></script>
+		<script type="text/javascript" src="js/player.js"></script>
         <!--FUNKCJE DO SLAJDOW I MULTIRANGE-->
-        <script type="text/javascript" src="js/range.js"></script>
-        <script type="text/javascript" src="js/editor.js"></script>
+        <!-- <script type="text/javascript" src="js/range.js"></script> -->
+        <script type="text/javascript" src="js/player_dodatkowy.js"></script>
         <script type="text/javascript" src="js/libs/template/playerScalingScript.js"></script>
         <script type="text/javascript" src="js/libs/template/playerEffects.js"></script>
         <!--Funkcje do okien dialogowych-->
@@ -32,10 +32,7 @@
 		
 		<!-- Style do playera -->
 		<link rel="stylesheet" href="css/editor_new.css" />
-		<!--styl do multirange-->
-		<link rel="stylesheet" href="css/range.css" />
-		<!-- styl do zakladek -->
-		<link rel="stylesheet" href="css/tabs.css" />
+
 		
 	</head>
 	<body class="subpage">
@@ -52,7 +49,7 @@
 							<!-- Nav -->
 								<nav id="nav">
 									<a href="index.html">Strona główna</a>
-									
+									<a id="test" onclick="show_search_input()">Wyszukiwarka</a>
 									<a href="o_projekcie.html">O projekcie</a>
 									<a id="rejestracja" href="rejestracja_new.html">Rejestracja</a>
 									<a id="konto" href="konto_new.html"> Twój profil</a>
@@ -147,54 +144,12 @@
 													</div>
 													
 													
-													<div class="playerEditMenu">
-														<div class="playerEditMenuLeft"> </div>											
-															<div id="timeline_editor">
-						                						<div id="range" class="range" data-min="0" data-max="1" data-step="1"> </div>
-						            						</div>
-														<div class="playerEditMenuRight"> </div>
-													</div>
-												</div>
+ 													
+												</div> 
 					
 									</section>
 									
-									<!-- ------------------------------------------------ zakładki ------------------------------------------- -->
-									<ul class="bookmarks">
-										<li class="active"><a href="#tab-1"><p>Edytor</p></a></li>
-										<li><a href="#tab-2"><p>Slajdy</p></a></li>
-										<li><a href="#tab-3"><p>Dodaj slajdy</p></a></li>
-									</ul>									
-									<section>
-										<div id="tab-1" class="tab">
-											<div id="TimeMoviePlayed"></div>
-		        								<button id="Zapisz_edycje" class="cupid-green" style="width: 120px; height: 40px;" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
-											</div>
-											
-											<div id="tab-2" class="tab">
-												<input type="button" value='^' class="up leftbuttonlist" />
-												<br/>
-												<input type="button" value='^' class="up rightbuttonlist" />
-												<div class="windows">
-		        									<ul class='lista' id='windows_lista'> </ul>
-		        								</div>
-												<input type="button" value='v' class="down leftbuttonlist"/>
-												<br/>
-												<input type="button" value='v' class="down rightbuttonlist"/>
-											</div>
-															
-											<div id="tab-3" class="tab">
-		        								<video id="AddNewSlide" controls>
-											    	<!--<source src="movies/movie1/movie.mp4" type="video/mp4"></source> --></video>
-											        <button class="cupid-green" onclick="stopFrame()" style="width: 80px; height: 35px;">Zapisz slajd</button>
-											</div>	
-												<div class="overlay"></div>
-													<div class="overlay-message">
-														<b>Czy na pewno chcesz zapisać wszystkie zmiany ?</b>
-     													<button id="yess" class="cupid-green" style="width: 120px; height: 35px;">Tak</button>
-     													<button id="noo" class="cupid-green" style="width: 120px; height: 35px;">Nie</button>
-												</div>
-									</section>
-									
+
 							</div>
 						</div>
 					</div>

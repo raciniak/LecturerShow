@@ -176,6 +176,8 @@ function sendReport() {
 	fd.append("tresc", document.getElementById("opis_formularz").value);
 	var xhr = new XMLHttpRequest;
 	xhr.addEventListener("load", sendReportComplete, false);
+	xhr.addEventListener("error", sendReportError, false);
+	xhr.addEventListener("abort", sendReportError, false);
 	xhr.open("POST","php/sendReport.php");
 	xhr.send(fd);
 }
@@ -184,6 +186,13 @@ function sendReport() {
 function sendReportComplete(evt) {
 	document.getElementById("e-mail_formularz").value = '';
 	document.getElementById("opis_formularz").value = ' ';
+}
+
+function sendReport() {
+	alert("Błąd wysłania zgłoszenia");
+	setTimeout(function(){
+		document.location.href = "index.html";
+	},5000);
 }
 
 // funkcja wysyłająca dane z formularza rejestracji 
@@ -196,10 +205,26 @@ function sendUserData() {
 	fd.append("imie", document.getElementById('imie').value);
 	fd.append("nazwisko", document.getElementById('nazwisko').value);
 	var xhr = new XMLHttpRequest();
-	xhr.addEventListener("load", uploadComplete, false);
+	xhr.addEventListener("load", sendComplete, false);
+	xhr.addEventListener("abort", sendError, false);
+	xhr.addEventListener("error", sendError, false);
 	xhr.open("POST", "php/rejestracja.php");
 	xhr.send(fd);
 	}
+
+function sendComplete(evt) {
+	alert(evt.target.responseText);
+	setTimeout(function(){
+		window.location.href="index.html";
+	},100);
+}
+
+function sendError() {
+	alert("Błąd rejestracji. Proszę spróbować jeszcze raz");
+	setTimeout(function() {
+		document.location.href = "rejestracja_new.html";
+	},5000);
+}
 
 // funkcja wysyłająca dane z formularza aktualizacji danych użytkownika 
 function updateUserData() {
@@ -213,6 +238,8 @@ function updateUserData() {
 	fd.append("nazwisko", document.getElementById('nazwisko_aktualizacja').value);
 	var xhr = new XMLHttpRequest();
 	xhr.addEventListener("load", uploadComplete, false);
+	xhr.addEventListener("abort", uploadError, false);
+	xhr.addEventListener("error", uploadError, false);
 	xhr.open("POST", "php/zmien_dane.php");
 	xhr.send(fd);
 }
@@ -221,10 +248,16 @@ function updateUserData() {
 function uploadComplete(evt) {
 	alert(evt.target.responseText);
 	setTimeout(function(){
-		window.location.href="zarejestrowany_new.html";
+		window.location.href="konto_new.html";
 	},100);
 }
 
+function uploadError() {
+	alert("Błąd aktualizacji danych. Proszę spróbować jeszcze raz");
+	setTimeout(function() {
+		document.location.href = "konto_new.html";
+	},5000);
+}
 // funkcja logowania
 function logIn() {
 	alert("loguje");
@@ -251,10 +284,10 @@ function logInLoadComplete() {
 
 // funkcja wykonująca się po błędzie logowania 
 function logInError() {
-	alert("Błąd logowanie. Proszę spróbować ponownie.");
+	alert("Błąd logowania. Proszę spróbować ponownie.");
 	setTimeout(function(){
 		document.location.href="logowanie_new.html";
-	});
+	},5000);
 }
 
 // funkcja wylogowująca użytkownika
@@ -278,7 +311,9 @@ function logOutLoadComplete() {
 // funkcja wykonująca się po błędzie podczas wylogowywania się
 function logOutError() {
 	alert("Błąd wylogowywania. Proszę spróbować ponownie.");
-	document.location.href = "konto_new.html";
+	setTimeout(function(){
+		document.location.href="index.html";
+	},5000);
 }
 
 // funkcja wysyłająca treść inputa wyszukiwarki 
@@ -305,23 +340,25 @@ function searchVideoError() {
 var myVar;
 
 // funkcja zmieniajaca obrazki miniaturek
-function funkcja(x)
+function funkcja(x, path)
         	{
+        		
         		var i=1;
         		myVar = setInterval(function(){
+        			
+        			i=i%4;
         			if(i==0){
         				i=1;
         			}
-        			i=i%7;
-        			x.src = "images/pic0" + i + ".jpg";
-        	
+        			x.src = "res/" + path + "/snapshots/" + i + ".png";
+        		
         			i++;
        		}, 1000);
 }    
 // cd funkcji
-function funkcja_powrot(x){
+function funkcja_powrot(x, path){
 	clearInterval(myVar);
-	x.src = 'images/60.jpg';
+	x.src = "res/" + path +'/snapshots/1.png';
 }        	
 
 
@@ -441,8 +478,8 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("filmy").innerHTML += "<li id='li_lista'><div id='film'>" +  
 							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this)'" + 
-							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a><a href='player.html?id=" + this['sciezka'] + "'><p>" + this['tytul'] + 
+							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a href='player.html?id=" + this['sciezka'] + "'><p>" + this['tytul'] + 
 							      "</p></a><p> Opis: " + this['opis'] + "</p><p> Ocena: " + this['ocena'] + 
 							      "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p><a href='editor_new.html?id=" + this['sciezka'] + "'><p>Edytuj ten film</p></a</br></div></li>";
         	});
@@ -465,8 +502,8 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("najnowsze").innerHTML += "<li id='li_lista'><div id='film'>" +  
 							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this)'" + 
-							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a><p> Tytul: " + 
+							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "'/snapshots/1.png'></a><p> Tytul: " + 
 							      this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
 							      "</p><a href='player.html?id=" + this['sciezka'] + "'>" + this['tytul'] + 
@@ -490,8 +527,8 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("najlepsze").innerHTML += "<li id='li_lista'><div id='film'>" +  
 							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this)'" + 
-							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a><p> Tytul: " + 
+							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] +"\u0022)'" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><p> Tytul: " + 
 							      this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
 							      "</p><a href='player.html?id=" + this['sciezka'] + "'>" + this['tytul'] + 
@@ -515,8 +552,8 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("popularne").innerHTML += "<li id='li_lista'><div id='film'>" +  
 							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this)'" + 
-							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a><p> Tytul: " + 
+							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><p> Tytul: " + 
 							      this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
 							      "</p><a href='player.html?id=" + this['sciezka'] + "'>" + this['tytul'] + 
@@ -539,8 +576,8 @@ $(document).ready(function(){
         	var lang = '';
         	$.each(obj, function() {
         	document.getElementById("najnowsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
-        							 "'><img id='zdjecie_slider' onmouseover='funkcja(this)'" + 
-							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
+        							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
 							      this['tytul'] + "</p><p id='autor_slider'>" + 
 							      this['autor'] + "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
         	});
@@ -560,8 +597,8 @@ $(document).ready(function(){
         	var lang = '';
         	$.each(obj, function() {
         	document.getElementById("najlepsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
-        							 "'><img id='zdjecie_slider' onmouseover='funkcja(this)'" + 
-							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
+        							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
 							      this['tytul'] + "</p><p id='autor_slider'>" + 
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + "</p></br></div></div></li>";
         	});
@@ -581,8 +618,8 @@ $(document).ready(function(){
         	var lang = '';
         	$.each(obj, function() {
         	document.getElementById("popularne_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
-        							 "'><img id='zdjecie_slider' onmouseover='funkcja(this)'" + 
-							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
+        							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'>" + "</a></div><div id='opis_li'><p id='tytul_slider' >" + 
 							      this['tytul'] + "</p><p id='autor_slider'>" + 
 							      this['autor'] + "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
         	}); 
@@ -604,8 +641,8 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("uzytkownika").innerHTML += "<li id='li_lista'><div id='film'>" +  
 							      "<a href='player.html?id" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this)'" + 
-							      " onmouseout = funkcja_powrot(this)  src='images/60.jpg'></a><a href='" + this['sciezka'] + "'><p>" + this['tytul'] + 
+							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022) src='res/" + this['sciezka'] + "/snapshots/1.png'>" + "</a><a href='" + this['sciezka'] + "'><p>" + this['tytul'] + 
 							      "</p></a><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
 							      "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></li>";

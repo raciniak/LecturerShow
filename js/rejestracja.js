@@ -122,7 +122,7 @@ $(document).ready(function()
                               	
                               		email1area.style.boxShadow= "0 0 3px 3px #0F3";
                               		document.getElementById("email_error").innerHTML = "";
-									dis_login = true;
+									dis_email = true;
 							  }
                               if(msg == 'ZAJETY')
 							  {				
