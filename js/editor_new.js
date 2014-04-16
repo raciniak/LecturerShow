@@ -3,10 +3,10 @@ var volumeSliderClicked = false;
 
 $(document).ready(function () {
 //Zaladowanie sciezki do filmu
-var namefile = 'movies/'+getParameterByName("id")+'/speech.mp4';
+var namefile = 'res/'+getParameterByName("id")+'/speech_360.mp4';
 $("#myVideo").html("<source src='"+namefile+"' type='video/mp4' \>");
 //Zaladowanie sciezki do filmu ze slajdami
-var namefileslide = 'movies/'+getParameterByName("id")+'/slides.mp4';
+var namefileslide = 'res/'+getParameterByName("id")+'/screens.mp4';
 $("#AddNewSlide").html("<source src='"+namefileslide+"' type='video/mp4' \>");
 //------------------------------------	
 var myVideo    = $('#myVideo')[0];	

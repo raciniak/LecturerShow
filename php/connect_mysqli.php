@@ -1,3 +1,3 @@
 <?php 
-	$db = new mysqli("158.75.70.13","lshow","miras","lshow");
+	$db = new mysqli("localhost","lshow","miras","lshow");
 ?>
