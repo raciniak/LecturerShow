@@ -196,10 +196,17 @@ function sendUserData() {
 	fd.append("imie", document.getElementById('imie').value);
 	fd.append("nazwisko", document.getElementById('nazwisko').value);
 	var xhr = new XMLHttpRequest();
-	xhr.addEventListener("load", uploadComplete, false);
+	xhr.addEventListener("load", sendComplete, false);
 	xhr.open("POST", "php/rejestracja.php");
 	xhr.send(fd);
 	}
+
+function sendComplete(evt) {
+	alert(evt.target.responseText);
+	setTimeout(function(){
+		window.location.href="index.html";
+	},100);
+}
 
 // funkcja wysyłająca dane z formularza aktualizacji danych użytkownika 
 function updateUserData() {
@@ -221,7 +228,7 @@ function updateUserData() {
 function uploadComplete(evt) {
 	alert(evt.target.responseText);
 	setTimeout(function(){
-		window.location.href="zarejestrowany_new.html";
+		window.location.href="konto_new.html";
 	},100);
 }
 
@@ -305,23 +312,24 @@ function searchVideoError() {
 var myVar;
 
 // funkcja zmieniajaca obrazki miniaturek
-function funkcja(x)
+function funkcja(x, y)
         	{
+        		
         		var i=1;
         		myVar = setInterval(function(){
         			if(i==0){
         				i=1;
         			}
         			i=i%7;
-        			x.src = "images/pic0" + i + ".jpg";
-        	
+        			x.src = "res/" + y + "/" + i + ".jpg";
+        		
         			i++;
        		}, 1000);
 }    
 // cd funkcji
-function funkcja_powrot(x){
+function funkcja_powrot(x,y){
 	clearInterval(myVar);
-	x.src = 'images/60.jpg';
+	x.src = "res/" + y +'/1.png';
 }        	
 
 

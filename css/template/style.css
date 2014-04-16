@@ -537,7 +537,7 @@
 		margin-left:5%;
 	}
 	#opis_5 {
-		display:block;
+		
 		position:relative;
 		float: left;
 		margin-left: 5%;
@@ -556,6 +556,7 @@
 	.li_lista_5 {
 		margin-top:5%;
 		display:block;
+		
 	}
 	.li_lista_5:hover {
 		background:#0000FF;
