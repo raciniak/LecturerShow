@@ -5,6 +5,9 @@ $(document).ready(function () {
 //Zaladowanie sciezki do filmu
 var namefile = 'movies/'+getParameterByName("id")+'/speech.mp4';
 $("#myVideo").html("<source src='"+namefile+"' type='video/mp4' \>");
+//Zaladowanie sciezki do filmu ze slajdami
+var namefileslide = 'movies/'+getParameterByName("id")+'/slides.mp4';
+$("#AddNewSlide").html("<source src='"+namefileslide+"' type='video/mp4' \>");
 //------------------------------------	
 var myVideo    = $('#myVideo')[0];	
 var timeLine   = $('#timeLine')[0];
@@ -61,29 +64,26 @@ var volumeLine = $('#volumeLine')[0];
     // Funkcja wykonywana, kiedy player jest uruchomiony
 	$(myVideo).bind('timeupdate', updateTime);
 	// Funkcja do zmiany slajdow ze skryptu editor.js
-	$(myVideo).bind('timeupdate', obrazek);
-
+	$(myVideo).bind('timeupdate', updateSlide);
 	
 	// Funkcja wykonywana po naciśnięciu w timeline
-	$(timeLine).click(function(e){
+	$(timeLine).mousedown(function(e){
 		var posX = $(this).offset().left;     
         // Szerokość timeLine-a
         var width = $(this).width();      
         // Obliczam procent timeLine-a
-        var percent = Math.floor((e.pageX-posX)/width*100);    
+        var percent = Math.floor((e.pageX-posX)/width*100);   
         setTimeLine(percent);
 	});
-	
+		
 	// Funkcja wykonywana po naciśnięciu w volumeLine
-	$(volumeLine).click(function(e){
+	$(volumeLine).mousedown(function(e){
 		volumeSliderClicked = true;
-		
-		
 		var posY = $(this).offset().top;     
         // Szerokość timeLine-a
         var height = $(this).height();      
         // Obliczam procent timeLine-a
-        var percent = 100 - Math.floor((e.pageY-posY)/height*100);    
+        var percent = (100 - Math.floor((e.pageY-posY)/height*100)) < 0 ? 0 : 100 - Math.floor((e.pageY-posY)/height*100);    
         setVolumeLine(percent);
         setTimeout('sleep()', 1000);
 	});
@@ -125,38 +125,161 @@ function mute() {
 }
 
 
-function fullScreen() {
 
-	var pbox = document.getElementById("myPlayer");
-	if (pbox.requestFullscreen)
+function fullScreen() {
+	var full = $("#myPlayer")[0];
+	var vid = $("#myVideo")[0];
+	var pic = $("#imgLoad")[0];
+	var pscr = $('.playerScreen');
+	
+	
+	//ustawianie elementow fullscreena
+	$(full).css({
+		"width" : screen.width,
+		"height" : screen.height,
+		"padding":"0px"
+	});
+	
+	$(pscr).css({
+		"width":screen.width,
+		"height":screen.height,
+		"top":"0px",
+		"left":"0px",
+		"padding":"0px"
+	});
+
+	$(vid).css({
+		"width":0.49*screen.width,
+		"height":screen.height,
+		"float":"left",
+		"padding":"0px",
+		
+	});
+
+	$(pic).css({
+		"width":0.49*screen.width,
+		"height":screen.height,
+		 "float" :"right",
+		 "padding":"0px",
+		 "-moz-user-select": "none",
+    		"-webkit-user-select": "none",
+    		"user-select": "none",
+});
+
+	
+	//klikanie na wideo
+	$(vid).dblclick(function() {
+		$(vid)
+		.animate({
+			width : screen.width,
+			left: "auto",
+			right :"auto",
+			top : "auto",
+			bottom : "auto"
+		}, 300)
+		.animate({
+			height : screen.height,
+		}, 300)
+		.css({
+			"z-index" : "-10",
+			"position" : "absolute",
+		}).draggable({disabled:true});
+		
+		$(pic).animate({
+			width : 0.35 * screen.width
+		}, 300).animate({
+			height : 0.35 * screen.height
+		}, 300);
+		$(pic).css({
+			"z-index": "10",
+			"float":"right",
+			"-moz-user-select": "none",
+    		"-webkit-user-select": "none",
+    		"user-select": "none",
+			"-moz-border-radius": "10px",
+			"-webkit-border-radius": "10px",
+			"border-radius": "10px",
+		}).draggable({disabled:false}); 
+});
+	
+	//klikanie na obrazek
+	$(pic).dblclick(function() {
+		$(pic)
+		.animate({
+			width : screen.width,
+			left: "auto",
+			right :"auto",
+			top : "auto",
+			bottom : "auto"
+		}, 300)
+		.animate({
+			height : screen.height,
+		}, 300)
+		.css({
+			"z-index" : "-10",
+			"position" : "absolute",
+			"-moz-user-select": "none",
+    		"-webkit-user-select": "none",
+    		"user-select": "none",
+		}).draggable({disabled:true});
+		
+		
+		$(vid).animate({
+			width : 0.35 * screen.width
+		}, 300).animate({
+			height : 0.35 * screen.height
+		}, 300);
+		$(vid).css({
+			"z-index" : "10",
+			"float":"right",
+			"-moz-border-radius": "10px",
+			"-webkit-border-radius": "10px",
+			"border-radius": "10px",
+		}).draggable({disabled:false}); 
+
+	});
+	
+	
+	//fullscreen
+	if (full.requestFullscreen)
 		if (document.fullScreenElement) {
 			document.cancelFullScreen();
 		} else {
-			pbox.requestFullscreen();
+			full.requestFullscreen();
 		}
-	else if (pbox.msRequestFullscreen)
+	else if (full.msRequestFullscreen)
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
+			
 		} else {
-			pbox.msRequestFullscreen();
+			full.msRequestFullscreen();
 		}
-	else if (pbox.mozRequestFullScreen)
+	else if (full.mozRequestFullScreen)
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
+			
 		} else {
-			pbox.mozRequestFullScreen();
+			full.mozRequestFullScreen();
 		}
-	else if (pbox.webkitRequestFullscreen)
+	else if (full.webkitRequestFullscreen)
 		if (document.webkitFullscreenElement) {
 			document.webkitCancelFullScreen();
 		} else {
-			pbox.webkitRequestFullscreen();
+			full.webkitRequestFullscreen();
 		}
+		
+		//funkcja tymczasowa ktora po wcisnieciu esc odswieza strone
+		var KEYCODE_ESC = 27;
+		$(document).keyup(function(e) {
+   			if (e.keyCode == KEYCODE_ESC) { location.reload(); } 
+		});
+		
+		
+		//tymczasowe automatyczne startowanie playera fullscreenowego
+		vid.play();
+		timetimes();
+		sort_times();
 }
-
-
-
-
 
 
 function updateTime(){
@@ -230,9 +353,11 @@ function setTimeLine(percent)
 		{"width" : percent+"%"},
 		{duration : 200}
 	);
-	
-//	myVideo.currentTime = percent/100 * myVideo.duration;
-myVideo.currentTime = startPlay+(percent/100 * (stopPlay-startPlay));
+
+	//myVideo.currentTime = percent/100 * myVideo.duration;
+	var liczba = startPlay+(percent/100 * (stopPlay-startPlay));
+	liczba = liczba.toFixed(2);
+	myVideo.currentTime = liczba;
 }
 
 function setVolumeLine(percent)
@@ -263,5 +388,3 @@ function setVolumeLine(percent)
 // ---------------------------------------------------------------------------------
 //       jacek m
 // ---------------------------------------------------------------------------------
-
-
