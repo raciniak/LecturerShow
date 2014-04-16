@@ -1,17 +1,8 @@
 #myPlayer {
 	border: none;
-	height: 347px;
 	width: 100%;
-	padding-bottom: 100px;
+	margin-bottom: 30px;
 	position: relative;
-}
-
-#myPlayer .playerScreen .playerScreenLeft {
-	float: left;
-	width: 76px;
-	height: 100%;
-	background-image: url("/images/template/Player/playerScreenLeft.png");
-	background-repeat: no-repeat;
 }
 
 #myPlayer .playerScreen {
@@ -20,7 +11,7 @@
 	top: 3.2%;
 	z-index: 2;
 	height: 436px;
-	width: 98.5%;
+	width: 96.8%;
 	border: 0px;
 	background-color: rgb(30,31,32);
 	background-repeat: repeat-x;
@@ -31,20 +22,11 @@
 	-moz-border-radius-topright: 5px;
 	-webkit-border-top-right-radius: 5px;
 	border-top-right-radius: 5px;
-}
-
-#myPlayer .playerScreen .playerScreenRight {
-	width: 75px;
-	height: 100%;
-	background-image: url("/images/template/Player/playerScreenRight.png");
-	background-repeat: no-repeat;
-	position: relative;
-	z-index: 1;
-	left: 95.51%;
+	z-index: 2;
 }
 
 #myPlayer .playerScreen #myVideo {
-	height: 97%;
+	width: 49.5%;
 	float: left;
 	margin-left: 0.5%;
 	margin-top: 0.75%;
@@ -61,11 +43,11 @@
 	margin-top: 0.75%;
 	position: relative;
 	z-index: 2;
+	width: 49.5%;
 }
 
 #myPlayer .playerScreen .imageLoader img{
 	width: 100%;
-	height: 100%;	
 
 	-moz-border-radius-topright: 5px;
 	-webkit-border-top-right-radius: 5px;
@@ -73,8 +55,10 @@
 }
 
 #playerNavigation {
-	width: 1076px;
+	width: 1109px;
 	height: 200px;
+	position: relative;
+	z-index: 3;
 }
 
 #playerNavigation .playerMenu .playerMenuLeft {

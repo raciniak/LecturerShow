@@ -1,5 +1,6 @@
 var countingTimeFromTheEnd = false;
 var volumeSliderClicked = false;
+var fullScreenOn = false;
 
 $(document).ready(function () {
 //Zaladowanie sciezki do filmu
@@ -244,28 +245,35 @@ function fullScreen() {
 	if (full.requestFullscreen)
 		if (document.fullScreenElement) {
 			document.cancelFullScreen();
+			fullScreenOn = false;
 		} else {
 			full.requestFullscreen();
+			fullScreenOn = true;
 		}
 	else if (full.msRequestFullscreen)
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
+			fullScreenOn = false;
 			
 		} else {
 			full.msRequestFullscreen();
+			fullScreenOn = true;
 		}
 	else if (full.mozRequestFullScreen)
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
-			
+			fullScreenOn = false;
 		} else {
 			full.mozRequestFullScreen();
+			fullScreenOn = true;
 		}
 	else if (full.webkitRequestFullscreen)
 		if (document.webkitFullscreenElement) {
 			document.webkitCancelFullScreen();
+			fullScreenOn = false;
 		} else {
 			full.webkitRequestFullscreen();
+			fullScreenOn = true;
 		}
 		
 		//funkcja tymczasowa ktora po wcisnieciu esc odswieza strone
