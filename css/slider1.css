@@ -42,7 +42,7 @@
     .slider .wyniki {
         width:87%;
 		margin-left:0.8%;
-        min-height:280px;
+        min-height:260px;
         position:relative;
         overflow:hidden;
        
@@ -81,5 +81,31 @@
 	.slider .lista li div {
 		padding-top:3px;
 	}
+	
+	#title_video_slider {
+		font-size: 26px;
+		margin-bottom:-3px;
+		padding-bottom: 0px;
+	}
+	
+	  #zdjecie_slider {
+    	
+    	width:98%;
+    	margin-left:1%;
+    	height:100%;
+    	display: block;
+    	
+    	
+    	
+    }
+    
+    #tytul_slider {
+    	
+    	margin: 0;
+    	display:block;
+    }
+   	#autor_slider { 
+   		margin-bottom: -3px;;
+   	}
     
 	

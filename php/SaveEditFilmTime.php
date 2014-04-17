@@ -7,7 +7,7 @@ for($i=0;$i<2;$i++)
 {
    $string = $string.$time[$i]."\r\n";
 }
-$fp = fopen('../movies/'.$filename.'/timesMovie.txt', "w+");
+$fp = fopen('../res/'.$filename.'/timesMovie.txt', "w+");
 fputs($fp, $string);
 fclose($fp);
 echo "powiodlo sie";

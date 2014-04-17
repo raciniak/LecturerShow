@@ -503,11 +503,11 @@ $(document).ready(function(){
         	document.getElementById("najnowsze").innerHTML += "<li id='li_lista'><div id='film'>" +  
 							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
 							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "'/snapshots/1.png'></a><p> Tytul: " + 
-							      this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a id='title_video_result' href='player.html?id=" + this['sciezka'] 
+							      + "'>" + this['tytul'] + 
+							      "</a><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
-							      "</p><a href='player.html?id=" + this['sciezka'] + "'>" + this['tytul'] + 
-							      "</a></br></div></li>";
+							      "</p></br></div></li>";
         	});
 		},
 		error: function(err) 
@@ -528,11 +528,10 @@ $(document).ready(function(){
         	document.getElementById("najlepsze").innerHTML += "<li id='li_lista'><div id='film'>" +  
 							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
 							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] +"\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><p> Tytul: " + 
-							      this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + 
+							      "/snapshots/1.png'></a><a id='title_video_result' href='player?id=" + this['sciezka'] + "'>" + this['tytul'] + "</a><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
-							      "</p><a href='player.html?id=" + this['sciezka'] + "'>" + this['tytul'] + 
-							      "</a></br></div></li>";
+							      "</p></br></div></li>";
         	});
 		},
 		error: function(err) 
@@ -553,11 +552,11 @@ $(document).ready(function(){
         	document.getElementById("popularne").innerHTML += "<li id='li_lista'><div id='film'>" +  
 							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
 							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><p> Tytul: " + 
-							      this['tytul'] + "</p><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + 
+							      this['sciezka'] + "/snapshots/1.png'></a><a id='title_video_result' href='player.html?id=" + this['sciezka'] +
+							      "'>" + this['tytul'] + "</a><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
-							      "</p><a href='player.html?id=" + this['sciezka'] + "'>" + this['tytul'] + 
-							      "</a></br></div></li>";
+							      "</p></br></div></li>";
         	}); 
 		},
 		error: function(err) 
@@ -577,7 +576,7 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("najnowsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
         							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='title_video_slider' >" + 
 							      this['tytul'] + "</p><p id='autor_slider'>" + 
 							      this['autor'] + "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
         	});
@@ -598,7 +597,7 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("najlepsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
         							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='tytul_slider' >" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='title_video_slider' >" + 
 							      this['tytul'] + "</p><p id='autor_slider'>" + 
 							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + "</p></br></div></div></li>";
         	});
@@ -619,7 +618,7 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("popularne_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
         							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'>" + "</a></div><div id='opis_li'><p id='tytul_slider' >" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'>" + "</a></div><div id='opis_li'><p id='title_video_slider' >" + 
 							      this['tytul'] + "</p><p id='autor_slider'>" + 
 							      this['autor'] + "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
         	}); 

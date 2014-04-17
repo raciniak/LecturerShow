@@ -1,7 +1,7 @@
 <?php
 	require_once('connect.php');
 	session_start();
-	$sql_popularne = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies WHERE Tytul LIKE '".$_SESSION['title']."' ORDER BY Wyswietlenia DESC";
+	$sql_popularne = "SELECT Id, Tytul, Ocena, Wyswietlenia, Autor, Opis, Sciezka FROM movies WHERE Tytul LIKE '".$_SESSION['title']."%' ORDER BY Wyswietlenia DESC";
 
 
 	$query = mysql_query($sql_popularne);
