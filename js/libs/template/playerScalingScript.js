@@ -6,7 +6,8 @@
  * 
  */
 
-var playerEffectClick = 2;
+var playerVideoEffectClick = 2;
+var playerImageEffectClick = 1;
 var beginWidth = 0;
 var beginHeight = 0;
 var beginVideoMarginBottom = 0;
@@ -15,7 +16,7 @@ var videoWidth = 0;
 var videoHeight = 0;
 var imageWidth = 0;
 var imageHeight = 0;
-var imageMarginChanged = false;
+
 $(document).ready(function () {
 
 	// Player screen
@@ -40,10 +41,10 @@ $(document).ready(function () {
   		beginWidth = videoWidth;
   		beginHeight = videoHeight;
   		beginVideoMarginBottom = $(player).css("margin-bottom");
-  		beginPlayerScreenHeight = $(playerScreen).height()+27;
+  		beginPlayerScreenHeight = videoHeight+22;
 
   		
-  		$(playerScreen).css("height", videoHeight+27+"px");
+  		$(playerScreen).css("height", beginPlayerScreenHeight+"px");
   		$(imageLoader).css("height", videoHeight+"px");
   		$(player).css("height", videoHeight+"px");
 	});
@@ -60,12 +61,10 @@ $(document).ready(function () {
 				imageWidth = $(imageLoader).width();
 				imageHeight = $(imageLoader).height();
 				//alert(videoWidth + "x" + videoHeight + ", " + imageWidth + "x" + imageHeight);
-				
-				switch(playerEffectClick)
+				playerImageEffectClick=1;
+				switch(playerVideoEffectClick)
 				{
 					case 1:
-							$(imageLoader).css("margin-left", 0+"px");
-							imageMarginChanged = false;
 					
 						$(player).css("margin-bottom", beginVideoMarginBottom);				
 					
@@ -74,10 +73,10 @@ $(document).ready(function () {
 						$(imageLoader).css("width", beginWidth+"px");
 						$(imageLoader).css("height", beginHeight+"px");
 						$(video).css("margin-bottom", newMargin);
-						$(playerScreen).css("height", 334+"px");		
+						$(playerScreen).css("height", beginPlayerScreenHeight+"px");		
 		
 		
-						playerEffectClick++;
+						playerVideoEffectClick++;
 					break;
 					case 2:
 					
@@ -92,9 +91,10 @@ $(document).ready(function () {
 						$(imageLoader).css("height", imageHeight/1.5+"px");
 						$(playerScreen).css("height", $(playerScreen).height()+videoHeight/3+"px");		
 						
-						playerEffectClick++;
+						playerVideoEffectClick++;
 					break;
 					case 3:
+					
 						var marginBottom = $(player).css("margin-bottom");
 						var newMargin = marginBottom.substr(0, marginBottom.length - marginBottom.lastIndexOf("px"));
 						$(player).css("margin-bottom", parseInt(newMargin)+videoHeight/2.15);
@@ -106,10 +106,10 @@ $(document).ready(function () {
 						$(imageLoader).css("height", imageHeight/1.7+"px");
 						$(playerScreen).css("height", $(playerScreen).height()+videoHeight/5.75+"px");		
 						
-						playerEffectClick=1;
+						playerVideoEffectClick=1;
 					break;
 					default:
-						alert("Jakis blad, zmienna playerEffectClick nie moze byc inna!");
+						alert("Jakis blad, zmienna playerVideoEffectClick nie moze byc inna!");
 					break;
 				}
 			}
@@ -120,38 +120,50 @@ $(document).ready(function () {
 		$(imageLoader).click(function() {
 			if(!fullScreenOn)
 			{		
-				switch(playerEffectClick)
+				
+				playerVideoEffectClick = 1;
+				switch(playerImageEffectClick)
 				{
 					case 1:
-						if( imageMarginChanged )
-						{
-							$(imageLoader).css("margin-left", 0+"px");
-							$("#myPlayer .playerScreen #myVideo")[0].css("margin-left", 100+"px");
-							imageMarginChanged = false;
-						}else{
-							$(imageLoader).css("margin-left", -100+"px");
-							imageMarginChanged = true;
-						}
-		
+						alert("1");
+						// Przywracam rozmiary
+						$(player).css("margin-bottom", 190+"px");				
+						$(video).css("width", beginWidth/1.5+"px");
+						$(video).css("height", beginHeight/1.5+"px");
+						$(imageLoader).css("width", beginWidth+videoWidth/3+"px");
+						$(imageLoader).css("height", beginHeight+videoWidth/3+"px");
+						
+						$(playerScreen).css("height", beginPlayerScreenHeight+videoWidth/3+"px");	
+						
+
+						playerImageEffectClick++;
 					break;
 					case 2:
-		
-						
+						// Przywracam rozmiary
+						$(player).css("margin-bottom", beginVideoMarginBottom);				
+						$(video).css("width", beginWidth+"px");
+						$(video).css("height", beginHeight+"px");
+						$(imageLoader).css("width", beginWidth+"px");
+						$(imageLoader).css("height", beginHeight+"px");
+						$(video).css("margin-bottom", newMargin);
+						$(playerScreen).css("height", beginPlayerScreenHeight+"px");	
+						// Skaluję slajdy									
+						playerImageEffectClick++;
 					break;
 					case 3:
-						if( imageMarginChanged )
-						{
-							$(imageLoader).css("margin-left", 0+"px");
-							$("#myPlayer .playerScreen #myVideo")[0].css("margin-left", 100+"px");
-							imageMarginChanged = false;
-						}else{
-							$(imageLoader).css("margin-left", -100+"px");
-							imageMarginChanged = true;
-						}
-						
+					
+						$(player).css("margin-bottom", beginVideoMarginBottom);				
+						$(video).css("width", beginWidth+"px");
+						$(video).css("height", beginHeight+"px");
+						$(imageLoader).css("width", beginWidth+"px");
+						$(imageLoader).css("height", beginHeight+"px");
+						$(video).css("margin-bottom", newMargin);
+						$(playerScreen).css("height", beginPlayerScreenHeight-100+"px");	
+				
+						playerImageEffectClick=1;	
 					break;
 					default:
-						alert("Jakis blad, zmienna playerEffectClick nie moze byc inna!");
+						alert("Jakis blad, zmienna playerImageEffectClick nie moze byc inna!");
 					break;
 				}
 			}
