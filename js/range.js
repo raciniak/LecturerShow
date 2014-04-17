@@ -71,7 +71,7 @@
         var slider = document.createElement('div');
         slider.className = 'slider draggable';
         timee = upConversionTimes(value);
-        slider.innerHTML = "<div class='underSlider'><img src='movies/movie1/images/"+name+".png' width='140' height='70' alt='"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
+        slider.innerHTML = "<div class='underSlider'><img src='res/"+getParameterByNames("id")+"/"+name+".png' width='140' height='70' alt='"+name+"'/><p id='movetime"+name+"' class='timeSlider'>"+timee+"</p></div>";
         if("PoczatekFilmu"===name || "KoniecFilmu"===name)
         {
         	slider.className = 'slider MovieTimes';
@@ -83,6 +83,14 @@
         range.appendChild(slider);
         return slider;
     }
+    
+    //pobieranie id filmu z adresu
+    function getParameterByNames(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
     
     //  Konwersja czasów podanych w sekundach na czas w postaci 00:00:00 do wyświetlania
     function upConversionTimes(times)
@@ -395,7 +403,7 @@
 			var value = e.target.getAttribute('data-value');
        		var range = e.target.parentNode;
 			range.removeChild(e.target); 
-			if(e.clientY-polozenieY<40){
+			if(e.clientY-polozenieY<50){
 			initializeSlider(createSlider(name, value, range));
 			}else{
 				var check = document.getElementById("checkbox"+name);

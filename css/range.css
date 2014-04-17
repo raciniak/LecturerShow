@@ -31,6 +31,7 @@
 .slider .underSlider{
 	width:150px;
 	height:100px;
+	color:white;
 	z-index:1;
 }
 .slider .underSliderTime{
