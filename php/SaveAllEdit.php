@@ -9,7 +9,7 @@ for($i=0;$i<$numberSlides;$i++)
 {
    $string = $string.$id[$i]."\r\n".$time[$i]."\r\n";
 }
-$fp = fopen('../movies/'.$filename.'/times.txt', "w+");
+$fp = fopen('../res/'.$filename.'/times.txt', "w+");
 fputs($fp, $string);
 fclose($fp);
 echo "powiodlo sie";
