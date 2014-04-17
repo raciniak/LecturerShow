@@ -749,6 +749,7 @@ function SaveChanges(){
     $(".overlay-message").css("left",h);
     $(".overlay, .overlay-message").show();
     $("#yess").click(function() {
+    	alert("ssss");
         $(".overlay, .overlay-message").hide();
         timetimes();
         SaveSlides();
