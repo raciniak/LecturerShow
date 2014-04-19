@@ -12,6 +12,7 @@
 		<script type="text/javascript" src="js/Dragdrop.js"></script>
         <script type="text/javascript" src="js/Event.js"></script>
         <script src="js/xmlhttprequest.js"></script>
+        <script src="js/comment.js"></script>
 		<!-- Skrypty do playera -->
 		<script type="text/javascript" src="js/player.js"></script>
         <!--FUNKCJE DO SLAJDOW I MULTIRANGE-->
@@ -36,7 +37,10 @@
 		
 	</head>
 	<body class="subpage">
-	
+		<div id="popup">
+			<p id="popup_text"></p>
+		</div>
+		<div id="opacity_site">
 		<!-- Header -->
 			<div id="header-wrapper">
 				<header id="header" class="container">
@@ -145,7 +149,15 @@
 													
  													
 												</div> 
-					
+										<div id="add_comment">
+											<p id="comment_p">Dodaj komentarz </p>
+											<textarea id="comment_area"></textarea>
+											<input type="button" id="comment_button" onclick="addComment()" value="Dodaj komentarz">
+										</div>
+										<div id="show_comments">
+											<h2> Komentarze </h2>
+											<div id="comments"></div>
+										</div>
 									</section>
 									
 
@@ -195,7 +207,7 @@
 					</div>
 				</footer>
 			</div>
-
+		</div>
 		<!-- Copyright -->
 			<div id="copyright">
 				&copy; LecturerShow.pl. All rights reserved. 

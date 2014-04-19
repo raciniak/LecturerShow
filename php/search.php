@@ -3,5 +3,6 @@
 	session_start();
 	$_SESSION['title'] = $_POST['title_l'];
 	$_SESSION['nick'] = $_POST['nick'];
+	$_SESSION['sciezka'] = $_POST['sciezka'];
 ?>
 

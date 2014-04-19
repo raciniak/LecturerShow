@@ -188,13 +188,49 @@ function sendReportComplete(evt) {
 	document.getElementById("opis_formularz").value = ' ';
 }
 
-function sendReport() {
+function sendReportError() {
 	alert("Błąd wysłania zgłoszenia");
 	setTimeout(function(){
 		document.location.href = "index.html";
 	},5000);
 }
 
+
+function addComment() {
+	sciezka = document.location.search;
+	sciezka = sciezka.slice(sciezka.indexOf('=')+1, sciezka.length);
+	var fd = new FormData();
+	fd.append("autor", login);
+	fd.append("sciezka", sciezka);
+	fd.append("tresc", document.getElementById("comment_area").value);
+	var xhr = new XMLHttpRequest;
+	xhr.addEventListener("load", sendCommentComplete, false);
+	xhr.open("POST","php/addComment.php");
+	xhr.send(fd); 
+}
+
+function sendCommentComplete() {
+	document.getElementById("comment_area").value = '';
+	document.getElementById("opacity_site").style.opacity = "0.4";
+	document.getElementById("popup").style.visibility = "visible";
+	document.getElementById("popup_text").innerHTML = "Dodano komentarz";
+	setTimeout(function(){
+		window.location.reload();
+	},2000);
+}
+
+/* funkcja wykonująca się po poprawnym wykonaniu się funkcji sendReport */
+function sendReportComplete(evt) {
+	document.getElementById("e-mail_formularz").value = '';
+	document.getElementById("opis_formularz").value = ' ';
+}
+
+function sendReportError() {
+	alert("Błąd wysłania zgłoszenia");
+	setTimeout(function(){
+		document.location.href = "index.html";
+	},5000);
+}
 // funkcja wysyłająca dane z formularza rejestracji 
 function sendUserData() {
 	var fd = new FormData();
@@ -501,19 +537,24 @@ $(document).ready(function(){
 	$.ajax({
         url: "php/search_my_videos.php",
         success: function(msg){
-        	msg = msg.replace(/}{/g, "},{");
-        	msg = "[" + msg + "]";
-        	//alert(elo2);
-        	var obj = $.parseJSON(msg);
-        	var lang = '';
-        	$.each(obj, function() {
-        	document.getElementById("filmy").innerHTML += "<li id='li_lista'><div id='film'>" +  
-							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a href='player.html?id=" + this['sciezka'] + "'><p>" + this['tytul'] + 
-							      "</p></a><p> Opis: " + this['opis'] + "</p><p> Ocena: " + this['ocena'] + 
-							      "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p><a href='editor_new.html?id=" + this['sciezka'] + "'><p>Edytuj ten film</p></a></div></li>";
-        	});
+        	if(msg = 'BRAK') { 
+        		document.getElementById("filmy").innerHTML = "<p> Nie dodałeś żadnego filmu do LecturerShow</p>";
+        	}
+        	else {
+	        	msg = msg.replace(/}{/g, "},{");
+	        	msg = "[" + msg + "]";
+	        	//alert(elo2);
+	        	var obj = $.parseJSON(msg);
+	        	var lang = '';
+	        	$.each(obj, function() {
+	        	document.getElementById("filmy").innerHTML += "<li id='li_lista'><div id='film'>" +  
+								      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
+								      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
+								      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a href='player.html?id=" + this['sciezka'] + "'><p>" + this['tytul'] + 
+								      "</p></a><p> Opis: " + this['opis'] + "</p><p> Ocena: " + this['ocena'] + 
+								      "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p><a href='editor_new.html?id=" + this['sciezka'] + "'><p>Edytuj ten film</p></a></div></li>";
+	        	}); 
+        	}
 		},
 		error: function(err) 
 		{
