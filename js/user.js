@@ -28,7 +28,10 @@ $(document).ready(function() {
 				document.getElementById('user_name').innerHTML = "Profil użytkownika " + dane.imie + " " +
 				dane.nazwisko + " (" + dane.login + ")";
 				document.getElementById('user_name_p').innerHTML = dane.imie + " " + dane.nazwisko;
-				document.getElementById('user_e-mail').innerHTML = dane.email;
+				document.getElementById('user_e-mail').innerHTML = "E-mail: " + dane.email;
+				document.getElementById('count_videos').innerHTML = "Ilość filmów: " + dane.ilosc_filmow;
+				document.getElementById('sum_views').innerHTML = "Ilość wyświetleń filmów użytkownika " + dane.login + ": " + dane.sum_view;
+				document.getElementById('avg_rate').innerHTML = "Średnia ocen: " + dane.srednia;
 		},
 		error: function(err) 
 		{
@@ -50,7 +53,7 @@ $(document).ready(function() {
 							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a id='title_video_result' href='player.html?id=" + this['sciezka'] 
 							      + "'>" + this['tytul'] + 
-							      "</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Wyświetlenia: " + 
+							      "</a><p id='results_opis'> Opis: " + this['opis'] + "</p><p id='results_p'> Wyświetlenia: " + 
 							      this['wyswietlenia'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
 							      "</p></div></li>";
         	});

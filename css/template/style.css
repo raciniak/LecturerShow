@@ -661,3 +661,31 @@
 	#results_p {
 		margin: 0 0 0 0;
 	}
+	
+	#user_videos {
+		list-style: none;
+	}
+	
+	#user_name_p {
+		width:100%;
+		font-size: 23pt;
+		margin-bottom: 1em;
+	}
+	
+	#user_profil {
+	
+		width: 50%;
+		float: left;
+	}
+	
+	#video_profil {
+	
+		width:50%;
+		float: right;
+	}
+
+	#results_opis {
+		margin: 0;
+		display:block;
+		height: 55px;
+	}
