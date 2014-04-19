@@ -1,7 +1,8 @@
 <?php
 	require_once('connect.php');
-	$nick = $_POST['nick'];
-	$sql= "SELECT Imie, Nazwisko FROM users WHERE Login LIKE '".$_SESSION['nick']."'";
+	session_start();
+	$sql= "SELECT Login, Imie, Nazwisko, Mail FROM users WHERE Login LIKE '".$_SESSION['nick']."'";
+	$sql_user_videos = "SELECT Tytul, Opis, Wyswietlenia, Ocena, Sciezka FROM movies WHERE Autor LIKE '".$_SESSION['nick']."'";
 	$query = mysql_query($sql);
 	$count = mysql_num_rows($query);
 	if($count > 0){
@@ -9,16 +10,15 @@
 		{
 			$imie = $row["Imie"];
 			$nazwisko = $row["Nazwisko"];
-			
-			$info_user = array('imie'=>$imie, 'nazwisko'=>$nazwisko);
+			$email = $row["Mail"];
+			$login = $row["Login"];
+			$info_user = array('login'=>$login, 'imie'=>$imie, 'nazwisko'=>$nazwisko, 'email'=>$email);
 			echo json_encode($info_user);
-			
 		}
-		
 	}
 	
 	else 
 	{
-			
+			echo "ERROR";
 	} 
 ?>

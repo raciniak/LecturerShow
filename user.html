@@ -12,6 +12,7 @@
 		<script src="js/xmlhttprequest.js"></script>
 		<script src="js/logowanie.js"></script>
 		<script src="js/user.js"></script>
+		<script src="js/tabs.js"></script>
 		<script>
 			
 		</script>
@@ -73,12 +74,36 @@
 								<!-- Main Content -->
 									<section>
 										<header>
-											<h2>Profil użytkownika</h2>
+											<h2 id="user_name">Profil użytkownika</h2>
 											<h3>Przeglądaj profile użytkowników oraz bazę ich filmów</h3>
 										</header>
 										<!-- Formularz logowanie -->
-										
-									</section>
+											<div id="profil">
+										<div id="menu_profil">
+										    <ul class="tabs">
+										        <li class="active"><a href="#tab1">Profil</a></li>
+										        
+										        <li><a href="#tab2">Filmy</a></li>
+										        <li><a href="#tab3">Statystyki</a></li>
+										    
+										    </ul>
+										</div>
+										<div id="content-profil">
+									       <div id="tab1" class="tab">
+									           <div id="user_profil">
+									           		<p id="user_name_p"> </p>
+									           		<p id="user_e-mail"></p>
+									           </div>
+									       </div> 
+									       <div id="tab2" class="tab">
+									           <div id="user_videos"></div>
+                                        
+									       </div>
+									       <div id="tab3" class="tab">
+                                                <div id="user_statistic"></div>
+                                          </div>
+                                       </div>
+									</div>
 							</div>
 						</div>
 					</div>
