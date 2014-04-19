@@ -329,7 +329,6 @@
 	
 	#title_video_result {
 		display:block;
-		margin-bottom: 27px;
 		width: 100%;
 	}
 	
@@ -370,7 +369,6 @@
       #zdjecie {
       	width: 100%;
       	height:100%;
-      	margin-bottom:10%;
       }
 	/* Koniec CSS - profil uzytkownika */	
 
@@ -427,6 +425,8 @@
 	
 	}
 	
+
+	
 	/* Koniec CSS Wyświetlanie filmów w profilu użytkownika i results.html */
 	
 	#upload_form {
@@ -456,10 +456,17 @@
 		width:24%;
 		display:block;
 		float:left;
-		line-height: 0px;
+		
 		margin-right:1%;
 		margin-bottom: 5%;
+	
 	}
+	
+	#film:hover {
+		background-color: #F7F7F7;
+	}
+	
+	
 	#film_slider{
 		width:100%;
 	}
@@ -622,5 +629,35 @@
 	
 	}
 	
-
+	#popup {
+		width:20%;
+		height: 10%;
+		margin-top: 20%;
+		display:block;
+		margin-left: 40%;
+		position: absolute;
+		background: #FFF;
+		z-index: 2;
+		border-radius: 10px;
+		box-shadow: 0 0 7px 3px gray;
+		visibility: hidden;
+	}
 	
+	#opacity_site {
+		z-index:1;
+		opacity: 1;
+	}
+	#popup_text {
+		display:block;
+		width:40%;
+		height:34%;
+		
+		margin-top: 15%;
+		margin-left: 30%;
+		text-align: center;
+		font-size: 18pt;
+	}
+
+	#results_p {
+		margin: 0 0 0 0;
+	}

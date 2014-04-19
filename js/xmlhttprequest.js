@@ -259,8 +259,9 @@ function uploadError() {
 	},5000);
 }
 // funkcja logowania
-function logIn() {
-	alert("loguje");
+function logIn() { /*
+	document.getElementById("opacity_site").style.opacity = "0.4";
+	document.getElementById("popup").style.visibility = "visible";
 	var fd = new FormData();
 	fd.append("login_l", document.getElementById('login_l').value);
 	fd.append("haslo_l", document.getElementById('haslo_l').value);
@@ -270,12 +271,41 @@ function logIn() {
 	xhr.addEventListener("abort",logInError, false);
 	xhr.open("POST", "php/logowanie.php");
 	xhr.send(fd);
-	alert("loguje");
+	setInterval(function(){
+		document.getElementById("popup_text").innerHTML = "Loguje";
+	},100);
+	setTimeout(function(){
+		document.getElementById("popup_text").innerHTML = "Zalogowany";
+	},1000); */
+	
+	var hr = new XMLHttpRequest();
+    var url = "php/logowanie.php";
+    var login_l = document.getElementById("login_l").value;
+    var haslo_l = document.getElementById("haslo_l").value;
+    var vars = "login_l="+login_l+"&haslo_l="+haslo_l;
+    hr.open("POST", url, true);
+    // Set content type header information for sending url encoded variables in the request
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // Access the onreadystatechange event for the XMLHttpRequest object
+    hr.onreadystatechange = function() {
+   		if(hr.readyState == 4 && hr.status == 200) {
+   			document.getElementById("popup_text").innerHTML = "Zalogowany";
+ 			document.location.href="index.html";
+   		}
+    }
+    hr.send(vars);
+	document.getElementById("opacity_site").style.opacity = "0.4";
+	document.getElementById("popup").style.visibility = "visible";
+	alert();
+	document.getElementById("popup_text").innerHTML = "Loguje";	
 }
 
 // funkcja wykonująca się po poprawnym zalogowaniu się
-function logInLoadComplete() {
-	alert("zalogował");
+function logInLoadComplete(ext) {
+	setTimeout(function(){
+		document.getElementById("popup_text").innerHTML = "Zalogowany";
+	},0);
+	
 	document.location.href="index.html";
 	//setTimeout(function(){
 		//document.location.href="konto_new.html";
@@ -283,7 +313,8 @@ function logInLoadComplete() {
 } 
 
 // funkcja wykonująca się po błędzie logowania 
-function logInError() {
+function logInError(ext) {
+	alert(ext.target.responseText);
 	alert("Błąd logowania. Proszę spróbować ponownie.");
 	setTimeout(function(){
 		document.location.href="logowanie_new.html";
@@ -481,7 +512,7 @@ $(document).ready(function(){
 							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a href='player.html?id=" + this['sciezka'] + "'><p>" + this['tytul'] + 
 							      "</p></a><p> Opis: " + this['opis'] + "</p><p> Ocena: " + this['ocena'] + 
-							      "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p><a href='editor_new.html?id=" + this['sciezka'] + "'><p>Edytuj ten film</p></a</br></div></li>";
+							      "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p><a href='editor_new.html?id=" + this['sciezka'] + "'><p>Edytuj ten film</p></a></div></li>";
         	});
 		},
 		error: function(err) 
@@ -505,9 +536,9 @@ $(document).ready(function(){
 							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a id='title_video_result' href='player.html?id=" + this['sciezka'] 
 							      + "'>" + this['tytul'] + 
-							      "</a><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
-							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
-							      "</p></br></div></li>";
+							      "</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Autor: " + 
+							      this['autor'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
+							      "</p></div></li>";
         	});
 		},
 		error: function(err) 
@@ -529,9 +560,10 @@ $(document).ready(function(){
 							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
 							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] +"\u0022)'" + 
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + 
-							      "/snapshots/1.png'></a><a id='title_video_result' href='player?id=" + this['sciezka'] + "'>" + this['tytul'] + "</a><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
-							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
-							      "</p></br></div></li>";
+							      "/snapshots/1.png'></a><a id='title_video_result' href='player?id=" + this['sciezka'] + "'>" + this['tytul'] + 
+							      "</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Autor: " + 
+							      this['autor'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
+							      "</p></div></li>";
         	});
 		},
 		error: function(err) 
@@ -554,9 +586,9 @@ $(document).ready(function(){
 							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + 
 							      this['sciezka'] + "/snapshots/1.png'></a><a id='title_video_result' href='player.html?id=" + this['sciezka'] +
-							      "'>" + this['tytul'] + "</a><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
-							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
-							      "</p></br></div></li>";
+							      "'>" + this['tytul'] + "</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Autor: " + 
+							      this['autor'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
+							      "</p></div></li>";
         	}); 
 		},
 		error: function(err) 
@@ -577,8 +609,8 @@ $(document).ready(function(){
         	document.getElementById("najnowsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
         							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='title_video_slider' >" + 
-							      this['tytul'] + "</p><p id='autor_slider'>" + 
-							      this['autor'] + "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
+							      this['tytul'] + "</p><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
+							      this['autor'] + "</a><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
         	});
 		},
 		error: function(err) 
@@ -598,8 +630,8 @@ $(document).ready(function(){
         	document.getElementById("najlepsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
         							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='title_video_slider' >" + 
-							      this['tytul'] + "</p><p id='autor_slider'>" + 
-							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + "</p></br></div></div></li>";
+							      this['tytul'] + "</p><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
+							      this['autor'] + "</a><p> Ocena: " + this['ocena'] + "</p></br></div></div></li>";
         	});
 		},
 		error: function(err) 
@@ -619,8 +651,8 @@ $(document).ready(function(){
         	document.getElementById("popularne_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
         							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'>" + "</a></div><div id='opis_li'><p id='title_video_slider' >" + 
-							      this['tytul'] + "</p><p id='autor_slider'>" + 
-							      this['autor'] + "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
+							      this['tytul'] + "</p><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
+							      this['autor'] + "</a><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
         	}); 
 		},
 		error: function(err) 
@@ -630,7 +662,7 @@ $(document).ready(function(){
 	});  
 	
 	// funkcja pobierająca dane filmów wyszukanych przez uzytkownika
-	$.ajax({
+	/* $.ajax({
         url: "php/search1.php",
         success: function(msg){
         	msg = msg.replace(/}{/g, "},{");
@@ -651,6 +683,6 @@ $(document).ready(function(){
 		{
         	console.log(err);
     	}
-	}); 
+	}); */
 
 });
