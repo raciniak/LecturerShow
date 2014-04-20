@@ -8,7 +8,10 @@ var fd = new FormData();
 	xhr.open("POST", "php/search.php");
 	xhr.send(fd);
 	
+
 $(document).ready(function() {
+	$('.basic').jRating();
+	
 	
 	$.ajax({
         url: "php/showComments.php",
@@ -37,13 +40,16 @@ $(document).ready(function() {
         url: "php/showVideoInfo.php",
         success: function(msg){
         	var data = JSON.parse(msg);
-        	document.getElementById("autor_video").innerHTML ="Autor: " + data.autor;
-        	document.getElementById("title_video").innerHTML =data.tytul;
-        	document.getElementById("description_video").innerHTML =data.opis;
-        	document.getElementById("views_video").innerHTML =data.wyswietlenia + "Wyświetleń";
-        	document.getElementById("rate_video").innerHTML =data.ocena;
+        	document.getElementById("autor_video_player").innerHTML = "<a href='user.html?name=" + data.autor + "'>" + data.autor+ "</a>";
+        	document.getElementById("title_video_player").innerHTML = "<p id='title_video_p'>" + data.tytul + "</p>";
+        	document.getElementById("description_video_player").innerHTML = "<p id='description_video_p'>" + data.opis + "</p>";
+        	document.getElementById("views_video_player").innerHTML ="<p id='views_video_p'>" + data.wyswietlenia + " wyswietleń</p>";
+        	var ocena = data.ocena * 23;
         	
+        	$('.jRatingColor').width(ocena + 'px');
+        //	document.getElementsByClassName("jRatingColor").style.boxShadow= "0 0 3px 3px #F00";
         
+        	//document.getElementById("rate_video_player").innerHTML = "<p>" + data.ocena + "</p>";
 		},
 		error: function(err) 
 		{

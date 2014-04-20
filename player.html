@@ -11,7 +11,10 @@
 		<script src="js/libs/template/skel-panels.min.js"></script>
 		<script type="text/javascript" src="js/Dragdrop.js"></script>
         <script type="text/javascript" src="js/Event.js"></script>
+        <link rel="stylesheet" href="jquery/jRating.jquery.css" type="text/css" />
         <script src="js/xmlhttprequest.js"></script>
+        <script type="text/javascript" src="jquery/jquery.js"></script>
+		<script type="text/javascript" src="jquery/jRating.jquery.js"></script>
         <script src="js/comment.js"></script>
 		<!-- Skrypty do playera -->
 		<script type="text/javascript" src="js/player.js"></script>
@@ -27,6 +30,7 @@
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
 			<link rel="stylesheet" href="css/template/style.css" />
 			<link rel="stylesheet" href="css/template/style-desktop.css" />
+			
 		</noscript>
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/template/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="js/libs/template/html5shiv.js"></script><![endif]-->
@@ -46,7 +50,6 @@
 				<header id="header" class="container">
 					<div class="row">
 						<div class="12u">
-
 							<!-- Logo -->
 								<h1><a href="index.html" id="logo">LecturerShow.pl</a></h1>
 							
@@ -58,7 +61,6 @@
 									<a id="konto" href="konto_new.html"> Twój profil</a>
 									<a id="logowanie" href="logowanie_new.html">Zaloguj</a>
 								</nav>
-
 						</div>
 					</div>
 				</header>
@@ -77,25 +79,18 @@
 											<h2>Odtwarzacz</h2>
 											<h3>Oglądaj filmy na naszym ekstra odtwarzaczu </h3>
 										</header>
-
-     							
 											<div id="myPlayer">
 												<div class="playerScreen">	
-
 											        	<video id="myVideo">
 											            </video>
-											           
 													    <div id="imgLoad" class="imageLoader" >
 											        	</div>
-
 												</div>	
-												
-																								<div id="bodyVolumeLine">
+												<div id="bodyVolumeLine">
 													<div id="volumeLine"> 
-														<div class="belt"> </div>
+														<div class="belt"></div>
 													</div> 
 												</div>	
-												
 												<div id="qualityPanel">
 													<form action="">
 														<input type="checkbox" name="1080p" value="1920x1080">1080p
@@ -107,61 +102,68 @@
 														<input type="checkbox" name="360p" value="640x360">360p
 														<br />
 														<input type="checkbox" name="240p" value="426x240">240p
-
 													</form>
 												</div>	
+											</div>
+											<div id="playerNavigation">
+												<div class="playerMenu">
+													<div class="playerMenuLeft"> </div>
+													<button id="playButton" > </button> 
+													<button id="pauseButton" > </button>
+													<button id="stopButton" > </button>
+													<div class="separator"> </div>
+													<div class="sliderSpace"> 
+														<div id="timeLine">
+															<div class="belt"></div>
+														</div>
+													</div>
+													<div id="timeDiv">00:00:00</div>
+													<div class="separator"> </div>
+													<button id="volumeButton" class="volumeButton"> 
+													</button>
+													<div class="separator"> </div>
+													<button id="hdButton" > </button>
+													<button id="fullScreenButton" > </button>
+													<div class="playerMenuRight"> </div>													
+												</div>					
+											</div>
+											<div id="video_info">
+												<div id="autor_video_player"></div>
+												<div id="title_video_player"></div>
+												<div id="views_video_player"></div>
+												<div id="description_video_player"></div>
+												<div id="rate_video_player">
+													<div class="basic"  data-id="1"></div>
+												</div>
+												
+											</div> 
+											
+											<hr>
+											
+											
+
+
+
+											<div id="add_comment">
+												<p id="comment_p">Dodaj komentarz </p>
+												<textarea id="comment_area"></textarea>
+												<input type="button" id="comment_button" onclick="addComment()" value="Dodaj komentarz">
+											
 												
 											</div>
+											<div id="show_comments">
+												<h2> Komentarze </h2>
+												<div id="comments"></div>
+											</div>
 											
-										
-												
 											
-												
-												<div id="playerNavigation">
-													<div class="playerMenu">
-														<div class="playerMenuLeft"> </div>
-														
-														<button id="playButton" > </button> 
-														<button id="pauseButton" > </button>
-														<button id="stopButton" > </button>
-														<div class="separator"> </div>
-														
-														<div class="sliderSpace"> 
-															<div id="timeLine"><div class="belt"> </div></div>
-														</div>
-														
-														<div id="timeDiv">00:00:00</div>
-														
-														<div class="separator"> </div>
-														
-														<button id="volumeButton" class="volumeButton"> 
-														</button>
-														
-													
-														<div class="separator"> </div>
-														
-														<button id="hdButton" > </button>
-														<button id="fullScreenButton" > </button>
-														
-														<div class="playerMenuRight"> </div>													
-													</div>
-													<div id="autor_video"></div>
-													<div id="title_video"></div>
-													<div id="description_video"></div>
-													<div id="views_video"></div>
-													<div id="rate_video"></div>
-													
- 													
-												</div> 
-										<div id="add_comment">
-											<p id="comment_p">Dodaj komentarz </p>
-											<textarea id="comment_area"></textarea>
-											<input type="button" id="comment_button" onclick="addComment()" value="Dodaj komentarz">
-										</div>
-										<div id="show_comments">
-											<h2> Komentarze </h2>
-											<div id="comments"></div>
-										</div>
+
+
+	
+	
+
+
+
 									</section>
 									
 

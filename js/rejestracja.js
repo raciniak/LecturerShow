@@ -68,6 +68,7 @@ $(document).ready(function()
 	 		haslo1area.style.boxShadow= "0 0 3px 3px #F00";
 			haslo2area.style.boxShadow= "0 0 3px 3px #F00";
 			document.getElementById("password_error").innerHTML = "Hasło jest za krótkie!";
+		
 		}
 		return false;
 	});
