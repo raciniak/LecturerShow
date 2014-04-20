@@ -32,4 +32,22 @@ $(document).ready(function() {
         	console.log(err);
     	}
 	});
+	
+	$.ajax({
+        url: "php/showVideoInfo.php",
+        success: function(msg){
+        	var data = JSON.parse(msg);
+        	document.getElementById("autor_video").innerHTML ="Autor: " + data.autor;
+        	document.getElementById("title_video").innerHTML =data.tytul;
+        	document.getElementById("description_video").innerHTML =data.opis;
+        	document.getElementById("views_video").innerHTML =data.wyswietlenia + "Wyświetleń";
+        	document.getElementById("rate_video").innerHTML =data.ocena;
+        	
+        
+		},
+		error: function(err) 
+		{
+        	console.log(err);
+    	}
+	});
 });
