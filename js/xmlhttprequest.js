@@ -544,7 +544,7 @@ $(document).ready(function(){
 	$.ajax({
         url: "php/search_my_videos.php",
         success: function(msg){
-        	if(msg = 'BRAK') { 
+        	if(msg == 'BRAK') { 
         		document.getElementById("filmy").innerHTML = "<p> Nie dodałeś żadnego filmu do LecturerShow</p>";
         	}
         	else {
@@ -558,8 +558,8 @@ $(document).ready(function(){
 								      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
 								      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
 								      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a href='player.html?id=" + this['sciezka'] + "'><p>" + this['tytul'] + 
-								      "</p></a><p> Opis: " + this['opis'] + "</p><p> Ocena: " + this['ocena'] + 
-								      "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p><a href='editor_new.html?id=" + this['sciezka'] + "'><p>Edytuj ten film</p></a></div></li>";
+								      "</p></a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
+								      "</p><p id='results_p'> Wyświetlenia: " + this['wyswietlenia'] + "</p><a href='editor_new.html?id=" + this['sciezka'] + "'><p>Edytuj ten film</p></a></div></li>";
 	        	}); 
         	}
 		},
