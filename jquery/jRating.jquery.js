@@ -168,7 +168,7 @@
 							function(data) {
 								if(!data.error)
 								{
-									alert("ok");
+									
 									/** ONLY FOR THE DEMO, YOU CAN REMOVE THIS CODE **/
 										$('.serverResponse p').html(data.server);
 									/** END ONLY FOR THE DEMO **/
@@ -181,7 +181,7 @@
 								}
 								else
 								{
-									alert("blad");
+								
 									if(opts.onError) opts.onError( element, rate );
 								}
 							},

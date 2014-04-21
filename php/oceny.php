@@ -18,10 +18,21 @@ if(isset($_POST['action']))
 		$rate = floatval($_POST['rate']);
 		$rate = $rate/4;
 		
-		$sql = "UPDATE movies SET Liczba_Ocen = Liczba_Ocen + '".$rate."' , Suma_Ocen=Suma_Ocen+1 WHERE Sciezka='".$_SESSION['sciezka']."'";
-		
+		$sql = "UPDATE movies SET Liczba_Ocen = Liczba_Ocen + 1 , Suma_Ocen=Suma_Ocen + '".$rate."' WHERE Sciezka='".$_SESSION['sciezka']."'";
 		mysql_query($sql);
 		
+		/*
+		$sql_select = "SELECT Liczba_Ocen, Suma_Ocen FROM movies WHERE Sciezka='".$_SESSION['sciezka']."'";
+		$query_select = mysql_query($sql_select);
+		$row = mysql_fetch_array($query_select);
+		
+		$suma_ocen = $row['Suma_Ocen'];
+		$liczba_ocen = $row['Liczba_Ocen'];
+		$ocena = $suma_ocen / $liczba_ocen;
+		$ocena = floor($ocena);
+		$sql_update = "UPDATE movies SET Ocena='$ocena' WHERE Sciezka='".$_SESSION['sciezka']."'";
+		
+		mysql_query($sql_update); */
 		// if request successful
 		$success = true;
 		// else $success = false;

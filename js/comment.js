@@ -44,9 +44,15 @@ $(document).ready(function() {
         	document.getElementById("title_video_player").innerHTML = "<p id='title_video_p'>" + data.tytul + "</p>";
         	document.getElementById("description_video_player").innerHTML = "<p id='description_video_p'>" + data.opis + "</p>";
         	document.getElementById("views_video_player").innerHTML ="<p id='views_video_p'>" + data.wyswietlenia + " wyswietleń</p>";
-        	var ocena = data.ocena * 23;
-        	
+        	if(data.suma_ocen==0 || data.liczba_ocen==0) {
+        		var ocena = 0;
         	$('.jRatingColor').width(ocena + 'px');
+        	}
+        	else {
+        	var ocena = data.suma_ocen / data.liczba_ocen;
+        	ocena = ocena * 23;
+        	$('.jRatingColor').width(ocena + 'px');
+        	}
         //	document.getElementsByClassName("jRatingColor").style.boxShadow= "0 0 3px 3px #F00";
         
         	//document.getElementById("rate_video_player").innerHTML = "<p>" + data.ocena + "</p>";
