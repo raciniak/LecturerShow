@@ -2,12 +2,15 @@ var sciezka = document.location.search;
 sciezka = sciezka.slice(sciezka.indexOf('=')+1, sciezka.length);
 
 var fd = new FormData();
-	fd.append("sciezka", sciezka);
-	var xhr = new XMLHttpRequest();
+fd.append("sciezka", sciezka);
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "php/search.php");
+xhr.send(fd);
 
-	xhr.open("POST", "php/search.php");
-	xhr.send(fd);
-	
+var fd2 = new FormData();
+fd2.append("sciezka", sciezka);
+var xhr2 = new XMLHttpRequest();
+xhr2.open("POST", "php/add_view.php");
 
 $(document).ready(function() {
 	$('.basic').jRating();
@@ -56,6 +59,17 @@ $(document).ready(function() {
         //	document.getElementsByClassName("jRatingColor").style.boxShadow= "0 0 3px 3px #F00";
         
         	//document.getElementById("rate_video_player").innerHTML = "<p>" + data.ocena + "</p>";
+		},
+		error: function(err) 
+		{
+        	console.log(err);
+    	}
+	});
+	
+	$.ajax({
+        url: "php/add_view.php",
+        success: function(msg){
+        	
 		},
 		error: function(err) 
 		{

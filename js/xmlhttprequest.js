@@ -472,6 +472,13 @@ $(document).ready(function(){
             	document.getElementById("logowanie").href = "logowanie_new.html";
             	document.getElementById("konto").style.display = "none";
 				document.getElementById("rejestracja").style.visibility = "visible";
+				document.getElementById("comment_p").style.width = "40%";
+				document.getElementById("comment_p").innerHTML = "Zaloguj się aby dodawać komentarze";
+				document.getElementById("comment_area").style.display = "none";
+				document.getElementById("comment_button").style.display = "none";
+				$(".basic").jRating({
+	  				isDisabled : true
+				});
             }
             else
 			{	
