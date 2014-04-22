@@ -483,7 +483,8 @@
       	
       }
     
-  
+/* Pasek wyszukiwarki */
+
 	#wyszukiwarka {
 		height: 9%;
 		width: 1200px;
@@ -505,14 +506,20 @@
 		padding-left: 2%;
 		display: inline-block;
 		width: 10%;
+		float:left;
 	}
 	
-	#wyszukiwarka #searchinput{
-		
+	#wyszukiwarka #searchinput {
 		width: 30%;
 		margin-right:1%;
+		float:left;
 	}
 	
+	#wyszukiwarka #submit_wyszukiwarka {
+		width: 6%;
+	}
+	
+	/* mini player */
 	#mini_player {
 		width: 59%;
 	  }

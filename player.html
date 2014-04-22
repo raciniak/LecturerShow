@@ -23,6 +23,9 @@
         <script type="text/javascript" src="js/player_dodatkowy.js"></script>
         <script type="text/javascript" src="js/libs/template/playerScalingScript.js"></script>
         <script type="text/javascript" src="js/libs/template/playerEffects.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="js/libs/jquery/jquery-ui-1.10.4.js"></script>
         <!--Funkcje do okien dialogowych-->
        <!-- <script type="text/javascript" src="js/CustomDialog.js"></script>-->
 		<!--Piotrek dodal--><script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>	
@@ -68,6 +71,12 @@
 			</div>
 
 		<!-- Content -->
+			<div id="wyszukiwarka">
+				<a id="logo_search" href="index.html">LecturerShow.pl</a>
+				<label id="search_label" for="searchinput">Wyszukaj film: </label>
+				<div class="ui-widget"><input placeholder="Wyszukaj film ..." id="searchinput" ></div>
+				<input type="submit" id="submit_wyszukiwarka" onclick="searchVideo()" value="Szukaj"/>
+			</div>
 			<div id="content-wrapper">
 				<div id="content">
 					<div class="container">

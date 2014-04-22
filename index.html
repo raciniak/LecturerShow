@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="css/slider1.css" />
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		<script src="js/libs/jquery/jquery-ui-1.10.4.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
 			<link rel="stylesheet" href="css/template/style.css" />
@@ -54,10 +54,10 @@
 			</div>
 
 		<!-- Content -->
-			<div id="wyszukiwarka" >
+			<div id="wyszukiwarka">
 				<a id="logo_search" href="index.html">LecturerShow.pl</a>
 				<label id="search_label" for="searchinput">Wyszukaj film: </label>
-				<input placeholder="Wyszukaj film ..." id="searchinput" >
+				<div class="ui-widget"><input placeholder="Wyszukaj film ..." id="searchinput" ></div>
 				<input type="submit" id="submit_wyszukiwarka" onclick="searchVideo()" value="Szukaj"/>
 			</div>
 			    
@@ -78,57 +78,47 @@
 										</div>
 									</section>
 					
-            		<section>
-						<header>
-							<h3> Najnowsze</h3>
-						</header>
-					
-	                    <div class="slider" onselect="return false">
-		                    <input type="button" class="prev" value="<" >
-			                    <div class="wyniki">
-			                    	<ul class="lista" id="najnowsze_slider">
-			                			
-			                		</ul>
-			                    </div>
-		                    <input type="button" value=">" class="next" >
-	                    </div>						
-					</section>
+            						<section>
+										<header>
+											<h3> Najnowsze</h3>
+										</header>
+										<div class="slider" onselect="return false">
+		                    				<input type="button" class="prev" value="<" >
+			                    			<div class="wyniki">
+			                    				<ul class="lista" id="najnowsze_slider">
+			                					</ul>
+			                    			</div>
+		                    				<input type="button" value=">" class="next" >
+	                   					</div>							
+									</section>
             		
-            		<section>
-						<header>
-							<h3> Popularne </h3>
-						</header>
-					
-	                    <div class="slider">
-		                    <input type="button" value="<" class="prev">
-			                    <div class="wyniki">
-			                    	<ul class="lista" id="popularne_slider">
-			                			
-			                		</ul>
-			                    </div>
-		                     <input type="button" value=">" class="next">
-	                    </div>					
-					</section>            		
+   									<section>
+										<header>
+											<h3> Popularne </h3>
+										</header>
+	                    				<div class="slider">
+		                    				<input type="button" value="<" class="prev">
+			                    			<div class="wyniki">
+			                    				<ul class="lista" id="popularne_slider">
+			                					</ul>
+			                   				</div>
+		                     				<input type="button" value=">" class="next">
+	                    				</div>					
+									</section>            		
 
-            		<section>
-						<header>
-							<h3> Najlepsze </h3>
-						</header>
-					
-	                    <div class="slider">
-	                    	<input type="button" value="<" class="prev">
-	                    	<div class="wyniki">
-	                    		<ul class="lista" id="najlepsze_slider">
-	                				
-	                			</ul>
-	                    	</div>
-	                     	<input type="button" value=">" class="next">
-	                    </div>				
-					</section> 
-	                    
-            
-
-                
+            						<section>
+										<header>
+											<h3> Najlepsze </h3>
+										</header>
+	                    				<div class="slider">
+	                    					<input type="button" value="<" class="prev">
+	                    					<div class="wyniki">
+	                    						<ul class="lista" id="najlepsze_slider">
+	                							</ul>
+	                    					</div>
+	                     					<input type="button" value=">" class="next">
+	                    				</div>				
+									</section>                 
 							</div>
 						</div>
 					</div>

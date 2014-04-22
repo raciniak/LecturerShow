@@ -431,6 +431,9 @@ function funkcja_powrot(x, path){
 
 
 $(document).ready(function(){
+	
+	
+	
 	       $(window).bind('scroll', function() {
       	 	var margin = ($(window).width()-1200)/2;
       	 
@@ -440,16 +443,16 @@ $(document).ready(function(){
            	  document.getElementById("wyszukiwarka").style.marginLeft = margin + "px"; 
            	  document.getElementById("wyszukiwarka").style.height= "6%"; 
            	  document.getElementById("wyszukiwarka").style.borderRadius= "0px 0px 5px 5px";
-           	  document.getElementById("logo_search").style.display= "inline-block"; 	
+           	  document.getElementById("logo_search").style.display= "inline-block"; 
+           	  document.getElementById("logo_search").style.cssFloat = "left";	
              }
              else{
             	document.getElementById("wyszukiwarka").style.position = "";
             	document.getElementById("wyszukiwarka").style.top = "0px"; 
             	document.getElementById("wyszukiwarka").style.borderRadius= ""; 
 				document.getElementById("logo_search").style.display= "none"; 
-             }
-             
-        });
+    	}
+    });
 	// funkcje zmieniające obrazki linków
 	$('#fb_link').hover(
     function(){
@@ -685,6 +688,8 @@ $(document).ready(function(){
         	console.log(err);
     	}
 	});
+
+
 	
 	$.ajax({
         url: "php/najlepsze_slider.php",
@@ -710,6 +715,8 @@ $(document).ready(function(){
 	$.ajax({
         url: "php/najpopularniejsze_slider.php",
         success: function(msg){
+        	
+
         	msg = msg.replace(/}{/g, "},{");
         	msg = "[" + msg + "]";
         	var obj = $.parseJSON(msg);
@@ -729,27 +736,27 @@ $(document).ready(function(){
 	});  
 	
 	// funkcja pobierająca dane filmów wyszukanych przez uzytkownika
-	/* $.ajax({
-        url: "php/search1.php",
+	 $.ajax({
+        url: "php/suggest.php",
         success: function(msg){
+        	var tab = new Array;
+        	i=0;
         	msg = msg.replace(/}{/g, "},{");
         	msg = "[" + msg + "]";
         	var obj = $.parseJSON(msg);
-        	var lang = '';
         	$.each(obj, function() {
-        	document.getElementById("uzytkownika").innerHTML += "<li id='li_lista'><div id='film'>" +  
-							      "<a href='player.html?id" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022) src='res/" + this['sciezka'] + "/snapshots/1.png'>" + "</a><a href='" + this['sciezka'] + "'><p>" + this['tytul'] + 
-							      "</p></a><p> Opis: " + this['opis'] + "</p><p> Autor: " + 
-							      this['autor'] + "</p><p> Ocena: " + this['ocena'] + 
-							      "</p><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></li>";
+        		tab[i] = this['title'];
+        		i++;
         	}); 
+			var availableTags = tab;
+			$( "#searchinput" ).autocomplete({
+				source: availableTags
+			});
 		},
 		error: function(err) 
 		{
         	console.log(err);
     	}
-	}); */
+	}); 
 
 });
