@@ -431,7 +431,23 @@ function funkcja_powrot(x, path){
 
 
 $(document).ready(function(){
-
+	       $(window).bind('scroll', function() {
+      	 	var margin = ($(window).width()-1200)/2;
+      	 
+             if ($(window).scrollTop() >= $( '.subpage #header-wrapper' ).height()) {
+              document.getElementById("wyszukiwarka").style.position = "fixed";
+           	  document.getElementById("wyszukiwarka").style.top = "0px";  
+           	  document.getElementById("wyszukiwarka").style.marginLeft = margin + "px"; 
+           	  document.getElementById("wyszukiwarka").style.height= "6%"; 
+           	  document.getElementById("wyszukiwarka").style.borderRadius= "0px 0px 5px 5px"; 	
+             }
+             else{
+            	document.getElementById("wyszukiwarka").style.position = "";
+            	document.getElementById("wyszukiwarka").style.top = "0px"; 
+            	document.getElementById("wyszukiwarka").style.borderRadius= "";  
+             }
+             
+        });
 	// funkcje zmieniające obrazki linków
 	$('#fb_link').hover(
     function(){
@@ -459,6 +475,8 @@ $(document).ready(function(){
 );
 	// funkcja pobierająca dane sesji
 	$.ajax({
+		
+		
         url: "php/sesja.php",
         success : function(msg){
 			if(msg == 'nieznany')
@@ -476,9 +494,8 @@ $(document).ready(function(){
 				document.getElementById("comment_p").innerHTML = "Zaloguj się aby dodawać komentarze";
 				document.getElementById("comment_area").style.display = "none";
 				document.getElementById("comment_button").style.display = "none";
-				$(".basic").jRating({
-	  				isDisabled : true
-				});
+				document.getElementById('rate').style.zIndex = "1";
+				
             }
             else
 			{	

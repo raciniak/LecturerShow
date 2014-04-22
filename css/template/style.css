@@ -485,17 +485,22 @@
     
   
 	#wyszukiwarka {
-		height: 5%;
+		height: 9%;
 		width: 1200px;
 		background:#FFF;
 		display: block;
 		margin: 0 auto;
-		margin-top: 0%;
+		border: 1px solid gray;
+		z-index:5;
+	
+	
+		
 	
 	}
 	
-	#wyszukiwarka p {
-		margin-bottom : 0%;
+	#search_label {
+		padding-left: 2%;
+		
 	
 	
 	}
@@ -509,15 +514,6 @@
 		
 		width: 30%;
 		margin-right:1%;
-	}
-	
-
-	#wyszukiwarka {
-		width: 1200px;
-	
-		display: block;
-		margin: 0 auto;
-		margin-top: 0%;
 	}
 	
 	#mini_player {

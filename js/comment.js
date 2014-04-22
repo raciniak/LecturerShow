@@ -13,7 +13,7 @@ var xhr2 = new XMLHttpRequest();
 xhr2.open("POST", "php/add_view.php");
 
 $(document).ready(function() {
-	$('.basic').jRating();
+	 $('.basic').jRating();
 	
 	
 	$.ajax({
@@ -69,7 +69,13 @@ $(document).ready(function() {
 	$.ajax({
         url: "php/add_view.php",
         success: function(msg){
-        	
+        	var odp = msg;
+        	if(odp!=0) {
+        		var ocena = msg * 23;
+        		$('.jRatingAverage').width(ocena + 'px');
+        		$('.jRatingColor').width('0px');
+        		document.getElementById('rate').style.zIndex = "1";
+        	}
 		},
 		error: function(err) 
 		{

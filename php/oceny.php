@@ -21,6 +21,8 @@ if(isset($_POST['action']))
 		$sql = "UPDATE movies SET Liczba_Ocen = Liczba_Ocen + 1 , Suma_Ocen=Suma_Ocen + '".$rate."' WHERE Sciezka='".$_SESSION['sciezka']."'";
 		mysql_query($sql);
 		
+		$sql2 = "INSERT INTO `rate` (`User`,`Sciezka`,`Ocena`) VALUES ('".$_SESSION['login']."', '".$_SESSION['sciezka']."', '".$rate."')";
+		mysql_query($sql2);
 		/*
 		$sql_select = "SELECT Liczba_Ocen, Suma_Ocen FROM movies WHERE Sciezka='".$_SESSION['sciezka']."'";
 		$query_select = mysql_query($sql_select);
