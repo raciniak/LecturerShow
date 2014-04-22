@@ -439,12 +439,14 @@ $(document).ready(function(){
            	  document.getElementById("wyszukiwarka").style.top = "0px";  
            	  document.getElementById("wyszukiwarka").style.marginLeft = margin + "px"; 
            	  document.getElementById("wyszukiwarka").style.height= "6%"; 
-           	  document.getElementById("wyszukiwarka").style.borderRadius= "0px 0px 5px 5px"; 	
+           	  document.getElementById("wyszukiwarka").style.borderRadius= "0px 0px 5px 5px";
+           	  document.getElementById("logo_search").style.display= "inline-block"; 	
              }
              else{
             	document.getElementById("wyszukiwarka").style.position = "";
             	document.getElementById("wyszukiwarka").style.top = "0px"; 
-            	document.getElementById("wyszukiwarka").style.borderRadius= "";  
+            	document.getElementById("wyszukiwarka").style.borderRadius= ""; 
+				document.getElementById("logo_search").style.display= "none"; 
              }
              
         });
