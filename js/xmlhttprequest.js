@@ -1,97 +1,4 @@
-﻿
-
-var login;
-
-/*
-function searchSuggest(){
-var str = escape(document.getElementById('searchinput').value);
-	$.ajax({
-		type: "GET",
-		data: "search=" + str,
-        url: "php/suggest.php",
-        success: function(text){
-        	alert(text);
-        	var search_suggest = document.getElementById("search_suggest");
-        	search_suggest.style.visibility = "visible";
-        	var ss = document.getElementById('search_suggest');
-      		var str = text.responseText.split("\n");
-        	for(i=0; i < str.length - 1; i++)
-        	{ 
-        	var suggest = '<li onmouseover="javascript:suggestOver(this);" ';
-                        suggest += 'onmouseout="javascript:suggestOut(this);" ';
-                        suggest += 'onclick="javascript:setSearch(this.innerHTML);" ';
-                        suggest += 'class="suggest_link">' + str[i] + '</li>';
-                        ss.innerHTML += suggest; 
-                     
-            }
-		},
-		error: function(err) 
-		{
-        	alert("blad");
-    	}
-}); 
-var myAjax = new Ajax.Request(
-      'php/suggest.php',
-      {
-         method: 'get',
-         parameters: "search="+str,
-         onComplete: showResponse,
-         onFailure: showAlert
-      });
-            
-}
-function showResponse(text){
-     
-        var search_suggest = document.getElementById("search_suggest");
-        search_suggest.style.visibility = "visible";
-        var ss = document.getElementById('search_suggest');
-      	ss.innerHTML = '';
-        var str = text.responseText.split("\n");
-        for(i=0; i < str.length - 1; i++)
-        { 
-        	var suggest = '<li onmouseover="javascript:suggestOver(this);" ';
-                        suggest += 'onmouseout="javascript:suggestOut(this);" ';
-                        suggest += 'onclick="javascript:setSearch(this.innerHTML);" ';
-                        suggest += 'class="suggest_link">' + str[i] + '</li>';
-                        ss.innerHTML += suggest; 
-                     
-                }
-}
-function show_search_input() {
-	show = true;
-	var wyszukiwarka = document.getElementById('wyszukiwarka');
-	if(show = false)
-	{
-		alert(show + "1");
-		wyszukiwarka.style.display = "none";
-		show = true;
-	}
-	else
-	if(show = true){
-		show = false;
-		alert(show + "2");
-		wyszukiwarka.style.display = "block";
-		
-	}
-} 
-function showAlert(MyRequest) {
-        alert("Operacja nie powiodła się");
-}
-
-function suggestOver(div_value) {
-        div_value.className = 'suggest_link_over';
-}
-
-function suggestOut(div_value) {
-        div_value.className = 'suggest_link';
-}
-
-function setSearch(value) {
-        var search_suggest = document.getElementById("search_suggest");
-        search_suggest.style.visibility = "hidden";
-        document.getElementById('searchinput').value = value;
-        document.getElementById('search_suggest').innerHTML = '';
-} */
+﻿var login;
 
 /* funkcje odpowiadająca za wybranie filmu/slajów */
 function fileSelected(plik) {
@@ -188,6 +95,7 @@ function sendReportComplete(evt) {
 	document.getElementById("opis_formularz").value = ' ';
 }
 
+/* funkcja wykonujaca się po błędnym wykonianiu się funkcji sendReport */
 function sendReportError() {
 	alert("Błąd wysłania zgłoszenia");
 	setTimeout(function(){
@@ -195,7 +103,7 @@ function sendReportError() {
 	},5000);
 }
 
-
+/* funkcja dodająca komentarz do bazy */
 function addComment() {
 	sciezka = document.location.search;
 	sciezka = sciezka.slice(sciezka.indexOf('=')+1, sciezka.length);
@@ -209,6 +117,7 @@ function addComment() {
 	xhr.send(fd); 
 }
 
+/* funkcja wykonująca się po błędnym wykonaniu się funcji addComment */
 function sendCommentComplete() {
 	document.getElementById("comment_area").value = '';
 	document.getElementById("opacity_site").style.opacity = "0.4";
@@ -225,12 +134,6 @@ function sendReportComplete(evt) {
 	document.getElementById("opis_formularz").value = ' ';
 }
 
-function sendReportError() {
-	alert("Błąd wysłania zgłoszenia");
-	setTimeout(function(){
-		document.location.href = "index.html";
-	},5000);
-}
 // funkcja wysyłająca dane z formularza rejestracji 
 function sendUserData() {
 	var fd = new FormData();
@@ -341,11 +244,7 @@ function logInLoadComplete(ext) {
 	setTimeout(function(){
 		document.getElementById("popup_text").innerHTML = "Zalogowany";
 	},0);
-	
 	document.location.href="index.html";
-	//setTimeout(function(){
-		//document.location.href="konto_new.html";
-	//},500);
 } 
 
 // funkcja wykonująca się po błędzie logowania 
@@ -407,20 +306,16 @@ function searchVideoError() {
 var myVar;
 
 // funkcja zmieniajaca obrazki miniaturek
-function funkcja(x, path)
-        	{
-        		
-        		var i=1;
-        		myVar = setInterval(function(){
-        			
-        			i=i%4;
-        			if(i==0){
-        				i=1;
-        			}
-        			x.src = "res/" + path + "/snapshots/" + i + ".png";
-        		
-        			i++;
-       		}, 1000);
+function funkcja(x, path) {
+	var i=1;
+    myVar = setInterval(function(){
+        i=i%4;
+        if(i==0){
+        	i=1;
+        }
+        x.src = "res/" + path + "/snapshots/" + i + ".png";
+        i++;
+	}, 1000);
 }    
 // cd funkcji
 function funkcja_powrot(x, path){
@@ -428,65 +323,57 @@ function funkcja_powrot(x, path){
 	x.src = "res/" + path +'/snapshots/1.png';
 }        	
 
-
-
 $(document).ready(function(){
-	
-	
-	
-	       $(window).bind('scroll', function() {
-      	 	var margin = ($(window).width()-1200)/2;
-      	 
-             if ($(window).scrollTop() >= $( '.subpage #header-wrapper' ).height()) {
-              document.getElementById("wyszukiwarka").style.position = "fixed";
-           	  document.getElementById("wyszukiwarka").style.top = "0px";  
-           	  document.getElementById("wyszukiwarka").style.marginLeft = margin + "px"; 
-           	  document.getElementById("wyszukiwarka").style.height= "6%"; 
-           	  document.getElementById("wyszukiwarka").style.borderRadius= "0px 0px 5px 5px";
-           	  document.getElementById("logo_search").style.display= "inline-block"; 
-           	  document.getElementById("logo_search").style.cssFloat = "left";	
-             }
-             else{
-            	document.getElementById("wyszukiwarka").style.position = "";
-            	document.getElementById("wyszukiwarka").style.top = "0px"; 
-            	document.getElementById("wyszukiwarka").style.borderRadius= ""; 
-				document.getElementById("logo_search").style.display= "none"; 
-    	}
-    });
+	$(window).bind('scroll', function() {
+    	var margin = ($(window).width()-1200)/2;
+    	if ($(window).scrollTop() >= $( '.subpage #header-wrapper' ).height()) {
+    	document.getElementById("wyszukiwarka").style.position = "fixed";
+      	document.getElementById("wyszukiwarka").style.top = "0px";  
+        document.getElementById("wyszukiwarka").style.marginLeft = margin + "px"; 
+        document.getElementById("wyszukiwarka").style.height= "5.7%"; 
+        document.getElementById("wyszukiwarka").style.borderRadius= "0px 0px 5px 5px";
+        document.getElementById("logo_search").style.display= "inline-block"; 
+        document.getElementById("logo_search").style.cssFloat = "left";	
+		}
+	    else{
+	        document.getElementById("wyszukiwarka").style.position = "";
+	        document.getElementById("wyszukiwarka").style.top = "0px"; 
+	        document.getElementById("wyszukiwarka").style.borderRadius= ""; 
+			document.getElementById("logo_search").style.display= "none"; 
+	    }
+	});
 	// funkcje zmieniające obrazki linków
 	$('#fb_link').hover(
-    function(){
-      $(this).attr('src','images/icons/fb_hover.png');
-    },
-    function(){
-      $(this).attr('src','images/icons/fb.png');
-    }
-);
+	    function(){
+	      $(this).attr('src','images/icons/fb_hover.png');
+	    },
+	    function(){
+	      $(this).attr('src','images/icons/fb.png');
+	    }
+	);
    $('#tw_link').hover(
-    function(){
-      $(this).attr('src','images/icons/twitter_hover.png');
-    },
-    function(){
-      $(this).attr('src','images/icons/twitter.png');
-    }
-);
+	    function(){
+	      $(this).attr('src','images/icons/twitter_hover.png');
+	    },
+	    function(){
+	      $(this).attr('src','images/icons/twitter.png');
+	    }
+	);
    $('#wmii_link').hover(
-    function(){
-      $(this).attr('src','images/icons/wmii_hover.png');
-    },
-    function(){
-      $(this).attr('src','images/icons/wmii.png');
-    }
-);
+	    function(){
+	      $(this).attr('src','images/icons/wmii_hover.png');
+	    },
+	    function(){
+	      $(this).attr('src','images/icons/wmii.png');
+	    }
+	);
+	
 	// funkcja pobierająca dane sesji
 	$.ajax({
-		
-		
         url: "php/sesja.php",
         success : function(msg){
 			if(msg == 'nieznany')
             {
-            	
             	if(window.location.pathname == "/konto_new.html")
             	{
             		window.location.href = "logowanie_new.html";
@@ -500,7 +387,6 @@ $(document).ready(function(){
 				document.getElementById("comment_area").style.display = "none";
 				document.getElementById("comment_button").style.display = "none";
 				document.getElementById('rate').style.zIndex = "1";
-				
             }
             else
 			{	
@@ -508,7 +394,6 @@ $(document).ready(function(){
             	{
             		window.location.href = "konto_new.html";
             	}
-				
 				var dane = JSON.parse(msg);	
 				login = dane.login;
 				document.getElementById("konto").innerHTML= dane.login;
@@ -523,7 +408,6 @@ $(document).ready(function(){
 				document.getElementById("email2_aktualizacja").value = dane.email;
 				document.getElementById("imie_aktualizacja").value = dane.imie;
 				document.getElementById("nazwisko_aktualizacja").value = dane.nazwisko;
-				
             }
 		},
 		error: function(err) 
@@ -566,10 +450,11 @@ $(document).ready(function(){
 	$.ajax({
         url: "php/search_my_videos.php",
         success: function(msg){
-        	if(msg == 'BRAK') { 
+        	if(msg == 0) { 
         		document.getElementById("filmy").innerHTML = "<p> Nie dodałeś żadnego filmu do LecturerShow</p>";
         	}
-        	else {
+        	else 
+        	{
 	        	msg = msg.replace(/}{/g, "},{");
 	        	msg = "[" + msg + "]";
 	        	//alert(elo2);
@@ -689,8 +574,6 @@ $(document).ready(function(){
     	}
 	});
 
-
-	
 	$.ajax({
         url: "php/najlepsze_slider.php",
         success: function(msg){
@@ -715,8 +598,6 @@ $(document).ready(function(){
 	$.ajax({
         url: "php/najpopularniejsze_slider.php",
         success: function(msg){
-        	
-
         	msg = msg.replace(/}{/g, "},{");
         	msg = "[" + msg + "]";
         	var obj = $.parseJSON(msg);

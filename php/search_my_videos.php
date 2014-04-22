@@ -22,7 +22,7 @@
 	
 	else 
 	{
-			echo 'BRAK';
+			echo 0;
 	}
 ?>
 

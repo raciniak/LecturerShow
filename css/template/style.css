@@ -486,7 +486,7 @@
 /* Pasek wyszukiwarki */
 
 	#wyszukiwarka {
-		height: 9%;
+	
 		width: 1200px;
 		background:#FFF;
 		display: block;
@@ -513,6 +513,8 @@
 		width: 30%;
 		margin-right:1%;
 		float:left;
+		height: 26px;
+		font-family: 'Yanone Kaffeesatz';
 	}
 	
 	#wyszukiwarka #submit_wyszukiwarka {
