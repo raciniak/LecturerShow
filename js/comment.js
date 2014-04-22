@@ -14,7 +14,7 @@ xhr2.open("POST", "php/add_view.php");
 
 $(document).ready(function() {
 	 $('.basic').jRating();
-	
+
 	
 	$.ajax({
         url: "php/showComments.php",
