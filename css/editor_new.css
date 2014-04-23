@@ -481,3 +481,64 @@ button.cupid-green:hover {
 }
 
 /*full screen */
+
+#myPlayer :full-screen{
+	width : screen.width;
+	height : screen.height;
+	padding : 0px;
+}
+
+#myPlayer :-moz-full-screen{
+	width : screen.width;
+	height : screen.height;
+	padding : 0px;
+}
+
+#myPlayer :-webkit-full-screen{
+	width : screen.width;
+	height : screen.height;
+	padding : 0px;
+}
+
+#myPlayer :-ms-fullscreen{
+	width : screen.width;
+	height : screen.height;
+	padding : 0px;
+}
+
+
+#myPlayer .playerScreen:full-screen {
+	width:screen .width;
+	height:screen .height;
+	top:0px;
+	left:0px;
+	padding:0px;
+}
+
+
+#myPlayer .playerScreen:-moz-full-screen{
+	width:screen .width;
+	height:screen .height;
+	top:0px;
+	left:0px;
+	padding:0px;
+
+}
+
+#myPlayer .playerScreen:-webkit-full-screen{
+	width:screen .width;
+	height:screen .height;
+	top:0px;
+	left:0px;
+	padding:0px;
+
+}
+
+#myPlayer .playerScreen:-ms-fullscreen{
+	width:screen .width;
+	height:screen .height;
+	top:0px;
+	left:0px;
+	padding:0px;
+
+}

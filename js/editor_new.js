@@ -127,120 +127,116 @@ function mute() {
 
 
 
+
 function fullScreen() {
 	var full = $("#myPlayer")[0];
 	var vid = $("#myVideo")[0];
 	var pic = $("#imgLoad")[0];
 	var pscr = $('.playerScreen');
-	
-	
-	//ustawianie elementow fullscreena
-	$(full).css({
-		"width" : screen.width,
-		"height" : screen.height,
-		"padding":"0px"
-	});
-	
-	$(pscr).css({
-		"width":screen.width,
-		"height":screen.height,
-		"top":"0px",
-		"left":"0px",
-		"padding":"0px"
-	});
 
 	$(vid).css({
-		"width":0.49*screen.width,
-		"height":screen.height,
-		"float":"left",
-		"padding":"0px",
-		
+		"width" : 0.49 * screen.width,
+		"height" : screen.height,
+		"float" : "left",
+		"padding" : "0px",
+
 	});
 
 	$(pic).css({
-		"width":0.49*screen.width,
-		"height":screen.height,
-		 "float" :"right",
-		 "padding":"0px",
-		 "-moz-user-select": "none",
-    		"-webkit-user-select": "none",
-    		"user-select": "none",
-});
+		"width" : 0.49 * screen.width,
+		"height" : screen.height,
+		"float" : "right",
+		"padding" : "0px",
+		"-moz-user-select" : "none",
+		"-webkit-user-select" : "none",
+		"user-select" : "none",
+	});
 
-	
 	//klikanie na wideo
 	$(vid).dblclick(function() {
-		$(vid)
-		.animate({
-			width : screen.width,
-			left: "auto",
-			right :"auto",
-			top : "auto",
-			bottom : "auto"
-		}, 300)
-		.animate({
-			height : screen.height,
-		}, 300)
-		.css({
-			"z-index" : "-10",
-			"position" : "absolute",
-		}).draggable({disabled:true});
-		
-		$(pic).animate({
-			width : 0.35 * screen.width
-		}, 300).animate({
-			height : 0.35 * screen.height
-		}, 300);
-		$(pic).css({
-			"z-index": "10",
-			"float":"right",
-			"-moz-user-select": "none",
-    		"-webkit-user-select": "none",
-    		"user-select": "none",
-			"-moz-border-radius": "10px",
-			"-webkit-border-radius": "10px",
-			"border-radius": "10px",
-		}).draggable({disabled:false}); 
-});
-	
+		if ($(vid).width != screen.width) {
+			$(vid).css({
+				"z-index" : "-10",
+				"position" : "absolute",
+				"margin" : "0 auto"
+			}).animate({
+				width : screen.width,
+			}, 300).animate({
+				height : screen.height,
+			}, 300).draggable({
+				disabled : true
+			});
+
+			$(pic).animate({
+				width : 0.35 * screen.width
+			}, 300).animate({
+				height : 0.35 * screen.height
+			}, 300).css({
+				"z-index" : "10",
+				"float" : "right",
+				"-moz-user-select" : "none",
+				"-webkit-user-select" : "none",
+				"user-select" : "none",
+				"-moz-border-radius" : "10px",
+				"-webkit-border-radius" : "10px",
+				"border-radius" : "10px",
+			}).draggable({
+				disabled : false
+			});
+		} else {
+			$(vid).css({
+				"width" : 0.49 * screen.width,
+				"height" : screen.height,
+				"float" : "left",
+				"padding" : "0px",
+
+			});
+
+			$(pic).css({
+				"width" : 0.49 * screen.width,
+				"height" : screen.height,
+				"float" : "right",
+				"padding" : "0px",
+				"-moz-user-select" : "none",
+				"-webkit-user-select" : "none",
+				"user-select" : "none",
+			});
+		}
+	});
+
 	//klikanie na obrazek
 	$(pic).dblclick(function() {
-		$(pic)
-		.animate({
-			width : screen.width,
-			left: "auto",
-			right :"auto",
-			top : "auto",
-			bottom : "auto"
-		}, 300)
-		.animate({
-			height : screen.height,
-		}, 300)
-		.css({
+		$(pic).css({
 			"z-index" : "-10",
 			"position" : "absolute",
-			"-moz-user-select": "none",
-    		"-webkit-user-select": "none",
-    		"user-select": "none",
-		}).draggable({disabled:true});
-		
-		
+			"-moz-user-select" : "none",
+			"-webkit-user-select" : "none",
+			"user-select" : "none",
+			"margin" : "0 auto"
+		}).animate({
+			width : screen.width
+		}, 300).animate({
+			height : screen.height,
+		}, 300).draggable({
+			disabled : true
+		});
+
 		$(vid).animate({
 			width : 0.35 * screen.width
 		}, 300).animate({
 			height : 0.35 * screen.height
-		}, 300);
-		$(vid).css({
+		}, 300).css({
 			"z-index" : "10",
-			"float":"right",
-			"-moz-border-radius": "10px",
-			"-webkit-border-radius": "10px",
-			"border-radius": "10px",
-		}).draggable({disabled:false}); 
+			"float" : "right",
+			"-moz-border-radius" : "10px",
+			"-webkit-border-radius" : "10px",
+			"border-radius" : "10px",
+		}).draggable({
+			disabled : false
+		});
 
 	});
-	
-	
+
 	//fullscreen
 	if (full.requestFullscreen)
 		if (document.fullScreenElement) {
@@ -254,7 +250,7 @@ function fullScreen() {
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
 			fullScreenOn = false;
-			
+
 		} else {
 			full.msRequestFullscreen();
 			fullScreenOn = true;
@@ -275,19 +271,21 @@ function fullScreen() {
 			full.webkitRequestFullscreen();
 			fullScreenOn = true;
 		}
-		
-		//funkcja tymczasowa ktora po wcisnieciu esc odswieza strone
-		var KEYCODE_ESC = 27;
-		$(document).keyup(function(e) {
-   			if (e.keyCode == KEYCODE_ESC) { location.reload(); } 
-		});
-		
-		
-		//tymczasowe automatyczne startowanie playera fullscreenowego
-		vid.play();
-		timetimes();
-		sort_times();
+
+	//funkcja tymczasowa ktora po wcisnieciu esc odswieza strone
+	var KEYCODE_ESC = 27;
+	$(document).keyup(function(e) {
+		if (e.keyCode == KEYCODE_ESC) {
+			location.reload();
+		}
+	});
+
+	//tymczasowe automatyczne startowanie playera fullscreenowego
+	vid.play();
+	timetimes();
+	sort_times();
 }
+
 
 
 function updateTime(){
