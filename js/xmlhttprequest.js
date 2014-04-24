@@ -327,19 +327,22 @@ $(document).ready(function(){
 	$(window).bind('scroll', function() {
     	var margin = ($(window).width()-1200)/2;
     	if ($(window).scrollTop() >= $( '.subpage #header-wrapper' ).height()) {
+    	
     	document.getElementById("wyszukiwarka").style.position = "fixed";
       	document.getElementById("wyszukiwarka").style.top = "0px";  
-        document.getElementById("wyszukiwarka").style.marginLeft = margin + "px"; 
-        document.getElementById("wyszukiwarka").style.height= "5.7%"; 
+       // document.getElementById("wyszukiwarka").style.marginLeft = margin + "px"; 
+        document.getElementById("wyszukiwarka").style.height= ""; 
         document.getElementById("wyszukiwarka").style.borderRadius= "0px 0px 5px 5px";
         document.getElementById("logo_search").style.display= "inline-block"; 
         document.getElementById("logo_search").style.cssFloat = "left";	
+        document.getElementById("wyszukiwarka").style.widtn = "90%";
 		}
 	    else{
 	        document.getElementById("wyszukiwarka").style.position = "";
 	        document.getElementById("wyszukiwarka").style.top = "0px"; 
 	        document.getElementById("wyszukiwarka").style.borderRadius= ""; 
 			document.getElementById("logo_search").style.display= "none"; 
+			document.getElementById("wyszukiwarka").style.widtn = "100%";
 	    }
 	});
 	// funkcje zmieniające obrazki linków
