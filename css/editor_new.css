@@ -342,7 +342,7 @@
 	background-color: #99BBDD;
 	border: 1px solid red;
 	position: relative;
-	z-index: 2;
+	z-index: -1;
 
 	top: -111%;
 	left: 80%;
@@ -368,7 +368,7 @@
 	height: 170px;
 	background-color: #99BBDD;
 	position: relative;
-	z-index: 2;
+	z-index: -1;
 
 	top: -55%;
 	left: 73.3%;
