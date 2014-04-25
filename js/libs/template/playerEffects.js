@@ -61,7 +61,7 @@ $(document).ready(function () {
 	function hideVolumePanel()
 	{
 		if( !mouseOnVolumePanel )
-			$(volumePanel).css("z-index", 1);
+			$(volumePanel).css("z-index", -1);
 	}
 	
 	function showVolumePanel()
@@ -73,7 +73,7 @@ $(document).ready(function () {
 	function hideQualityPanel()
 	{
 		if( !mouseOnQualityPanel )
-			$(qualityPanel).css("z-index", 1);
+			$(qualityPanel).css("z-index", -1);
 	}
 	
 	function showQualityPanel()

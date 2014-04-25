@@ -25,6 +25,26 @@
 	z-index: 2;
 }
 
+#myPlayer .playerScreen #maximalize_minimalize_button_left {
+	width: 30px;
+	height: 30px;
+	background-image: url("/images/icons/minimalize_maximalize_button_left.png");
+	position: relative;
+	z-index: 3;
+	top: 10px;
+	left: 10px;
+}
+
+#myPlayer .playerScreen #maximalize_minimalize_button_right {
+	width: 30px;
+	height: 30px;
+	background-image: url("/images/icons/minimalize_maximalize_button_right.png");
+	position: relative;
+	z-index: 5;
+	top: 10px;
+	left: 96.5%;
+}
+
 #myPlayer .playerScreen #myVideo {
 	width: 49.5%;
 	float: left;
