@@ -50,10 +50,6 @@
 }
 
 /*wyglad okienka pod multirangem edytora*/
-#tab-1{
-	//background:#212F35;
-}
-
 .windows{
 	width: 1100px;
 	height: 330px;
@@ -61,9 +57,9 @@
 	margin:0px auto;
 	overflow:hidden;
 	position: relative;
-	
 }
 
+/* wyglad przyciskow do przewijania listy w okienku windows*/
 .up{
 	position:relative;
 }
@@ -81,6 +77,8 @@
 .leftbuttonlist{
 	float:left;
 }
+
+/*Wyglad slajdow w okienku windows*/
 .slajd{
 	float:left;
 	margin: 20px;
@@ -116,6 +114,7 @@
 	z-index: 1;
 }
 
+/*Wyglady textboxow i checkboxow w okienku*/
 .windows_element1{
 	position:relative;
 	left:30px;

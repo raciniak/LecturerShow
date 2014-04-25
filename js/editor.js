@@ -21,6 +21,9 @@ var iloscSlajdow, refresh;
 var time = 0;
 var intID;
 var i=0;
+var state = true;
+var Interval;
+var startInterval = true;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
 	//ukryte okienko, wyświetla się przy zapisie wszystkich zmian w edytorze
@@ -415,6 +418,7 @@ function slideAddWindows(i)
         $("#windows_lista").append(divek);
 }
 
+// Akcja przyciemnienia slajdu po najechaniu na niego w okienku oraz wyłonienie się elementów kontrolujących
 function selecdSlideWindows(img)
 {
 	var name;
@@ -433,6 +437,7 @@ function selecdSlideWindows(img)
 	document.getElementById("ControlPanel"+id+"Items").style.zIndex='4';
 }
 
+// Akcja powrotu slajdu po wyjechaniu kursorem z jego pola oraz ukrycie się elementów kontrolujących
 function onselecdSlideWindows(img)
 {
 	var name;
@@ -697,6 +702,46 @@ function validate(evt,textbox) {
 	 		theEvent.preventDefault(); 
 	 	}
 	 } 
+}
+
+function saveSlideFromVideo()
+{
+	if(startInterval)
+	{
+		animationtabs();
+	}
+	stopFrame();
+}
+
+function animationtabs()
+{
+	Interval = setInterval(function(){
+	$('#slidesss').css('background','none');
+	if (state)
+	{
+		$("#slidesss").animate(
+		{
+			backgroundColor: '#FFFFFF',
+		}, 1000);
+	} else 
+	{
+		$("#slidesss").animate(
+		{
+			backgroundColor: '#00FFFF',
+		}, 1000);
+	}
+	state = !state;
+	},1000);
+	startInterval=false;
+}
+
+function slidesClick()
+{
+	clearInterval(Interval);
+	startInterval=true;
+	$( "#slidesss" ).stop();
+	$('#slidesss').css('background','none');
+	$('#slidesss').css('background',"url('/images/template/bookmark.png') repeat scroll 0% 0% transparent");
 }
 
 // Zapisywanie nowego slajdu, edycja pliku z czasami i ilością slajdów
