@@ -11,28 +11,31 @@
  
 /* przyciski do przesowania */
     .slider .prev, .slider .next {
-        width:50px;
-        height:50px;
+        width:36px;
+        height:36px;
         float:left;
         background:#849599;
         -moz-border-radius:100%;
         -webkit-border-radius:100%;
         border-radius:100%;
-        font:11px Arial;
-        color:#333;
-        margin:2px;
+        margin:5px;
      	border-style:none;
-		margin-top:58px;
+		margin-top:10%;
 		
 		
     }
 	.slider .next {
         float:right;
+        background-image: url("/images/icons/next.jpg");
+        background-position: -8px -8px;
+        border: none;
         
     }
 	.slider .prev {
         float:left;
-		
+		background-image: url("/images/icons/prev.jpg");
+		background-position: -6px -6px;
+		border: none;		
         
     }
  	.slider .prev:hover, .slider .next:hover {
@@ -66,12 +69,10 @@
 		
 		text-align:center;
         width:3.1%;
-        min-height:200px;
-        background:#849599;
-        margin:2px 10px 4px 2px;
-        -moz-border-radius:4px;
-        -webkit-border-radius:4px;
-        border-radius:4px;
+        height:250px;
+        background: #F7F7F7;
+        border:1px solid #C0C0C0;
+        margin: 5px;
     }
  	.slider .lista li a {
 		text-decoration:none;
