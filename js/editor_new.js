@@ -134,6 +134,21 @@ function fullScreen() {
 	var pic = $("#imgLoad")[0];
 	var pscr = $('.playerScreen');
 
+	//ustawianie elementow fullscreena
+	$(full).css({
+		"width" : screen.width,
+		"height" : screen.height,
+		"padding":"0px"
+	});
+	
+	$(pscr).css({
+		"width":screen.width,
+		"height":screen.height,
+		"top":"0px",
+		"left":"0px",
+		"padding":"0px"
+	});
+	
 	$(vid).css({
 		"width" : 0.49 * screen.width,
 		"height" : screen.height,
@@ -153,7 +168,7 @@ function fullScreen() {
 	});
 
 	//klikanie na wideo
-	$(vid).dblclick(function() {
+	$(vid).click(function() {
 		if ($(vid).width != screen.width) {
 			$(vid).css({
 				"z-index" : "-10",
@@ -205,7 +220,7 @@ function fullScreen() {
 	});
 
 	//klikanie na obrazek
-	$(pic).dblclick(function() {
+	$(pic).click(function() {
 		$(pic).css({
 			"z-index" : "-10",
 			"position" : "absolute",
