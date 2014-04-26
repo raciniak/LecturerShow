@@ -125,7 +125,7 @@ $(document).ready(function () {
 				
 				$(imageLoader).css("width", beginWidth+"px");
 				$(imageLoader).css("height", beginHeight+"px");
-				$(playerScreen).css("height", beginPlayerScreenHeight+"px");	
+				$(playerScreen).css("height", beginPlayerScreenHeight+1+"px");	
 				
 				var marginBottom = $(player).css("margin-bottom");
 				var newMargin = marginBottom.substr(0, marginBottom.length - marginBottom.lastIndexOf("px"));
@@ -142,7 +142,7 @@ $(document).ready(function () {
 				$(imageLoader).css("width", beginWidth*2+"px");
 				$(imageLoader).css("height", beginHeight*2+"px");
 				$(player).css("margin-bottom", beginHeight+20+"px");
-				$(playerScreen).css("height", beginHeight*2+10+"px");
+				$(playerScreen).css("height", beginHeight*2+11+"px");
 				
 				$(min_max_button_right).hide();
 				$(min_max_button_left).css("background-position","bottom");
@@ -166,7 +166,7 @@ $(document).ready(function () {
 				
 				$(video).css("width", beginWidth+"px");
 				$(video).css("height", beginHeight+"px");
-				$(playerScreen).css("height", beginPlayerScreenHeight+"px");	
+				$(playerScreen).css("height", beginPlayerScreenHeight+1+"px");	
 				
 				var marginBottom = $(player).css("margin-bottom");
 				var newMargin = marginBottom.substr(0, marginBottom.length - marginBottom.lastIndexOf("px"));
@@ -183,7 +183,7 @@ $(document).ready(function () {
 				$(video).css("width", beginWidth*2+"px");
 				$(video).css("height", beginHeight*2+"px");
 				$(player).css("margin-bottom", beginHeight+20+"px");
-				$(playerScreen).css("height", beginHeight*2+10+"px");
+				$(playerScreen).css("height", beginHeight*2+11+"px");
 				
 				$(min_max_button_left).hide();
 				$(min_max_button_right).css("background-position","bottom");

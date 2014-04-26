@@ -61,34 +61,36 @@
 							
 								<!-- Main Content -->
 									<section>
-										<header>
-											<h2>Rejestracja</h2>
-											<h3>Utwórz nowe konto na platfomie LecturerShow</h3>
-										</header>
-										<!-- Formularz rejestracji -->
-										<p class="dane">Dane konta: </p> 
-                                        <hr id="line">
-                                        
-										<b class="b_rejestracja">Login:</b> 
-										<input type="text" placeholder="min. 6 znaków" name="login" id="login">
-										<span id="login_error"></span><br><br />
-                                        <b class="b_rejestracja">Hasło:</b> 
-                                        <input type="password" name="haslo1" placeholder="min. 6 znaków " id="haslo1">
-                                        <span id="password_error"></span><br><br />
-                                        <b class="b_rejestracja">Powtórz hasło:</b> 
-                                        <input type="password" name="haslo2" id="haslo2"><br><br />
-                                        <b class="b_rejestracja">E-mail:</b> 
-                                        <input type="email" name="email1" placeholder="np. jan.kowalski@gmail.com" id="email1">
-                                        <span id="email_error"></span><br><br />
-                                        <b class="b_rejestracja">Powtórz e-mail:</b> 
-                                        <input type="email" name="email2" id="email2"><br><br />
-                                        <p class="dane"> Dane osobiste: (niewymagane)</p> 
-                                        <hr id="line">
-                                        <b class="b_rejestracja">Imię:</b> 
-                                        <input type="text" placeholder="np. Jan" name="imie" id="imie"><br><br />
-                                        <b class="b_rejestracja">Nazwisko:</b> 
-                                        <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko"><br><br />
-                                        <input type="submit" value="Utwórz konto" class="button-big" name="rejestruj" id="rejestruj_button" onclick="sendUserData()" disabled> 
+										<div id="register_form">
+											<header>
+												<h2>Rejestracja</h2>
+												<h3>Utwórz nowe konto na platfomie LecturerShow</h3>
+											</header>
+											<!-- Formularz rejestracji -->
+											<p class="dane">Dane konta: </p> 
+	                                        <hr id="line">
+	                                        
+											<b class="b_rejestracja">Login:</b> 
+											<input type="text" placeholder="min. 6 znaków" name="login" id="login">
+											<span id="login_error"></span><br><br />
+	                                        <b class="b_rejestracja">Hasło:</b> 
+	                                        <input type="password" name="haslo1" placeholder="min. 6 znaków " id="haslo1">
+	                                        <span id="password_error"></span><br><br />
+	                                        <b class="b_rejestracja">Powtórz hasło:</b> 
+	                                        <input type="password" name="haslo2" id="haslo2"><br><br />
+	                                        <b class="b_rejestracja">E-mail:</b> 
+	                                        <input type="email" name="email1" placeholder="np. jan.kowalski@gmail.com" id="email1">
+	                                        <span id="email_error"></span><br><br />
+	                                        <b class="b_rejestracja">Powtórz e-mail:</b> 
+	                                        <input type="email" name="email2" id="email2"><br><br />
+	                                        <p class="dane"> Dane osobiste:</p> 
+	                                        <hr id="line">
+	                                        <b class="b_rejestracja">Imię:</b> 
+	                                        <input type="text" placeholder="np. Jan" name="imie" id="imie"><br><br />
+	                                        <b class="b_rejestracja">Nazwisko:</b> 
+	                                        <input type="text" placeholder="np. Kowalski" name="nazwisko" id="nazwisko"><br><br />
+	                                        <input type="submit" value="Utwórz konto" class="button black large" style="margin: 0 auto; margin-top: 50px;" name="rejestruj" id="rejestruj_button" onclick="sendUserData()" disabled>
+                                        </div> 
 									</section>
 							</div>
 						</div>
@@ -99,41 +101,7 @@
 		<!-- Footer -->
 			<div id="footer-wrapper">
 				<footer id="footer" class="container">
-					<div class="row">
-						<div class="8u">
-						
-							<!-- Links -->
-								<section>
-									<h2>Ważne linki</h2>
-									<div>
-										<div class="row">
-											<div class="3u">
-												<a href="http://www.facebook.pl"><img id="fb_link" src="images/icons/fb.png"></a>
-											</div>
-											<div class="3u">
-												<a href="http://www.twitter.com"><img id="tw_link" src="images/icons/twitter.png"></a>
-											</div>
-											<div class="3u">
-												<a href="http://mat.umk.pl"><img id="wmii_link" src="images/icons/wmii.png"></a>
-											</div>
-											
-										</div>
-									</div>
-								</section>
 
-						</div>
-						<div class="4u">
-							
-							<!-- Blurb -->
-								<section>
-									<h2>Formularz kontaktowy</h2>
-									<b id="b_formularz"> E-mail: </b><input type="email" id="e-mail_formularz" name="e-mail_formularz"> </br>
-									<b id="b_formularz"> Treść: </b><textarea name="opis" id="opis_formularz" name="opis_formularz" required></textarea>
-									<input type="submit" id="button_formularz" name="button_formularz" onclick="sendReport()">
-								</section>
-						
-						</div>
-					</div>
 				</footer>
 			</div>
 

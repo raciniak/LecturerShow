@@ -11,9 +11,6 @@
 		<script src="js/libs/template/skel.min.js"></script>
 		<script src="js/libs/template/skel-panels.min.js"></script>
 		<script src="js/xmlhttprequest.js"></script>
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="js/libs/jquery/jquery-ui-1.10.4.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
 			<link rel="stylesheet" href="css/template/style.css" />
@@ -49,14 +46,6 @@
 			</div>
 
 		<!-- Content -->
-		<div class="container">
-			<div id="wyszukiwarka">
-				<a id="logo_search" href="index.html">LecturerShow.pl</a>
-				<label id="search_label" for="searchinput">Wyszukaj film: </label>
-				<div class="ui-widget"><input placeholder="Wyszukaj film ..." id="searchinput" ></div>
-				<input type="submit" id="submit_wyszukiwarka" onclick="searchVideo()" value="Szukaj"/>
-			</div>
-		</div>
 			<div id="content-wrapper">
 				<div id="content">
 					<div class="container">
@@ -100,7 +89,7 @@
 									</section>
 									<section>
 										<header>
-											<h2>Statystyki serwisu</h2>
+											<h2>Statystyki</h2>
 										</header>
 										
 										<ul>
@@ -119,40 +108,6 @@
 		<!-- Footer -->
 			<div id="footer-wrapper">
 				<footer id="footer" class="container">
-					<div class="row">
-						<div class="8u">
-						
-							<!-- Links -->
-								<section>
-									<h2>Ważne linki</h2>
-									<div>
-										<div class="row">
-											<div class="3u">
-												<a href="http://www.facebook.pl"><img id="fb_link" src="images/icons/fb.png"></a>
-											</div>
-											<div class="3u">
-												<a href="http://www.twitter.com"><img id="tw_link" src="images/icons/twitter.png"></a>
-											</div>
-											<div class="3u">
-												<a href="http://mat.umk.pl"><img id="wmii_link" src="images/icons/wmii.png"></a>
-											</div>
-											
-										</div>
-									</div>
-								</section>
-						</div>
-						<div class="4u">
-							
-							<!-- Blurb -->
-								<section>
-									<h2>Formularz kontaktowy</h2>
-									<b id="b_formularz"> E-mail: </b><input type="email" id="e-mail_formularz" name="e-mail_formularz"> </br>
-									<b id="b_formularz"> Treść: </b><textarea name="opis" id="opis_formularz" name="opis_formularz" required></textarea>
-									<input type="submit" id="button_formularz" name="button_formularz" onclick="sendReport()">
-								</section>
-						
-						</div>
-					</div>
 				</footer>
 			</div>
 
