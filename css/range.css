@@ -50,20 +50,16 @@
 }
 
 /*wyglad okienka pod multirangem edytora*/
-#tab-1{
-	//background:#212F35;
-}
-
 .windows{
 	width: 1100px;
 	height: 330px;
-	background-image: url("/images/template/bg03.jpg");
+	background:#F7FBFF;
 	margin:0px auto;
 	overflow:hidden;
 	position: relative;
-	
 }
 
+/* wyglad przyciskow do przewijania listy w okienku windows*/
 .up{
 	position:relative;
 }
@@ -81,6 +77,8 @@
 .leftbuttonlist{
 	float:left;
 }
+
+/*Wyglad slajdow w okienku windows*/
 .slajd{
 	float:left;
 	margin: 20px;
@@ -116,6 +114,7 @@
 	z-index: 1;
 }
 
+/*Wyglady textboxow i checkboxow w okienku*/
 .windows_element1{
 	position:relative;
 	left:30px;
@@ -196,22 +195,28 @@
 }
 
     
-/*przycisk do przewijania listy w edytorze w zakładce slajdy */
-/*.up {
-	margin-left: 90%;
-	margin-bottom: 2%;
-	background:#FFF;
+.textboxPlay{
+	font-weight:bold;
+	display:inline-block;
+	margin:auto;
 }
-.down {
-	margin-left: 90%;
-	margin-top: 2%;
-	background:#FFF;
-}*/
+
+.secondElementTime{
+	padding-left: 100px;
+}
 
 .textboxWindows{
+	border-style: none;
 	width: 20px;
-	background-image: url("/images/template/bg03.jpg");
+	background-color:rgba(255,255,255,0.01);
+	color:white;
+}
 
+.textboxWindows2{
+	border-style: none;
+	width: 20px;
+	background-color:rgba(255,255,255,0.01);
+	color:black;
 }
 
 /*Wyglad odtwarzacza pokazu slajdów do łapania nowych */
@@ -229,6 +234,7 @@
 #Zapisz_edycje{
 	display:table;
 	 margin:auto;
+	 margin-top: 30px;
 }
 
 /* Wygląd wykakującego okienka przed zapisem*/

@@ -61,7 +61,45 @@ body, input, textarea, select
 		box-shadow: inset 0px -1px 0px 0px #272d30, inset 0px -2px 0px 0px #51575a;
 		text-shadow: -1px -1px 1px rgba(0,0,0,0.75);
 	}
+	
+	#wyszukiwarka {
+	
+		height: 28px;
+	
+	}
+	
+	#wyszukiwarka #logo_search{
+		margin-left: 2%;
+		font-family: 'Lobster', sans-serif;
+		color: #666;
+		display:none;
+		text-decoration: none;
+		margin-top: 0.25%;
+	}
+	
+	#wyszukiwarka #search_label {
+		padding-left: 2%;
+		display: inline-block;
+		width: 15%;
+		float:left;
+		margin-top: 0.25%;
+	}
 
+	#wyszukiwarka #searchinput {
+		width: 45%;
+		margin-right:1%;
+		float:left;
+		height: 20px;
+		font-family: 'Yanone Kaffeesatz';
+		margin-top: 0.25%;
+	}
+	
+	#wyszukiwarka #submit_wyszukiwarka {
+		width: 13%;
+		float:right;
+		margin-right:2%;
+		margin-top: 0.25%;
+	}
 	/*
 		Don't want the banner? Uncomment the lines below:
 

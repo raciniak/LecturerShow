@@ -19,7 +19,6 @@
         <script type="text/javascript" src="js/editor.js"></script>
         <script type="text/javascript" src="js/libs/template/playerScalingScript.js"></script>
         <script type="text/javascript" src="js/libs/template/playerEffects.js"></script>
-        
         <!--Funkcje do okien dialogowych-->
        <!-- <script type="text/javascript" src="js/CustomDialog.js"></script>-->
 		<!--Piotrek dodal--><script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>		
@@ -84,11 +83,14 @@
 												<div class="playerScreen">	
 
 											        	<video id="myVideo">
+											        		
 											            </video>
 											           
 													    <div id="imgLoad" class="imageLoader" >
 											        	</div>
-
+											        	
+											        	<div id="maximalize_minimalize_button_left"> </div>
+											        	<div id="maximalize_minimalize_button_right"> </div>
 												</div>	
 												
 												<div id="bodyVolumeLine">
@@ -111,6 +113,8 @@
 
 													</form>
 												</div>	
+												
+												
 												
 											</div>
 
@@ -158,12 +162,12 @@
 									<!-- ------------------------------------------------ zakładki ------------------------------------------- -->
 									<ul class="bookmarks">
 										<li class="active"><a href="#tab-1"><p>Edytor</p></a></li>
-										<li><a href="#tab-2"><p>Slajdy</p></a></li>
+										<li><a id="slidesss" onclick="slidesClick()" href="#tab-2"><p>Slajdy</p></a></li>
 										<li><a href="#tab-3"><p>Dodaj slajdy</p></a></li>
 									</ul>									
 									<section>
 										<div id="tab-1" class="tab">
-											<div id="TimeMoviePlayed"></div>
+											<center><div id="TimeMoviePlayed"></div></center>
 		        								<button id="Zapisz_edycje" class="cupid-green" style="width: 120px; height: 40px;" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
 											</div>
 											
@@ -181,8 +185,8 @@
 															
 											<div id="tab-3" class="tab">
 		        								<video id="AddNewSlide" controls>
-											    	<!--<source src="movies/movie1/movie.mp4" type="video/mp4"></source> --></video>
-											        <button class="cupid-green" onclick="stopFrame()" style="width: 80px; height: 35px;">Zapisz slajd</button>
+											    	</video>
+											        <button class="cupid-green" onclick="saveSlideFromVideo()" style="width: 80px; height: 35px;">Zapisz slajd</button>
 											</div>	
 												<div class="overlay"></div>
 													<div class="overlay-message">

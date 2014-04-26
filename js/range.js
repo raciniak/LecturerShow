@@ -397,6 +397,7 @@
     	}
     }
     
+    //Akcja wywołana przy puszczeniu slidera po jego wcześniejszym przeniesieniu
     function wyrzucslajd(e){
     	if (isSlider(e.target)) {
 			var name = e.target.getAttribute('data-name');

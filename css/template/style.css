@@ -515,6 +515,7 @@
 		float:left;
 		height: 26px;
 		font-family: 'Yanone Kaffeesatz';
+		line-height: 1.2em;
 	}
 	
 	#wyszukiwarka #submit_wyszukiwarka {

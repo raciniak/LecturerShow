@@ -21,6 +21,9 @@ var iloscSlajdow, refresh;
 var time = 0;
 var intID;
 var i=0;
+var state = true;
+var Interval;
+var startInterval = true;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
 	//ukryte okienko, wyświetla się przy zapisie wszystkich zmian w edytorze
@@ -415,6 +418,7 @@ function slideAddWindows(i)
         $("#windows_lista").append(divek);
 }
 
+// Akcja przyciemnienia slajdu po najechaniu na niego w okienku oraz wyłonienie się elementów kontrolujących
 function selecdSlideWindows(img)
 {
 	var name;
@@ -433,6 +437,7 @@ function selecdSlideWindows(img)
 	document.getElementById("ControlPanel"+id+"Items").style.zIndex='4';
 }
 
+// Akcja powrotu slajdu po wyjechaniu kursorem z jego pola oraz ukrycie się elementów kontrolujących
 function onselecdSlideWindows(img)
 {
 	var name;
@@ -458,12 +463,12 @@ function CompletPlayedMovieTime(){
 	timeeStop = upConversionTime(stopPlay);
 	timeeStart = timeeStart.split(":");
 	timeeStop = timeeStop.split(":");
-	$('#TimeMoviePlayed').html("<b class='textboxPlay'>Start: <b class=textbox00><input id='textbox00'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStart[0]+"'></b>"+
-	"<b class=textbox10><input id='textbox10'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStart[1]+"'></b>"+
-	"<b class=textbox20><input id='textbox20'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStart[2]+"'></b></b>"+
-	"<b class='textboxPlay'>Stop: <b class='textbox01' ><input id='textbox01' type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[0]+"'></b>"+
-	"<b class='textbox11' ><input id='textbox11' type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[1]+"'></b>"+
-	"<b class='textbox21' ><input id='textbox21' type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[2]+"'></b></b>");
+	$('#TimeMoviePlayed').html("<b class='textboxPlay'>Początek prezentacji: <b class=textbox00><input id='textbox00'type='text' class='textboxWindows2'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStart[0]+"'></b>:"+
+	"<b class=textbox10><input id='textbox10'type='text' class='textboxWindows2'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStart[1]+"'></b>:"+
+	"<b class=textbox20><input id='textbox20'type='text' class='textboxWindows2'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStart[2]+"'></b></b>"+
+	"<b class='textboxPlay secondElementTime'>Koniec prezentacji: <b class='textbox01' ><input id='textbox01' type='text' class='textboxWindows2'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[0]+"'></b>:"+
+	"<b class='textbox11' ><input id='textbox11' type='text' class='textboxWindows2'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[1]+"'></b>:"+
+	"<b class='textbox21' ><input id='textbox21' type='text' class='textboxWindows2'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+timeeStop[2]+"'></b></b>");
 
 }
 
@@ -558,7 +563,6 @@ function chcecktextbox(evt,textbox)
 		}
 		
 		timee1 = decodingTime(value[0], value[1], value[2]);
-
 			if(timee1>max)
 			{
 				textbox.value=buffer;
@@ -650,18 +654,16 @@ function chcecktextboxPlay(evt,textbox)
 		timee1 = decodingTime(value[0], value[1], value[2]);
 			if((timee1>max) || (bool===false))
 			{
-				alert("false");
 				textbox.value=buffer;
 				textbox.setAttribute('value',buffer);
 				//usuniecie starego inputa i wstawienie nowego
 				if (textbox){
       				textbox.parentNode.removeChild(textbox);
   				}
-  				$('.'+name).append("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+buffer+"'>");
+  				$('.'+name).append("<input id='"+name+"'type='text' class='textboxWindows2'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+buffer+"'>");
   				document.getElementById(name).focus();
 			}else if((timee1<=max) && (bool===true))
 			{	
-				alert("true");
 				if(id=="0")
 				{
 					var input=$("input[name=PoczatekFilmu]").get(0);
@@ -678,7 +680,7 @@ function chcecktextboxPlay(evt,textbox)
    				if (textbox){
       				textbox.parentNode.removeChild(textbox);
   				}
-  				$('.'+name).html("<input id='"+name+"'type='text' class='textboxWindows'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+value[name2[0]]+"'>");
+  				$('.'+name).html("<input id='"+name+"'type='text' class='textboxWindows2'  onkeyup='chcecktextboxPlay(event,this)' onkeypress='validate(event,this)' value='"+value[name2[0]]+"'>");
 				document.getElementById(name).focus();
 			}
 		}
@@ -700,6 +702,46 @@ function validate(evt,textbox) {
 	 		theEvent.preventDefault(); 
 	 	}
 	 } 
+}
+
+function saveSlideFromVideo()
+{
+	if(startInterval)
+	{
+		animationtabs();
+	}
+	stopFrame();
+}
+
+function animationtabs()
+{
+	Interval = setInterval(function(){
+	$('#slidesss').css('background','none');
+	if (state)
+	{
+		$("#slidesss").animate(
+		{
+			backgroundColor: '#FFFFFF',
+		}, 1000);
+	} else 
+	{
+		$("#slidesss").animate(
+		{
+			backgroundColor: '#00FFFF',
+		}, 1000);
+	}
+	state = !state;
+	},1000);
+	startInterval=false;
+}
+
+function slidesClick()
+{
+	clearInterval(Interval);
+	startInterval=true;
+	$( "#slidesss" ).stop();
+	$('#slidesss').css('background','none');
+	$('#slidesss').css('background',"url('/images/template/bookmark.png') repeat scroll 0% 0% transparent");
 }
 
 // Zapisywanie nowego slajdu, edycja pliku z czasami i ilością slajdów
