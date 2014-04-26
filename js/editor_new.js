@@ -129,33 +129,73 @@ function mute() {
 
 
 function fullScreen() {
-	var full = $("#myPlayer")[0];
+	var pelny = $("#myPlayer")[0];
 	var vid = $("#myVideo")[0];
 	var pic = $("#imgLoad")[0];
 	var pscr = $('.playerScreen');
-
+	var menu = $('.playerMenu');
+	
+	var pklikx, pkliky, vklikx, vkliky;
+	var ppuscx, ppuscy, xpuscx, vpuscy;
+	
+	//bazowe ustawianie elementow fullscreena
+	$(pelny).css({
+		"width" : screen.width,
+		"height" : screen.height,
+		"padding":"0px"
+	});
+	
+	$(pscr).css({
+		"width":screen.width,
+		"height":screen.height,
+		"top":"0px",
+		"left":"0px",
+		"padding":"0px"
+	});
+	
 	$(vid).css({
 		"width" : 0.49 * screen.width,
-		"height" : screen.height,
+		"height" : 0.49*screen.height,
 		"float" : "left",
 		"padding" : "0px",
-
+		"margin-top":"auto",
+		"margin-bottom":"auto",
 	});
 
 	$(pic).css({
 		"width" : 0.49 * screen.width,
-		"height" : screen.height,
+		"height" : 0.49*screen.height,
 		"float" : "right",
 		"padding" : "0px",
+		"margin-top":"auto",
+		"margin-bottom":"auto",
 		"-moz-user-select" : "none",
 		"-webkit-user-select" : "none",
 		"user-select" : "none",
 	});
-
+	
+	//funkcje narazie niepotrzebne i raczej niedzialajace
+	$(pic).mousedown(function(event){
+				pklikx = event.pageX;
+				pkliky = event.pageY;
+			}).mouseup(function(event){
+				ppuscx=event.pageX;
+				ppuscy=event.pageY;
+			});
+			
+			
+	$(vid).mousedown(function(event){
+				vklikx = event.pageX;
+				vkliky = event.pageY;
+			}).mouseup(function(event){
+				vpuscx=event.pageX;
+				vpuscy=event.pageY;
+			});
+	//////////////////////////////////////////////////////
+	
 	//klikanie na wideo
 	$(vid).dblclick(function() {
-		if ($(vid).width != screen.width) {
-			$(vid).css({
+		$(vid).css({
 				"z-index" : "-10",
 				"position" : "absolute",
 				"margin" : "0 auto"
@@ -166,7 +206,9 @@ function fullScreen() {
 			}, 300).draggable({
 				disabled : true
 			});
-
+			
+			
+			
 			$(pic).animate({
 				width : 0.35 * screen.width
 			}, 300).animate({
@@ -183,28 +225,11 @@ function fullScreen() {
 			}).draggable({
 				disabled : false
 			});
-		} else {
-			$(vid).css({
-				"width" : 0.49 * screen.width,
-				"height" : screen.height,
-				"float" : "left",
-				"padding" : "0px",
+	
 
-			});
-
-			$(pic).css({
-				"width" : 0.49 * screen.width,
-				"height" : screen.height,
-				"float" : "right",
-				"padding" : "0px",
-				"-moz-user-select" : "none",
-				"-webkit-user-select" : "none",
-				"user-select" : "none",
-			});
-		}
 	});
 
-	//klikanie na obrazek
+//klikanie na obrazek
 	$(pic).dblclick(function() {
 		$(pic).css({
 			"z-index" : "-10",
@@ -220,12 +245,9 @@ function fullScreen() {
 		}, 300).draggable({
 			disabled : true
 		});
-
-		$(vid).animate({
-			width : 0.35 * screen.width
-		}, 300).animate({
-			height : 0.35 * screen.height
-		}, 300).css({
+		
+		
+		$(vid).css({
 			"z-index" : "10",
 			"float" : "right",
 			"-moz-border-radius" : "10px",
@@ -233,42 +255,47 @@ function fullScreen() {
 			"border-radius" : "10px",
 		}).draggable({
 			disabled : false
-		});
+		}).animate({
+			width : 0.35 * screen.width
+		}, 300).animate({
+			height : 0.35 * screen.height
+		}, 300);
 
 	});
 
 	//fullscreen
-	if (full.requestFullscreen)
+	if (pelny.requestFullscreen)
 		if (document.fullScreenElement) {
 			document.cancelFullScreen();
 			fullScreenOn = false;
 		} else {
-			full.requestFullscreen();
+			pelny.requestFullscreen();
 			fullScreenOn = true;
 		}
-	else if (full.msRequestFullscreen)
+	else if (pelny.msRequestFullscreen)
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
 			fullScreenOn = false;
 
 		} else {
-			full.msRequestFullscreen();
+			pelny.msRequestFullscreen();
 			fullScreenOn = true;
 		}
-	else if (full.mozRequestFullScreen)
+	else if (pelny.mozRequestFullScreen)
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
 			fullScreenOn = false;
 		} else {
-			full.mozRequestFullScreen();
+			pelny.mozRequestFullScreen();
 			fullScreenOn = true;
+			//tu można ustawiać firefox przez top w css dla elementu pscr
 		}
-	else if (full.webkitRequestFullscreen)
+	else if (pelny.webkitRequestFullscreen)
 		if (document.webkitFullscreenElement) {
 			document.webkitCancelFullScreen();
 			fullScreenOn = false;
 		} else {
-			full.webkitRequestFullscreen();
+			pelny.webkitRequestFullscreen();
 			fullScreenOn = true;
 		}
 
