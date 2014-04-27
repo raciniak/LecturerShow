@@ -81,8 +81,10 @@
 /*Wyglad slajdow w okienku windows*/
 .slajd{
 	float:left;
-	margin: 20px;
+	margin: 18px;
 	list-style: none;
+	 border-style:solid;
+	 border-width:3px;
 }
 
 .windows_div{
@@ -102,7 +104,7 @@
 	position:relative;
 	background-color:#000000;
 	opacity:0.6;
-	bottom:80px;
+	bottom:78px;
 	z-index: 1;
 }
 
@@ -110,29 +112,30 @@
 	width:140px;
 	height:70px;
 	position:relative;
-	bottom:156px;
+	bottom:148px;
 	z-index: 1;
 }
 
 /*Wyglady textboxow i checkboxow w okienku*/
 .windows_element1{
 	position:relative;
-	left:30px;
+	left:0px;
 	font-size:14px;
 	color:white;
 }
 
 .windows_element2{
 	position:relative;
-	left:5px;
+	left:30px;
 	font-size:14px;
 	color:white;
+	bottom: 8px;
 }
 
 .checkbox{
 	position:relative;
 	top:2px;
-	left:15px
+	left:0px
 }
 /* Tło MultiRange */
 
@@ -212,6 +215,11 @@
 	color:white;
 }
 
+.texboxup{
+	position:relative;
+	bottom:8px;
+}
+
 .textboxWindows2{
 	border-style: none;
 	width: 20px;
@@ -226,8 +234,6 @@
 	display:table;
 	 margin:auto;
 	 padding 10px;
-	 
-	
 }
 
 /* Wygląd przycisku zapisu zmian w edytorze */
@@ -263,5 +269,21 @@
     padding-left:2px;
 }
 
+/*Wyglad smietnika do wyrzucania slajdow*/
+#smietnik{
+	opacity:0;
+	border-radius: 10px;
+	border: 1px solid red; 
+	width: 100%; 
+	height: 100px; 
+	position: relative;
+	background:	#D1B2FF;
+}
 
-
+#kosz{
+	width:30px;
+	height:40px;
+	display:table;
+	margin: auto;
+	padding-top: 30px;
+}

@@ -26,6 +26,8 @@ var Interval;
 var startInterval = true;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
+	// Chowam smietniczek
+	//$("#smietnik").hide();
 	//ukryte okienko, wyświetla się przy zapisie wszystkich zmian w edytorze
 	$(".overlay, .overlay-message").hide();
 	   //funkcja do pobierania czasow odtwarzania slajdow, kazda funkcja ktora chce korzystac z tablicy a zawierajacej
@@ -103,7 +105,7 @@ function list(){
         //jeżeli dla danego slidera LI jest więcej od 3 to będzie można przewijać, inaczej nie ma sensu
         if ($li.length > 18) {
             //odległość pojedynczego przesunięcia
-            var odleglosc = 110;
+            var odleglosc = 112;
             //Wyliczanie max przesunięcia
             var maxBottom = (Math.floor($li.length/6)+1)*odleglosc;
  			maxBottom = maxBottom-(3*odleglosc);
@@ -412,9 +414,9 @@ function slideAddWindows(i)
         divek.className = 'slajd';
         divek.innerHTML = "<div class='windows_div' id='ControlWindows"+slajdy[i]+"' onmouseout='onselecdSlideWindows(this)' onmouseover='selecdSlideWindows(this)'><img id='Images"+slajdy[i]+"' class='obrazek_windows' src='res/"+getParameterByName("id")+"/"+slajdy[i]+".png' width='140' height='70' alt='Obrazek nr:"+slajdy[i]+"'/> "+
         "<div id='ControlPanel"+slajdy[i]+"' class='ControlPanel'></div><div id='ControlPanel"+slajdy[i]+"Items' class='ControlPanelItems'><input type='checkbox' class='checkbox' id='checkbox"+slajdy[i]+"' checked='checked' onclick='checkSlajd(this)' /> <b class='windows_element1'>Numer slajdu: "+slajdy[i]+    
-        "</b> <br /><b class='windows_element2'>Czas slajdu: <b class='textboxhour"+slajdy[i]+"'><input id='textboxhour"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[0]+"'></b>:"+
+        "</b> <br /><b class='windows_element2'>Czas slajdu: </br><b class='texboxup'><b class='textboxhour"+slajdy[i]+"'><input id='textboxhour"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[0]+"'></b>:"+
         "<b class='textboxmin"+slajdy[i]+"'><input id='textboxmin"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[1]+"'></b>:"+
-        "<b class='textboxsek"+slajdy[i]+"'><input id='textboxsek"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[2]+"'></b></b></div></div>";
+        "<b class='textboxsek"+slajdy[i]+"'><input id='textboxsek"+slajdy[i]+"'type='text' class='textboxWindows'  onkeyup='chcecktextbox(event,this)' onkeypress='validate(event,this)' value='"+timee[2]+"'></b></b></b></div></div>";
         $("#windows_lista").append(divek);
 }
 
@@ -704,6 +706,7 @@ function validate(evt,textbox) {
 	 } 
 }
 
+//po zapisie slajdu jesli nie ma animacji to staje się włączona
 function saveSlideFromVideo()
 {
 	if(startInterval)
@@ -713,6 +716,7 @@ function saveSlideFromVideo()
 	stopFrame();
 }
 
+//animacja zkładki ze slajdami
 function animationtabs()
 {
 	Interval = setInterval(function(){
@@ -735,13 +739,13 @@ function animationtabs()
 	startInterval=false;
 }
 
+//powrót zakładki do normalności po kliknięciu
 function slidesClick()
 {
 	clearInterval(Interval);
 	startInterval=true;
 	$( "#slidesss" ).stop();
-	$('#slidesss').css('background','none');
-	$('#slidesss').css('background',"url('/images/template/bookmark.png') repeat scroll 0% 0% transparent");
+	$('#slidesss').removeAttr('style');
 }
 
 // Zapisywanie nowego slajdu, edycja pliku z czasami i ilością slajdów
