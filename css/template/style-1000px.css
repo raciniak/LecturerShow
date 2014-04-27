@@ -238,3 +238,817 @@
 		width: 10%;
 		margin-left: 3%;
 	}
+	
+	#myPlayer {
+	border: none;
+	width: 100%;
+	margin-bottom: 30px;
+	position: relative;
+	
+}
+
+#myPlayer .playerScreen {
+	position: relative;
+	left: 1.4%;
+	top: 3.2%;
+	z-index: 2;
+	
+	width: 96.8%;
+	border: 0px;
+	background-color: rgb(30,31,32);
+	background-repeat: repeat-x;
+	
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	 border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	z-index: 2;
+}
+
+#myPlayer .playerScreen #myVideo {
+	width: 49.5%;
+	float: left;
+	margin-left: 0.5%;
+	margin-top: 0.75%;
+	
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+ 	border-top-left-radius: 5px;
+
+}
+
+#myPlayer .playerScreen .imageLoader {
+	float: left;
+	margin-left: 2px;
+	margin-top: 0.75%;
+	position: relative;
+	z-index: 2;
+	width: 49.5%;
+}
+
+#myPlayer .playerScreen .imageLoader img{
+	width: 100%;
+	height: 100%;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#playerNavigation {
+	top:-10px;
+	width: 865px;
+	height: 200px;
+	position: relative;
+	z-index: 3;
+}
+
+#playerNavigation .playerMenu .playerMenuLeft {
+	float: left;
+	width: 40px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerMenuLeft.png");
+	background-repeat: no-repeat;
+}
+
+#playerNavigation .playerMenu {
+	width: 100%;
+	height: 72px;
+	border: 0px;
+	background-image: url("/images/template/Player/playerMenuBackground.png");
+	background-repeat: repeat-x;
+	position: relative;
+	left:-0.3%;
+}
+
+#playerNavigation .playerMenu .sliderSpace {
+	width: 50.5%;
+	height: 59px;
+	float: left;
+	background: url("/images/template/Player/playerSliderBackground.png");
+	margin-top: 8px;
+}
+
+/**************** Przyciski menu i separator *************************/
+
+#playerNavigation .playerMenu .separator {
+	width: 9px;
+	height: 61px;
+	background: url("/images/template/Player/separator.png");
+	float: left;
+	margin-top: 7px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#playerNavigation .playerMenu #playButton {
+	width: 21px;
+	height: 23px;
+	background: url("/images/icons/playerPlayButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-top: 26px;
+	margin-left: 1px;
+	top: 0px;
+}
+
+#playerNavigation .playerMenu #playButton:hover, #playButton:focus {
+	background-position: 21px;
+}
+
+#playerNavigation .playerMenu #pauseButton {
+	width: 22px;
+	height: 28px;
+	background: url("/images/icons/playerPauseButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-top: 23px;
+	top: 0px;
+}
+
+#playerNavigation .playerMenu #pauseButton:hover, #pauseButton:focus {
+	background-position: 22px;
+}
+
+#playerNavigation .playerMenu #stopButton {
+	width: 28px;
+	height: 28px;
+	margin-top: 2.7%;
+	background: url("/images/icons/playerStopButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-left: 20px;
+}
+
+#playerNavigation .playerMenu #stopButton:hover, #stopButton:active {
+	background-position: 28px;
+
+}
+
+#playerNavigation .playerMenu .volumeButton {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/playerVolumeButton.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+}
+
+
+#playerNavigation .playerMenu .volumeButton:hover, .volumeButton:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu .volumeButtonMuted {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButtonMuted.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+}
+
+
+#playerNavigation .playerMenu .volumeButtonMuted:hover, .volumeButtonMuted:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu .volumeButton30 {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButton30.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+}
+
+
+#playerNavigation .playerMenu .volumeButton30:hover, .volumeButton30:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu .volumeButton60 {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButton60.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+}
+
+
+#playerNavigation .playerMenu .volumeButton60:hover, .volumeButton60:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu #hdButton {
+	width: 32px;
+	height: 21px;
+	background: url("/images/icons/playerHdButton.png");
+	float: left;
+	border: none;
+	margin-top: 26px;
+	margin-left: 5px;
+}
+
+#playerNavigation .playerMenu #hdButton:hover, #hdButton:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu #fullScreenButton {
+	width: 32px;
+	height: 25px;
+	background: url("/images/icons/playerFullScreenButton.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+	margin-left: 20px;
+}
+
+#playerNavigation .playerMenu #fullScreenButton:hover, #fullScreenButton:active {
+	background-position: bottom;
+}
+
+#video_info {
+	margin-top:-4em;
+	margin-bottom: 6em;
+	z-index:4;
+}
+
+#video_info #autor_video_player {
+
+	width: 15%;
+	margin-left:1%;
+	float:left;
+	display: inline-block;
+	z-index: 4;
+}	
+
+#video_info #autor_video_player a{
+	
+	position: relative;
+	z-index: 4;
+}
+
+#video_info #title_video_player {
+
+	width: 69%;
+	float:left;
+	display: inline-block;
+	
+}
+
+#video_info #title_video_player #title_video_p{
+	margin: 0;
+	font-size: 22pt;
+	
+}
+
+#video_info #description_video_player {
+
+	width: 69%;
+	margin-left: 16%;
+	display: inline-block;
+	float:left;
+}
+
+#video_info #views_video_player {
+	float: left;
+	width: 15%;
+}
+
+#video_info #views_video_player #views_video_p{
+	margin: 0;
+	font-size: 16pt;
+}
+
+#video_info #rate_video_player {
+	width: 15%;
+	float:left;
+	z-index: 4;
+}
+
+#video_info #rate_video_player p {
+	margin: 0;
+}
+
+/********************** Pasek postepu ***********************/
+
+#timeLine {
+	border: 1px solid #3E484A;
+	width: 100%;
+	height: 16px;	
+	float: left;
+	background: rgba(235,235,234, .6);
+	margin-top: 20px;
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 	
+}
+
+#timeLine .belt {
+		background: url("/images/template/Player/sliderBackground.png");
+		width: 0%;
+		height: 100%;
+		border-radius: 5px; 
+		-moz-border-radius: 5px; 
+		-webkit-border-radius: 5px; 
+}
+
+/**********************Panel jakości*************************/
+#qualityPanel {
+	width: 150px;
+	height: 170px;
+	background-color: #99BBDD;
+	border: 1px solid red;
+	position: relative;
+	z-index: 2;
+
+	top: -111%;
+	left: 80%;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.3);
+	background-color: rgba(28,28,33,.5); 
+	color: white;
+	font-size: 16px;
+	text-align: left;
+}
+
+#qualityPanel form {
+	width: 80%;
+	padding-left: 50px;
+}
+
+/**********************Pasek głośności***********************/
+#bodyVolumeLine {
+	width: 60px;
+	height: 170px;
+	background-color: #99BBDD;
+	position: relative;
+	z-index: 2;
+
+	top: -55%;
+	left: 73.3%;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.3);
+	background-color: rgba(28,28,33,.5); 
+}
+
+#bodyVolumeLine #volumeLine {
+	width: 14px;
+	height: 130px;
+	border: 1px solid #000000;
+	position: relative;
+	left: 22px;
+	top: 20px;
+	z-index: 3;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.4);
+	background-color: rgba(28,28,33,.5); 
+}
+
+#bodyVolumeLine #volumeLine .belt {
+	width: 100%;
+	height: 50%;
+	background: url("/images/template/Player/volumeLineBackground.png");
+	background-repeat: repeat-y;
+	position: absolute;
+	bottom: 0;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+/************************************************************/
+
+/************************************************************/
+/************************** CZAS ****************************/
+#timeDiv {
+	float: left;
+	margin-top: 20px;
+	margin-left: 10px;
+	color: #FEFEFE;
+	font-size: 7;
+	padding: 0;
+}
+/************************************************************/
+#playerNavigation .playerMenu .playerMenuRight {
+	float: right;
+	width: 38px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerMenuRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	left: 2.4%;
+
+}
+
+#playerNavigation .playerEditMenu .playerEditMenuLeft {
+	float: left;
+	width: 40px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerEditMenuLeft.png");
+	background-repeat: no-repeat;
+	margin-left:-2px;
+}
+
+#playerNavigation .playerEditMenu {
+	width: 103%;
+	height: 95px;
+	border: 0px;
+	background-image: url("/images/template/Player/playerEditMenuBackground.png");
+}
+
+#playerNavigation .playerEditMenu .playerEditMenuRight {
+	float: right;
+	width: 57px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerEditMenuRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	top: -53px;
+	left: 1.2%;
+}
+
+	#volumeLine .belt {
+		background-color: #DE2A10;
+		width: 55%;
+		height: 100%;
+	}
+
+/* Przyciski playera */
+button.cupid-green {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #7FBF4D;
+    background-image: -moz-linear-gradient(center top , #7FBF4D, #63A62F);
+    border-color: #63A62F #63A62F #5B992B;
+    border: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 0 #96CA6D inset;
+    color: #FFFFFF;
+    font: bold 11px/1 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+    padding: 7px 0 8px;
+    text-align: center;
+    text-shadow: 0 -1px 0 #4C9021;
+    width: 150px;
+}
+button.cupid-green:hover {
+    background-color: #76B347;
+    background-image: -moz-linear-gradient(center top , #76B347, #5E9E2E);
+    box-shadow: 0 1px 0 0 #8DBF67 inset;
+    cursor: pointer;
+}
+
+/***************************** Obszar wykorzystywany np. na podstronie edytora (zakładki) ************************************/
+.whiteSection
+{
+	width: 100%;
+	min-height: 200px;
+	background-color: #FFFFFF;
+}
+
+/*full screen */
+
+#myPlayer :full-screen{
+	width : screen.width;
+	height : screen.height;
+	padding : 0px;
+}
+
+#myPlayer :-moz-full-screen{
+	width : screen.width;
+	height : screen.height;
+	padding : 0px;
+}
+
+#myPlayer :-webkit-full-screen{
+	width : screen.width;
+	height : screen.height;
+	padding : 0px;
+}
+
+#myPlayer :-ms-fullscreen{
+	width : screen.width;
+	height : screen.height;
+	padding : 0px;
+}
+
+
+#myPlayer .playerScreen:full-screen {
+	width:screen .width;
+	height:screen .height;
+	top:0px;
+	left:0px;
+	padding:0px;
+}
+
+
+#myPlayer .playerScreen:-moz-full-screen{
+	width:screen .width;
+	height:screen .height;
+	top:0px;
+	left:0px;
+	padding:0px;
+
+}
+
+#myPlayer .playerScreen:-webkit-full-screen{
+	width:screen .width;
+	height:screen .height;
+	top:0px;
+	left:0px;
+	padding:0px;
+
+}
+
+#myPlayer .playerScreen:-ms-fullscreen{
+	width:screen .width;
+	height:screen .height;
+	top:0px;
+	left:0px;
+	padding:0px;
+
+
+
+/*przesuwanie sliderow na rangu */
+
+.draggable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    position: absolute;
+    cursor: pointer;
+}
+
+
+/*ukrywanie i pokazywanie slajdów i czasów lub identyfikatorów sliderów odpowiedzialnych za ramy czasu*/
+.slider div{
+	background:#212F35;
+	visibility:hidden;
+	position:relative;
+    right:65px;
+    top:30px;
+    display:block;
+    margin:auto;
+    text-align:center
+}
+.slider:hover div{
+    visibility:visible
+}
+
+/*Szczególy wyglądu okienka po najechaniu na slider*/
+.slider .underSlider{
+	width:150px;
+	height:100px;
+	color:white;
+	z-index:1;
+}
+.slider .underSliderTime{
+	width:150px;
+	height:65px;
+	z-index:1;
+}
+
+.slider div img{
+   padding-top:5px;
+}
+
+.slider .timeSlider{
+	position:relative;
+	bottom: 15px;
+}
+
+/*wyglad okienka pod multirangem edytora*/
+#tab-1{
+	//background:#212F35;
+}
+
+.windows{
+	width: 1100px;
+	height: 330px;
+	background:#F7FBFF;
+	margin:0px auto;
+	overflow:hidden;
+	position: relative;
+	
+}
+
+.up{
+	position:relative;
+}
+
+.down{
+	position:relative;
+}
+
+.rightbuttonlist{
+	float:right;
+	bottom:33px;
+	right:35px;
+}
+
+.leftbuttonlist{
+	float:left;
+}
+.slajd{
+	float:left;
+	margin: 20px;
+	list-style: none;
+}
+
+.windows_div{
+	width:140px;
+	height:70px;
+	position:relative;
+}
+
+.obrazek_windows{
+	position:relative;
+	z-index: 2;
+}
+
+.ControlPanel{
+	width:140px;
+	height:70px;
+	position:relative;
+	background-color:#000000;
+	opacity:0.6;
+	bottom:80px;
+	z-index: 1;
+}
+
+.ControlPanelItems{
+	width:140px;
+	height:70px;
+	position:relative;
+	bottom:156px;
+	z-index: 1;
+}
+
+.windows_element1{
+	position:relative;
+	left:30px;
+	font-size:14px;
+	color:white;
+}
+
+.windows_element2{
+	position:relative;
+	left:5px;
+	font-size:14px;
+	color:white;
+}
+
+.checkbox{
+	position:relative;
+	top:2px;
+	left:15px
+}
+/* Tło MultiRange */
+
+#timeline_editor{
+	padding-top: 20px;
+	width: 98%; 
+}
+
+/* Wygląd MultiRange */
+.range {
+    position: relative;
+    width: 90%; 
+    display:table; 
+    margin:auto;
+}
+.range:before {
+    content : ' ';
+    vertical-align: middle;
+    display: inline-block;
+    height : 11px;
+    width:100%;
+    margin-top: -4px;
+    background: url("/images/template/Player/editPlayerSliderBackground.png");
+    background-repeat: repeat-x;
+    
+}
+
+
+/*sliderek na rangu */
+.range > .slider,
+.range > .slider:before,
+.range > .slider:after {
+    background: url("/images/template/Player/sliderBar.png");
+    width: 27px;
+    height: 46px;
+    white-space:nowrap;
+}
+
+.range > .slider {
+    height: 24px;
+    border-bottom: none;
+    position: absolute;
+    top: 8px;
+    width: 14px;
+}
+
+/*wyglad ranga oznaczajacego poczatek i koniec filmu*/
+.range > .MovieTimes{
+	background: url("/images/template/Player/sliderBarBeginEnd.png");
+	border-radius: 50%;
+    color:white;
+    white-space:nowrap;
+    cursor: pointer;
+}
+
+/*Wyglad listy slajdow w edytorze*/
+.lista {
+      position:absolute;
+      top: 0px;
+}
+
+    
+.textboxPlay{
+	font-weight:bold;
+	display:inline-block;
+	margin:auto;
+}
+
+.secondElementTime{
+	padding-left: 100px;
+}
+
+.textboxWindows{
+	border-style: none;
+	width: 20px;
+	background-color:rgba(255,255,255,0.01);
+	color:white;
+}
+
+.textboxWindows2{
+	border-style: none;
+	width: 20px;
+	background-color:rgba(255,255,255,0.01);
+	color:black;
+}
+
+/*Wyglad odtwarzacza pokazu slajdów do łapania nowych */
+#AddNewSlide{
+	border: 0px;
+	background-color: #A0A8AB;
+	display:table;
+	 margin:auto;
+	 padding 10px;
+	 
+	
+}
+
+/* Wygląd przycisku zapisu zmian w edytorze */
+#Zapisz_edycje{
+	display:table;
+	 margin:auto;
+	 margin-top: 30px;
+}
+
+/* Wygląd wykakującego okienka przed zapisem*/
+.overlay {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color:#000000;
+    opacity:0.8;
+    display:block;
+    z-index:1001;
+}
+.overlay-message{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:300px;
+    height:100px;
+    background-color:#808080;
+    border:1px solid #000;
+    opacity:1;
+    z-index:1002;
+    box-sizing:border-box;
+    padding-left:2px;
+}
+

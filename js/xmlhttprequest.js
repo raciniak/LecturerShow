@@ -343,6 +343,7 @@ $(document).ready(function(){
 	        document.getElementById("wyszukiwarka").style.borderRadius= ""; 
 			document.getElementById("logo_search").style.display= "none"; 
 			document.getElementById("wyszukiwarka").style.widtn = "100%";
+			document.getElementById("wyszukiwarka").style.height = "32px";
 	    }
 	});
 	// funkcje zmieniające obrazki linków
@@ -424,6 +425,7 @@ $(document).ready(function(){
         url: "php/statystyki_profilu.php",
         success : function(msg){
 			var dane = JSON.parse(msg);
+			document.getElementById("ilosc_filmow_em").innerHTML = dane.ilosc_filmow;
 			document.getElementById("ilosc_filmow").innerHTML = "Ilość filmow: " + dane.ilosc_filmow;
 			document.getElementById("ilosc_wyswietlen").innerHTML = "Łączna ilość wyświetleń Twoich filmów: " + dane.ilosc_wyswietlen;
 			document.getElementById("srednia_ocen").innerHTML = "Średnia ocen Twoich filmów: " + dane.srednia_ocen;
@@ -454,7 +456,7 @@ $(document).ready(function(){
         url: "php/search_my_videos.php",
         success: function(msg){
         	if(msg == 0) { 
-        		document.getElementById("filmy").innerHTML = "<p>Nie dodałeś żadnego filmu do LecturerShow</p>";
+        		document.getElementById("filmy").innerHTML = "<p id='brak_filmow'>Nie dodałeś żadnego filmu do LecturerShow</p>";
         	}
         	else 
         	{
@@ -480,82 +482,6 @@ $(document).ready(function(){
     	}
 	}); 
 	
-	// funkcja pobierająca najnowsze filmy z bazy
-	$.ajax({
-        url: "php/najnowsze.php",
-        success: function(msg){
-        	msg = msg.replace(/}{/g, "},{");
-        	msg = "[" + msg + "]";
-        	//alert(msg);
-        	var obj = $.parseJSON(msg);
-        	var lang = '';
-        	$.each(obj, function() {
-        	document.getElementById("najnowsze").innerHTML += "<li id='li_lista'><div id='film'>" +  
-							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a id='title_video_result' href='player.html?id=" + this['sciezka'] 
-							      + "'>" + this['tytul'] + 
-							      "</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Autor: " + 
-							      this['autor'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
-							      "</p></div></li>";
-        	});
-		},
-		error: function(err) 
-		{
-        	console.log(err);
-    	}
-	});
-	
-	// j.w ... najlepsze
-	$.ajax({
-        url: "php/najlepsze.php",
-        success: function(msg){
-        	msg = msg.replace(/}{/g, "},{");
-        	msg = "[" + msg + "]";
-        	var obj = $.parseJSON(msg);
-        	var lang = '';
-        	$.each(obj, function() {
-        	document.getElementById("najlepsze").innerHTML += "<li id='li_lista'><div id='film'>" +  
-							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] +"\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + 
-							      "/snapshots/1.png'></a><a id='title_video_result' href='player?id=" + this['sciezka'] + "'>" + this['tytul'] + 
-							      "</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Autor: " + 
-							      this['autor'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
-							      "</p></div></li>";
-        	});
-		},
-		error: function(err) 
-		{
-        	console.log(err);
-    	}
-	});
-	
-	// j.w. najpopularniejsze
-	$.ajax({
-        url: "php/najpopularniejsze.php",
-        success: function(msg){
-        	msg = msg.replace(/}{/g, "},{");
-        	msg = "[" + msg + "]";
-        	var obj = $.parseJSON(msg);
-        	var lang = '';
-        	$.each(obj, function() {
-        	document.getElementById("popularne").innerHTML += "<li id='li_lista'><div id='film'>" +  
-							      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
-							      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + 
-							      this['sciezka'] + "/snapshots/1.png'></a><a id='title_video_result' href='player.html?id=" + this['sciezka'] +
-							      "'>" + this['tytul'] + "</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Autor: " + 
-							      this['autor'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
-							      "</p></div></li>";
-        	}); 
-		},
-		error: function(err) 
-		{
-        	console.log(err);
-    	}
-	}); 
-	
 	// podobne funkcje co wyżej tylko do sliderow strony glownej
 	$.ajax({
         url: "php/najnowsze_slider.php",
@@ -567,8 +493,9 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("najnowsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
         							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='title_video_slider' >" + 
-							      this['tytul'] + "</p><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + 
+							      "/snapshots/1.png'></a></div><div id='opis_li'><a id='title_video_slider' href='player.html?id=" + 
+							      this['sciezka'] + "'>" + this['tytul'] + "</a><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
 							      this['autor'] + "</a><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
         	});
 		},
@@ -588,8 +515,9 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("najlepsze_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
         							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a></div><div id='opis_li'><p id='title_video_slider' >" + 
-							      this['tytul'] + "</p><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + 
+							      "/snapshots/1.png'></a></div><div id='opis_li'><a id='title_video_slider' href='player.html?id=" + 
+							      this['sciezka'] + "'>" + this['tytul'] + "</a><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
 							      this['autor'] + "</a><p> Ocena: " + this['ocena'] + "</p></br></div></div></li>";
         	});
 		},
@@ -609,8 +537,9 @@ $(document).ready(function(){
         	$.each(obj, function() {
         	document.getElementById("popularne_slider").innerHTML += "<li><div id='film_slider'><div id='zdjecie_li'><a href='player.html?id=" + this['sciezka'] +
         							 "'><img id='zdjecie_slider' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'>" + "</a></div><div id='opis_li'><p id='title_video_slider' >" + 
-							      this['tytul'] + "</p><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
+							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + 
+							      "/snapshots/1.png'>" + "</a></div><div id='opis_li'><a id='title_video_slider' href='player.html?id=" + 
+							      this['sciezka'] + "'>" + this['tytul'] + "</a><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
 							      this['autor'] + "</a><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
         	}); 
 		},

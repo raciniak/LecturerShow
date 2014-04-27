@@ -431,10 +431,23 @@
 		float: right;
 	}
 	
+	#tab3 {
+		padding-top: 50px;	
+	}
+	
+	#tab1 #brak_filmow {
+		padding-top: 50px;
+		font-size: 15px;
+	}
+	
 	#tab3 p, #tab1 p {
 		position: relative;
 		color: black;
 		text-align: left;
+	}
+	
+	#tab3 p {
+		font-size: 15px;
 	}
 	
 	#tab1 ul {
@@ -904,4 +917,482 @@
 .large {padding: 14px 28px; font-size: 16px;}
 
 
+/* Player i edytor */
+
+#myPlayer {
+	border: none;
+	width: 100%;
+	margin-bottom: 30px;
+	position: relative;
+}
+
+#myPlayer .playerScreen {
+	position: relative;
+	left: 1.4%;
+	top: 3.2%;
+	z-index: 2;
+	
+	width: 96.8%;
+	border: 0px;
+	background-color: rgb(30,31,32);
+	background-repeat: repeat-x;
+	
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	 border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	z-index: 2;
+}
+
+#myPlayer .playerScreen #maximalize_minimalize_button_left {
+	width: 30px;
+	height: 30px;
+	background-image: url("/images/icons/minimalize_maximalize_button_left.png");
+	position: relative;
+	z-index: 3;
+	top: 10px;
+	left: 10px;
+}
+
+#myPlayer .playerScreen #maximalize_minimalize_button_right {
+	width: 30px;
+	height: 30px;
+	background-image: url("/images/icons/minimalize_maximalize_button_right.png");
+	position: relative;
+	z-index: 5;
+	top: 10px;
+	left: 96.5%;
+}
+
+#myPlayer .playerScreen #myVideo {
+	width: 49.5%;
+	float: left;
+	margin-left: 0.5%;
+	margin-top: 0.75%;
+	
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+ 	border-top-left-radius: 5px;
+
+}
+
+#myPlayer .playerScreen .imageLoader {
+	float: left;
+	margin-left: 2px;
+	margin-top: 0.75%;
+	position: relative;
+	z-index: 2;
+	width: 49.5%;
+}
+
+#myPlayer .playerScreen .imageLoader img{
+	width: 100%;
+	height: 100%;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#playerNavigation {
+	width: 1109px;
+	height: 200px;
+	position: relative;
+	z-index: 3;
+}
+
+#playerNavigation .playerMenu .playerMenuLeft {
+	float: left;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerMenuLeft.png");
+	background-repeat: no-repeat;
+}
+
+#playerNavigation .playerMenu {
+	width: 100%;
+	height: 72px;
+	border: 0px;
+	background-image: url("/images/template/Player/playerMenuBackground.png");
+	background-repeat: repeat-x;
+	position: relative;
+}
+
+#playerNavigation .playerMenu .sliderSpace {
+	width: 54%;
+	height: 59px;
+	float: left;
+	background: url("/images/template/Player/playerSliderBackground.png");
+	margin-top: 8px;
+}
+
+/**************** Przyciski menu i separator *************************/
+
+#playerNavigation .playerMenu .separator {
+	width: 9px;
+	height: 61px;
+	background: url("/images/template/Player/separator.png");
+	float: left;
+	margin-top: 7px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#playerNavigation .playerMenu #playButton {
+	width: 21px;
+	height: 23px;
+	background: url("/images/icons/playerPlayButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-top: 26px;
+	margin-left: 1px;
+	top: 0px;
+}
+
+#playerNavigation .playerMenu #playButton:hover, #playButton:focus {
+	background-position: 21px;
+}
+
+#playerNavigation .playerMenu #pauseButton {
+	width: 22px;
+	height: 28px;
+	background: url("/images/icons/playerPauseButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-top: 23px;
+	top: 0px;
+}
+
+#playerNavigation .playerMenu #pauseButton:hover, #pauseButton:focus {
+	background-position: 22px;
+}
+
+#playerNavigation .playerMenu #stopButton {
+	width: 28px;
+	height: 28px;
+	margin-top: 2.2%;
+	background: url("/images/icons/playerStopButton.png");
+	background-position-y: 0px;
+	border: none;
+	float: left;
+	margin-left: 25px;
+}
+
+#playerNavigation .playerMenu #stopButton:hover, #stopButton:active {
+	background-position: 28px;
+
+}
+
+#playerNavigation .playerMenu .volumeButton {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/playerVolumeButton.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+}
+
+
+#playerNavigation .playerMenu .volumeButton:hover, .volumeButton:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu .volumeButtonMuted {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButtonMuted.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+}
+
+
+#playerNavigation .playerMenu .volumeButtonMuted:hover, .volumeButtonMuted:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu .volumeButton30 {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButton30.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+}
+
+
+#playerNavigation .playerMenu .volumeButton30:hover, .volumeButton30:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu .volumeButton60 {
+	width: 32px;
+	height: 30px;
+	background: url("/images/icons/volumeButton60.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+}
+
+
+#playerNavigation .playerMenu .volumeButton60:hover, .volumeButton60:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu #hdButton {
+	width: 32px;
+	height: 21px;
+	background: url("/images/icons/playerHdButton.png");
+	float: left;
+	border: none;
+	margin-top: 26px;
+	margin-left: 30px;
+}
+
+#playerNavigation .playerMenu #hdButton:hover, #hdButton:active {
+	background-position: bottom;
+}
+
+#playerNavigation .playerMenu #fullScreenButton {
+	width: 32px;
+	height: 25px;
+	background: url("/images/icons/playerFullScreenButton.png");
+	float: left;
+	border: none;
+	margin-top: 23px;
+	margin-left: 20px;
+}
+
+#playerNavigation .playerMenu #fullScreenButton:hover, #fullScreenButton:active {
+	background-position: bottom;
+}
+
+#video_info {
+	margin-top:-4em;
+	margin-bottom: 6em;
+	z-index:4;
+}
+
+#video_info #autor_video_player {
+
+	width: 15%;
+	margin-left:1%;
+	float:left;
+	display: inline-block;
+	z-index: 4;
+}	
+
+#video_info #autor_video_player a{
+	
+	position: relative;
+	z-index: 4;
+}
+
+#video_info #title_video_player {
+
+	width: 69%;
+	float:left;
+	display: inline-block;
+	
+}
+
+#video_info #title_video_player #title_video_p{
+	margin: 0;
+	font-size: 22pt;
+	
+}
+
+#video_info #description_video_player {
+
+	width: 69%;
+	margin-left: 16%;
+	display: inline-block;
+	float:left;
+}
+
+#video_info #views_video_player {
+	float: left;
+	width: 15%;
+}
+
+#video_info #views_video_player #views_video_p{
+	margin: 0;
+	font-size: 16pt;
+}
+
+#video_info #rate_video_player {
+	width: 15%;
+	float:left;
+	z-index: 4;
+}
+
+#video_info #rate_video_player p {
+	margin: 0;
+}
+
+/********************** Pasek postepu ***********************/
+
+#timeLine {
+	border: 1px solid #3E484A;
+	width: 100%;
+	height: 16px;	
+	float: left;
+	background: rgba(235,235,234, .6);
+	margin-top: 20px;
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 	
+}
+
+#timeLine .belt {
+		background: url("/images/template/Player/sliderBackground.png");
+		width: 0%;
+		height: 100%;
+		border-radius: 5px; 
+		-moz-border-radius: 5px; 
+		-webkit-border-radius: 5px; 
+}
+
+/**********************Panel jakości*************************/
+#qualityPanel {
+	width: 150px;
+	height: 170px;
+	background-color: #99BBDD;
+	border: 1px solid red;
+	position: relative;
+	z-index: -1;
+
+	top: -111%;
+	left: 80%;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.3);
+	background-color: rgba(28,28,33,.5); 
+	color: white;
+	font-size: 16px;
+	text-align: left;
+}
+
+#qualityPanel form {
+	width: 80%;
+	padding-left: 50px;
+}
+
+/**********************Pasek głośności***********************/
+#bodyVolumeLine {
+	width: 60px;
+	height: 170px;
+	background-color: #99BBDD;
+	position: relative;
+	z-index: -1;
+
+	top: -55%;
+	left: 73.3%;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.3);
+	background-color: rgba(28,28,33,.5); 
+}
+
+#bodyVolumeLine #volumeLine {
+	width: 14px;
+	height: 130px;
+	border: 1px solid #000000;
+	position: relative;
+	left: 22px;
+	top: 20px;
+	z-index: 3;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(239,239,239,.4);
+	background-color: rgba(28,28,33,.5); 
+}
+
+#bodyVolumeLine #volumeLine .belt {
+	width: 100%;
+	height: 50%;
+	background: url("/images/template/Player/volumeLineBackground.png");
+	background-repeat: repeat-y;
+	position: absolute;
+	bottom: 0;
+	
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+/************************************************************/
+
+/************************************************************/
+/************************** CZAS ****************************/
+#timeDiv {
+	float: left;
+	margin-top: 20px;
+	margin-left: 10px;
+	color: #FEFEFE;
+	font-size: 7;
+	padding: 0;
+}
+/************************************************************/
+#playerNavigation .playerMenu .playerMenuRight {
+	float: right;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerMenuRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	left: 2.4%;
+
+}
+
+#playerNavigation .playerEditMenu .playerEditMenuLeft {
+	float: left;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerEditMenuLeft.png");
+	background-repeat: no-repeat;
+}
+
+#playerNavigation .playerEditMenu {
+	width: 100%;
+	height: 95px;
+	border: 0px;
+	background-image: url("/images/template/Player/playerEditMenuBackground.png");
+}
+
+#playerNavigation .playerEditMenu .playerEditMenuRight {
+	float: right;
+	width: 55px;
+	height: 100%;
+	background-image: url("/images/template/Player/playerEditMenuRight.png");
+	background-repeat: no-repeat;
+	position: relative;
+	top: -49px;
+	left: 2.4%;
+}
+
+	#volumeLine .belt {
+		background-color: #DE2A10;
+		width: 55%;
+		height: 100%;
+	}
+
+
+/***************************** Obszar wykorzystywany np. na podstronie edytora (zakładki) ************************************/
+.whiteSection
+{
+	width: 100%;
+	min-height: 200px;
+	background-color: #FFFFFF;
+}
+
+/*full screen */
 
