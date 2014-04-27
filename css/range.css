@@ -256,17 +256,20 @@
     z-index:1001;
 }
 .overlay-message{
-    position:absolute;
-    top:0px;
-    left:0px;
-    width:300px;
+
+    position: fixed;
+    top:45%;
+    left:40%;
+   background-color:#808080;
+    text-align:center;
+    width:350px;
     height:100px;
-    background-color:#808080;
     border:1px solid #000;
     opacity:1;
     z-index:1002;
     box-sizing:border-box;
     padding-left:2px;
+    vertical-align:middle;
 }
 
 /*Wyglad smietnika do wyrzucania slajdow*/
@@ -286,4 +289,8 @@
 	display:table;
 	margin: auto;
 	padding-top: 30px;
+}
+/*Wyglad przyciskow w okienku windows*/
+.windows-button{
+	background: #B2CCFF;
 }

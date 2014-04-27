@@ -26,13 +26,10 @@ var Interval;
 var startInterval = true;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
-	// Chowam smietniczek
-	//$("#smietnik").hide();
 	//ukryte okienko, wyświetla się przy zapisie wszystkich zmian w edytorze
 	$(".overlay, .overlay-message").hide();
 	   //funkcja do pobierania czasow odtwarzania slajdow, kazda funkcja ktora chce korzystac z tablicy a zawierajacej
 	   // czasy musi odczekac w jakis sposob chwile aby funkcja zdazyla sie wykonac
-
        pobierzPliki();
        taby();
        //odswieżana zmienna przy załadowaniu strony potrzebna do odtwarzacza slajdow
@@ -789,13 +786,12 @@ function getParameterByName(name) {
 
 //kontrola zabezpieczającego okienka zapisu głównego i akcje wykonane w związku z dalszym postępem
 function SaveChanges(){
-	var w = window.innerWidth-100;
-    var h = window.innerHeight-50;
-    $(".overlay-message").css("top",w);
-    $(".overlay-message").css("left",h);
+	//var w = window.innerWidth;
+   // var h = window.innerHeight;
+   // $(".overlay-message").css("top",w);
+   // $(".overlay-message").css("left",h);
     $(".overlay, .overlay-message").show();
     $("#yess").click(function() {
-    	alert("ssss");
         $(".overlay, .overlay-message").hide();
         timetimes();
         SaveSlides();

@@ -333,8 +333,8 @@
 
 	function showTrash(e)
 	{
-		if (isSlider(e.target)) {
-		//$("#smietnik").show(400);
+		var name=e.target.getAttribute("data-name");
+		if (isSlider(e.target) && name!="PoczatekFilmu" && name!="KoniecFilmu") {
     		$("#smietnik").animate({opacity: 1}, 'slow');
 		}
 	}
