@@ -331,6 +331,14 @@
         return slide;
     }
 
+	function showTrash(e)
+	{
+		if (isSlider(e.target)) {
+		//$("#smietnik").show(400);
+    		$("#smietnik").animate({opacity: 1}, 'slow');
+		}
+	}
+
     function beginHandleDrag(e) {
         e = getEvent(e);
         if (isSlider(e.target)) {
@@ -410,10 +418,12 @@
 				var check = document.getElementById("checkbox"+name);
 				check.checked = false;
 			}
+			$("#smietnik").stop();
+			$("#smietnik").animate({opacity: 0}, 'slow');
     	}
     }
 
-    
+    addListener('mousedown', showTrash, document.documentElement);
     addListener('mousedown', beginHandleDrag, document.documentElement);
     addListener('mouseover', pokazslajd, document.documentElement);
     addListener('mouseup', wyrzucslajd, document.documentElement);
