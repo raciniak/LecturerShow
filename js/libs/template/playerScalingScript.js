@@ -55,6 +55,7 @@ $(document).ready(function () {
   		$(playerScreen).css("height", beginPlayerScreenHeight+"px");
   		$(imageLoader).css("height", videoHeight+"px");
   		$(player).css("height", videoHeight+"px");
+  		$(player).css("margin-bottom", 20+"px");
 	});
 	
 	/************* FUNKCJONALNOSCI MIN_MAX_BUTTON **********************/
@@ -127,13 +128,13 @@ $(document).ready(function () {
 				$(imageLoader).css("height", beginHeight+"px");
 				$(playerScreen).css("height", beginPlayerScreenHeight+1+"px");	
 				
-				var marginBottom = $(player).css("margin-bottom");
-				var newMargin = marginBottom.substr(0, marginBottom.length - marginBottom.lastIndexOf("px"));
-				$(player).css("margin-bottom", parseInt(newMargin)+videoHeight/3);
+				$(player).css("margin-bottom", 20+"px");
 				
 				$(min_max_button_right).show();
 				$(min_max_button_left).css("background-position","top");
 				videoIsInFull = false;
+				playerVideoEffectClick = 1;
+				playerImageEffectClick = 1;
 								
 			}else{
 				$(video).css("width", 0+"px");
@@ -168,13 +169,13 @@ $(document).ready(function () {
 				$(video).css("height", beginHeight+"px");
 				$(playerScreen).css("height", beginPlayerScreenHeight+1+"px");	
 				
-				var marginBottom = $(player).css("margin-bottom");
-				var newMargin = marginBottom.substr(0, marginBottom.length - marginBottom.lastIndexOf("px"));
-				$(player).css("margin-bottom", parseInt(newMargin)+videoHeight/3);
+				$(player).css("margin-bottom", 20+"px");
 				
 				$(min_max_button_left).show();
 				$(min_max_button_right).css("background-position","top");
 				imageLoaderIsInFull = false;
+				playerVideoEffectClick = 1;
+				playerImageEffectClick = 1;
 								
 			}else{
 				$(imageLoader).css("width", 0+"px");
@@ -220,6 +221,7 @@ $(document).ready(function () {
 						$(playerScreen).css("height", beginPlayerScreenHeight+"px");	
 			
 						playerVideoEffectClick++;
+						playerImageEffectClick = 2;
 					break;
 					case 2:
 						
@@ -234,6 +236,7 @@ $(document).ready(function () {
 						$(playerScreen).css("height", $(playerScreen).height()+videoHeight/3+"px");		
 							
 						playerVideoEffectClick++;
+						playerImageEffectClick = 1;
 					break;
 					case 3:
 						
@@ -248,6 +251,7 @@ $(document).ready(function () {
 						$(playerScreen).css("height", $(playerScreen).height()+videoHeight/5.75+"px");		
 							
 						playerVideoEffectClick=1;
+						playerImageEffectClick = 1;
 					break;
 					default:
 						alert("Jakis blad, zmienna playerVideoEffectClick nie moze byc inna!");
@@ -277,13 +281,35 @@ $(document).ready(function () {
 					
 						$(playerScreen).css("height", beginPlayerScreenHeight+"px");	
 						playerImageEffectClick++;
+						playerVideoEffectClick = 2;
 					break;
 					case 2:
+						var marginBottom = $(player).css("margin-bottom");
+						var newMargin = marginBottom.substr(0, marginBottom.length - marginBottom.lastIndexOf("px"));
+						$(player).css("margin-bottom", parseInt(newMargin)+videoHeight/3);				
+							
+						$(imageLoader).css("width", imageWidth+videoWidth/3+"px");
+						$(imageLoader).css("height", imageHeight+videoHeight/3+"px");
+						$(video).css("width", videoWidth/1.5+"px");
+						$(video).css("height", videoHeight/1.5+"px");
+						$(playerScreen).css("height", $(playerScreen).height()+imageHeight/3+"px");		
 						
+										
 						playerImageEffectClick++;
+						playerVideoEffectClick = 1;
 					break;
 					case 3:
-					
+						var marginBottom = $(player).css("margin-bottom");
+						var newMargin = marginBottom.substr(0, marginBottom.length - marginBottom.lastIndexOf("px"));
+						$(player).css("margin-bottom", parseInt(newMargin)+videoHeight-12);				
+							
+						$(imageLoader).css("width", imageWidth+videoWidth/2.5+"px");
+						$(imageLoader).css("height", imageHeight+videoHeight/2.5+"px");
+						$(video).css("width", videoWidth/1.7+"px");
+						$(video).css("height", videoHeight/1.7+"px");
+						$(playerScreen).css("height", $(playerScreen).height()+imageHeight/5.75+"px");		
+						
+						playerVideoEffectClick = 1;
 						playerImageEffectClick=1;
 					break;
 					default:
