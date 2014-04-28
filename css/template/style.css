@@ -446,6 +446,16 @@
 		position: relative;
 		color: black;
 		text-align: left;
+		text-decoration: none;
+	}
+	
+	#tab1 a {
+		text-decoration: none;
+	}
+	
+	#tab1 a p {
+		font-size: 19px;
+		text-transform: none;
 	}
 	
 	#tab3 p {
@@ -558,6 +568,7 @@
 	
 	#wyszukiwarka #submit_wyszukiwarka {
 		width: 6%;
+		margin-top: 1px;
 	}
 	
 	/* mini player */
@@ -672,7 +683,7 @@
 	
 	#popup {
 		width:20%;
-		height: 10%;
+		height: 15%;
 		margin-top: 20%;
 		display:block;
 		margin-left: 40%;
@@ -696,7 +707,8 @@
 		margin-top: 14%;
 
 		text-align: center;
-		font-size: 18pt;
+		font-size: 14pt;
+		text-transform: none;
 	}
 
 	#results_p {
