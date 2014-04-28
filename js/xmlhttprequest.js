@@ -335,7 +335,8 @@ $(document).ready(function(){
         document.getElementById("wyszukiwarka").style.borderRadius= "0px 0px 5px 5px";
         document.getElementById("logo_search").style.display= "inline-block"; 
         document.getElementById("logo_search").style.cssFloat = "left";	
-        document.getElementById("wyszukiwarka").style.widtn = "90%";
+        document.getElementById("wyszukiwarka").style.widtn = "100%";
+        document.getElementById("search_label").style.marginTop = "";
 		}
 	    else{
 	        document.getElementById("wyszukiwarka").style.position = "";
@@ -343,7 +344,8 @@ $(document).ready(function(){
 	        document.getElementById("wyszukiwarka").style.borderRadius= ""; 
 			document.getElementById("logo_search").style.display= "none"; 
 			document.getElementById("wyszukiwarka").style.widtn = "100%";
-			document.getElementById("wyszukiwarka").style.height = "32px";
+			document.getElementById("wyszukiwarka").style.height = "34px";
+			document.getElementById("search_label").style.marginTop = "2px";
 	    }
 	});
 	// funkcje zmieniające obrazki linków
