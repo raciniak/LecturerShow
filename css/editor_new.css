@@ -3,6 +3,7 @@
 	width: 100%;
 	margin-bottom: 30px;
 	position: relative;
+	
 }
 
 #myPlayer .playerScreen {
@@ -23,6 +24,8 @@
 	-webkit-border-top-right-radius: 5px;
 	border-top-right-radius: 5px;
 	z-index: 2;
+	
+
 }
 
 #myPlayer .playerScreen #maximalize_minimalize_button_left {
@@ -33,6 +36,12 @@
 	z-index: 3;
 	top: 10px;
 	left: 10px;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  -o-user-select: none;
+  user-select: none; 
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
 }
 
 #myPlayer .playerScreen #maximalize_minimalize_button_right {
@@ -43,6 +52,12 @@
 	z-index: 5;
 	top: 10px;
 	left: 96.5%;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  -o-user-select: none;
+  user-select: none; 
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
 }
 
 #myPlayer .playerScreen #myVideo {
@@ -55,10 +70,12 @@
 	-webkit-border-top-left-radius: 5px;
  	border-top-left-radius: 5px;
 
-	user-select : none;	
-	-moz-user-select : none;
-	-webkit-user-select : none;
-	-ms-user-select: none;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	-o-user-select: none;
+	user-select: none; 
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
 }
 
 #myPlayer .playerScreen .imageLoader {
@@ -69,10 +86,12 @@
 	z-index: 2;
 	width: 49.5%;
 	
-	user-select : none;	
-	-moz-user-select : none;
-	-webkit-user-select : none;
-	-ms-user-select: none;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	-o-user-select: none;
+	user-select: none; 
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
 }
 
 #myPlayer .playerScreen .imageLoader img{
@@ -82,10 +101,12 @@
 	-webkit-border-top-right-radius: 5px;
 	border-top-right-radius: 5px;
 	
-	user-select : none;	
-	-moz-user-select : none;
-	-webkit-user-select : none;
-	-ms-user-select: none;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+  	-moz-user-select: none;     /* Firefox all */
+  	-ms-user-select: none;      /* IE 10+ */
+  	-o-user-select: none;
+  	user-select: none; 
+  	-webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
 }
 
 #playerNavigation {

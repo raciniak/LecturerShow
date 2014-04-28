@@ -24,7 +24,7 @@
 
 	#header-wrapper
 	{
-		background: #3B4346 url('../../images/template/bg01.jpg');
+		background-color: #0b1318;
 		border-bottom: solid 1px #272d30;
 		box-shadow: inset 0px -1px 0px 0px #51575a;
 		text-shadow: -1px -1px 1px rgba(0,0,0,0.75);
@@ -32,8 +32,10 @@
 
 	.subpage #header-wrapper
 	{
-		height: 155px;
+		height: 150px;
+		padding-top: 25px
 	}
+	
 	
 	#features-wrapper
 	{
@@ -78,28 +80,7 @@
 				text-decoration: none;
 			}
 
-		#header nav
-		{
-			position: absolute;
-			right: 0;
-			bottom: 35px;
-			font-weight: 200;
-		}
-	
-			#header nav a
-			{
-				color: #c6c8c8;
-				text-decoration: none;
-				font-size: 1.4em;
-				margin-left: 60px;
-				outline: 0;
-			}
-
-			#header nav a:hover
-			{
-				color: #f6f8f8;
-			}
-
+		
 /* Banner */
 	
 	#banner
