@@ -128,157 +128,222 @@ function mute() {
 
 
 
+
+
 function fullScreen() {
 	var pelny = $("#myPlayer")[0];
 	var vid = $("#myVideo")[0];
 	var pic = $("#imgLoad")[0];
 	var pscr = $('.playerScreen');
 	var menu = $('.playerMenu');
-	
-	var pklikx, pkliky, vklikx, vkliky;
-	var ppuscx, ppuscy, xpuscx, vpuscy;
-	
-	//var vwys = $(vid).height;
-	
+
+	var vidklik = 0;
+	var picklik = 0;
+
 	//bazowe ustawianie elementow fullscreena
 	$(pelny).css({
 		"width" : screen.width,
 		"height" : screen.height,
-		"padding":"0px"
+		"padding" : "0px"
 	});
-	
+
 	$(pscr).css({
-		"width":screen.width,
-		"height":screen.height,
-		"top":"0px",
-		"left":"0px",
-		"padding":"0px"
+		"width" : screen.width,
+		"height" : screen.height,
+		"top" : "0px",
+		"left" : "0px",
+		"padding" : "0px"
 	});
-	
+
 	$(vid).css({
 		"width" : 0.49 * screen.width,
-		"height" : 0.49*screen.height,
+		"height" : 0.49 * screen.height,
 		"float" : "left",
 		"padding" : "0px",
-		"margin-top":0.24*screen.height,
-		//"margin":"0 auto",
-		//"margin-top":"auto",
-		//"margin-bottom":"auto",
+		"margin-top" : 0.24 * screen.height,
 		"-moz-user-select" : "none",
-				"-webkit-user-select" : "none",
-				"user-select" : "none",
-				"-ms-user-select":"none",
+		"-webkit-user-select" : "none",
+		"user-select" : "none",
+		"-ms-user-select" : "none",
 	});
 
 	$(pic).css({
 		"width" : 0.49 * screen.width,
-		"height" : 0.49*screen.height,
+		"height" : 0.49 * screen.height,
 		"float" : "right",
 		"padding" : "0px",
-		//"margin":"0 auto",
-		"margin-top":0.24*screen.height,
-		//"margin-top":"auto",
-		//"margin-bottom":"auto",
+		"margin-top" : 0.24 * screen.height,
 		"-moz-user-select" : "none",
 		"-webkit-user-select" : "none",
 		"user-select" : "none",
 	});
-	
-	//funkcje narazie niepotrzebne i raczej niedzialajace
-	$(pic).mousedown(function(event){
-				pklikx = event.pageX;
-				pkliky = event.pageY;
-			}).mouseup(function(event){
-				ppuscx=event.pageX;
-				ppuscy=event.pageY;
-			});
-			
-			
-	$(vid).mousedown(function(event){
-				vklikx = event.pageX;
-				vkliky = event.pageY;
-			}).mouseup(function(event){
-				vpuscx=event.pageX;
-				vpuscy=event.pageY;
-			});
-	//////////////////////////////////////////////////////
-	
+
+	//OBSLUGA KLIKNIEC !!!
 	//klikanie na wideo
-	$(vid).dblclick(function() {
-		$(vid).css({
+
+
+	$(vid).click(function() {
+		vidklik += 1;
+		picklik = 0;
+		switch(vidklik) {
+			case 1:
+				$(vid).css({
+					"z-index" : "-10",
+					"position" : "absolute",
+					"margin" : "0 auto",
+					"-ms-user-select" : "none",
+				}).draggable({
+					disabled : true
+				}).animate({
+					width : screen.width,
+				}, 300).animate({
+					height : screen.height,
+				}, 300);
+
+				$(pic).css({
+					"z-index" : "10",
+					"float" : "right",
+					"-moz-user-select" : "none",
+					"-webkit-user-select" : "none",
+					"user-select" : "none",
+					"-ms-user-select" : "none",
+					"-moz-border-radius" : "10px",
+					"-webkit-border-radius" : "10px",
+					"border-radius" : "10px",
+				}).draggable({
+					disabled : false
+				}).animate({
+					width : 0.35 * screen.width
+				}, 300).animate({
+					height : 0.35 * screen.height
+				}, 300);
+				break;
+			case 2:
+				$(vid).css({
+					"z-index":"10",
+					"width" : screen.width,
+					"height" : screen.height,
+					"padding" : "0px",
+					"-moz-user-select" : "none",
+					"-webkit-user-select" : "none",
+					"user-select" : "none",
+					"-ms-user-select" : "none",
+				});	
+				$(pic).hide();
+				break;
+			case 3:
+				$(vid).css({
+					"width" : 0.49 * screen.width,
+					"height" : 0.49 * screen.height,
+					"float" : "left",
+					"position":"relative",
+					"padding" : "0px",
+					"margin-top" : 0.24 * screen.height,
+					"-moz-user-select" : "none",
+					"-webkit-user-select" : "none",
+					"user-select" : "none",
+					"-ms-user-select" : "none",
+				});
+
+				$(pic).css({
+					"width" : 0.49 * screen.width,
+					"height" : 0.49 * screen.height,
+					"float" : "right",
+					"padding" : "0px",
+					"margin-top" : 0.24 * screen.height,
+					"-moz-user-select" : "none",
+					"-webkit-user-select" : "none",
+					"user-select" : "none",
+				}).draggable("destroy").show();
+				vidklik = 0;
+				break;
+		}
+	});
+
+
+	//klikanie na obrazek
+
+	$(pic).click(function() {
+			picklik+=1;
+			vidklik = 0;
+			switch(picklik)
+			{
+				case 1:
+			$(pic).css({
 				"z-index" : "-10",
 				"position" : "absolute",
+				"-moz-user-select" : "none",
+				"-webkit-user-select" : "none",
+				"user-select" : "none",
 				"margin" : "0 auto",
-				"-ms-user-select":"none",
 			}).animate({
-				width : screen.width,
+				width : screen.width
 			}, 300).animate({
 				height : screen.height,
 			}, 300).draggable({
 				disabled : true
 			});
-			
-			
-			
-			$(pic).animate({
-				width : 0.35 * screen.width
-			}, 300).animate({
-				height : 0.35 * screen.height
-			}, 300).css({
+
+			$(vid).css({
 				"z-index" : "10",
 				"float" : "right",
-				"-moz-user-select" : "none",
-				"-webkit-user-select" : "none",
-				"user-select" : "none",
-				"-ms-user-select":"none",
 				"-moz-border-radius" : "10px",
 				"-webkit-border-radius" : "10px",
 				"border-radius" : "10px",
+				"-moz-user-select" : "none",
+				"-webkit-user-select" : "none",
+				"user-select" : "none",
+				"-ms-user-select" : "none"
 			}).draggable({
 				disabled : false
-			});
-	
+			}).animate({
+				width : 0.35 * screen.width
+			}, 300).animate({
+				height : 0.35 * screen.height
+			}, 300);
+			break;
+				case 2:
+				$(pic).css({
+					"width" : screen.width,
+					"height" : screen.height,
+					"float" : "right",
+					"padding" : "0px",
+					//"margin-top" : 0.24 * screen.height,
+					"-moz-user-select" : "none",
+					"-webkit-user-select" : "none",
+					"user-select" : "none",
+					"z-index":"10",
+				});
+				$(vid).hide();
+				break;
+				case 3:
+				$(vid).css({
+					"width" : 0.49 * screen.width,
+					"height" : 0.49 * screen.height,
+					"float" : "left",
+					"padding" : "0px",
+					"margin-top" : 0.24 * screen.height,
+					"-moz-user-select" : "none",
+					"-webkit-user-select" : "none",
+					"user-select" : "none",
+					"-ms-user-select" : "none",
+				}).draggable("destroy").show();
 
+				$(pic).css({
+					"width" : 0.49 * screen.width,
+					"height" : 0.49 * screen.height,
+					"float" : "right",
+					"padding" : "0px",
+					"margin-top" : 0.24 * screen.height,
+					"-moz-user-select" : "none",
+					"-webkit-user-select" : "none",
+					"user-select" : "none",
+					"position":"relative"
+				}).draggable("destroy");
+				picklik = 0;
+				break;
+			}
 	});
-
-//klikanie na obrazek
-	$(pic).dblclick(function() {
-		$(pic).css({
-			"z-index" : "-10",
-			"position" : "absolute",
-			"-moz-user-select" : "none",
-			"-webkit-user-select" : "none",
-			"user-select" : "none",
-			"margin" : "0 auto",
-		}).animate({
-			width : screen.width
-		}, 300).animate({
-			height : screen.height,
-		}, 300).draggable({
-			disabled : true
-		});
-		
-
-		$(vid).css({
-			"z-index" : "10",
-			"float" : "right",
-			"-moz-border-radius" : "10px",
-			"-webkit-border-radius" : "10px",
-			"border-radius" : "10px",
-			"-moz-user-select" : "none",
-			"-webkit-user-select" : "none",
-			"user-select" : "none",
-			"-ms-user-select":"none"
-		}).draggable({
-			disabled : false
-		}).animate({
-			width : 0.35 * screen.width
-		}, 300).animate({
-			height : 0.35 * screen.height
-		}, 300);
-
-		});
-
 
 	//fullscreen
 	if (pelny.requestFullscreen)
@@ -307,7 +372,7 @@ function fullScreen() {
 			fullScreenOn = true;
 			//tu można ustawiać firefox przez margin-top w css dla elementu pscr
 			$(pscr).css({
-				"top":"15%",
+				"top" : "15%",
 			});
 		}
 	else if (pelny.webkitRequestFullscreen)
@@ -332,6 +397,8 @@ function fullScreen() {
 	timetimes();
 	sort_times();
 }
+
+
 
 
 
