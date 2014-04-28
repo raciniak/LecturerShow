@@ -451,6 +451,82 @@ $(document).ready(function(){
     	}
 	}); 
 	
+		// funkcja pobierająca najnowsze filmy z bazy
+	$.ajax({
+	        url: "php/najnowsze.php",
+	        success: function(msg){
+	         msg = msg.replace(/}{/g, "},{");
+	         msg = "[" + msg + "]";
+	         //alert(msg);
+	         var obj = $.parseJSON(msg);
+	         var lang = '';
+	         $.each(obj, function() {
+	         document.getElementById("najnowsze").innerHTML += "<li id='li_lista'><div id='film'>" +
+	"<a href='player.html?id=" + this['sciezka'] + "'>" +
+	"<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" +
+	" onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022) src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a id='title_video_result' href='player.html?id=" + this['sciezka']
+	+ "'>" + this['tytul'] +
+	"</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Autor: " +
+	this['autor'] + "</p><p id='results_p'> Ocena: " + this['ocena'] +
+	"</p></div></li>";
+	         });
+	},
+	error: function(err)
+	{
+	         console.log(err);
+	     }
+	});
+	
+	// j.w ... najlepsze
+	$.ajax({
+	        url: "php/najlepsze.php",
+	        success: function(msg){
+	         msg = msg.replace(/}{/g, "},{");
+	         msg = "[" + msg + "]";
+	         var obj = $.parseJSON(msg);
+	         var lang = '';
+	         $.each(obj, function() {
+	         document.getElementById("najlepsze").innerHTML += "<li id='li_lista'><div id='film'>" +
+	"<a href='player.html?id=" + this['sciezka'] + "'>" +
+	"<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] +"\u0022)'" +
+	" onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022) src='res/" + this['sciezka'] +
+	"/snapshots/1.png'></a><a id='title_video_result' href='player?id=" + this['sciezka'] + "'>" + this['tytul'] +
+	"</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Autor: " +
+	this['autor'] + "</p><p id='results_p'> Ocena: " + this['ocena'] +
+	"</p></div></li>";
+	         });
+	},
+	error: function(err)
+	{
+	         console.log(err);
+	     }
+	});
+	
+	// j.w. najpopularniejsze
+	$.ajax({
+	        url: "php/najpopularniejsze.php",
+	        success: function(msg){
+	         msg = msg.replace(/}{/g, "},{");
+	         msg = "[" + msg + "]";
+	         var obj = $.parseJSON(msg);
+	         var lang = '';
+	         $.each(obj, function() {
+	         document.getElementById("popularne").innerHTML += "<li id='li_lista'><div id='film'>" +
+	"<a href='player.html?id=" + this['sciezka'] + "'>" +
+	"<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" +
+	" onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022) src='res/" +
+	this['sciezka'] + "/snapshots/1.png'></a><a id='title_video_result' href='player.html?id=" + this['sciezka'] +
+	"'>" + this['tytul'] + "</a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Autor: " +
+	this['autor'] + "</p><p id='results_p'> Ocena: " + this['ocena'] +
+	"</p></div></li>";
+	         });
+	},
+	error: function(err)
+	{
+	         console.log(err);
+	     }
+	}); 
+	
 	// funkcja wyświetlająca filmy zalogowanego użytkownika
 	$.ajax({
         url: "php/search_my_videos.php",
