@@ -55,6 +55,10 @@
 	-webkit-border-top-left-radius: 5px;
  	border-top-left-radius: 5px;
 
+	user-select : none;	
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	-ms-user-select: none;
 }
 
 #myPlayer .playerScreen .imageLoader {
@@ -64,6 +68,11 @@
 	position: relative;
 	z-index: 2;
 	width: 49.5%;
+	
+	user-select : none;	
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	-ms-user-select: none;
 }
 
 #myPlayer .playerScreen .imageLoader img{
@@ -72,6 +81,11 @@
 	-moz-border-radius-topright: 5px;
 	-webkit-border-top-right-radius: 5px;
 	border-top-right-radius: 5px;
+	
+	user-select : none;	
+	-moz-user-select : none;
+	-webkit-user-select : none;
+	-ms-user-select: none;
 }
 
 #playerNavigation {

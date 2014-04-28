@@ -138,6 +138,8 @@ function fullScreen() {
 	var pklikx, pkliky, vklikx, vkliky;
 	var ppuscx, ppuscy, xpuscx, vpuscy;
 	
+	//var vwys = $(vid).height;
+	
 	//bazowe ustawianie elementow fullscreena
 	$(pelny).css({
 		"width" : screen.width,
@@ -158,8 +160,14 @@ function fullScreen() {
 		"height" : 0.49*screen.height,
 		"float" : "left",
 		"padding" : "0px",
-		"margin-top":"auto",
-		"margin-bottom":"auto",
+		"margin-top":0.24*screen.height,
+		//"margin":"0 auto",
+		//"margin-top":"auto",
+		//"margin-bottom":"auto",
+		"-moz-user-select" : "none",
+				"-webkit-user-select" : "none",
+				"user-select" : "none",
+				"-ms-user-select":"none",
 	});
 
 	$(pic).css({
@@ -167,8 +175,10 @@ function fullScreen() {
 		"height" : 0.49*screen.height,
 		"float" : "right",
 		"padding" : "0px",
-		"margin-top":"auto",
-		"margin-bottom":"auto",
+		//"margin":"0 auto",
+		"margin-top":0.24*screen.height,
+		//"margin-top":"auto",
+		//"margin-bottom":"auto",
 		"-moz-user-select" : "none",
 		"-webkit-user-select" : "none",
 		"user-select" : "none",
@@ -198,7 +208,8 @@ function fullScreen() {
 		$(vid).css({
 				"z-index" : "-10",
 				"position" : "absolute",
-				"margin" : "0 auto"
+				"margin" : "0 auto",
+				"-ms-user-select":"none",
 			}).animate({
 				width : screen.width,
 			}, 300).animate({
@@ -219,6 +230,7 @@ function fullScreen() {
 				"-moz-user-select" : "none",
 				"-webkit-user-select" : "none",
 				"user-select" : "none",
+				"-ms-user-select":"none",
 				"-moz-border-radius" : "10px",
 				"-webkit-border-radius" : "10px",
 				"border-radius" : "10px",
@@ -237,7 +249,7 @@ function fullScreen() {
 			"-moz-user-select" : "none",
 			"-webkit-user-select" : "none",
 			"user-select" : "none",
-			"margin" : "0 auto"
+			"margin" : "0 auto",
 		}).animate({
 			width : screen.width
 		}, 300).animate({
@@ -246,13 +258,17 @@ function fullScreen() {
 			disabled : true
 		});
 		
-		
+
 		$(vid).css({
 			"z-index" : "10",
 			"float" : "right",
 			"-moz-border-radius" : "10px",
 			"-webkit-border-radius" : "10px",
 			"border-radius" : "10px",
+			"-moz-user-select" : "none",
+			"-webkit-user-select" : "none",
+			"user-select" : "none",
+			"-ms-user-select":"none"
 		}).draggable({
 			disabled : false
 		}).animate({
@@ -261,7 +277,8 @@ function fullScreen() {
 			height : 0.35 * screen.height
 		}, 300);
 
-	});
+		});
+
 
 	//fullscreen
 	if (pelny.requestFullscreen)
@@ -288,7 +305,10 @@ function fullScreen() {
 		} else {
 			pelny.mozRequestFullScreen();
 			fullScreenOn = true;
-			//tu można ustawiać firefox przez top w css dla elementu pscr
+			//tu można ustawiać firefox przez margin-top w css dla elementu pscr
+			$(pscr).css({
+				"top":"15%",
+			});
 		}
 	else if (pelny.webkitRequestFullscreen)
 		if (document.webkitFullscreenElement) {
