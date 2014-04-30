@@ -348,31 +348,8 @@ $(document).ready(function(){
 			document.getElementById("search_label").style.marginTop = "2px";
 	    }
 	});
-	// funkcje zmieniające obrazki linków
-	$('#fb_link').hover(
-	    function(){
-	      $(this).attr('src','images/icons/fb_hover.png');
-	    },
-	    function(){
-	      $(this).attr('src','images/icons/fb.png');
-	    }
-	);
-   $('#tw_link').hover(
-	    function(){
-	      $(this).attr('src','images/icons/twitter_hover.png');
-	    },
-	    function(){
-	      $(this).attr('src','images/icons/twitter.png');
-	    }
-	);
-   $('#wmii_link').hover(
-	    function(){
-	      $(this).attr('src','images/icons/wmii_hover.png');
-	    },
-	    function(){
-	      $(this).attr('src','images/icons/wmii.png');
-	    }
-	);
+	
+	
 	
 	// funkcja pobierająca dane sesji
 	$.ajax({
@@ -421,7 +398,7 @@ $(document).ready(function(){
         	console.log(err);
     	}
 	});
-
+	
 	// funkcja pobierająca statystyki profilu zalogowanego użytkownika
 	$.ajax({
         url: "php/statystyki_profilu.php",
