@@ -26,11 +26,13 @@ if(isset($_POST['action']))
 		mysql_query($sql2);
 		
 		$sql_select = "SELECT Liczba_Ocen, Suma_Ocen FROM movies WHERE Sciezka='".$_SESSION['sciezka']."'";
-		
+		$query = mysql_query($sql_select);
+		$row = mysql_fetch_array($query);
 		$suma_ocen = $row['Suma_Ocen'];
 		$liczba_ocen = $row['Liczba_Ocen'];
 		$ocena = $suma_ocen / $liczba_ocen;
-		$sql_update = "UPDATE movies SET Ocena='$ocena' WHERE Sciezka='".$_SESSION['sciezka']."'";
+		$ocena = ceil($ocena,1);
+		$sql_update = "UPDATE movies SET Ocena='".$ocena."' WHERE Sciezka='".$_SESSION['sciezka']."'";
 		
 		mysql_query($sql_update); 
 		// if request successful

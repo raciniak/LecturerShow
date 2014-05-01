@@ -44,6 +44,7 @@ $(document).ready(function() {
         success: function(msg){
         	var data = JSON.parse(msg);
         	document.getElementById("autor_video_player").innerHTML = "<a href='user.html?name=" + data.autor + "'>" + data.autor+ "</a>";
+        	document.getElementById("title_tab").innerHTML = data.tytul + " - LecturerShow.pl";
         	document.getElementById("title_video_player").innerHTML = "<p id='title_video_p'>" + data.tytul + "</p>";
         	document.getElementById("description_video_player").innerHTML = "<p id='description_video_p'>" + data.opis + "</p>";
         	document.getElementById("views_video_player").innerHTML ="<p id='views_video_p'>" + data.wyswietlenia + " wyswietleń</p>";
