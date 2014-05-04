@@ -271,15 +271,18 @@ function logOut() {
 function logOutLoadComplete() {
 	document.getElementById("konto").style.display = "none";
 	setTimeout(function(){
+		document.getElementById("popup_text").innerHTML = "Wylogowany";
+	},0);
+	setTimeout(function(){
 		window.location.href="logowanie_new.html";
-	},5);
+	},3000);
 }
 // funkcja wykonująca się po błędzie podczas wylogowywania się
 function logOutError() {
-	alert("Błąd wylogowywania. Proszę spróbować ponownie.");
+	//alert("Błąd wylogowywania. Proszę spróbować ponownie.");
 	setTimeout(function(){
 		document.location.href="index.html";
-	},5000);
+	},3000);
 }
 
 // funkcja wysyłająca treść inputa wyszukiwarki 

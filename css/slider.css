@@ -74,6 +74,13 @@
         border:1px solid #C0C0C0;
         margin: 5px;
     }
+    
+    .slider .lista li:hover {
+     
+        background: #FFF;
+      
+    }
+    
  	.slider .lista li a {
 		text-decoration:none;
 		color: gray;

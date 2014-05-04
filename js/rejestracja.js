@@ -182,6 +182,9 @@ $(document).ready(function()
 			rejestruj_button.disabled = false;
 		}
 		
+			
+		
     });
 	
+
 });

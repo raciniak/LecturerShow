@@ -1547,6 +1547,12 @@
 	white-space:nowrap;
 }
 
+.fancyNav li #konto{
+	width: 200px;
+	padding:13px 0;
+	text-align: center;
+}
+
 .fancyNav a.homeIcon{
 	background:url('/images/icons/home.png') no-repeat center center;
 	display: block;
