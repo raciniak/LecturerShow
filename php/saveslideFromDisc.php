@@ -2,14 +2,15 @@
 /*Php odpowiedzialny za zapisywanie nowych slajdów wyłapywanych przez usera*/
 $filename = $_POST['filename'];
 $upload_dir ='../res/'.$filename.'/';
-$img = $_POST['img'];
+/*$img = $_POST['img'];
 $img = str_replace('data:image/png;base64,', '', $img);
 $img = str_replace(' ', '+', $img);
-$data = base64_decode($img);
+$data = base64_decode($img);*/
 $numberslide = $_POST['numberSlide'];
 $path = $_POST['path'];
 $file = $upload_dir.$path.'.png';
-$success = file_put_contents($file, $data);
+/*$success = file_put_contents($file, $data);*/
+move_uploaded_file($_FILES['img']['tmp_name'], $upload_dir.$path.'.png');
 /*Dopisanie nowych danych do pliku z czasami */
 $fp = fopen('../res/'.$filename.'/times.txt', "r+");
 //$tekst = file('../movies/'.$filename.'/times.txt')

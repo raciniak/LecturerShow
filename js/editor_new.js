@@ -7,7 +7,7 @@ $(document).ready(function () {
 var namefile = 'res/'+getParameterByName("id")+'/speech_360.mp4';
 $("#myVideo").html("<source src='"+namefile+"' type='video/mp4' \>");
 //Zaladowanie sciezki do filmu ze slajdami
-var namefileslide = 'res/'+getParameterByName("id")+'/screens.mp4';
+var namefileslide = 'res/'+getParameterByName("id")+'/screens_360.mp4';
 $("#AddNewSlide").html("<source src='"+namefileslide+"' type='video/mp4' \>");
 //------------------------------------	
 var myVideo    = $('#myVideo')[0];	

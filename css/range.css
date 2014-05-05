@@ -61,12 +61,7 @@
 
 /* wyglad przyciskow do przewijania listy w okienku windows*/
 .up{
-	position:relative;
-	/*background-image: url('/images/icons/editorup.jpg');
-	background-position: -8px -6px;
-	width: 40px;
-	height: 40px;
-	border: none;*/
+		position:relative;
 		width:36px;
         height:36px;
         float:left;
@@ -88,12 +83,7 @@
 	}
 
 .down{
-	position:relative;
-	/*background-image: url('/images/icons/editordown.jpg');
-	background-position: -7px -7px;
-	width: 40px;
-	height: 40px;
-	border: none;*/
+		position:relative;
 		width:36px;
         height:36px;
         float:left;
@@ -339,4 +329,40 @@
 /*Wyglad przyciskow w okienku windows*/
 .windows-button{
 	background: #B2CCFF;
+	margin-bottom: 10px;
+}
+
+.windows-button:hover{
+	box-shadow: 0px 0px 3px 3px #1F96FF;
+}
+
+.titleTreeTabs{
+	font-size: 20px;
+}
+
+#AddNewSlide{
+	position: relative;
+	bottom: 20px;
+}
+
+#errorLogAddSlide{
+	position:relative;
+	top:20px;
+	left:20px;
+	width: 150px;
+	height: 35px;
+	color:#008747;
+	font-size: 14px;
+	opacity:0;
+}
+
+#saveSlideInDisc{
+	position:relative;
+	bottom:12px;
+	left:10px;
+}
+
+#saveSlideInVideo{
+	position:relative;
+	top:24px;
 }
