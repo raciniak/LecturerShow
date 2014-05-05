@@ -327,6 +327,7 @@ function funkcja_powrot(x, path){
 }        	
 
 $(document).ready(function(){
+	
 	$(window).bind('scroll', function() {
     	var margin = ($(window).width()-1200)/2;
     	if ($(window).scrollTop() >= $( '.subpage #header-wrapper' ).height()) {
@@ -340,6 +341,9 @@ $(document).ready(function(){
         document.getElementById("logo_search").style.cssFloat = "left";	
         document.getElementById("wyszukiwarka").style.widtn = "100%";
         document.getElementById("search_label").style.marginTop = "";
+        if(window.location.pathname == "/results.html") {
+        	document.getElementById("wyszukiwarka").style.marginLeft= "74px"; 
+        }
 		}
 	    else{
 	        document.getElementById("wyszukiwarka").style.position = "";
@@ -360,6 +364,10 @@ $(document).ready(function(){
         success : function(msg){
 			if(msg == 'nieznany')
             {
+            	if(window.location.pathname == "/editor_new.html")
+            	{
+            		window.location.href = "index.html";
+            	}
             	if(window.location.pathname == "/konto_new.html")
             	{
             		window.location.href = "logowanie_new.html";
@@ -380,6 +388,7 @@ $(document).ready(function(){
             	{
             		window.location.href = "konto_new.html";
             	}
+            	
 				var dane = JSON.parse(msg);	
 				login = dane.login;
 				document.getElementById("konto").innerHTML= dane.login;

@@ -416,7 +416,7 @@
 	
 	/* Koniec CSS Wyświetlanie filmów w profilu użytkownika i results.html */
 	
-	#upload_form, #tab4, #tab3, #tab1 {
+	#upload_form, #tab4, #tab3, #tab1, #tab2_result {
 		
 		width: 90%;
 		margin-left: 50px;
@@ -433,6 +433,11 @@
 	
 	#tab3 {
 		padding-top: 50px;	
+		float:right;
+	}
+	
+	#tab2_result {
+		float: right;
 	}
 	
 	#tab1 #brak_filmow {
@@ -478,6 +483,10 @@
 	#tab1 ul li #zdjecie {
 		width: 100%;
 
+	}
+	
+	#tab1 #najnowsze li #film a #zdjecie, #tab2_result #popularne li #film a #zdjecie, #tab3 #najlepsze li #film a #zdjecie {
+		width: 100%;
 	}
 	
 	#register_form hr {
@@ -568,7 +577,7 @@
 	
 	#wyszukiwarka #submit_wyszukiwarka {
 		width: 6%;
-		margin-top: 1px;
+		
 	}
 	
 	/* mini player */
