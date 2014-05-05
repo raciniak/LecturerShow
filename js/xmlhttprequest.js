@@ -341,6 +341,9 @@ $(document).ready(function(){
         document.getElementById("logo_search").style.cssFloat = "left";	
         document.getElementById("wyszukiwarka").style.widtn = "100%";
         document.getElementById("search_label").style.marginTop = "";
+        if(window.location.pathname == "/results.html") {
+        	document.getElementById("wyszukiwarka").style.marginLeft= "74px"; 
+        }
 		}
 	    else{
 	        document.getElementById("wyszukiwarka").style.position = "";
