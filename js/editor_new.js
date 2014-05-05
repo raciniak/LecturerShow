@@ -127,9 +127,6 @@ function mute() {
 
 
 
-
-
-
 function fullScreen() {
 	var pelny = $("#myPlayer")[0];
 	var vid = $("#myVideo")[0];
@@ -140,11 +137,17 @@ function fullScreen() {
 	var vidklik = 0;
 	var picklik = 0;
 
+	//zmienne niewazne
+	var picpos = $(pic).offset();
+	var vidpos = $(vid).offset();
+
 	//bazowe ustawianie elementow fullscreena
+
 	$(pelny).css({
 		"width" : screen.width,
 		"height" : screen.height,
-		"padding" : "0px"
+		"padding" : "0px",
+		"z-index" : "-140"
 	});
 
 	$(pscr).css({
@@ -152,12 +155,15 @@ function fullScreen() {
 		"height" : screen.height,
 		"top" : "0px",
 		"left" : "0px",
-		"padding" : "0px"
+		"padding" : "0px",
+		"position" : "fixed",
+		"z-index" : "-100"
 	});
 
 	$(vid).css({
-		"width" : 0.49 * screen.width,
-		"height" : 0.49 * screen.height,
+		"position" : "relative",
+		"width" : 0.495 * screen.width,
+		"height" : 0.495 * screen.height,
 		"float" : "left",
 		"padding" : "0px",
 		"margin-top" : 0.24 * screen.height,
@@ -165,24 +171,30 @@ function fullScreen() {
 		"-webkit-user-select" : "none",
 		"user-select" : "none",
 		"-ms-user-select" : "none",
+		"opacity" : "1"
 	});
 
 	$(pic).css({
-		"width" : 0.49 * screen.width,
-		"height" : 0.49 * screen.height,
+		"position" : "relative",
+		"width" : 0.495 * screen.width,
+		"height" : 0.495 * screen.height,
 		"float" : "right",
 		"padding" : "0px",
 		"margin-top" : 0.24 * screen.height,
 		"-moz-user-select" : "none",
 		"-webkit-user-select" : "none",
 		"user-select" : "none",
+		"opacity" : "1"
 	});
+
+	//zmienne niewazne
+	var ptop = picpos.top, pleft = picpos.left, pright = picpos.right, pbottom = picpos.bottom;
+	var vtop = vidpos.top, vleft = vidpos.left, vright = vidpos.right, vbottom = vidpos.bottom;
 
 	//OBSLUGA KLIKNIEC !!!
 	//klikanie na wideo
-
-
-	$(vid).click(function() {
+	$(vid).click(vklik);
+	function vklik() {
 		vidklik += 1;
 		picklik = 0;
 		switch(vidklik) {
@@ -202,7 +214,6 @@ function fullScreen() {
 
 				$(pic).css({
 					"z-index" : "10",
-					"float" : "right",
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
@@ -210,6 +221,10 @@ function fullScreen() {
 					"-moz-border-radius" : "10px",
 					"-webkit-border-radius" : "10px",
 					"border-radius" : "10px",
+					"position" : "absolute",
+					"border-style" : "double",
+					"border-color" : "#0000ff",
+					"opacity" : "1"
 				}).draggable({
 					disabled : false
 				}).animate({
@@ -217,10 +232,15 @@ function fullScreen() {
 				}, 300).animate({
 					height : 0.35 * screen.height
 				}, 300);
+				$(pic).off("click").draggable({
+					disabled : false
+				});
 				break;
+
 			case 2:
 				$(vid).css({
-					"z-index":"10",
+					"position" : "relative",
+					"z-index" : "10",
 					"width" : screen.width,
 					"height" : screen.height,
 					"padding" : "0px",
@@ -228,81 +248,98 @@ function fullScreen() {
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
 					"-ms-user-select" : "none",
-				});	
-				$(pic).hide();
+					"opacity" : "1"
+				});
+				$(pic).hide().css({
+					"position" : "relative",
+					"border-style" : "none"
+				});
 				break;
 			case 3:
 				$(vid).css({
-					"width" : 0.49 * screen.width,
-					"height" : 0.49 * screen.height,
+					"position" : "fixed",
+					"z-index" : "10",
+					"width" : 0.495 * screen.width,
+					"height" : 0.495 * screen.height,
 					"float" : "left",
-					"position":"relative",
+					"position" : "relative",
 					"padding" : "0px",
 					"margin-top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
 					"-ms-user-select" : "none",
+					"opacity" : "1"
 				});
 
 				$(pic).css({
-					"width" : 0.49 * screen.width,
-					"height" : 0.49 * screen.height,
+					"position" : "fixed",
+					"z-index" : "10",
+					"width" : 0.495 * screen.width,
+					"height" : 0.495 * screen.height,
 					"float" : "right",
 					"padding" : "0px",
-					"margin-top" : 0.24 * screen.height,
+					"top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
-				}).draggable("destroy").show();
+					"opacity" : "1"
+				}).draggable({
+					disabled : true
+				}).show().on("click", pklik);
 				vidklik = 0;
 				break;
 		}
-	});
 
+	}
 
 	//klikanie na obrazek
+	$(pic).click(pklik);
+	function pklik() {
+		picklik += 1;
+		vidklik = 0;
+		switch(picklik) {
+			case 1:
+				$(pic).css({
+					"z-index" : "-10",
+					"position" : "absolute",
+					"-moz-user-select" : "none",
+					"-webkit-user-select" : "none",
+					"user-select" : "none",
+					"margin" : "0 auto",
+					"opacity" : "1"
+				}).animate({
+					width : screen.width
+				}, 300).animate({
+					height : screen.height,
+				}, 300).draggable({
+					disabled : true
+				});
 
-	$(pic).click(function() {
-			picklik+=1;
-			vidklik = 0;
-			switch(picklik)
-			{
-				case 1:
-			$(pic).css({
-				"z-index" : "-10",
-				"position" : "absolute",
-				"-moz-user-select" : "none",
-				"-webkit-user-select" : "none",
-				"user-select" : "none",
-				"margin" : "0 auto",
-			}).animate({
-				width : screen.width
-			}, 300).animate({
-				height : screen.height,
-			}, 300).draggable({
-				disabled : true
-			});
-
-			$(vid).css({
-				"z-index" : "10",
-				"float" : "right",
-				"-moz-border-radius" : "10px",
-				"-webkit-border-radius" : "10px",
-				"border-radius" : "10px",
-				"-moz-user-select" : "none",
-				"-webkit-user-select" : "none",
-				"user-select" : "none",
-				"-ms-user-select" : "none"
-			}).draggable({
-				disabled : false
-			}).animate({
-				width : 0.35 * screen.width
-			}, 300).animate({
-				height : 0.35 * screen.height
-			}, 300);
-			break;
-				case 2:
+				$(vid).css({
+					"z-index" : "10",
+					"-moz-border-radius" : "10px",
+					"-webkit-border-radius" : "10px",
+					"border-radius" : "10px",
+					"border-style" : "double",
+					"border-color" : "#0000ff",
+					"-moz-user-select" : "none",
+					"-webkit-user-select" : "none",
+					"user-select" : "none",
+					"-ms-user-select" : "none",
+					"opacity" : "1"
+				}).draggable({
+					disabled : false
+				}).animate({
+					width : 0.35 * screen.width
+				}, 300).animate({
+					height : 0.35 * screen.height
+				}, 300);
+				$(vid).off("click").draggable({
+					disabled : false
+				});
+				break;
+			case 2:
 				$(pic).css({
 					"width" : screen.width,
 					"height" : screen.height,
@@ -312,14 +349,20 @@ function fullScreen() {
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
-					"z-index":"10",
+					"z-index" : "10",
+					"position" : "relative",
+					"opacity" : "1"
 				});
-				$(vid).hide();
+				$(vid).hide().css({
+					"position" : "relative",
+					"border-style" : "none"
+				});
+				$(vid).on("click", vklik);
 				break;
-				case 3:
+			case 3:
 				$(vid).css({
-					"width" : 0.49 * screen.width,
-					"height" : 0.49 * screen.height,
+					"width" : 0.495 * screen.width,
+					"height" : 0.495 * screen.height,
 					"float" : "left",
 					"padding" : "0px",
 					"margin-top" : 0.24 * screen.height,
@@ -327,23 +370,29 @@ function fullScreen() {
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
 					"-ms-user-select" : "none",
-				}).draggable("destroy").show();
+					"opacity" : "1"
+				}).draggable({
+					disabled : true
+				}).show();
 
 				$(pic).css({
-					"width" : 0.49 * screen.width,
-					"height" : 0.49 * screen.height,
+					"width" : 0.495 * screen.width,
+					"height" : 0.495 * screen.height,
 					"float" : "right",
 					"padding" : "0px",
 					"margin-top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
-					"position":"relative"
-				}).draggable("destroy");
+					"position" : "relative",
+					"opacity" : "1"
+				}).draggable({
+					disabled : true
+				});
 				picklik = 0;
 				break;
-			}
-	});
+		}
+	}
 
 	//fullscreen
 	if (pelny.requestFullscreen)
@@ -397,6 +446,7 @@ function fullScreen() {
 	timetimes();
 	sort_times();
 }
+
 
 
 
