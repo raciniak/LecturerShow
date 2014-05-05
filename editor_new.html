@@ -186,7 +186,7 @@
 										<li><a id="slidesss" onclick="slidesClick()" href="#tab-2"><p>Slajdy</p></a></li>
 										<li><a href="#tab-3"><p>Dodaj slajdy</p></a></li>
 									</ul>									
-									<section>
+									<section id="positionwindows">
 										<div id="tab-1" class="tab">
 											<center><div id="TimeMoviePlayed"></div></center>
 		        								<button id="Zapisz_edycje" class="windows-button" style="width: 150px; height: 40px;" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
@@ -194,13 +194,11 @@
 											
 											<div id="tab-2" class="tab">
 												<input type="button" value='' class="up leftbuttonlist" />
-												<br/>
 												<input type="button" value='' class="up rightbuttonlist" />
 												<div class="windows">
 		        									<ul class='lista' id='windows_lista'> </ul>
 		        								</div>
 												<input type="button" value='' class="down leftbuttonlist"/>
-												<br/>
 												<input type="button" value='' class="down rightbuttonlist"/>
 											</div>
 															
@@ -208,6 +206,9 @@
 		        								<video id="AddNewSlide" controls>
 											    	</video>
 											        <button class="windows-button" onclick="saveSlideFromVideo()" style="width: 80px; height: 35px;">Zapisz slajd</button>
+											        <b class="b_update_video"> Wybierz film z prezentacja video </b>
+                                                    <input class="windows-button" type="file" name="mowa" id="mowa" accept="image/*"/>
+											        <button class="windows-button" style="width: 130px; height: 35px;">Dodaj slajd z dysku</button>
 											</div>	
 												<div class="overlay"></div>
 												<div class="overlay-message">

@@ -51,50 +51,78 @@
 
 /*wyglad okienka pod multirangem edytora*/
 .windows{
-	width: 1100px;
+	width: 1092px;
 	height: 330px;
-	background:#F7FBFF;
 	margin:0px auto;
 	overflow:hidden;
 	position: relative;
+	left:-20px;
 }
 
 /* wyglad przyciskow do przewijania listy w okienku windows*/
 .up{
 	position:relative;
-	background-image: url('/images/icons/editorup.jpg');
+	/*background-image: url('/images/icons/editorup.jpg');
 	background-position: -8px -6px;
 	width: 40px;
 	height: 40px;
-	border: none;
+	border: none;*/
+		width:36px;
+        height:36px;
+        float:left;
+        background:#849599;
+        -moz-border-radius:100%;
+        -webkit-border-radius:100%;
+        border-radius:100%;
+        margin:5px;
+     	border-style:none;
+		margin-top:8%;
+		float:right;
+        background-image: url("/images/icons/editorup.jpg");
+        background-position: -8px -7px;
+        border: none;
 }
 
-.up:hover{
-	opacity:0.8;
-}
+.up:hover, .down:hover {
+	 box-shadow: 0px 0px 3px 3px #1F96FF;
+	}
 
 .down{
 	position:relative;
-	background-image: url('/images/icons/editordown.jpg');
+	/*background-image: url('/images/icons/editordown.jpg');
 	background-position: -7px -7px;
 	width: 40px;
 	height: 40px;
-	border: none;
+	border: none;*/
+		width:36px;
+        height:36px;
+        float:left;
+        background:#849599;
+        -moz-border-radius:100%;
+        -webkit-border-radius:100%;
+        border-radius:100%;
+        margin:5px;
+     	border-style:none;
+		margin-top:8%;
+		float:left;
+		background-image: url("/images/icons/editordown.jpg");
+		background-position: -6px -8px;
+		border: none;
 }
 
-.down:hover{
-	opacity:0.8;
-}
 
 .rightbuttonlist{
 	float:right;
-	bottom:33px;
-	right:35px;
+	bottom:100px;
+	left:18px;
 }
 
 .leftbuttonlist{
 	float:left;
+	bottom:100px;
+	right:20px;
 }
+
 
 /*Wyglad slajdow w okienku windows*/
 .slajd{
@@ -296,17 +324,17 @@
 	border-radius: 10px;
 	border: 1px solid #df4006; 
 	width: 100%; 
-	height: 100px; 
+	height: 50px; 
 	position: relative;
 	background:	#dcccc6;
 }
 
 #kosz{
-	width:30px;
-	height:40px;
+	width:20px;
+	height:30px;
 	display:table;
 	margin: auto;
-	padding-top: 30px;
+	padding-top: 10px;
 }
 /*Wyglad przyciskow w okienku windows*/
 .windows-button{
