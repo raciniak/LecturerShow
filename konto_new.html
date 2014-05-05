@@ -238,6 +238,7 @@
 												-moz-border-radius: 4px; 
 												-webkit-border-radius: 4px;
 												border-radius: 4px;
+												padding-left: 24px;
 											}
 											.nice .NFI-button {
 												-moz-border-radius-topleft: 3px; 
@@ -321,13 +322,13 @@
                                                 
                                                  <form id="form1" enctype="multipart/form-data" method="post" action="UploadServlet">
                                                  <div class="row1">
-                                                      <b class="b_aktualizacja"> Nazwa filmu: </b>                                      
+                                                      <b class="b_aktualizacja" style="margin-top: 30px; margin-bottom: 20px;"> Nazwa filmu: </b>                                      
                                                       <input class="input_update_file" type="text" name="name" id="name" required />
                                                  </div>
                                                  
                                                       <b class="b_aktualizacja"> Opis filmu: </b> <br />
                                                       <textarea name="opis" id="opis" required ></textarea>
-                                                 <div class="row1">
+                                                 <div class="row1" style="margin-top: 50px;">
                                                       <b class="b_update_video"> Wybierz film z prezentacja video </b>
                                                       <input type="file" name="mowa" id="mowa" class="nicefileinput nice" onchange="fileSelected('mowa');" accept="video/*"/>
                                                  	
@@ -339,7 +340,7 @@
                                                  <br />
                                                  <div class="row1">
 
-                                                      <b class="b_update_video"> Wybierz film/plik ze slajdami </b>
+                                                      <b class="b_update_video"> Wybierz film ze slajdami </b>
                                                    
                                                       <input type="file" name="slajdy"	 id="slajdy" class="nicefileinput nice" onchange="fileSelected('slajdy');" accept="video/*, application/pdf"/>
                                                     
@@ -349,7 +350,17 @@
                                                  <div id="fileType2"></div>
                                                  <br />
                                                  
-                                                 
+                                                 <div class="row1">
+
+                                                      <b class="b_update_video"> Wybierz plik PDF ze slajdami </b>
+                                                   
+                                                      <input type="file" name="slajdy"	 id="slajdy" class="nicefileinput nice" onchange="fileSelected('slajdy');" accept="video/*, application/pdf"/>
+                                                    
+                                                 </div>
+                                                 <div id="fileName2"></div>
+                                                 <div id="fileSize2"></div>
+                                                 <div id="fileType2"></div>
+                                                 <br />                                              
                                                  
                                                  <style type="text/css">
                                                  	
