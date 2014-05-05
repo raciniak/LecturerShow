@@ -1,5 +1,4 @@
 <?php
-	
 	require_once('connect_mysqli.php');
 	
 
@@ -20,6 +19,7 @@
 				
 				$arr = array ('zalogowany'=>'true','login'=>$login, 'haslo'=>$_SESSION['haslo'], 'email'=>$row[2]);
 				echo json_encode($arr);
+				header("Refresh: 0; url=../index.html");
          	} 
 			else 
 			{	 

@@ -11,7 +11,6 @@
 		<script src="js/libs/template/skel-panels.min.js"></script>
 		<script src="js/xmlhttprequest.js"></script>
 		<script src="js/logowanie.js"></script>
-		<link rel="shortcut icon" href="images/template/logo_tabs.png">
 		<script>
 			
 		</script>
@@ -89,10 +88,10 @@
 											<h3>Zaloguj się, aby móc korzystać ze wszystkich możliwości serwisu LecturerShow</h3>
 										</header>
 										<!-- Formularz logowanie -->
-										<form method="POST">
+										<form method="POST" action="php/logowanie.php">
                                             <b class="b_logowanie">Login:</b> <input type="text" name="login_l" id="login_l"><br><br />
                                             <b class="b_logowanie">Hasło:</b> <input type="password" name="haslo_l" id="haslo_l"><br><br />
-                                            <input type="submit" value="Zaloguj" name="loguj" class="button black large" style="margin: 0 auto; margin-top: 50px;" onclick="logIn()">
+                                            <input type="submit" value="Zaloguj" name="loguj" class="button black large" style="margin: 0 auto; margin-top: 50px;">
                                         </form> 
 									</section>
 							</div>
