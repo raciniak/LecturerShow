@@ -137,11 +137,7 @@ function fullScreen() {
 	var vidklik = 0;
 	var picklik = 0;
 
-	//zmienne niewazne
-	var picpos = $(pic).offset();
-	var vidpos = $(vid).offset();
-
-	//bazowe ustawianie elementow fullscreena
+//bazowe ustawianie elementow fullscreena
 
 	$(pelny).css({
 		"width" : screen.width,
@@ -187,10 +183,7 @@ function fullScreen() {
 		"opacity" : "1"
 	});
 
-	//zmienne niewazne
-	var ptop = picpos.top, pleft = picpos.left, pright = picpos.right, pbottom = picpos.bottom;
-	var vtop = vidpos.top, vleft = vidpos.left, vright = vidpos.right, vbottom = vidpos.bottom;
-
+	
 	//OBSLUGA KLIKNIEC !!!
 	//klikanie na wideo
 	$(vid).click(vklik);
@@ -257,13 +250,17 @@ function fullScreen() {
 				break;
 			case 3:
 				$(vid).css({
-					"position" : "fixed",
+					//"position" : "fixed",
 					"z-index" : "10",
 					"width" : 0.495 * screen.width,
 					"height" : 0.495 * screen.height,
 					"float" : "left",
 					"position" : "relative",
 					"padding" : "0px",
+					"left":"auto",
+					"top":"auto",
+					"right":"auto",
+					"bottom":"auto",
 					"margin-top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
@@ -273,17 +270,24 @@ function fullScreen() {
 				});
 
 				$(pic).css({
-					"position" : "fixed",
+					//"position" : "fixed",
 					"z-index" : "10",
 					"width" : 0.495 * screen.width,
 					"height" : 0.495 * screen.height,
 					"float" : "right",
+					"left":"auto",
+					"margin-top":"0px",
+					"right":"auto",
+					"bottom":"auto",
 					"padding" : "0px",
 					"top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
-					"opacity" : "1"
+					"opacity" : "1",
+					"-moz-border-radius" : "none",
+					"-webkit-border-radius" : "none",
+					"border-radius" : "none",
 				}).draggable({
 					disabled : true
 				}).show().on("click", pklik);
@@ -307,7 +311,9 @@ function fullScreen() {
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
 					"margin" : "0 auto",
-					"opacity" : "1"
+					"opacity" : "1",
+					"top":"0px",
+					"margin-top":"0px",
 				}).animate({
 					width : screen.width
 				}, 300).animate({
@@ -345,7 +351,8 @@ function fullScreen() {
 					"height" : screen.height,
 					"float" : "right",
 					"padding" : "0px",
-					//"margin-top" : 0.24 * screen.height,
+					"top":"0px",
+					"margin-top":"0px",
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
@@ -365,12 +372,19 @@ function fullScreen() {
 					"height" : 0.495 * screen.height,
 					"float" : "left",
 					"padding" : "0px",
+					"left":"auto",
+					"top":"auto",
+					"right":"auto",
+					"bottom":"auto",
 					"margin-top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
 					"-ms-user-select" : "none",
-					"opacity" : "1"
+					"opacity" : "1",
+					"-moz-border-radius" : "none",
+					"-webkit-border-radius" : "none",
+					"border-radius" : "none",
 				}).draggable({
 					disabled : true
 				}).show();
@@ -380,7 +394,10 @@ function fullScreen() {
 					"height" : 0.495 * screen.height,
 					"float" : "right",
 					"padding" : "0px",
-					"margin-top" : 0.24 * screen.height,
+					"left":"auto",
+					"right":"auto",
+					"bottom":"auto",
+					"top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
