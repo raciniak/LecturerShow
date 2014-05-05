@@ -17,11 +17,13 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="js/libs/jquery/jquery-ui-1.10.4.js"></script>
+		<link rel="shortcut icon" href="images/template/logo_tabs.png">
 		<noscript>
 			<link rel="stylesheet" href="css/template/skel-noscript.css" />
 			<link rel="stylesheet" href="css/template/style.css" />
 			<link rel="stylesheet" href="css/template/style-desktop.css" />
 			<link rel="stylesheet" href="css/glowna.css" />
+			
 		</noscript>
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/template/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="js/libs/template/html5shiv.js"></script><![endif]-->
@@ -75,7 +77,7 @@
 				<a id="logo_search" href="index.html">LecturerShow.pl</a>
 				<label id="search_label" for="searchinput">Wyszukaj film: </label>
 				<div class="ui-widget"><input placeholder="Wyszukaj film ..." id="searchinput" ></div>
-				<input type="submit" id="submit_wyszukiwarka" onclick="searchVideo()" value="Szukaj"/>
+				<input class="button black small" type="submit" id="submit_wyszukiwarka" onclick="searchVideo()" value="Szukaj"/>
 			</div>
 		</div>
 			<div id="content-wrapper">
@@ -90,7 +92,7 @@
 											<h3> TOP 4 LecturerShow </h3>
 										</header>
 										<div id="mini_player_and_list">
-											<video id="mini_player" onclick="srcVideo()" height="340px" controls> </video>
+											<video id="mini_player" onclick="srcVideo()" height="340px" autoplay> </video>
 											<div id="video_list"></div>
 										</div>
 									</section>

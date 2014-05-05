@@ -31,7 +31,7 @@ if(isset($_POST['action']))
 		$suma_ocen = $row['Suma_Ocen'];
 		$liczba_ocen = $row['Liczba_Ocen'];
 		$ocena = $suma_ocen / $liczba_ocen;
-		$ocena = ceil($ocena,1);
+
 		$sql_update = "UPDATE movies SET Ocena='".$ocena."' WHERE Sciezka='".$_SESSION['sciezka']."'";
 		
 		mysql_query($sql_update); 
