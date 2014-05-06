@@ -275,7 +275,7 @@
 									<section id="positionwindows">
 										<div id="tab-1" class="tab">
 											<center><div id="TimeMoviePlayed"></div></center>
-		        								<button id="Zapisz_edycje" class="windows-button" style="width: 150px; height: 40px;" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
+		        								<button id="Zapisz_edycje" class="button black medium" style="width: 150px; height: 40px;" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
 											</div>
 											
 											<div id="tab-2" class="tab">
@@ -292,15 +292,16 @@
 												<div>
                                                     	<b class="titleTreeTabs"> Załaduj slajd z dysku: </b>
                                                     	<div>
+                                                    	    
                                                         	<input type="file" id="UpSlideInDisc" class="nicefileinput nice" accept="image/*"/>
-                                                        	<button id="saveSlideInDisc" onclick="saveSlideFromDisc()" class="windows-button" style="width: 150px; height: 35px;">Zapisz slajd</button>
+                                                        	<button id="saveSlideInDisc" onclick="saveSlideFromDisc()" class="button black small" style="display:inline;">Zapisz slajd</button>
 															<!--<div id="errorLogAddSlide">Dodano slajd</div>-->
 														</div>
 												</div>
 												<div>
 														<b class="titleTreeTabs"> Pobierz slajd z prezentacji video: </b>
 														<div>
-															<button id="saveSlideInVideo" class="windows-button" onclick="saveSlideFromVideo()" style="width: 150px; height: 35px;">Zapisz slajd</button>
+															<button id="saveSlideInVideo" class="button black small" onclick="saveSlideFromVideo()" style="width: 150px; height: 35px; ">Zapisz slajd</button>
 		        											<video id="AddNewSlide" controls></video>
 											    		</div>
 											    </div>
