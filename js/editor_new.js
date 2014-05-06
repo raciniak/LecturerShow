@@ -416,6 +416,7 @@ function fullScreen() {
 		if (document.fullScreenElement) {
 			document.cancelFullScreen();
 			fullScreenOn = false;
+			location.reload();
 		} else {
 			pelny.requestFullscreen();
 			fullScreenOn = true;
@@ -424,7 +425,7 @@ function fullScreen() {
 		if (document.msFullscreenElement) {
 			document.msExitFullscreen();
 			fullScreenOn = false;
-
+			location.reload();
 		} else {
 			pelny.msRequestFullscreen();
 			fullScreenOn = true;
@@ -433,6 +434,7 @@ function fullScreen() {
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
 			fullScreenOn = false;
+			location.reload();
 		} else {
 			pelny.mozRequestFullScreen();
 			fullScreenOn = true;
@@ -445,6 +447,7 @@ function fullScreen() {
 		if (document.webkitFullscreenElement) {
 			document.webkitCancelFullScreen();
 			fullScreenOn = false;
+			location.reload();
 		} else {
 			pelny.webkitRequestFullscreen();
 			fullScreenOn = true;
