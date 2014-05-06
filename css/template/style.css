@@ -461,6 +461,8 @@
 	#tab1 a p {
 		font-size: 19px;
 		text-transform: none;
+		margin: 0;
+		margin-bottom:10px;
 	}
 	
 	#tab3 p {
@@ -477,7 +479,7 @@
 	
 		float: left;
 		width: 25%;	
-		height: 300px;
+		height: 400px;
 	}
 	
 	#tab1 ul li #zdjecie {
@@ -570,7 +572,7 @@
 		width: 30%;
 		margin-right:1%;
 		float:left;
-		height: 26px;
+		height: 28px;
 		font-family: 'Yanone Kaffeesatz';
 		line-height: 1.2em;
 	}
