@@ -106,7 +106,6 @@ function pause() {
 
 function stop() {
 	pause();
-	//myVideo.currentTime = 0;
 	//Po kliknieciu stop wartosc currentTime filmu ustawia sie na poczatkowa
 	myVideo.currentTime = startPlay;
 	setTimeLine(0);
@@ -470,24 +469,16 @@ function fullScreen() {
 
 
 function updateTime(){
-   /* var seconds = Math.floor(myVideo.currentTime % 60);
-    var minutes = Math.floor((myVideo.currentTime / 60) % 60);
-    var hours = Math.floor(myVideo.currentTime / 3600);*/
    var seconds = Math.floor((myVideo.currentTime-startPlay) % 60);
     var minutes = Math.floor(((myVideo.currentTime-startPlay) / 60) % 60);
     var hours = Math.floor((myVideo.currentTime-startPlay) / 3600);
 
 
     if (countingTimeFromTheEnd) {
-
-      /*  seconds = Math.floor((myVideo.duration % 60) - seconds);
-        minutes = Math.floor((myVideo.duration / 60) - minutes);
-        hours =   Math.floor((myVideo.duration / 3600) - hours);*/
        seconds = Math.floor(((stopPlay-startPlay) % 60) - seconds);
         minutes = Math.floor(((stopPlay-startPlay) / 60) - minutes);
         hours =   Math.floor(((stopPlay-startPlay)/ 3600) - hours);
     }
-
     // Obliczanie sekund
     if (seconds < 10)
         seconds = "0" + seconds;
@@ -523,7 +514,6 @@ function updateTime(){
 	}
     // Animacja
     $('#timeLine .belt').animate(
-      //  { "width": myVideo.currentTime / myVideo.duration * 100 + "%" },
       { "width": lengthTimeline + "%" },
         { duration: 100 }
     );

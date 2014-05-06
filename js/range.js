@@ -261,14 +261,13 @@
         if (!init && value === slide.value) return;
         
         var percent = 100*(value - slide.min) / slide.width;
-        slider.style.left = percent + '%';
+        slider.style.left = percent-0.7 + '%';
         slider.setAttribute('data-value', value);
         slide.input.setAttribute('value', value);
        
         //moja zmianka odnosnie okienka windows i zmiany na zywo czasu pod slajdem slidera
         var timee=0;
         timee = upConversionTimes(value);
-        //name=slide.input.getAttribute("name");
         doInnerHTML("movetime"+name, "<b>"+timee+"</b>");
         timee = timee.split(":");
         if(name!="PoczatekFilmu" && name!="KoniecFilmu")
@@ -279,18 +278,23 @@
         }else
         if(name=="KoniecFilmu")
         {
-        	//alert("11");
         	document.getElementById("textbox01").setAttribute('value', timee[0]);
         	document.getElementById("textbox11").setAttribute('value', timee[1]);
         	document.getElementById("textbox21").setAttribute('value', timee[2]);
-        //	alert("22");
         }else
         if(name=="PoczatekFilmu")
         {
-        	//alert(timee[0]+' '+timee[1]+' '+timee[2]);
         	document.getElementById("textbox00").setAttribute('value', timee[0]);
         	document.getElementById("textbox10").setAttribute('value', timee[1]);
         	document.getElementById("textbox20").setAttribute('value', timee[2]);
+        	var max = $(".range")[0].getAttribute("data-max");
+        	var poczFilm = getAllElementsWithAttribute("data-name","PoczatekFilmu");
+        	var valuee = poczFilm.getAttribute("data-value");
+        	var lengthTimeline = valuee/max*100;
+        	$('.range .belt2').animate(
+      			{ "width": lengthTimeline + "%" },
+        		{ duration: 0 }
+    		);
         }
         //
         slide.value = value;
