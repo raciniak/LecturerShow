@@ -774,7 +774,6 @@ function stopFrame(){
 // Zmiany zachodzące po dodaniu nowego slajdu
 function AddSlide(data)
 {	
-	alert(data.target.responseText);
 		 czasy[iloscSlajdow] = 0;
 		 slajdy[iloscSlajdow] = slajdy[iloscSlajdow-1]+1;
 		 AddInput(iloscSlajdow);
