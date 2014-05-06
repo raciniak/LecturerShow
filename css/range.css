@@ -386,3 +386,10 @@
 	box-shadow: 2px 2px 2px 1px rgba(128,128,128,0.1);
 	margin: 0 0 2% 0;
 }
+
+#contentsection{
+		background: #fff;
+			padding: 40px 30px 25px 30px;
+			box-shadow: 2px 2px 2px 1px rgba(128,128,128,0.1);
+			margin: 0 0 2% 0;
+	}

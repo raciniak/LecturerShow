@@ -260,8 +260,8 @@
         //
         if (!init && value === slide.value) return;
         
-        var percent = 100*(value - slide.min) / slide.width;
-        slider.style.left = percent-0.7 + '%';
+        var percent = (100*(value - slide.min) / slide.width)-0.7;
+        slider.style.left = percent + '%';
         slider.setAttribute('data-value', value);
         slide.input.setAttribute('value', value);
        

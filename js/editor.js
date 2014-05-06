@@ -133,7 +133,7 @@ function createRange(){
 		var max = document.getElementById("range").getAttribute("data-max");
       	for(i=0;i<iloscSlajdow;i++)
       	{
-      		var percent = parseInt(czasy[i]/max*100)-0.7;
+      		var percent = parseFloat(czasy[i]/max*100)-0.7;
       		var left="left: "+percent+"%";
       		createSlider(slajdy[i],czasy[i],left);
       	}
@@ -141,10 +141,10 @@ function createRange(){
 // Utworzenie MultiRange z ramami odtwarzania filmu
 function createRangeTime(){
 		var max = document.getElementById("range").getAttribute("data-max");
-		var percent = parseInt(startPlay/max*100)-0.7;
+		var percent = parseFloat(startPlay/max*100)-0.7;
       	var left="left: "+percent+"%";
       	createSlider("PoczatekFilmu",startPlay,left);
-      	percent = parseInt(stopPlay/max*100)-0.7;
+      	percent = parseFloat(stopPlay/max*100)-0.7;
       	left="left: "+percent+"%";
       	createSlider("KoniecFilmu",stopPlay,left);
 }
@@ -489,7 +489,7 @@ function checkSlajd(checkbox)
     	// wykonywać funkcje z javascript
     	var value = $("input[name="+name+"]").get(0);
     	value = value.getAttribute("value");
-    	var percent = parseInt(value/max*100)-0.7;
+    	var percent = parseFloat(value/max*100)-0.7;
     	var left="left: "+percent+"%";
     	createSlider(name,value,left);      
     }else{
@@ -582,7 +582,7 @@ function chcecktextbox(evt,textbox)
 			{
 				var input=$("input[name="+id+"]").get(0);
     			removeSlider(id);
-    			var percent = parseInt(timee1/max*100)-0.7;
+    			var percent = parseFloat(timee1/max*100)-0.7;
     			var left="left: "+percent+"%";
     			createSlider(id,timee1,left);
     			//usuniecie starego inputa i wstawienie nowego
@@ -680,7 +680,7 @@ function chcecktextboxPlay(evt,textbox)
     				id="KoniecFilmu";
     			}
     			removeSlider(id);
-    			var percent = parseInt(timee1/max*100)-0.7;
+    			var percent = parseFloat(timee1/max*100)-0.7;
     			var left="left: "+percent+"%";
     			createSlider(id,timee1,left);
     			//usuniecie starego inputa i wstawienie nowego
