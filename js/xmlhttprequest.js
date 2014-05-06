@@ -568,7 +568,7 @@ $(document).ready(function(){
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + 
 							      "/snapshots/1.png'></a></div><div id='opis_li'><a id='title_video_slider' href='player.html?id=" + 
 							      this['sciezka'] + "'>" + this['tytul'] + "</a><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
-							      this['autor'] + "</a><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
+							      this['autor'] + "</a><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></div></div></li>";
         	});
 		},
 		error: function(err) 
@@ -590,7 +590,7 @@ $(document).ready(function(){
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + 
 							      "/snapshots/1.png'></a></div><div id='opis_li'><a id='title_video_slider' href='player.html?id=" + 
 							      this['sciezka'] + "'>" + this['tytul'] + "</a><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
-							      this['autor'] + "</a><p> Ocena: " + this['ocena'] + "</p></br></div></div></li>";
+							      this['autor'] + "</a><p> Ocena: " + this['ocena'] + "</p></div></div></li>";
         	});
 		},
 		error: function(err) 
@@ -612,7 +612,7 @@ $(document).ready(function(){
 							      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + 
 							      "/snapshots/1.png'>" + "</a></div><div id='opis_li'><a id='title_video_slider' href='player.html?id=" + 
 							      this['sciezka'] + "'>" + this['tytul'] + "</a><a href='user.html?name=" + this['autor'] + "' id='autor_slider'>" + 
-							      this['autor'] + "</a><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></br></div></div></li>";
+							      this['autor'] + "</a><p> Wyświetlenia: " + this['wyswietlenia'] + "</p></div></div></li>";
         	}); 
 		},
 		error: function(err) 
