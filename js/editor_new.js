@@ -14,7 +14,7 @@ var myVideo    = $('#myVideo')[0];
 var timeLine   = $('#timeLine')[0];
 var volumeLine = $('#volumeLine')[0];
 //------------------------------------
-	
+	var czas; //Piotrek
 	// Chowam przycisk "pauza"
 	$("#pauseButton").hide();
 	// Ustawiam pasek głośności
@@ -136,7 +136,6 @@ function fullScreen() {
 
 	var vidklik = 0;
 	var picklik = 0;
-
 //bazowe ustawianie elementow fullscreena
 
 	$(pelny).css({
@@ -221,10 +220,10 @@ function fullScreen() {
 				}).draggable({
 					disabled : false
 				}).animate({
-					width : 0.35 * screen.width
-				}, 300).animate({
-					height : 0.35 * screen.height
-				}, 300);
+					width : 0.4 * screen.width
+				}, 250).animate({
+					height : 0.4 * screen.height
+				}, 250);
 				$(pic).off("click").draggable({
 					disabled : false
 				});
@@ -317,9 +316,9 @@ function fullScreen() {
 					"margin-top":"0px",
 				}).animate({
 					width : screen.width
-				}, 300).animate({
+				}, 250).animate({
 					height : screen.height,
-				}, 300).draggable({
+				}, 250).draggable({
 					disabled : true
 				});
 
@@ -338,9 +337,9 @@ function fullScreen() {
 				}).draggable({
 					disabled : false
 				}).animate({
-					width : 0.35 * screen.width
+					width : 0.4 * screen.width
 				}, 300).animate({
-					height : 0.35 * screen.height
+					height : 0.4 * screen.height
 				}, 300);
 				$(vid).off("click").draggable({
 					disabled : false
@@ -436,11 +435,13 @@ function fullScreen() {
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
 			fullScreenOn = false;
+			$("#imgLoad").css({
+				"height": "100%",
+			});
 			location.reload();
 		} else {
 			pelny.mozRequestFullScreen();
 			fullScreenOn = true;
-			//tu można ustawiać firefox przez margin-top w css dla elementu pscr
 			$('html,body').scrollTop(0);
 		}
 	else if (pelny.webkitRequestFullscreen)
@@ -454,10 +455,15 @@ function fullScreen() {
 		}
 
 	//funkcja tymczasowa ktora po wcisnieciu esc odswieza strone
-	var KEYCODE_ESC = 27;
+	czas = vid.currentTime;
+	var KEYCODE_ESC = 27; //dla ESC
 	$(document).keyup(function(e) {
 		if (e.keyCode == KEYCODE_ESC) {
-			location.reload();
+			window.location = window.location;
+			myVideo.currentTime = czas;
+			play();
+			timetimes();
+			sort_times();
 		}
 	});
 
@@ -466,10 +472,6 @@ function fullScreen() {
 	timetimes();
 	sort_times();
 }
-
-
-
-
 
 
 function updateTime(){
