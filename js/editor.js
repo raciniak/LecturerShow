@@ -64,7 +64,7 @@ $(document).ready(function(){
 
 // Obsługa błędu video w zakładce do wyszukiwania slajdów
 function errorSlideVideo(){
-	$("a[href='#tab-3']").remove();
+	$("#errorDelete").remove();
 }
 
 
