@@ -23,6 +23,10 @@ function fileSelected(plik) {
       }
 
 /* funkcja wysyłająca filmy/slajdy na serwer */
+function elo () {
+	
+}
+
 function uploadFile() {
         if(document.getElementById('fileType1').innerHTML.toString().contains("video") == false)
         {

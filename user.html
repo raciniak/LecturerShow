@@ -141,16 +141,7 @@
                                                 text-align:center;
                                             }
                                             
-                                            p {
-                                                text-align:center;
-                                                position:absolute;
-                                                width:100%;
-                                                bottom:0;
-                                                font-size:12px;
-                                                font-family:Arial, Helvetica;
-                                                color:#fff;
-                                                text-transform:uppercase;
-                                            }
+                                            
                                             p a {
                                                 color:#fff;
                                                 text-decoration:none;
@@ -170,7 +161,7 @@
 						<div class="12u">
 
 							<!-- Logo -->
-								<h1><a href="index.html"><img src="/images/template/web_logo.png" /></a></h1>				
+								<h1 style="bottom:0px"><a href="index.html"><img src="/images/template/web_logo.png" /></a></h1>				
 							<!-- Nav -->
 								<nav>
                                         <ul class="fancyNav">
@@ -236,9 +227,10 @@
 									           		<p id="avg_rate"></p>
 									           </div>
 									       </div> 
-									       <div id="tab2" class="tab">
-									           <div id="user_videos"></div>
-                                        
+									       <div id="tab2" class="tab" style="float:left;">
+									          
+									           <div id="user_videos"><ul id="filmy"></ul></div>
+                                                
 									       </div>
 									    
                                        </div>
