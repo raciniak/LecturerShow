@@ -158,11 +158,12 @@ function fullScreen() {
 
 	$(vid).css({
 		"position" : "relative",
-		"width" : 0.495 * screen.width,
-		"height" : 0.495 * screen.height,
+		"width" : 0.499 * screen.width,
+		"height" : 0.499 * screen.height,
 		"float" : "left",
 		"padding" : "0px",
 		"margin-top" : 0.24 * screen.height,
+		"margin-left":"0px",
 		"-moz-user-select" : "none",
 		"-webkit-user-select" : "none",
 		"user-select" : "none",
@@ -172,8 +173,8 @@ function fullScreen() {
 
 	$(pic).css({
 		"position" : "relative",
-		"width" : 0.495 * screen.width,
-		"height" : 0.495 * screen.height,
+		"width" : 0.499 * screen.width,
+		"height" : 0.499 * screen.height,
 		"float" : "right",
 		"padding" : "0px",
 		"margin-top" : 0.24 * screen.height,
@@ -183,7 +184,6 @@ function fullScreen() {
 		"opacity" : "1"
 	});
 
-	
 	//OBSLUGA KLIKNIEC !!!
 	//klikanie na wideo
 	$(vid).click(vklik);
@@ -252,15 +252,16 @@ function fullScreen() {
 				$(vid).css({
 					//"position" : "fixed",
 					"z-index" : "10",
-					"width" : 0.495 * screen.width,
-					"height" : 0.495 * screen.height,
+					"width" : 0.499 * screen.width,
+					"height" : 0.499 * screen.height,
 					"float" : "left",
 					"position" : "relative",
 					"padding" : "0px",
-					"left":"auto",
+					"left":"0px",
 					"top":"auto",
 					"right":"auto",
 					"bottom":"auto",
+					"margin-left":"0px",
 					"margin-top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
@@ -272,12 +273,12 @@ function fullScreen() {
 				$(pic).css({
 					//"position" : "fixed",
 					"z-index" : "10",
-					"width" : 0.495 * screen.width,
-					"height" : 0.495 * screen.height,
+					"width" : 0.499 * screen.width,
+					"height" : 0.499 * screen.height,
 					"float" : "right",
 					"left":"auto",
 					"margin-top":"0px",
-					"right":"auto",
+					"right":"0px",
 					"bottom":"auto",
 					"padding" : "0px",
 					"top" : 0.24 * screen.height,
@@ -368,14 +369,15 @@ function fullScreen() {
 				break;
 			case 3:
 				$(vid).css({
-					"width" : 0.495 * screen.width,
-					"height" : 0.495 * screen.height,
+					"width" : 0.499 * screen.width,
+					"height" : 0.499 * screen.height,
 					"float" : "left",
 					"padding" : "0px",
-					"left":"auto",
+					"left":"0px",
 					"top":"auto",
 					"right":"auto",
 					"bottom":"auto",
+					"margin-left":"0px",
 					"margin-top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
@@ -390,12 +392,12 @@ function fullScreen() {
 				}).show();
 
 				$(pic).css({
-					"width" : 0.495 * screen.width,
-					"height" : 0.495 * screen.height,
+					"width" : 0.499 * screen.width,
+					"height" : 0.499 * screen.height,
 					"float" : "right",
 					"padding" : "0px",
 					"left":"auto",
-					"right":"auto",
+					"right":"0px",
 					"bottom":"auto",
 					"top" : 0.24 * screen.height,
 					"-moz-user-select" : "none",
@@ -439,9 +441,7 @@ function fullScreen() {
 			pelny.mozRequestFullScreen();
 			fullScreenOn = true;
 			//tu można ustawiać firefox przez margin-top w css dla elementu pscr
-			$(pscr).css({
-				"top" : "15%",
-			});
+			$('html,body').scrollTop(0);
 		}
 	else if (pelny.webkitRequestFullscreen)
 		if (document.webkitFullscreenElement) {
