@@ -199,6 +199,16 @@
     
 }
 
+.belt2 {
+		position:relative;
+		background: url("/images/template/Player/editPlayerMultiSliderBackground.jpg");
+		background-repeat: repeat-x;
+		width: 0%;
+		height: 11px;
+		bottom: 20px;
+		z-index: 1;
+}
+
 
 /*sliderek na rangu */
 .range > .slider,
@@ -208,14 +218,17 @@
     width: 27px;
     height: 46px;
     white-space:nowrap;
+    z-index: 2;
 }
 
 .range > .slider {
     height: 24px;
     border-bottom: none;
     position: absolute;
-    top: 8px;
+    top: 5px;
+    right: 5px;
     width: 14px;
+    right: 5px;
 }
 
 /*wyglad ranga oznaczajacego poczatek i koniec filmu*/

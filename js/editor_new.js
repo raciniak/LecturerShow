@@ -14,7 +14,7 @@ var myVideo    = $('#myVideo')[0];
 var timeLine   = $('#timeLine')[0];
 var volumeLine = $('#volumeLine')[0];
 //------------------------------------
-	
+	var czas; //Piotrek
 	// Chowam przycisk "pauza"
 	$("#pauseButton").hide();
 	// Ustawiam pasek głośności
@@ -106,7 +106,6 @@ function pause() {
 
 function stop() {
 	pause();
-	//myVideo.currentTime = 0;
 	//Po kliknieciu stop wartosc currentTime filmu ustawia sie na poczatkowa
 	myVideo.currentTime = startPlay;
 	setTimeLine(0);
@@ -136,7 +135,6 @@ function fullScreen() {
 
 	var vidklik = 0;
 	var picklik = 0;
-
 //bazowe ustawianie elementow fullscreena
 
 	$(pelny).css({
@@ -221,10 +219,10 @@ function fullScreen() {
 				}).draggable({
 					disabled : false
 				}).animate({
-					width : 0.35 * screen.width
-				}, 300).animate({
-					height : 0.35 * screen.height
-				}, 300);
+					width : 0.4 * screen.width
+				}, 250).animate({
+					height : 0.4 * screen.height
+				}, 250);
 				$(pic).off("click").draggable({
 					disabled : false
 				});
@@ -317,9 +315,9 @@ function fullScreen() {
 					"margin-top":"0px",
 				}).animate({
 					width : screen.width
-				}, 300).animate({
+				}, 250).animate({
 					height : screen.height,
-				}, 300).draggable({
+				}, 250).draggable({
 					disabled : true
 				});
 
@@ -338,9 +336,9 @@ function fullScreen() {
 				}).draggable({
 					disabled : false
 				}).animate({
-					width : 0.35 * screen.width
+					width : 0.4 * screen.width
 				}, 300).animate({
-					height : 0.35 * screen.height
+					height : 0.4 * screen.height
 				}, 300);
 				$(vid).off("click").draggable({
 					disabled : false
@@ -436,11 +434,13 @@ function fullScreen() {
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
 			fullScreenOn = false;
+			$("#imgLoad").css({
+				"height": "100%",
+			});
 			location.reload();
 		} else {
 			pelny.mozRequestFullScreen();
 			fullScreenOn = true;
-			//tu można ustawiać firefox przez margin-top w css dla elementu pscr
 			$('html,body').scrollTop(0);
 		}
 	else if (pelny.webkitRequestFullscreen)
@@ -454,10 +454,15 @@ function fullScreen() {
 		}
 
 	//funkcja tymczasowa ktora po wcisnieciu esc odswieza strone
-	var KEYCODE_ESC = 27;
+	czas = vid.currentTime;
+	var KEYCODE_ESC = 27; //dla ESC
 	$(document).keyup(function(e) {
 		if (e.keyCode == KEYCODE_ESC) {
-			location.reload();
+			window.location = window.location;
+			myVideo.currentTime = czas;
+			play();
+			timetimes();
+			sort_times();
 		}
 	});
 
@@ -468,29 +473,17 @@ function fullScreen() {
 }
 
 
-
-
-
-
 function updateTime(){
-   /* var seconds = Math.floor(myVideo.currentTime % 60);
-    var minutes = Math.floor((myVideo.currentTime / 60) % 60);
-    var hours = Math.floor(myVideo.currentTime / 3600);*/
    var seconds = Math.floor((myVideo.currentTime-startPlay) % 60);
     var minutes = Math.floor(((myVideo.currentTime-startPlay) / 60) % 60);
     var hours = Math.floor((myVideo.currentTime-startPlay) / 3600);
 
 
     if (countingTimeFromTheEnd) {
-
-      /*  seconds = Math.floor((myVideo.duration % 60) - seconds);
-        minutes = Math.floor((myVideo.duration / 60) - minutes);
-        hours =   Math.floor((myVideo.duration / 3600) - hours);*/
        seconds = Math.floor(((stopPlay-startPlay) % 60) - seconds);
         minutes = Math.floor(((stopPlay-startPlay) / 60) - minutes);
         hours =   Math.floor(((stopPlay-startPlay)/ 3600) - hours);
     }
-
     // Obliczanie sekund
     if (seconds < 10)
         seconds = "0" + seconds;
@@ -526,7 +519,6 @@ function updateTime(){
 	}
     // Animacja
     $('#timeLine .belt').animate(
-      //  { "width": myVideo.currentTime / myVideo.duration * 100 + "%" },
       { "width": lengthTimeline + "%" },
         { duration: 100 }
     );

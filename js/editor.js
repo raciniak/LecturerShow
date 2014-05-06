@@ -57,6 +57,9 @@ $(document).ready(function(){
 			firstImage();
 		});
 		
+		//zmiana pozycji timelina edytoora
+		$(myVideo).bind('timeupdate', updateTimeEditRange);
+		
 });
 
 // Obsługa błędu video w zakładce do wyszukiwania slajdów
@@ -130,17 +133,19 @@ function createRange(){
 		var max = document.getElementById("range").getAttribute("data-max");
       	for(i=0;i<iloscSlajdow;i++)
       	{
-      		var left="left: "+czasy[i]/max*100+"%";
+      		var percent = parseInt(czasy[i]/max*100)-0.7;
+      		var left="left: "+percent+"%";
       		createSlider(slajdy[i],czasy[i],left);
       	}
 }
-
 // Utworzenie MultiRange z ramami odtwarzania filmu
 function createRangeTime(){
 		var max = document.getElementById("range").getAttribute("data-max");
-      	var left="left: "+startPlay/max*100+"%";
+		var percent = parseInt(startPlay/max*100)-0.7;
+      	var left="left: "+percent+"%";
       	createSlider("PoczatekFilmu",startPlay,left);
-      	left="left: "+stopPlay/max*100+"%";
+      	percent = parseInt(stopPlay/max*100)-0.7;
+      	left="left: "+percent+"%";
       	createSlider("KoniecFilmu",stopPlay,left);
 }
 
@@ -484,7 +489,8 @@ function checkSlajd(checkbox)
     	// wykonywać funkcje z javascript
     	var value = $("input[name="+name+"]").get(0);
     	value = value.getAttribute("value");
-    	var left="left: "+value/max*100+"%";
+    	var percent = parseInt(value/max*100)-0.7;
+    	var left="left: "+percent+"%";
     	createSlider(name,value,left);      
     }else{
     	var name = checkbox.getAttribute("id");
@@ -576,7 +582,8 @@ function chcecktextbox(evt,textbox)
 			{
 				var input=$("input[name="+id+"]").get(0);
     			removeSlider(id);
-    			var left="left: "+timee1/max*100+"%";
+    			var percent = parseInt(timee1/max*100)-0.7;
+    			var left="left: "+percent+"%";
     			createSlider(id,timee1,left);
     			//usuniecie starego inputa i wstawienie nowego
    				if (textbox){
@@ -673,7 +680,8 @@ function chcecktextboxPlay(evt,textbox)
     				id="KoniecFilmu";
     			}
     			removeSlider(id);
-    			var left="left: "+timee1/max*100+"%";
+    			var percent = parseInt(timee1/max*100)-0.7;
+    			var left="left: "+percent+"%";
     			createSlider(id,timee1,left);
     			//usuniecie starego inputa i wstawienie nowego
    				if (textbox){
@@ -871,6 +879,10 @@ function timetimes(){
 	}
 	startPlay=timess[0];
 	stopPlay=timess[1];
+	if(myVideo.currentTime<startPlay)
+	{
+		myVideo.currentTime=timess[0];
+	}
 }
 
 // zapis slajdu z dysku
@@ -886,5 +898,19 @@ function saveSlideFromDisc(){
         xhr.addEventListener("load", AddSlide, false);
         xhr.open("POST", "php/saveslideFromDisc.php");
         xhr.send(fd);
+}
+
+function updateTimeEditRange(){
+	//Wyliczamy w procentach długość timelina playera, oraz omijamy błąd
+	var lengthTimeline = (myVideo.currentTime / myVideo.duration * 100 );
+	if((myVideo.currentTime / myVideo.duration * 100 )>100)
+	{
+		lengthTimeline=100;
+	}
+    // Animacja
+    $('.range .belt2').animate(
+      { "width": lengthTimeline + "%" },
+        { duration: 100 }
+    );
 }
 
