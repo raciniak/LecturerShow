@@ -339,8 +339,10 @@ $(document).ready(function(){
         document.getElementById("wyszukiwarka").style.borderRadius= "0px 0px 5px 5px";
         document.getElementById("logo_search").style.display= "inline-block"; 
         document.getElementById("logo_search").style.cssFloat = "left";	
+        document.getElementById("logo_search").style.marginTop = "3px";	
         document.getElementById("wyszukiwarka").style.widtn = "100%";
-        document.getElementById("search_label").style.marginTop = "";
+        document.getElementById("search_label").style.marginTop = "3px";
+        document.getElementById("search_input").style.marginTop = "2px";
         if(window.location.pathname == "/results.html") {
         	document.getElementById("wyszukiwarka").style.marginLeft= "74px"; 
         }
@@ -351,8 +353,11 @@ $(document).ready(function(){
 	        document.getElementById("wyszukiwarka").style.borderRadius= ""; 
 			document.getElementById("logo_search").style.display= "none"; 
 			document.getElementById("wyszukiwarka").style.widtn = "100%";
-			document.getElementById("wyszukiwarka").style.height = "34px";
-			document.getElementById("search_label").style.marginTop = "2px";
+			document.getElementById("wyszukiwarka").style.height = "38px";
+			document.getElementById("search_label").style.marginTop = "4px";
+			document.getElementById("search_input").style.marginTop = "2px";
+			document.getElementById("search_input").style.width = "30px";
+			document.getElementById("submit_wyszukiwarka").style.marginTop = "3px";
 	    }
 	});
 	
