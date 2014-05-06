@@ -20,6 +20,16 @@
         <script type="text/javascript" src="js/libs/template/playerScalingScript.js"></script>
         <script type="text/javascript" src="js/libs/template/playerEffects.js"></script>
         <link rel="shortcut icon" href="images/template/logo_tabs.png">
+        <!--Biblioteka do wygladu file input-->
+        <script src="js/jquery.nicefileinput.js"></script>
+        
+        <script>
+			/* <![CDATA[ */             
+			$(document).ready(function(){
+				$("input[type=file].nicefileinput").nicefileinput();
+			});
+			/* ]]> */
+		</script>
         <!--Funkcje do okien dialogowych-->
        <!-- <script type="text/javascript" src="js/CustomDialog.js"></script>-->
 		<!--Piotrek dodal--><script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>		
@@ -183,12 +193,86 @@
 									</section>
 									
 									<!-- ------------------------------------------------ zakładki ------------------------------------------- -->
+									<style type="text/css" >
+											.nice {
+												font-family: arial;
+												font-size: 12px;
+												-moz-border-radius: 4px; 
+												-webkit-border-radius: 4px;
+												border-radius: 4px;
+												padding-top: 24px;
+											}
+											.nice .NFI-button {
+												-moz-border-radius-topleft: 3px; 
+												-moz-border-radius-bottomleft: 3px;
+												-webkit-border-top-left-radius: 3px;
+												-webkit-border-bottom-left-radius: 3px;
+												border-top-left-radius: 3px; 
+												border-bottom-left-radius: 3px;
+											
+												background-color: #0192DD;
+											
+												background-image: linear-gradient(bottom, #1774A3 0%, #0194DD 56%);
+												background-image: -o-linear-gradient(bottom, #1774A3 0%, #0194DD 56%);
+												background-image: -moz-linear-gradient(bottom, #1774A3 0%, #0194DD 56%);
+												background-image: -webkit-linear-gradient(bottom, #1774A3 0%, #0194DD 56%);
+												background-image: -ms-linear-gradient(bottom, #1774A3 0%, #0194DD 56%);
+												background-image: -webkit-gradient(
+													linear,
+													left bottom,
+													left top,
+													color-stop(0, #1774A3),
+													color-stop(0.56, #0194DD)
+												);
+												text-shadow: 0px -1px 0px #0172bd;
+												border: solid #0172bd 1px;
+												border-bottom: solid #00428d 1px;
+												
+												-webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,.2);
+												-moz-box-shadow: inset 0px 1px 0px rgba(255,255,255,.2);
+												box-shadow: inset 0px 1px 0px rgba(255,255,255,.2); 	
+												
+												color: #fff;
+												width: 100px;
+												height: 30px;
+												line-height: 30px;
+											}
+											.nice .NFI-button:hover {
+												background: #333;
+												text-shadow: 0px -1px 0px #111;
+												border: solid #000 1px;
+												
+											}
+											.nice .NFI-filename {
+												-moz-border-radius-topright: 3px; 
+												-moz-border-radius-bottomright: 3px;
+												-webkit-border-top-right-radius: 3px;
+												-webkit-border-bottom-right-radius: 3px;
+												border-top-right-radius: 3px; 
+												border-bottom-right-radius: 3px;
+											
+												width: 200px;
+												border: solid #777 1px;
+												border-left: none;
+												height: 30px;
+												line-height: 30px;
+												
+												background: #fff;
+												-webkit-box-shadow: inset 0px 2px 0px rgba(0,0,0,.05);
+												-moz-box-shadow: inset 0px 2px 0px rgba(0,0,0,.05);
+												box-shadow: inset 0px 2px 0px rgba(0,0,0,.05); 
+											
+												color: #777;
+												text-shadow: 0px 1px 0px #fff;
+											}
+
+										</style>
 									<ul class="bookmarks">
 										<li class="active"><a href="#tab-1"><p>Edytor</p></a></li>
 										<li><a id="slidesss" onclick="slidesClick()" href="#tab-2"><p>Slajdy</p></a></li>
 										<li><a href="#tab-3"><p>Dodaj slajdy</p></a></li>
 									</ul>									
-									<section>
+									<section id="positionwindows">
 										<div id="tab-1" class="tab">
 											<center><div id="TimeMoviePlayed"></div></center>
 		        								<button id="Zapisz_edycje" class="windows-button" style="width: 150px; height: 40px;" onclick="SaveChanges()">Zapisz wszystkie zmiany</button>
@@ -196,20 +280,31 @@
 											
 											<div id="tab-2" class="tab">
 												<input type="button" value='' class="up leftbuttonlist" />
-												<br/>
 												<input type="button" value='' class="up rightbuttonlist" />
 												<div class="windows">
 		        									<ul class='lista' id='windows_lista'> </ul>
 		        								</div>
 												<input type="button" value='' class="down leftbuttonlist"/>
-												<br/>
 												<input type="button" value='' class="down rightbuttonlist"/>
 											</div>
 															
 											<div id="tab-3" class="tab">
-		        								<video id="AddNewSlide" controls>
-											    	</video>
-											        <button class="windows-button" onclick="saveSlideFromVideo()" style="width: 80px; height: 35px;">Zapisz slajd</button>
+												<div>
+                                                    	<b class="titleTreeTabs"> Załaduj slajd z dysku: </b>
+                                                    	<div>
+                                                        	<input type="file" id="UpSlideInDisc" class="nicefileinput nice" accept="image/*"/>
+                                                        	<button id="saveSlideInDisc" onclick="saveSlideFromDisc()" class="windows-button" style="width: 150px; height: 35px;">Zapisz slajd</button>
+															<!--<div id="errorLogAddSlide">Dodano slajd</div>-->
+														</div>
+												</div>
+												<div>
+														<b class="titleTreeTabs"> Pobierz slajd z prezentacji video: </b>
+														<div>
+															<button id="saveSlideInVideo" class="windows-button" onclick="saveSlideFromVideo()" style="width: 150px; height: 35px;">Zapisz slajd</button>
+		        											<video id="AddNewSlide" controls></video>
+											    		</div>
+											    </div>
+											    	
 											</div>	
 												<div class="overlay"></div>
 												<div class="overlay-message">

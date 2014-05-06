@@ -766,6 +766,7 @@ function stopFrame(){
 // Zmiany zachodzące po dodaniu nowego slajdu
 function AddSlide(data)
 {	
+	alert(data.target.responseText);
 		 czasy[iloscSlajdow] = 0;
 		 slajdy[iloscSlajdow] = slajdy[iloscSlajdow-1]+1;
 		 AddInput(iloscSlajdow);
@@ -786,10 +787,6 @@ function getParameterByName(name) {
 
 //kontrola zabezpieczającego okienka zapisu głównego i akcje wykonane w związku z dalszym postępem
 function SaveChanges(){
-	//var w = window.innerWidth;
-   // var h = window.innerHeight;
-   // $(".overlay-message").css("top",w);
-   // $(".overlay-message").css("left",h);
     $(".overlay, .overlay-message").show();
     $("#yess").click(function() {
         $(".overlay, .overlay-message").hide();
@@ -843,7 +840,7 @@ function completSave(data){
 //odpowiedz zapisu ram czasowych filmu
 function completSaveTime(data)
 {
-	//alert(data);
+	alert(data);
 }
 
 // integracja czasów
@@ -874,5 +871,20 @@ function timetimes(){
 	}
 	startPlay=timess[0];
 	stopPlay=timess[1];
+}
+
+// zapis slajdu z dysku
+function saveSlideFromDisc(){
+		var filename=getParameterByName("id");
+        var fd = new FormData();
+        fd.append("img", document.getElementById('UpSlideInDisc').files[0]);
+        fd.append("numberSlide", iloscSlajdow+1);
+        fd.append("filename", filename);
+        fd.append("path", slajdy[iloscSlajdow-1]+1);
+
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", AddSlide, false);
+        xhr.open("POST", "php/saveslideFromDisc.php");
+        xhr.send(fd);
 }
 
