@@ -14,7 +14,7 @@ var myVideo    = $('#myVideo')[0];
 var timeLine   = $('#timeLine')[0];
 var volumeLine = $('#volumeLine')[0];
 //------------------------------------
-	var czas; //Piotrek
+	var czas;
 	// Chowam przycisk "pauza"
 	$("#pauseButton").hide();
 	// Ustawiam pasek głośności
@@ -162,6 +162,7 @@ function fullScreen() {
 		"padding" : "0px",
 		"margin-top" : 0.24 * screen.height,
 		"margin-left":"0px",
+		"background-color":"black",
 		"-moz-user-select" : "none",
 		"-webkit-user-select" : "none",
 		"user-select" : "none",
@@ -214,7 +215,7 @@ function fullScreen() {
 					"border-radius" : "10px",
 					"position" : "absolute",
 					"border-style" : "groove",
-					"border-color" : "#0099ff",
+					"border-color" : "#000066",
 					"border-width":"medium",
 					"opacity" : "1"
 				}).draggable({
@@ -249,7 +250,6 @@ function fullScreen() {
 				break;
 			case 3:
 				$(vid).css({
-					//"position" : "fixed",
 					"z-index" : "10",
 					"width" : 0.499 * screen.width,
 					"height" : 0.499 * screen.height,
@@ -270,7 +270,6 @@ function fullScreen() {
 				});
 
 				$(pic).css({
-					//"position" : "fixed",
 					"z-index" : "10",
 					"width" : 0.499 * screen.width,
 					"height" : 0.499 * screen.height,
@@ -328,8 +327,9 @@ function fullScreen() {
 					"-webkit-border-radius" : "10px",
 					"border-radius" : "10px",
 					"border-style" : "groove",
-					"border-color" : "#0099ff",
+					"border-color" : "#000066",
 					"border-width":"medium",
+					"background-color":"black",
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
@@ -353,7 +353,7 @@ function fullScreen() {
 					"float" : "right",
 					"padding" : "0px",
 					"top":"0px",
-					"margin-top":"0px",
+					"margin-top":"0px !important",
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
@@ -400,6 +400,7 @@ function fullScreen() {
 					"right":"0px",
 					"bottom":"auto",
 					"top" : 0.24 * screen.height,
+					"margin-top":"0%",
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
@@ -436,9 +437,9 @@ function fullScreen() {
 		if (document.mozFullScreenElement) {
 			document.mozCancelFullScreen();
 			fullScreenOn = false;
-			$("#imgLoad").css({
+			/*$("#imgLoad").css({
 				"height": "100%",
-			});
+			});*/
 			location.reload();
 		} else {
 			pelny.mozRequestFullScreen();
@@ -456,15 +457,10 @@ function fullScreen() {
 		}
 
 	//funkcja tymczasowa ktora po wcisnieciu esc odswieza strone
-	czas = vid.currentTime;
 	var KEYCODE_ESC = 27; //dla ESC
 	$(document).keyup(function(e) {
 		if (e.keyCode == KEYCODE_ESC) {
 			window.location = window.location;
-			myVideo.currentTime = czas;
-			play();
-			timetimes();
-			sort_times();
 		}
 	});
 
