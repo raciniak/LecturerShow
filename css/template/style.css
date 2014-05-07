@@ -825,6 +825,7 @@
 		position: absolute;
 		margin-left: 1%;
 		margin-top: 60px;
+		display:inline-block;
 	}
 
 	#autor_comment {
@@ -833,6 +834,8 @@
 		float: left;
 		width: 10%;
 		margin-bottom:0;
+		text-decoration:none;
+		color: #666;
 	}
 	
 	#content_comment {
@@ -1266,6 +1269,8 @@
 	
 	position: relative;
 	z-index: 4;
+	text-decoration: none;
+	color:#666;
 }
 
 #video_info #title_video_player {
