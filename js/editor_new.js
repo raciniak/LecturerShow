@@ -213,8 +213,9 @@ function fullScreen() {
 					"-webkit-border-radius" : "10px",
 					"border-radius" : "10px",
 					"position" : "absolute",
-					"border-style" : "double",
-					"border-color" : "#0000ff",
+					"border-style" : "groove",
+					"border-color" : "#0099ff",
+					"border-width":"medium",
 					"opacity" : "1"
 				}).draggable({
 					disabled : false
@@ -326,8 +327,9 @@ function fullScreen() {
 					"-moz-border-radius" : "10px",
 					"-webkit-border-radius" : "10px",
 					"border-radius" : "10px",
-					"border-style" : "double",
-					"border-color" : "#0000ff",
+					"border-style" : "groove",
+					"border-color" : "#0099ff",
+					"border-width":"medium",
 					"-moz-user-select" : "none",
 					"-webkit-user-select" : "none",
 					"user-select" : "none",
