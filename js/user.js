@@ -57,13 +57,20 @@ $(document).ready(function() {
 							      "</a><p id='results_opis'> Opis: " + this['opis'] + "</p><p id='results_p'> Wyświetlenia: " + 
 							      this['wyswietlenia'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
 							      "</p></div></li>"; */
-							     
-			document.getElementById("filmy").innerHTML += "<li id='li_lista'>" +  
+			if (this['opis'].length > 14) {
+				var opis = this['opis'].slice(0,14);
+				opis = opis.concat("...");
+			}				   
+			else 
+			{
+				var opis = this['opis'];
+			}  
+			document.getElementById("filmyy").innerHTML += "<li id='li_lista'>" +  
 								      "<a href='player.html?id=" + this['sciezka'] + "'>" + 
 								      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
-								      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a href='player.html?id=" + this['sciezka'] + "'><p>" + this['tytul'] + 
-								      "</p></a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
-								      "</p><p id='results_p'> Wyświetlenia: " + this['wyswietlenia'] + "</p><a href='editor_new.html?id=" + this['sciezka'] + "'><p>Edytuj ten film</p></a></li>";				     
+								      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a href='player.html?id=" + this['sciezka'] + "'>" + this['tytul'] + 
+								      "</a><p id='results_p'> Opis: " + opis + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
+								      "</p><p id='results_p'> Wyświetlenia: " + this['wyswietlenia'] + "</p></li>";				     
         	});
         	
 		},
