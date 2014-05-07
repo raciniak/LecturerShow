@@ -126,7 +126,7 @@ function sendCommentComplete() {
 	document.getElementById("comment_area").value = '';
 	document.getElementById("opacity_site").style.opacity = "0.4";
 	document.getElementById("popup").style.visibility = "visible";
-	document.getElementById("popup").style.top = "700px";
+	document.getElementById("popup").style.top = "870px";
 	document.getElementById("popup_text").innerHTML = "Dodano komentarz";
 	setTimeout(function(){
 		window.location.reload();
@@ -239,7 +239,7 @@ function logIn() { /*
     }
     hr.send(vars);
 	document.getElementById("opacity_site").style.opacity = "0.4";
-	document.getElementById("popup").style.visibility = "visible";
+	document.getElementById("popup_log").style.visibility = "visible";
 	alert();
 	document.getElementById("popup_text").innerHTML = "Loguje";	
 }

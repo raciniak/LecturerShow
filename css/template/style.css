@@ -744,6 +744,20 @@
 		visibility: hidden;
 	}
 	
+	#popup_log {
+		width:20%;
+		height: 100px;
+		top:300px;
+		display:block;
+		left: 40%;
+		position: absolute;
+		background: #FFF;
+		z-index: 2;
+		border-radius: 10px;
+		box-shadow: 0 0 7px 3px gray;
+		visibility: hidden;
+	}
+	
 	#opacity_site {
 		z-index:1;
 		opacity: 1;
@@ -1605,7 +1619,7 @@
 	color: #5d5d5d;
 	display: inline-block;
 	font: 20px/1 Lobster,Arial,sans-serif;
-	padding: 12px 57px 14px;
+	padding: 12px 40px 14px;
 	position: relative;
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
 	z-index:2;
