@@ -23,6 +23,10 @@ function fileSelected(plik) {
       }
 
 /* funkcja wysyłająca filmy/slajdy na serwer */
+function elo () {
+	
+}
+
 function uploadFile() {
         if(document.getElementById('fileType1').innerHTML.toString().contains("video") == false)
         {
@@ -122,6 +126,7 @@ function sendCommentComplete() {
 	document.getElementById("comment_area").value = '';
 	document.getElementById("opacity_site").style.opacity = "0.4";
 	document.getElementById("popup").style.visibility = "visible";
+	document.getElementById("popup").style.top = "700px";
 	document.getElementById("popup_text").innerHTML = "Dodano komentarz";
 	setTimeout(function(){
 		window.location.reload();
@@ -543,7 +548,7 @@ $(document).ready(function(){
 								      "<img id='zdjecie' onmouseover='funkcja(this,\u0022" + this['sciezka'] + "\u0022)'" + 
 								      " onmouseout = funkcja_powrot(this,\u0022" + this['sciezka'] + "\u0022)  src='res/" + this['sciezka'] + "/snapshots/1.png'></a><a href='player.html?id=" + this['sciezka'] + "'><p>" + this['tytul'] + 
 								      "</p></a><p id='results_p'> Opis: " + this['opis'] + "</p><p id='results_p'> Ocena: " + this['ocena'] + 
-								      "</p><p id='results_p'> Wyświetlenia: " + this['wyswietlenia'] + "</p><a href='editor_new.html?id=" + this['sciezka'] + "'><p>Edytuj ten film</p></a></li>";
+								      "</p><p id='results_p'> Wyświetlenia: " + this['wyswietlenia'] + "</p><a class='button black small' id='edit_button' href='editor_new.html?id=" + this['sciezka'] + "'>Edytuj ten film</a></li>";
 	        	}); 
 	        	
         	}

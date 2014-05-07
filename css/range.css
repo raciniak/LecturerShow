@@ -307,9 +307,9 @@
 .overlay-message{
 
     position: fixed;
-    top:45%;
-    left:40%;
-   background-color:#808080;
+    top:40%;
+    left:38%;
+   background-color:#FFF;
     text-align:center;
     width:350px;
     height:100px;
@@ -319,6 +319,10 @@
     box-sizing:border-box;
     padding-left:2px;
     vertical-align:middle;
+    border-radius:5px;
+    -o-border-radius: 5px; 
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;  
 }
 
 /*Wyglad smietnika do wyrzucania slajdow*/

@@ -24,6 +24,7 @@ var i=0;
 var state = true;
 var Interval;
 var startInterval = true;
+var timeSlideVideo = 0;
 // funkcje wykonujace sie po zaladowaniu strony
 $(document).ready(function(){
 	//ukryte okienko, wyświetla się przy zapisie wszystkich zmian w edytorze
@@ -759,6 +760,7 @@ function stopFrame(){
 	var video = document.getElementById('AddNewSlide');
 	canvas.width = video.videoWidth;
 	canvas.height= video.videoHeight;
+	timeSlideVideo = video.currentTime;
 	canvas.getContext("2d").drawImage(video, 0, 0);
 	imgData=canvas.toDataURL("image/png");
 	var filename=getParameterByName("id");
@@ -774,7 +776,7 @@ function stopFrame(){
 // Zmiany zachodzące po dodaniu nowego slajdu
 function AddSlide(data)
 {	
-		 czasy[iloscSlajdow] = 0;
+		 czasy[iloscSlajdow] = parseInt(timeSlideVideo);
 		 slajdy[iloscSlajdow] = slajdy[iloscSlajdow-1]+1;
 		 AddInput(iloscSlajdow);
 		 slideAddWindows(iloscSlajdow);
